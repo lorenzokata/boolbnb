@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
 
 class Apartment_SponsorSeeder extends Seeder
