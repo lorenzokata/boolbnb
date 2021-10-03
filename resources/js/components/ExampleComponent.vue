@@ -7,6 +7,7 @@
 
                     <div class="card-body">
                         I'm an example component.
+                        <!-- commento a caso -->
                     </div>
                 </div>
             </div>
