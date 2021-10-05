@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// qui vanno definite tutte le rotte API che possono essere chiamate dalle pages di Vue per prelevare i dati dal db

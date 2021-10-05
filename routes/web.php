@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
-// pagina di atterraggio dopo il login (con il prefisso, l'url è '/admin')
-    Route::get('/', 'ApartmentController@index')->name('index');
-    Route::get('/{any?}', 'ApartmentController@index')->where('any', '.*');
-});
-
 Auth::routes();
 
-// vue-router
+Route::get('/{any?}', function () { 
+    
+    return view('layouts.app');
 
+})->where("any", ".*");
