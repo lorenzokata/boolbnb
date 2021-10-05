@@ -22,6 +22,17 @@ Route::middleware('auth')->get('/apartment/create', function () {
 
 });
 
+Route::middleware('auth')->get('/apartment/store', function () { 
+    
+    return view('layouts.app');
+
+});
+
+
+
+
+
+
 Route::get('/{any?}', function () { 
     
     return view('layouts.app');

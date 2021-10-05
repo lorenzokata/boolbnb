@@ -6545,19 +6545,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
     return {
       services: [],
-      errors: [],
+      // errors: [],
       title: null,
       description: null,
       n_rooms: 1,
@@ -6572,7 +6565,7 @@ __webpack_require__.r(__webpack_exports__);
       SelectedServices: []
     };
   },
-  beforeCreate: function beforeCreate() {
+  mounted: function mounted() {
     var _this = this;
 
     console.log("Component mounted.");
@@ -42483,7 +42476,7 @@ var render = function() {
                   expression: "title"
                 }
               ],
-              attrs: { id: "title", type: "text", name: "title" },
+              attrs: { type: "text", id: "title", name: "title" },
               domProps: { value: _vm.title },
               on: {
                 input: function($event) {
@@ -42535,7 +42528,11 @@ var render = function() {
                       expression: "SelectedServices"
                     }
                   ],
-                  attrs: { type: "checkbox", id: service.name },
+                  attrs: {
+                    type: "checkbox",
+                    id: service.name,
+                    name: "SelectedServices[]"
+                  },
                   domProps: {
                     value: service.id,
                     checked: Array.isArray(_vm.SelectedServices)
