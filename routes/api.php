@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Admin')->group(function(){
 
     Route::get('/apartment/create','ApartmentController@create');
+    Route::post('/apartment/store','ApartmentController@store');
 
     // Route::post('/contacts', 'ContactController@store');
 });

@@ -1,59 +1,144 @@
 <template>
-<div></div>
-    <!-- <div>
+    <div>
         <h1>Create</h1>
         <div class="container">
-            <form @submit="checkForm" action="" method="post">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
+            <form
+                action="../api/apartment/store"
+                method="post"
+            >
+
+                <!-- <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
+                    </ul>
+                </p> -->
+
+                <p>
+                    <label for="title">Title</label>
                     <input
-                        type="email"
-                        class="form-control"
-                        id="exampleFormControlInput1"
-                        placeholder="name@example.com"
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Example select</label
+                    id="title"
+                    v-model="title"
+                    type="text"
+                    name="title"
                     >
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2"
-                        >Example multiple select</label
-                    >
-                    <select
-                        multiple
-                        class="form-control"
-                        id="exampleFormControlSelect2"
-                    >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1"
-                        >Example textarea</label
-                    >
+                </p>
+                <p>
+                    <label for="desc">Description</label>
                     <textarea
-                        class="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="3"
-                    ></textarea>
+                    id="desc"
+                    v-model="description"
+                    type="text"
+                    name="desc"
+                    >
+                    </textarea>
+                </p>
+
+                <!-- select di vue -->
+                <div class="row row-cols-2">
+                    <div class="col" v-for="service in services" :key="service.id" >
+                        <input type="checkbox" :id="service.name" :value="service.id" v-model="SelectedServices">
+                        <label :for="service.name">{{ service.name }}</label>
+                    </div>
                 </div>
+                   
+               
+               
+
+                
+                <p>
+                    <label for="n_rooms">Numero stanze</label>
+                    <input
+                    id="n_rooms"
+                    v-model="n_rooms"
+                    type="number"
+                    name="r_rooms"
+                    >
+                </p>
+                <p>
+                    <label for="n_beds">Numero letti</label>
+                    <input
+                    id="n_beds"
+                    v-model="n_beds"
+                    type="number"
+                    name="n_beds"
+                    >
+                </p>
+                <p>
+                    <label for="n_baths">Numero bagni</label>
+                    <input
+                    id="n_baths"
+                    v-model="n_baths"
+                    type="number"
+                    name="n_baths"
+                    >
+                </p>
+                <p>
+                    <label for="square_meters">Metri quadri</label>
+                    <input
+                    id="square_meters"
+                    v-model="square_meters"
+                    type="number"
+                    name="square_meters"
+                    >
+                </p>
+                <p>
+                    <label for="city">Cittá</label>
+                    <input
+                    id="city"
+                    v-model="city"
+                    type="text"
+                    name="city"
+                    >
+                </p>
+                <p>
+                    <label for="zip_code">CAP</label>
+                    <input
+                    id="zip_code"
+                    v-model="city"
+                    type="number"
+                    name="zip_code"
+                    >
+                </p>
+                <p>
+                    <label for="street">Indirizzo</label>
+                    <input
+                    id="street"
+                    v-model="street"
+                    type="text"
+                    name="street"
+                    >
+                </p>
+                <p>
+                    <label for="address">Civico</label>
+                    <input
+                    id="address"
+                    v-model="address"
+                    type="text"
+                    name="address"
+                    >
+                </p>
+                <p>
+                    <label for="visible">Visibile</label>
+                    <input
+                    id="visible"
+                    v-model="visible"
+                    type="checkbox"
+                    name="visible"
+                    >
+                </p>
+
+                <p>
+                    <input
+                    type="submit"
+                    value="Submit"
+                    >
+                </p>
+
             </form>
+                
         </div>
-    </div> -->
+    </div>
 </template>
 
 <script>
@@ -62,11 +147,26 @@ export default {
 
     data() {
         return {
-            services: []
+
+            services: [],
+            errors: [],
+            title: null,
+            description: null,
+            n_rooms: 1,
+            n_beds: 1,
+            n_baths: 1,
+            square_meters: null,
+            city: null,
+            zip_code: null,
+            street: null,
+            address: null,
+            visible: true,
+            SelectedServices:[]
+
         };
     },
 
-    mounted() {
+    beforeCreate() {
         console.log("Component mounted.");
 
         axios
@@ -80,23 +180,23 @@ export default {
             });
     },
 
-    // methods: {
-    //     checkForm: function(e) {
-    //         if (this.name && this.age) {
-    //             return true;
-    //         }
+    methods: {
+        // checkForm: function(e) {
+        //     if (this.name && this.age) {
+        //         return true;
+        //     }
 
-    //         this.errors = [];
+        //     this.errors = [];
 
-    //         if (!this.name) {
-    //             this.errors.push("Name required.");
-    //         }
-    //         if (!this.age) {
-    //             this.errors.push("Age required.");
-    //         }
+        //     if (!this.name) {
+        //         this.errors.push("Name required.");
+        //     }
+        //     if (!this.age) {
+        //         this.errors.push("Age required.");
+        //     }
 
-    //         e.preventDefault();
-    //     }
-    // }
+        //     e.preventDefault();
+        // }
+    }
 };
 </script>
