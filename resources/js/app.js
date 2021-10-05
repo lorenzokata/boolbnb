@@ -12,6 +12,10 @@ import 'bootstrap';
 // Fontawesome
 import '@fortawesome/fontawesome-free/js/all';
 
+// Axios
+window.axios = require('axios');
+
+// Vue
 window.Vue = require('vue');
 
 import Main from './Main';

@@ -15,8 +15,15 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
-Route::get('/{any?}', function () { 
+// middleware
+Route::middleware('auth')->get('/apartment/create', function () { 
     
     return view('layouts.app');
 
+});
+
+Route::get('/{any?}', function () { 
+    
+    return view('layouts.app');
+    
 })->where("any", ".*");

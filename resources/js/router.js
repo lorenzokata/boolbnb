@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Show from './pages/Apartment/Show';
+import Create from './pages/Apartment/Create';
 import Edit from './pages/Apartment/Edit';
 import Email from './pages/Apartment/Email';
 import Sponsor from './pages/Apartment/Sponsor';
@@ -44,6 +45,11 @@ const router = new VueRouter({
             path: '/apartment/:slug-app/edit',
             name: "edit",
             component: Edit
+        },
+        {
+            path: '/apartment/create',
+            name: "create",
+            component: Create
         },
         {
             path: '/apartment/:slug-app/email',
