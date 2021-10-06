@@ -50,4 +50,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // metodo per ottenere l'id prova
+    // public function getId()
+    // {
+    //     return $this->id;
+    // }
 }

@@ -13,11 +13,25 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// con autenticazione
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/dashboard', 'RouteController@view');
+    Route::get('/apartment/create', 'RouteController@view');
+    // Route::get('/apartment/store', 'RouteController@view');
+    Route::get('/apartment{slug-app}/edit', 'RouteController@view');
+    Route::get('/apartment/{slug-app}/update', 'RouteController@view');
+    Route::get('/apartment/{slug-app}/delete', 'RouteController@view');
+    Route::get('/apartment{slug-app}/sponsor', 'RouteController@view');
+    Route::get('/apartment{slug-app}/stats', 'RouteController@view');
+    
+});
+
+// senza autenticazione
+
+Route::get('/', 'RouteController@view');
+Route::get('/apartment/show', 'RouteController@view');
+Route::get('/apartment{slug-app}/email', 'RouteController@view');
+Route::get('/apartment/search-results', 'RouteController@view');
