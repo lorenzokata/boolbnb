@@ -18,6 +18,7 @@ window.axios = require('axios');
 // Vue
 window.Vue = require('vue');
 
+// info user autenticato
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 
 import Main from './Main';

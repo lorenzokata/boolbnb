@@ -6545,24 +6545,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
     return {
-      services: [],
-      // errors: [],
-      title: null,
-      description: null,
-      n_rooms: 1,
-      n_beds: 1,
-      n_baths: 1,
-      square_meters: null,
-      city: null,
-      zip_code: null,
-      street: null,
-      address: null,
-      visible: true,
-      SelectedServices: []
+      form: {
+        title: null,
+        description: null,
+        user_id: JSON.parse(this.$userId).id,
+        n_rooms: 1,
+        n_beds: 1,
+        n_baths: 1,
+        square_meters: null,
+        city: null,
+        zip_code: null,
+        street: null,
+        address: null,
+        visible: 1,
+        SelectedServices: []
+      },
+      services: [] // errors: [],
+
     };
   },
   mounted: function mounted() {
@@ -6576,22 +6590,20 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log(this.$userId);
-  },
-  methods: {// checkForm: function(e) {
-    //     if (this.name && this.age) {
-    //         return true;
-    //     }
-    //     this.errors = [];
-    //     if (!this.name) {
-    //         this.errors.push("Name required.");
-    //     }
-    //     if (!this.age) {
-    //         this.errors.push("Age required.");
-    //     }
-    //     e.preventDefault();
-    // }
-  }
+  } // checkForm: function(e) {
+  //     if (this.name && this.age) {
+  //         return true;
+  //     }
+  //     this.errors = [];
+  //     if (!this.name) {
+  //         this.errors.push("Name required.");
+  //     }
+  //     if (!this.age) {
+  //         this.errors.push("Age required.");
+  //     }
+  //     e.preventDefault();
+  // }
+
 });
 
 /***/ }),
@@ -42474,18 +42486,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.title,
-                  expression: "title"
+                  value: _vm.form.title,
+                  expression: "form.title"
                 }
               ],
               attrs: { type: "text", id: "title", name: "title" },
-              domProps: { value: _vm.title },
+              domProps: { value: _vm.form.title },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.title = $event.target.value
+                  _vm.$set(_vm.form, "title", $event.target.value)
                 }
               }
             })
@@ -42499,18 +42511,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
+                  value: _vm.form.description,
+                  expression: "form.description"
                 }
               ],
-              attrs: { id: "desc", type: "text", name: "desc" },
-              domProps: { value: _vm.description },
+              attrs: { id: "desc", type: "text", name: "description" },
+              domProps: { value: _vm.form.description },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.description = $event.target.value
+                  _vm.$set(_vm.form, "description", $event.target.value)
                 }
               }
             })
@@ -42526,8 +42538,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.SelectedServices,
-                      expression: "SelectedServices"
+                      value: _vm.form.SelectedServices,
+                      expression: "form.SelectedServices"
                     }
                   ],
                   attrs: {
@@ -42537,28 +42549,35 @@ var render = function() {
                   },
                   domProps: {
                     value: service.id,
-                    checked: Array.isArray(_vm.SelectedServices)
-                      ? _vm._i(_vm.SelectedServices, service.id) > -1
-                      : _vm.SelectedServices
+                    checked: Array.isArray(_vm.form.SelectedServices)
+                      ? _vm._i(_vm.form.SelectedServices, service.id) > -1
+                      : _vm.form.SelectedServices
                   },
                   on: {
                     change: function($event) {
-                      var $$a = _vm.SelectedServices,
+                      var $$a = _vm.form.SelectedServices,
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
                         var $$v = service.id,
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
-                          $$i < 0 && (_vm.SelectedServices = $$a.concat([$$v]))
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.form,
+                              "SelectedServices",
+                              $$a.concat([$$v])
+                            )
                         } else {
                           $$i > -1 &&
-                            (_vm.SelectedServices = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
+                            _vm.$set(
+                              _vm.form,
+                              "SelectedServices",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
                         }
                       } else {
-                        _vm.SelectedServices = $$c
+                        _vm.$set(_vm.form, "SelectedServices", $$c)
                       }
                     }
                   }
@@ -42582,18 +42601,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.n_rooms,
-                  expression: "n_rooms"
+                  value: _vm.form.n_rooms,
+                  expression: "form.n_rooms"
                 }
               ],
-              attrs: { id: "n_rooms", type: "number", name: "r_rooms" },
-              domProps: { value: _vm.n_rooms },
+              attrs: { id: "n_rooms", type: "number", name: "n_rooms" },
+              domProps: { value: _vm.form.n_rooms },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.n_rooms = $event.target.value
+                  _vm.$set(_vm.form, "n_rooms", $event.target.value)
                 }
               }
             })
@@ -42607,18 +42626,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.n_beds,
-                  expression: "n_beds"
+                  value: _vm.form.n_beds,
+                  expression: "form.n_beds"
                 }
               ],
               attrs: { id: "n_beds", type: "number", name: "n_beds" },
-              domProps: { value: _vm.n_beds },
+              domProps: { value: _vm.form.n_beds },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.n_beds = $event.target.value
+                  _vm.$set(_vm.form, "n_beds", $event.target.value)
                 }
               }
             })
@@ -42634,18 +42653,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.n_baths,
-                  expression: "n_baths"
+                  value: _vm.form.n_baths,
+                  expression: "form.n_baths"
                 }
               ],
               attrs: { id: "n_baths", type: "number", name: "n_baths" },
-              domProps: { value: _vm.n_baths },
+              domProps: { value: _vm.form.n_baths },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.n_baths = $event.target.value
+                  _vm.$set(_vm.form, "n_baths", $event.target.value)
                 }
               }
             })
@@ -42661,8 +42680,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.square_meters,
-                  expression: "square_meters"
+                  value: _vm.form.square_meters,
+                  expression: "form.square_meters"
                 }
               ],
               attrs: {
@@ -42670,13 +42689,13 @@ var render = function() {
                 type: "number",
                 name: "square_meters"
               },
-              domProps: { value: _vm.square_meters },
+              domProps: { value: _vm.form.square_meters },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.square_meters = $event.target.value
+                  _vm.$set(_vm.form, "square_meters", $event.target.value)
                 }
               }
             })
@@ -42690,18 +42709,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.city,
-                  expression: "city"
+                  value: _vm.form.city,
+                  expression: "form.city"
                 }
               ],
               attrs: { id: "city", type: "text", name: "city" },
-              domProps: { value: _vm.city },
+              domProps: { value: _vm.form.city },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.city = $event.target.value
+                  _vm.$set(_vm.form, "city", $event.target.value)
                 }
               }
             })
@@ -42715,18 +42734,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.city,
-                  expression: "city"
+                  value: _vm.form.zip_code,
+                  expression: "form.zip_code"
                 }
               ],
               attrs: { id: "zip_code", type: "number", name: "zip_code" },
-              domProps: { value: _vm.city },
+              domProps: { value: _vm.form.zip_code },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.city = $event.target.value
+                  _vm.$set(_vm.form, "zip_code", $event.target.value)
                 }
               }
             })
@@ -42740,18 +42759,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.street,
-                  expression: "street"
+                  value: _vm.form.street,
+                  expression: "form.street"
                 }
               ],
               attrs: { id: "street", type: "text", name: "street" },
-              domProps: { value: _vm.street },
+              domProps: { value: _vm.form.street },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.street = $event.target.value
+                  _vm.$set(_vm.form, "street", $event.target.value)
                 }
               }
             })
@@ -42765,18 +42784,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.address,
-                  expression: "address"
+                  value: _vm.form.address,
+                  expression: "form.address"
                 }
               ],
               attrs: { id: "address", type: "text", name: "address" },
-              domProps: { value: _vm.address },
+              domProps: { value: _vm.form.address },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.address = $event.target.value
+                  _vm.$set(_vm.form, "address", $event.target.value)
                 }
               }
             })
@@ -42790,37 +42809,47 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.visible,
-                  expression: "visible"
+                  value: _vm.form.visible,
+                  expression: "form.visible"
                 }
               ],
               attrs: { id: "visible", type: "checkbox", name: "visible" },
               domProps: {
-                checked: Array.isArray(_vm.visible)
-                  ? _vm._i(_vm.visible, null) > -1
-                  : _vm.visible
+                checked: Array.isArray(_vm.form.visible)
+                  ? _vm._i(_vm.form.visible, null) > -1
+                  : _vm.form.visible
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.visible,
+                  var $$a = _vm.form.visible,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.visible = $$a.concat([$$v]))
+                      $$i < 0 &&
+                        _vm.$set(_vm.form, "visible", $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.visible = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
+                        _vm.$set(
+                          _vm.form,
+                          "visible",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
                     }
                   } else {
-                    _vm.visible = $$c
+                    _vm.$set(_vm.form, "visible", $$c)
                   }
                 }
               }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "d-none" }, [
+            _c("input", {
+              attrs: { type: "text", name: "user_id" },
+              domProps: { value: _vm.form.user_id }
             })
           ]),
           _vm._v(" "),
@@ -58513,10 +58542,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Bootst
 
  // Axios
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// Vue
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Vue
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // info user autenticato
+
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 
 

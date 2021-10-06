@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Auth;
 // con autenticazione
 Route::namespace('Api')->group(function () {
     
+    Route::get('/home', 'HomeController@home');
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/apartment/create', 'ApartmentController@create');
     Route::post('/apartment/store', 'ApartmentController@store');
@@ -41,7 +42,6 @@ Route::namespace('Api')->group(function () {
     Route::post('/apartment/{slug-app}/delete', 'ApartmentController@destroy');
     Route::get('/apartment{slug-app}/sponsor', 'ApartmentController@sponsor');
     Route::get('/apartment{slug-app}/stats', 'ApartmentController@stats');
-    Route::get('/home', 'HomeController@home');
     Route::get('/apartment/show', 'ApartmentController@show');
     Route::get('/apartment{slug-app}/email', 'ApartmentController@email');
     Route::get('/apartment/search-results', 'ApartmentController@searchApartments');

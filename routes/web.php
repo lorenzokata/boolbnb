@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', 'RouteController@view');
     Route::get('/apartment/create', 'RouteController@view');
-    Route::get('/apartment/store', 'RouteController@view');
+    // Route::get('/apartment/store', 'RouteController@view');
     Route::get('/apartment{slug-app}/edit', 'RouteController@view');
     Route::get('/apartment/{slug-app}/update', 'RouteController@view');
     Route::get('/apartment/{slug-app}/delete', 'RouteController@view');
@@ -35,15 +35,3 @@ Route::get('/', 'RouteController@view');
 Route::get('/apartment/show', 'RouteController@view');
 Route::get('/apartment{slug-app}/email', 'RouteController@view');
 Route::get('/apartment/search-results', 'RouteController@view');
-
-
-
-
-
-
-
-// Route::get('/{any?}', function () { 
-    
-//     return view('layouts.app');
-    
-// })->where("any", ".*");

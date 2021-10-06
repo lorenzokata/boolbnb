@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 // import model
 use App\Service;
@@ -37,7 +38,101 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->user());
+        // implementare storage immagini
+
+        // validazioni
+        // $request->validate([
+        //     'title' => 'required|max:255',
+        //     'description' => 'required',
+        //     'SelectedServices' => 'nullable',
+        //     'r_rooms' => 'required',
+        //     'n_beds' => 'required',
+        //     'n_baths' => 'required',
+        //     'square_meters' => 'required',
+        //     'city' => 'required',
+        //     'zip_code' => 'required',
+        //     'street' => 'required',
+        //     'address' => 'required',
+        //     'visible' => 'nullable',
+        // ]);
+        
+        
+        // // salvo la request
+        $data = $request->all();
+
+
+       
+
+        // // creare istanza del model Apartment
+        $newApartment = new Apartment();
+
+        // GESTIONE SLUG
+        $slug = Str::slug($data['title'],'-');
+
+        $slug_base = $slug;
+        
+        $slug_presente = Apartment::where('slug', $slug)->first();
+
+        $counter = 1;
+
+        while($slug_presente){
+
+            // probabilmente inutile
+            // $slug = $slug_base . '-' .$counter;
+            // sostituito con questo
+            $slug = $slug . '-' .$counter;
+
+            $slug_presente = Apartment::where('slug', $slug)->first();
+
+            $counter++;
+        }
+
+        $newApartment->slug = $slug;
+
+        // CONVERSIONE INDIRIZZO IN LAT LOT CON API TOMTOM
+
+        $city = $data['city'];
+        $zipcode = $data['zip_code'];
+        $street = $data['street'];
+        $address = $data['address'];
+        $complete_address = $city . ' ' . $zipcode . ' ' . $street . ' ' . $address;
+        $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
+        
+        $url = 'https://api.tomtom.com/search/2/search/roma.json?key=iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
+    
+        $response = Http::withOptions(['verify' => false])->withToken($key)->get('https://api.tomtom.com/search/2/search/',[
+            'query' => $complete_address,
+            'ext' => 'json'
+        ]);
+        
+        // $response = Http::get($url);
+        // $client->request('GET',$url , ['verify' => false]);
+        // $response = Http::->get($url);
+        // $response = Http::get('http://jsonplaceholder.typicode.com/todos/1');
+
+        dd($response);
+
+
+        $newApartment->lat = '';
+        $newApartment->lon = '';
+
+
+
+        $newApartment->fill($data);
+
+        $newApartment->save();
+        
+        if(array_key_exists('services' ,$data)){
+            $newApartment->services()->attach($data['SelectedServices']);
+        }
+        
+
+        return Redirect::to('/dashboard');
+
+
+        // chiamata api per lat - lon (TomTom)
+        // inserire i dati nell'istanza
+        // salvare i dati
     }
 
     /**

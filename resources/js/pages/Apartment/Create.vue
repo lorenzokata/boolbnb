@@ -2,7 +2,10 @@
     <div>
         <h1>Create</h1>
         <div class="container">
-            <form action="../api/apartment/store" method="post">
+            <form
+                action="../api/apartment/store"
+                method="post"
+            >
                 <!-- <p v-if="errors.length">
                     <b>Please correct the following error(s):</b>
                     <ul>
@@ -15,7 +18,7 @@
                     <input
                         type="text"
                         id="title"
-                        v-model="title"
+                        v-model="form.title"
                         name="title"
                     />
                 </p>
@@ -23,9 +26,9 @@
                     <label for="desc">Description</label>
                     <textarea
                         id="desc"
-                        v-model="description"
+                        v-model="form.description"
                         type="text"
-                        name="desc"
+                        name="description"
                     >
                     </textarea>
                 </p>
@@ -41,7 +44,7 @@
                             type="checkbox"
                             :id="service.name"
                             :value="service.id"
-                            v-model="SelectedServices"
+                            v-model="form.SelectedServices"
                             name="SelectedServices[]"
                         />
 
@@ -53,16 +56,16 @@
                     <label for="n_rooms">Numero stanze</label>
                     <input
                         id="n_rooms"
-                        v-model="n_rooms"
+                        v-model="form.n_rooms"
                         type="number"
-                        name="r_rooms"
+                        name="n_rooms"
                     />
                 </p>
                 <p>
                     <label for="n_beds">Numero letti</label>
                     <input
                         id="n_beds"
-                        v-model="n_beds"
+                        v-model="form.n_beds"
                         type="number"
                         name="n_beds"
                     />
@@ -71,7 +74,7 @@
                     <label for="n_baths">Numero bagni</label>
                     <input
                         id="n_baths"
-                        v-model="n_baths"
+                        v-model="form.n_baths"
                         type="number"
                         name="n_baths"
                     />
@@ -80,20 +83,25 @@
                     <label for="square_meters">Metri quadri</label>
                     <input
                         id="square_meters"
-                        v-model="square_meters"
+                        v-model="form.square_meters"
                         type="number"
                         name="square_meters"
                     />
                 </p>
                 <p>
                     <label for="city">Cittá</label>
-                    <input id="city" v-model="city" type="text" name="city" />
+                    <input
+                        id="city"
+                        v-model="form.city"
+                        type="text"
+                        name="city"
+                    />
                 </p>
                 <p>
                     <label for="zip_code">CAP</label>
                     <input
                         id="zip_code"
-                        v-model="city"
+                        v-model="form.zip_code"
                         type="number"
                         name="zip_code"
                     />
@@ -102,7 +110,7 @@
                     <label for="street">Indirizzo</label>
                     <input
                         id="street"
-                        v-model="street"
+                        v-model="form.street"
                         type="text"
                         name="street"
                     />
@@ -111,7 +119,7 @@
                     <label for="address">Civico</label>
                     <input
                         id="address"
-                        v-model="address"
+                        v-model="form.address"
                         type="text"
                         name="address"
                     />
@@ -120,14 +128,17 @@
                     <label for="visible">Visibile</label>
                     <input
                         id="visible"
-                        v-model="visible"
+                        v-model="form.visible"
                         type="checkbox"
                         name="visible"
                     />
                 </p>
+                <p class="d-none">
+                    <input type="text" name="user_id" :value="form.user_id">
+                </p>
 
                 <p>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit"/>
                 </p>
             </form>
         </div>
@@ -140,20 +151,24 @@ export default {
 
     data() {
         return {
-            services: [],
+            form: {
+                title: null,
+                description: null,
+                user_id: JSON.parse(this.$userId).id,
+                n_rooms: 1,
+                n_beds: 1,
+                n_baths: 1,
+                square_meters: null,
+                city: null,
+                zip_code: null,
+                street: null,
+                address: null,
+                visible: 1,
+                SelectedServices: []
+            },
+
+            services: []
             // errors: [],
-            title: null,
-            description: null,
-            n_rooms: 1,
-            n_beds: 1,
-            n_baths: 1,
-            square_meters: null,
-            city: null,
-            zip_code: null,
-            street: null,
-            address: null,
-            visible: true,
-            SelectedServices: []
         };
     },
 
@@ -170,25 +185,20 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-
-        console.log(this.$userId)
-            
     },
 
-    methods: {
-        // checkForm: function(e) {
-        //     if (this.name && this.age) {
-        //         return true;
-        //     }
-        //     this.errors = [];
-        //     if (!this.name) {
-        //         this.errors.push("Name required.");
-        //     }
-        //     if (!this.age) {
-        //         this.errors.push("Age required.");
-        //     }
-        //     e.preventDefault();
-        // }
-    }
+    // checkForm: function(e) {
+    //     if (this.name && this.age) {
+    //         return true;
+    //     }
+    //     this.errors = [];
+    //     if (!this.name) {
+    //         this.errors.push("Name required.");
+    //     }
+    //     if (!this.age) {
+    //         this.errors.push("Age required.");
+    //     }
+    //     e.preventDefault();
+    // }
 };
 </script>
