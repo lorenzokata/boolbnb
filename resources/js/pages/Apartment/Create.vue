@@ -142,6 +142,8 @@
                     <input type="submit" value="Submit"/>
                 </p>
             </form>
+
+            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
         </div>
     </div>
 </template>
