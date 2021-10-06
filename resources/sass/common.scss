@@ -34,6 +34,21 @@
 .opal-background{background-color: #9cbcbe;}
 .cream-background{background-color: #f3f7f0;}
 
+/* hover */
+.rosso-background:hover{
+    transition: 0.5s;
+    background-color: rgb(190, 66, 72);
+  }
+  
+  .cream-background:hover{
+    background-color: #ced1cc;
+    transition: 0.5s;}
+  
+  .hover-black:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+  }
+
 
 
 /* margin top */

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container margin-t-4">
         <h1 class="mt-3 mb-3">Create</h1>
         <div>
             <form class="form-group" action="../api/apartment/store" method="post" >
@@ -19,6 +19,7 @@
                         id="title"
                         v-model="form.title"
                         name="title"
+                        required
                     />
                 </div>
 
@@ -30,6 +31,7 @@
                         v-model="form.description"
                         type="text"
                         name="description"
+                        required
                     >
                     </textarea>
                 </div>
@@ -65,41 +67,45 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-3">
-                        <label for="n_rooms">Numero stanze</label>
+                        <label class="d-block" for="n_rooms">Numero stanze</label>
                         <input
                             id="n_rooms"
                             v-model="form.n_rooms"
                             type="number"
                             name="n_rooms"
+                            required
                         />
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="n_beds">Numero letti</label>
+                        <label class="d-block" for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
                             v-model="form.n_beds"
                             type="number"
                             name="n_beds"
+                            required
                         />
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="n_baths">Numero bagni</label>
+                        <label class="d-block" for="n_baths">Numero bagni</label>
                         <input
                             id="n_baths"
                             v-model="form.n_baths"
                             type="number"
                             name="n_baths"
+                            required
                         />
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="square_meters">Metri quadri</label>
+                        <label class="d-block" for="square_meters">Metri quadri</label>
                         <input
                             id="square_meters"
                             v-model="form.square_meters"
                             type="number"
                             name="square_meters"
+                            required
                         />
                     </div>
                 </div>
@@ -117,6 +123,7 @@
                             v-model="form.city"
                             type="text"
                             name="city"
+                            required
                         />
                     </div>
 
@@ -127,6 +134,7 @@
                             v-model="form.zip_code"
                             type="number"
                             name="zip_code"
+                            required
                         />
                     </div>
                     <div class="form-group col-md-3">
@@ -136,6 +144,7 @@
                             v-model="form.street"
                             type="text"
                             name="street"
+                            required
                         />
                     </div>
                     <div class="form-group col-md-3">
@@ -145,6 +154,7 @@
                             v-model="form.address"
                             type="text"
                             name="address"
+                            required
                         />
                     </div>
                 </div>

@@ -17103,6 +17103,23 @@ readers do not read off random characters that represent icons */
   background-color: #f3f7f0;
 }
 
+/* hover */
+
+.rosso-background:hover {
+  transition: 0.5s;
+  background-color: #be4248;
+}
+
+.cream-background:hover {
+  background-color: #ced1cc;
+  transition: 0.5s;
+}
+
+.hover-black:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+
 /* margin top */
 
 .margin-t-4 {
