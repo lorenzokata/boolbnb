@@ -12,6 +12,9 @@ import 'bootstrap';
 // Fontawesome
 import '@fortawesome/fontawesome-free/js/all';
 
+// style
+import '../sass/app.scss'
+
 // Axios
 window.axios = require('axios');
 
