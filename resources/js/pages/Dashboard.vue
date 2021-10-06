@@ -1,5 +1,10 @@
 <template>
-    <h1>DASHBOARD</h1>
+    <div>
+        <h1>DASHBOARD</h1>
+
+        <router-link :to="{ name: 'create'}">CREA</router-link>
+        <router-link :to="{ name: 'home'}">HOME</router-link>
+    </div>
 </template>
 
 <script>

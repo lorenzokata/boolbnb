@@ -6557,6 +6557,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6728,6 +6730,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   mounted: function mounted() {
@@ -6756,10 +6763,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home',
+  name: "Home",
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -42474,390 +42485,401 @@ var render = function() {
   return _c("div", [
     _c("h1", [_vm._v("Create")]),
     _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c(
-        "form",
-        { attrs: { action: "../api/apartment/store", method: "post" } },
-        [
-          _c("p", [
-            _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.title,
-                  expression: "form.title"
-                }
-              ],
-              attrs: { type: "text", id: "title", name: "title" },
-              domProps: { value: _vm.form.title },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _c(
+          "form",
+          { attrs: { action: "../api/apartment/store", method: "post" } },
+          [
+            _c("p", [
+              _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.title,
+                    expression: "form.title"
                   }
-                  _vm.$set(_vm.form, "title", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "desc" } }, [_vm._v("Description")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.description,
-                  expression: "form.description"
-                }
-              ],
-              attrs: { id: "desc", type: "text", name: "description" },
-              domProps: { value: _vm.form.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "description", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row row-cols-2" },
-            _vm._l(_vm.services, function(service) {
-              return _c("div", { key: service.id, staticClass: "col" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.SelectedServices,
-                      expression: "form.SelectedServices"
+                ],
+                attrs: { type: "text", id: "title", name: "title" },
+                domProps: { value: _vm.form.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: service.name,
-                    name: "SelectedServices[]"
-                  },
-                  domProps: {
-                    value: service.id,
-                    checked: Array.isArray(_vm.form.SelectedServices)
-                      ? _vm._i(_vm.form.SelectedServices, service.id) > -1
-                      : _vm.form.SelectedServices
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.form.SelectedServices,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = service.id,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.form,
-                              "SelectedServices",
-                              $$a.concat([$$v])
-                            )
+                    _vm.$set(_vm.form, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "desc" } }, [_vm._v("Description")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.description,
+                    expression: "form.description"
+                  }
+                ],
+                attrs: { id: "desc", type: "text", name: "description" },
+                domProps: { value: _vm.form.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "description", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row row-cols-2" },
+              _vm._l(_vm.services, function(service) {
+                return _c("div", { key: service.id, staticClass: "col" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.SelectedServices,
+                        expression: "form.SelectedServices"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: service.name,
+                      name: "SelectedServices[]"
+                    },
+                    domProps: {
+                      value: service.id,
+                      checked: Array.isArray(_vm.form.SelectedServices)
+                        ? _vm._i(_vm.form.SelectedServices, service.id) > -1
+                        : _vm.form.SelectedServices
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.SelectedServices,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = service.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "SelectedServices",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "SelectedServices",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
                         } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.form,
-                              "SelectedServices",
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
+                          _vm.$set(_vm.form, "SelectedServices", $$c)
                         }
-                      } else {
-                        _vm.$set(_vm.form, "SelectedServices", $$c)
                       }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: service.name } }, [
-                  _vm._v(_vm._s(service.name))
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: service.name } }, [
+                    _vm._v(_vm._s(service.name))
+                  ])
                 ])
-              ])
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "n_rooms" } }, [
-              _vm._v("Numero stanze")
-            ]),
+              }),
+              0
+            ),
             _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.n_rooms,
-                  expression: "form.n_rooms"
-                }
-              ],
-              attrs: { id: "n_rooms", type: "number", name: "n_rooms" },
-              domProps: { value: _vm.form.n_rooms },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _c("p", [
+              _c("label", { attrs: { for: "n_rooms" } }, [
+                _vm._v("Numero stanze")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.n_rooms,
+                    expression: "form.n_rooms"
                   }
-                  _vm.$set(_vm.form, "n_rooms", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "n_beds" } }, [_vm._v("Numero letti")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.n_beds,
-                  expression: "form.n_beds"
-                }
-              ],
-              attrs: { id: "n_beds", type: "number", name: "n_beds" },
-              domProps: { value: _vm.form.n_beds },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "n_beds", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "n_baths" } }, [
-              _vm._v("Numero bagni")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.n_baths,
-                  expression: "form.n_baths"
-                }
-              ],
-              attrs: { id: "n_baths", type: "number", name: "n_baths" },
-              domProps: { value: _vm.form.n_baths },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "n_baths", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "square_meters" } }, [
-              _vm._v("Metri quadri")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.square_meters,
-                  expression: "form.square_meters"
-                }
-              ],
-              attrs: {
-                id: "square_meters",
-                type: "number",
-                name: "square_meters"
-              },
-              domProps: { value: _vm.form.square_meters },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "square_meters", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "city" } }, [_vm._v("Cittá")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.city,
-                  expression: "form.city"
-                }
-              ],
-              attrs: { id: "city", type: "text", name: "city" },
-              domProps: { value: _vm.form.city },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "city", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "zip_code" } }, [_vm._v("CAP")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.zip_code,
-                  expression: "form.zip_code"
-                }
-              ],
-              attrs: { id: "zip_code", type: "number", name: "zip_code" },
-              domProps: { value: _vm.form.zip_code },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "zip_code", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "street" } }, [_vm._v("Indirizzo")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.street,
-                  expression: "form.street"
-                }
-              ],
-              attrs: { id: "street", type: "text", name: "street" },
-              domProps: { value: _vm.form.street },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "street", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "address" } }, [_vm._v("Civico")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.address,
-                  expression: "form.address"
-                }
-              ],
-              attrs: { id: "address", type: "text", name: "address" },
-              domProps: { value: _vm.form.address },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "address", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("label", { attrs: { for: "visible" } }, [_vm._v("Visibile")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.visible,
-                  expression: "form.visible"
-                }
-              ],
-              attrs: { id: "visible", type: "checkbox", name: "visible" },
-              domProps: {
-                checked: Array.isArray(_vm.form.visible)
-                  ? _vm._i(_vm.form.visible, null) > -1
-                  : _vm.form.visible
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.form.visible,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 &&
-                        _vm.$set(_vm.form, "visible", $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        _vm.$set(
-                          _vm.form,
-                          "visible",
-                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                        )
+                ],
+                attrs: { id: "n_rooms", type: "number", name: "n_rooms" },
+                domProps: { value: _vm.form.n_rooms },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  } else {
-                    _vm.$set(_vm.form, "visible", $$c)
+                    _vm.$set(_vm.form, "n_rooms", $event.target.value)
                   }
                 }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "d-none" }, [
-            _c("input", {
-              attrs: { type: "text", name: "user_id" },
-              domProps: { value: _vm.form.user_id }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      )
-    ])
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "n_beds" } }, [
+                _vm._v("Numero letti")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.n_beds,
+                    expression: "form.n_beds"
+                  }
+                ],
+                attrs: { id: "n_beds", type: "number", name: "n_beds" },
+                domProps: { value: _vm.form.n_beds },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "n_beds", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "n_baths" } }, [
+                _vm._v("Numero bagni")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.n_baths,
+                    expression: "form.n_baths"
+                  }
+                ],
+                attrs: { id: "n_baths", type: "number", name: "n_baths" },
+                domProps: { value: _vm.form.n_baths },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "n_baths", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "square_meters" } }, [
+                _vm._v("Metri quadri")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.square_meters,
+                    expression: "form.square_meters"
+                  }
+                ],
+                attrs: {
+                  id: "square_meters",
+                  type: "number",
+                  name: "square_meters"
+                },
+                domProps: { value: _vm.form.square_meters },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "square_meters", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "city" } }, [_vm._v("Cittá")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.city,
+                    expression: "form.city"
+                  }
+                ],
+                attrs: { id: "city", type: "text", name: "city" },
+                domProps: { value: _vm.form.city },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "city", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "zip_code" } }, [_vm._v("CAP")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.zip_code,
+                    expression: "form.zip_code"
+                  }
+                ],
+                attrs: { id: "zip_code", type: "number", name: "zip_code" },
+                domProps: { value: _vm.form.zip_code },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "zip_code", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "street" } }, [_vm._v("Indirizzo")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.street,
+                    expression: "form.street"
+                  }
+                ],
+                attrs: { id: "street", type: "text", name: "street" },
+                domProps: { value: _vm.form.street },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "street", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "address" } }, [_vm._v("Civico")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.address,
+                    expression: "form.address"
+                  }
+                ],
+                attrs: { id: "address", type: "text", name: "address" },
+                domProps: { value: _vm.form.address },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "address", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("label", { attrs: { for: "visible" } }, [_vm._v("Visibile")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.visible,
+                    expression: "form.visible"
+                  }
+                ],
+                attrs: { id: "visible", type: "checkbox", name: "visible" },
+                domProps: {
+                  checked: Array.isArray(_vm.form.visible)
+                    ? _vm._i(_vm.form.visible, null) > -1
+                    : _vm.form.visible
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.form.visible,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(_vm.form, "visible", $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.form,
+                            "visible",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.form, "visible", $$c)
+                    }
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "d-none" }, [
+              _c("input", {
+                attrs: { type: "text", name: "user_id" },
+                domProps: { value: _vm.form.user_id }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        ),
+        _vm._v(" "),
+        _c("router-link", { attrs: { to: { name: "dashboard" } } }, [
+          _vm._v("DASHBOARD")
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -43011,7 +43033,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("DASHBOARD")])
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("DASHBOARD")]),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "create" } } }, [
+        _vm._v("CREA")
+      ]),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "home" } } }, [_vm._v("HOME")])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43035,17 +43069,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    this.$userId
+      ? _c(
+          "div",
+          [
+            _c("router-link", { attrs: { to: { name: "dashboard" } } }, [
+              _vm._v("DASHBOARD")
+            ])
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col" }, [_c("h1", [_vm._v("Home page")])])
-      ])
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [_c("h1", [_vm._v("Home page")])])
     ])
   }
 ]
