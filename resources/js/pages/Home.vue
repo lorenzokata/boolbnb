@@ -21,16 +21,21 @@
                 </div>
             </div>
         </div>
+        <div v-if="this.$userId">
+            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
+        </div>
     </main>
+
+
 </template>
 
 <script>
-    export default {
-        name: 'Home',
-        mounted() {
-            console.log('Component mounted.')
-        }
+export default {
+    name: "Home",
+    mounted() {
+        console.log("Component mounted.");
     }
+};
 </script>
 
 <style lang="scss" scoped>

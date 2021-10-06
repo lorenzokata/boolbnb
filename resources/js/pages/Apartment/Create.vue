@@ -169,6 +169,8 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
+
+            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
         </div>
     </div>
 </template>
