@@ -27,9 +27,19 @@ const router = new VueRouter({
             component: Dashboard
         },
         {
+            path: '/apartment/create',
+            name: "create",
+            component: Create
+        },
+        {
             path: '/apartment/:slug-app',
             name: "show",
             component: Show
+        },
+        {
+            path: '/apartment/:slug-app/edit',
+            name: "edit",
+            component: Edit
         },
         {
             path: '/apartment/:slug-app/stats',
@@ -40,16 +50,6 @@ const router = new VueRouter({
             path: '/apartment/:slug-app/sponsor',
             name: "sponsor",
             component: Sponsor
-        },
-        {
-            path: '/apartment/:slug-app/edit',
-            name: "edit",
-            component: Edit
-        },
-        {
-            path: '/apartment/create',
-            name: "create",
-            component: Create
         },
         {
             path: '/apartment/:slug-app/email',

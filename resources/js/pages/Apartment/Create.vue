@@ -160,6 +160,7 @@ export default {
     mounted() {
         console.log("Component mounted.");
 
+        // api per elenco servizi
         axios
             .get("/api/apartment/create")
             .then(response => {
@@ -169,6 +170,9 @@ export default {
             .catch(error => {
                 console.log(error);
             });
+
+        console.log(this.$userId)
+            
     },
 
     methods: {

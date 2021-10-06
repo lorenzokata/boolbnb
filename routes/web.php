@@ -15,26 +15,35 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
-// middleware
-Route::middleware('auth')->get('/apartment/create', function () { 
+// con autenticazione
+Route::middleware('auth')->group(function () {
     
-    return view('layouts.app');
-
+    Route::get('/dashboard', 'RouteController@view');
+    Route::get('/apartment/create', 'RouteController@view');
+    Route::get('/apartment/store', 'RouteController@view');
+    Route::get('/apartment{slug-app}/edit', 'RouteController@view');
+    Route::get('/apartment/{slug-app}/update', 'RouteController@view');
+    Route::get('/apartment/{slug-app}/delete', 'RouteController@view');
+    Route::get('/apartment{slug-app}/sponsor', 'RouteController@view');
+    Route::get('/apartment{slug-app}/stats', 'RouteController@view');
+    
 });
 
-Route::middleware('auth')->get('/apartment/store', function () { 
+// senza autenticazione
+
+Route::get('/', 'RouteController@view');
+Route::get('/apartment/show', 'RouteController@view');
+Route::get('/apartment{slug-app}/email', 'RouteController@view');
+Route::get('/apartment/search-results', 'RouteController@view');
+
+
+
+
+
+
+
+// Route::get('/{any?}', function () { 
     
-    return view('layouts.app');
-
-});
-
-
-
-
-
-
-Route::get('/{any?}', function () { 
+//     return view('layouts.app');
     
-    return view('layouts.app');
-    
-})->where("any", ".*");
+// })->where("any", ".*");

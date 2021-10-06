@@ -6568,13 +6568,15 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log("Component mounted.");
+    console.log("Component mounted."); // api per elenco servizi
+
     axios.get("/api/apartment/create").then(function (response) {
       _this.services = response.data.results;
       console.log(_this.services);
     })["catch"](function (error) {
       console.log(error);
     });
+    console.log(this.$userId);
   },
   methods: {// checkForm: function(e) {
     //     if (this.name && this.age) {
@@ -58511,9 +58513,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Bootst
 
  // Axios
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Vue
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// Vue
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 
 
 var app = new Vue({
@@ -59236,9 +59240,17 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "dashboard",
     component: _pages_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
+    path: '/apartment/create',
+    name: "create",
+    component: _pages_Apartment_Create__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
     path: '/apartment/:slug-app',
     name: "show",
     component: _pages_Apartment_Show__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
+    path: '/apartment/:slug-app/edit',
+    name: "edit",
+    component: _pages_Apartment_Edit__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/apartment/:slug-app/stats',
     name: "stats",
@@ -59247,14 +59259,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/apartment/:slug-app/sponsor',
     name: "sponsor",
     component: _pages_Apartment_Sponsor__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }, {
-    path: '/apartment/:slug-app/edit',
-    name: "edit",
-    component: _pages_Apartment_Edit__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, {
-    path: '/apartment/create',
-    name: "create",
-    component: _pages_Apartment_Create__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/apartment/:slug-app/email',
     name: "email",

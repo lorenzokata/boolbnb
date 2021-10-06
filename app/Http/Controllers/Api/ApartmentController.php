@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
+// import model
+use App\Service;
+use App\Apartment;
 
 class ApartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +20,13 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+
+
+        return response()->json([
+            'success' => true,
+            'results' => $services
+        ]);
     }
 
     /**
@@ -34,7 +37,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->user());
     }
 
     /**
@@ -78,6 +81,26 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    public function sponsor($id)
+    {
+        //
+    }
+
+    public function stats($id)
+    {
+        //
+    }
+
+    public function email($id)
+    {
+        //
+    }
+
+    public function searchApartments()
     {
         //
     }

@@ -18,6 +18,8 @@ window.axios = require('axios');
 // Vue
 window.Vue = require('vue');
 
+Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+
 import Main from './Main';
 import router from './router';
 
