@@ -1,0 +1,94 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  /* bottone */
+.bottone{
+    padding: 0.6em 0.9em;
+    align-items: center;
+    text-align: center;
+    display: inline-block;
+    border-radius: 200px;
+    cursor: pointer;
+}
+.ombra{
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+
+/* color */
+.rosso{color:#f2545b ;}
+.viola{color: #a93f55;}
+.gunmetal{color: #19323c;}
+.opal{color: #9cbcbe;}
+.cream{color: #f3f7f0;}
+
+/* background color */
+.rosso-background{background-color:#f2545b;}
+.viola-background{background-color: #a93f55;}
+.gunmetal-background{background-color: #19323c;}
+.opal-background{background-color: #9cbcbe;}
+.cream-background{background-color: #f3f7f0;}
+
+
+
+/* margin top */
+.margin-t-4{margin-top: 40px;}
+.margin-t-5{margin-top: 50px;}
+.margin-t-6{margin-top: 60px;}
+.margin-t-7{margin-top: 70px;}
+.margin-t-8{margin-top: 80px;}
+.margin-t-9{margin-top: 90px;}
+.margin-t-10{margin-top: 100px;}
+
+/* margin bot */
+.margin-b-4{ margin-bottom: 40px;}
+.margin-b-5{margin-bottom: 50px;}
+.margin-b-6{margin-bottom: 60px;}
+.margin-b-7{margin-bottom: 70px;}
+.margin-b-8{margin-bottom: 80px;}
+.margin-b-9{margin-bottom: 90px;}
+.margin-b-10{margin-bottom: 100px;}
+
+
+/* margin left */
+.margin-l-4{margin-left: 40px;}
+.margin-l-5{margin-left: 50px;}
+.margin-l-6{margin-left: 60px;}
+.margin-l-7{margin-left: 70px;}
+.margin-l-8{margin-left: 80px;}
+.margin-l-9{margin-left: 90px;}
+.margin-l-10{margin-left: 100px;}
+
+/* margin right */
+.margin-r-4{margin-right: 40px;}
+.margin-r-5{margin-right: 50px;}
+.margin-r-6{margin-right: 60px;}
+.margin-r-7{margin-right: 70px;}
+.margin-r-8{margin-right: 80px;}
+.margin-r-9{margin-right: 90px;}
+.margin-r-10{margin-right: 100px;}
+
+/* margin Y */
+.margin-y-4{margin: 40px 0px;}
+.margin-y-5{margin: 50px 0px;}
+.margin-y-6{margin: 60px 0px;}
+.margin-y-7{margin: 70px 0px;}
+.margin-y-8{margin: 80px 0px;}
+.margin-y-9{margin: 90px 0px;}
+.margin-y-10{margin: 100px 0px;}
+
+/* margin X */
+.margin-x-4{margin:  0px 40px;}
+.margin-x-5{margin:  0px 50px;}
+.margin-x-6{margin:  0px 60px;}
+.margin-x-7{margin:  0px 70px;}
+.margin-x-8{margin:  0px 80px;}
+.margin-x-9{margin:  0px 90px;}
+.margin-x-10{margin: 0px 100px;}
+
+  
