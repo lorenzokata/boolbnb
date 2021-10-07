@@ -43911,18 +43911,21 @@ var staticRenderFns = [
                 {
                   staticClass:
                     "mt-3 d-flex flex-row test justify-content-center",
-                  attrs: { action: "" }
+                  attrs: { action: "../api/home", method: "post" }
                 },
                 [
                   _c("input", {
                     staticClass:
                       "form-ricerca text-center cream-background d-inline-block",
-                    attrs: { type: "text", placeholder: "" }
+                    attrs: { name: "userInput", type: "text", placeholder: "" }
                   }),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "bottone rosso-background cream " },
+                    "button",
+                    {
+                      staticClass: "bottone rosso-background cream ",
+                      attrs: { type: "submit" }
+                    },
                     [_vm._v(" Cerca")]
                   )
                 ]

@@ -107,10 +107,6 @@ class ApartmentController extends Controller
         
         
         $complete_url = $base_url . Str::slug($complete_address , '%20') . '.json' . '?key=' . $key;
-        
-        // $url = 'https://api.tomtom.com/search/2/search/roma.json?key=iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
-        
-        // dd($complete_url);
     
         $response = Http::withOptions(['verify' => false])->get($complete_url);
         
@@ -121,18 +117,13 @@ class ApartmentController extends Controller
         
         $response = $response->json();
 
-        // dd($response);
-
         // prendo lat e lon dalla risposta di tom tom
         $lat = $response['results'][0]['position']['lat'];
         $lon = $response['results'][0]['position']['lon'];
 
-        // dd($lat);
 
         $newApartment->lat = $lat;
         $newApartment->lon = $lon;
-
-
 
         $newApartment->fill($data);
 
