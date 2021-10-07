@@ -6596,6 +6596,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6608,14 +6634,16 @@ __webpack_require__.r(__webpack_exports__);
         n_beds: 1,
         n_baths: 1,
         square_meters: null,
-        city: null,
-        zip_code: null,
-        street: null,
-        address: null,
+        city: "",
+        zip_code: "",
+        street: "",
+        address: "",
         visible: 1,
         SelectedServices: []
       },
-      services: [] // errors: [],
+      services: [],
+      arrayCity: [],
+      cityActive: true // errors: [],
 
     };
   },
@@ -6625,25 +6653,64 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Component mounted."); // api per elenco servizi
 
     axios.get("/api/apartment/create").then(function (response) {
-      _this.services = response.data.results;
-      console.log(_this.services);
+      _this.services = response.data.results; // console.log(this.services);
     })["catch"](function (error) {
       console.log(error);
     });
-  } // checkForm: function(e) {
-  //     if (this.name && this.age) {
-  //         return true;
-  //     }
-  //     this.errors = [];
-  //     if (!this.name) {
-  //         this.errors.push("Name required.");
-  //     }
-  //     if (!this.age) {
-  //         this.errors.push("Age required.");
-  //     }
-  //     e.preventDefault();
-  // }
+  },
+  methods: {
+    autoCity: function autoCity() {
+      var _this2 = this;
 
+      // caso attivo quando form.city !== '' (caso base, PASSO 1)
+      if (this.form.city.trim() !== "" && this.form.street.trim() == "" && this.form.address.trim() == "" && this.form.zip_code.trim() == "") {
+        axios.get("https://api.tomtom.com/search/2/search/.json?", {
+          params: {
+            key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+            query: this.form.city,
+            entityTypeSet: "Municipality",
+            language: "it-IT",
+            typeahead: 1,
+            countrySet: "IT"
+          }
+        }).then(function (response) {
+          var arr = [];
+          response.data.results.forEach(function (element) {
+            arr.push(element.address.municipality);
+          });
+          _this2.arrayCity = arr;
+          console.log(_this2.arrayCity);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        this.cityActive = false;
+      }
+    },
+    cityClick: function cityClick(id) {
+      this.form.city = this.arrayCity[id];
+      this.cityActive = true;
+    },
+    autoZipCode: function autoZipCode() {
+      // caso attivo quando form.city !== '' (caso base, PASSO 1)
+      if (this.form.city.trim() !== "" && this.form.street.trim() == "" && this.form.address.trim() == "" && this.form.zip_code.trim() == "") {
+        console.log("dentro if");
+        axios.get("https://api.tomtom.com/search/2/search/.json?", {
+          params: {
+            key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+            query: this.form.city,
+            entityTypeSet: "Municipality",
+            language: "it-IT",
+            typeahead: 1,
+            countrySet: "IT"
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -43495,14 +43562,57 @@ var render = function() {
                   },
                   domProps: { value: _vm.form.city },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "city", $event.target.value)
+                      },
+                      function($event) {
+                        return _vm.autoCity()
                       }
-                      _vm.$set(_vm.form, "city", $event.target.value)
-                    }
+                    ]
                   }
-                })
+                }),
+                _vm._v(" "),
+                _vm.arrayCity != []
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-group",
+                        class: { "d-none": _vm.cityActive }
+                      },
+                      [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayCity, function(city, id) {
+                            return _c(
+                              "li",
+                              {
+                                key: id,
+                                staticClass: "list-group-item",
+                                attrs: { "v-model": _vm.arrayCity[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.cityClick(id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(city) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-md-3" }, [
@@ -43529,12 +43639,17 @@ var render = function() {
                   },
                   domProps: { value: _vm.form.zip_code },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "zip_code", $event.target.value)
+                      },
+                      function($event) {
+                        return _vm.autoZipCode()
                       }
-                      _vm.$set(_vm.form, "zip_code", $event.target.value)
-                    }
+                    ]
                   }
                 })
               ]),
@@ -43683,7 +43798,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                    Submit\n                ")]
       )
     ])
   }
@@ -59458,7 +59573,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Bootst
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Vue
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // info user autenticato
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+delete window.axios.defaults.headers.common['X-Requested-With']; // info user autenticato
 
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 
@@ -59500,8 +59616,8 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -60252,8 +60368,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

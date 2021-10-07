@@ -110,11 +110,6 @@ class ApartmentController extends Controller
     
         $response = Http::withOptions(['verify' => false])->get($complete_url);
         
-        // $response = Http::get($url);
-        // $client->request('GET',$url , ['verify' => false]);
-        // $response = Http::->get($url);
-        // $response = Http::get('http://jsonplaceholder.typicode.com/todos/1');
-        
         $response = $response->json();
 
         // prendo lat e lon dalla risposta di tom tom

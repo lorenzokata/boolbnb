@@ -64,18 +64,38 @@ class HomeController extends Controller
         $poi_list = json_encode($poi_list);
         $complete_url = $base_url . '?geometryList=[' . $geometry_list . ']&poiList=' . $poi_list . '&key=' . $key;
 
-        dump($complete_url);
-        dump($geometry_list);
-        dump($poi_list);
+        // dump($complete_url);
+        // dump($geometry_list);
+        // dump($poi_list);
         
         // chiamata Geocode
         $response = Http::withOptions(['verify' => false])->get($complete_url);
 
         $response = $response->json();        
-        dump($response);
+        // dump($response);
 
         // confrontare id della risposta API con id appartamenti in db e fornirli alla view SearchResults.vue
+        $array_results_s = [];
 
+        $array_results = [];
 
+        foreach( $response['results'] as $elem){
+            $id = $elem['poi']['name'];
+            
+            $apartment_result = Apartment::where('id', $id)->first();
+            
+            dump($apartment_result->sponsors());
+            
+            if( $id == $apartment_result->sponsors()->apartment_id() ){
+                array_push($array_results_s, $apartment_result);
+            }else{
+                array_push($array_results, $apartment_result);
+            }
+        }
+
+        dump($array_results );
+        dump($array_results_s );
+        
+        
     }
 }
