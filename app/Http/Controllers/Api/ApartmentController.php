@@ -48,9 +48,6 @@ class ApartmentController extends Controller
             'n_beds' => 'required',
             'n_baths' => 'required',
             'square_meters' => 'required',
-            'city' => 'required',
-            'zip_code' => 'required',
-            'street' => 'required',
             'address' => 'required',
             'visible' => 'nullable',
         ]);
@@ -94,11 +91,7 @@ class ApartmentController extends Controller
 
         // CONVERSIONE INDIRIZZO IN LAT LOT CON API TOMTOM
 
-        $city = $data['city'];
-        $zipcode = $data['zip_code'];
-        $street = $data['street'];
         $address = $data['address'];
-        $complete_address = trim($city) . ' ' . trim($zipcode) . ' ' . trim($street) . ' ' . trim($address);
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
         
 
@@ -106,7 +99,7 @@ class ApartmentController extends Controller
         $base_url = 'https://api.tomtom.com/search/2/search/';
         
         
-        $complete_url = $base_url . Str::slug($complete_address , '%20') . '.json' . '?key=' . $key;
+        $complete_url = $base_url . Str::slug(trim($address) , '%20') . '.json' . '?key=' . $key;
     
         $response = Http::withOptions(['verify' => false])->get($complete_url);
         

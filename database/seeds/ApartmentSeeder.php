@@ -31,10 +31,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->square_meters = 1;
             $newApartment->lat = $faker->latitude;
             $newApartment->lon = $faker->longitude;
-            $newApartment->city = $faker->city;
-            $newApartment->zip_code = intval($faker->postCode);
-            $newApartment->street = $faker->streetName;
-            $newApartment->address = $faker->buildingNumber;
+            $newApartment->address = $faker->address;
             $newApartment->visible = true;
             // $string = $newApartment->title. $newApartment->id;
             $newApartment->slug = Str::of($newApartment->title . ' ' . $newApartment->user_id)->slug('-');

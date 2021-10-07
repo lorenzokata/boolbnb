@@ -6593,35 +6593,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6634,16 +6605,13 @@ __webpack_require__.r(__webpack_exports__);
         n_beds: 1,
         n_baths: 1,
         square_meters: null,
-        city: "",
-        zip_code: "",
-        street: "",
         address: "",
         visible: 1,
         SelectedServices: []
       },
       services: [],
-      arrayCity: [],
-      cityActive: true // errors: [],
+      arrayAddress: [],
+      addressActive: true // errors: [],
 
     };
   },
@@ -6659,56 +6627,34 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    autoCity: function autoCity() {
+    pippo: function pippo(id) {
+      this.form.address = this.arrayAddress[id];
+      this.addressActive = true;
+    },
+    autoAddress: function autoAddress() {
       var _this2 = this;
 
       // caso attivo quando form.city !== '' (caso base, PASSO 1)
-      if (this.form.city.trim() !== "" && this.form.street.trim() == "" && this.form.address.trim() == "" && this.form.zip_code.trim() == "") {
-        axios.get("https://api.tomtom.com/search/2/search/.json?", {
-          params: {
-            key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-            query: this.form.city,
-            entityTypeSet: "Municipality",
-            language: "it-IT",
-            typeahead: 1,
-            countrySet: "IT"
-          }
-        }).then(function (response) {
-          var arr = [];
-          response.data.results.forEach(function (element) {
-            arr.push(element.address.municipality);
-          });
-          _this2.arrayCity = arr;
-          console.log(_this2.arrayCity);
-        })["catch"](function (error) {
-          console.log(error);
+      axios.get("https://api.tomtom.com/search/2/search/.json?", {
+        params: {
+          key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+          query: this.form.address,
+          // entityTypeSet: "Municipality",
+          language: "it-IT",
+          typeahead: 1,
+          countrySet: "IT"
+        }
+      }).then(function (response) {
+        var arr = [];
+        response.data.results.forEach(function (element) {
+          arr.push(element.address.freeformAddress);
         });
-        this.cityActive = false;
-      }
-    },
-    cityClick: function cityClick(id) {
-      this.form.city = this.arrayCity[id];
-      this.cityActive = true;
-    },
-    autoZipCode: function autoZipCode() {
-      // caso attivo quando form.city !== '' (caso base, PASSO 1)
-      if (this.form.city.trim() !== "" && this.form.street.trim() == "" && this.form.address.trim() == "" && this.form.zip_code.trim() == "") {
-        console.log("dentro if");
-        axios.get("https://api.tomtom.com/search/2/search/.json?", {
-          params: {
-            key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-            query: this.form.city,
-            entityTypeSet: "Municipality",
-            language: "it-IT",
-            typeahead: 1,
-            countrySet: "IT"
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+        _this2.arrayAddress = arr;
+        console.log(_this2.arrayAddress);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.addressActive = false;
     }
   }
 });
@@ -43537,190 +43483,83 @@ var render = function() {
             _vm._v(" "),
             _c("h4", [_vm._v("Indirizzo")]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "city" } },
-                  [_vm._v("Cittá")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.city,
-                      expression: "form.city"
-                    }
-                  ],
-                  attrs: {
-                    id: "city",
-                    type: "text",
-                    name: "city",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.city },
-                  on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "city", $event.target.value)
-                      },
-                      function($event) {
-                        return _vm.autoCity()
-                      }
-                    ]
-                  }
-                }),
-                _vm._v(" "),
-                _vm.arrayCity != []
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "list-group",
-                        class: { "d-none": _vm.cityActive }
-                      },
-                      [
-                        _c(
-                          "ul",
-                          _vm._l(_vm.arrayCity, function(city, id) {
-                            return _c(
-                              "li",
-                              {
-                                key: id,
-                                staticClass: "list-group-item",
-                                attrs: { "v-model": _vm.arrayCity[id] },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.cityClick(id)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(city) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  : _vm._e()
-              ]),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "label",
+                { staticClass: "d-block", attrs: { for: "address" } },
+                [_vm._v("Indirizzo")]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "zip_code" } },
-                  [_vm._v("CAP")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.zip_code,
-                      expression: "form.zip_code"
-                    }
-                  ],
-                  attrs: {
-                    id: "zip_code",
-                    type: "number",
-                    name: "zip_code",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.zip_code },
-                  on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "zip_code", $event.target.value)
-                      },
-                      function($event) {
-                        return _vm.autoZipCode()
-                      }
-                    ]
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.address,
+                    expression: "form.address"
                   }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "street" } },
-                  [_vm._v("Indirizzo")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.street,
-                      expression: "form.street"
-                    }
-                  ],
-                  attrs: {
-                    id: "street",
-                    type: "text",
-                    name: "street",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.street },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "street", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("Civico")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.address,
-                      expression: "form.address"
-                    }
-                  ],
-                  attrs: {
-                    id: "address",
-                    type: "text",
-                    name: "address",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.address },
-                  on: {
-                    input: function($event) {
+                ],
+                staticClass:
+                  "d-block w-100 p-3 rounded-pill border border-light",
+                attrs: {
+                  id: "address",
+                  type: "text",
+                  name: "address",
+                  required: ""
+                },
+                domProps: { value: _vm.form.address },
+                on: {
+                  input: [
+                    function($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "address", $event.target.value)
+                    },
+                    function($event) {
+                      return _vm.autoAddress()
                     }
-                  }
-                })
-              ])
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _vm.arrayAddress != []
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "list-group",
+                      class: { "d-none": _vm.addressActive }
+                    },
+                    [
+                      _c(
+                        "ul",
+                        _vm._l(_vm.arrayAddress, function(address, id) {
+                          return _c(
+                            "li",
+                            {
+                              key: id,
+                              staticClass: "list-group-item",
+                              attrs: { "v-model": _vm.arrayAddress[id] },
+                              on: {
+                                click: function($event) {
+                                  return _vm.pippo(id)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(address) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("hr"),
