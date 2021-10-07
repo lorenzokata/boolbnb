@@ -7009,6 +7009,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   mounted: function mounted() {
@@ -44599,9 +44600,11 @@ var render = function() {
         _vm._v("Crea")
       ]),
       _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "edit" } } }, [_vm._v("Edit")]),
+      _vm._v(" "),
       _c("router-link", { attrs: { to: { name: "home" } } }, [_vm._v("Home")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "edit" } } }, [_vm._v("Edit")])
+      _c("router-link", { attrs: { to: { name: "show" } } }, [_vm._v("Show")])
     ],
     1
   )
