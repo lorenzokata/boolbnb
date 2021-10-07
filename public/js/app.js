@@ -6772,6 +6772,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   mounted: function mounted() {
@@ -43830,8 +43831,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container margin-t-4" },
     [
-      _c("h1", [_vm._v("DASHBOARD")]),
+      _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Dashboard")]),
       _vm._v(" "),
       _c("router-link", { attrs: { to: { name: "create" } } }, [
         _vm._v("CREA")
@@ -60247,8 +60249,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
