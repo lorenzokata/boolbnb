@@ -6596,6 +6596,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -43420,7 +43428,11 @@ var render = function() {
           "form",
           {
             staticClass: "form-group",
-            attrs: { action: "../api/apartment/store", method: "post" }
+            attrs: {
+              action: "../api/apartment/store",
+              method: "post",
+              enctype: "multipart/form-data"
+            }
           },
           [
             _c("div", { staticClass: "form-group" }, [
@@ -43838,6 +43850,10 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
             _c("div", [
               _c("label", { attrs: { for: "visible" } }, [_vm._v("Visibile")]),
               _vm._v(" "),
@@ -43890,7 +43906,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(1)
           ]
         ),
         _vm._v(" "),
@@ -43903,6 +43919,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "imgIn" } }, [_vm._v("Carica foto")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control-file",
+        attrs: { type: "file", name: "image", id: "imgIn", multiple: "" }
+      })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -60995,8 +61024,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

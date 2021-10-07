@@ -53,10 +53,12 @@ class ApartmentController extends Controller
             'street' => 'required',
             'address' => 'required',
             'visible' => 'nullable',
+            'image' => 'nullable|image'
         ]);
         
-        // // salvo la request
+        // salvo la request
         $data = $request->all();
+        dd($data);
 
         // scusa mamma
         if($data['visible'] == 'on'){
