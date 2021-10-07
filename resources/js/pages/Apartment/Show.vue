@@ -1,5 +1,8 @@
 <template>
-    <h1>SHOW</h1>
+    <div>
+        <h1>SHOW</h1>
+        <!-- <p>{{apartment.title}}</p> -->
+    </div>
 </template>
 
 <script>
