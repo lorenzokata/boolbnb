@@ -22,6 +22,10 @@
                         required
                     />
                 </div>
+                <!-- qui stampo la foto -->
+                <div>
+                    <img src="apartment.imags" alt="">
+                </div>
 
                 <div class="form-group">
                     <label for="desc">Descrizione</label>
@@ -157,6 +161,13 @@
                             required
                         />
                     </div>
+                </div>
+
+                <hr>
+                <!-- immagine -->
+                <div class="form-group">
+                    <label for="imgIn">Carica foto</label>
+                    <input type="file" name="image" class="form-control-file" id="imgIn">
                 </div>
 
                 <hr>
