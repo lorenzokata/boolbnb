@@ -157,7 +157,16 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        	//
+        $apartment = Apartment::where('id', $slug)->first();
+
+        if($apartment->imgs){
+            $apartment->imgs = url('storage/' . $apartment->imgs);
+        }
+
+        return response()->json([
+            'success' => true,
+            'results' => $apartment
+        ]);
     }
 
     /**
