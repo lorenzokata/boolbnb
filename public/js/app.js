@@ -6852,6 +6852,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6871,6 +6885,8 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
+      id: '19',
+      apartment: [],
       services: [] // errors: [],
 
     };
@@ -6878,11 +6894,21 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log("Component mounted."); // api per elenco servizi
-
-    axios.get("/api/apartment/create").then(function (response) {
-      _this.services = response.data.results;
-      console.log(_this.services);
+    // console.log("Component mounted.");
+    // api per elenco servizi
+    // axios
+    //     .get("/api/apartment/create")
+    //     .then(response => {
+    //         this.services = response.data.results;
+    //         console.log(this.services);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });
+    // api per dati appartamento
+    axios.get("/api/apartment/" + this.id + "/edit").then(function (respo) {
+      _this.apartment = respo.data.results;
+      console.log(_this.apartment);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -6938,9 +6964,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    console.log('Component mounted.'); // api show appartamenti
+
+    axios.get("/api/apartment/show").then(function (response) {
+      _this.apartments = response.data.results;
+      console.log(_this.apartments);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -43973,6 +44011,8 @@ var render = function() {
     _c(
       "div",
       [
+        _c("h1", [_vm._v(" " + _vm._s(_vm.apartment.title) + " ")]),
+        _vm._v(" "),
         _c(
           "form",
           {
@@ -44009,6 +44049,10 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -44395,6 +44439,10 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
             _c("div", [
               _c("label", { attrs: { for: "visible" } }, [_vm._v("Visibile")]),
               _vm._v(" "),
@@ -44447,7 +44495,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(1)
           ]
         ),
         _vm._v(" "),
@@ -44460,6 +44508,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "imgIn" } }, [_vm._v("Carica foto")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control-file",
+        attrs: { type: "file", name: "image", id: "imgIn" }
+      })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -44518,9 +44579,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("SHOW")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("SHOW")])])
+  }
+]
 render._withStripped = true
 
 
@@ -60366,14 +60434,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/pages/Apartment/Edit.vue ***!
   \***********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Edit_vue_vue_type_template_id_a0cb5da0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=a0cb5da0&scoped=true& */ "./resources/js/pages/Apartment/Edit.vue?vue&type=template&id=a0cb5da0&scoped=true&");
 /* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/pages/Apartment/Edit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -60403,7 +60472,7 @@ component.options.__file = "resources/js/pages/Apartment/Edit.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/pages/Apartment/Edit.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60984,7 +61053,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "show",
     component: _pages_Apartment_Show__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/apartment/:slug-app/edit',
+    path: '/apartment/:slug/edit',
     name: "edit",
     component: _pages_Apartment_Edit__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {

@@ -2,6 +2,7 @@
     <div class="container margin-t-4">
         <h1 class="mt-3 mb-3">Edit</h1>
         <div>
+            <h1> {{apartment.title}} </h1>
             <form class="form-group" action="../api/apartment/store" method="post" >
 
                 <!-- <p v-if="errors.length">
@@ -22,9 +23,11 @@
                         required
                     />
                 </div>
+
                 <!-- qui stampo la foto -->
                 <div>
-                    <img src="apartment.imags" alt="">
+                    <!-- aggiungere v-if img c'é -->
+                    <img :src="apartment.imgs" alt="">
                 </div>
 
                 <div class="form-group">
@@ -218,24 +221,39 @@ export default {
                 SelectedServices: []
             },
 
+            id: '19',
+            apartment: [],
+
             services: []
             // errors: [],
         };
     },
 
     mounted() {
-        console.log("Component mounted.");
+        // console.log("Component mounted.");
 
         // api per elenco servizi
+        // axios
+        //     .get("/api/apartment/create")
+        //     .then(response => {
+        //         this.services = response.data.results;
+        //         console.log(this.services);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+
+        // api per dati appartamento
         axios
-            .get("/api/apartment/create")
-            .then(response => {
-                this.services = response.data.results;
-                console.log(this.services);
+            .get("/api/apartment/" + this.id + "/edit")
+            .then(respo => {
+                this.apartment = respo.data.results;
+                console.log(this.apartment);
             })
             .catch(error => {
                 console.log(error);
             });
+
     },
 
     // checkForm: function(e) {

@@ -24,11 +24,12 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
 
-
         return response()->json([
             'success' => true,
             'results' => $services
         ]);
+
+        
     }
 
     /**
@@ -156,7 +157,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        	//
     }
 
     /**
@@ -165,9 +166,22 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        // dd($slug);
+        // $apartments = Apartment::all();
+        $apartment = Apartment::where('id', $slug)->first();
+
+        if($apartment->imgs){
+            $apartment->imgs = url('storage/' . $apartment->imgs);
+        }
+
+        return response()->json([
+            'success' => true,
+            'results' => $apartment
+        ]);
+
+
     }
 
     /**

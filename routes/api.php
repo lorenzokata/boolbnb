@@ -37,13 +37,13 @@ Route::namespace('Api')->group(function () {
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/apartment/create', 'ApartmentController@create');
     Route::post('/apartment/store', 'ApartmentController@store');
-    Route::get('/apartment{slug-app}/edit', 'ApartmentController@edit');
-    Route::post('/apartment/{slug-app}/update', 'ApartmentController@update');
-    Route::post('/apartment/{slug-app}/delete', 'ApartmentController@destroy');
-    Route::get('/apartment{slug-app}/sponsor', 'ApartmentController@sponsor');
-    Route::get('/apartment{slug-app}/stats', 'ApartmentController@stats');
+    Route::get('/apartment/{slug}/edit', 'ApartmentController@edit');
+    Route::post('/apartment/{slug}/update', 'ApartmentController@update');
+    Route::post('/apartment/{slug}/delete', 'ApartmentController@destroy');
+    Route::get('/apartment/{slug}/sponsor', 'ApartmentController@sponsor');
+    Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
     Route::get('/apartment/show', 'ApartmentController@show');
-    Route::get('/apartment{slug-app}/email', 'ApartmentController@email');
+    Route::get('/apartment{slug}/email', 'ApartmentController@email');
     Route::get('/apartment/search-results', 'ApartmentController@searchApartments');
 
 });
