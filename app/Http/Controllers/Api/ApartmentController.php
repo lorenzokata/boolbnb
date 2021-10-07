@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 // import model
 use App\Service;
@@ -58,7 +59,7 @@ class ApartmentController extends Controller
         
         // salvo la request
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         // scusa mamma
         if($data['visible'] == 'on'){
@@ -93,6 +94,13 @@ class ApartmentController extends Controller
         }
 
         $newApartment->slug = $slug;
+
+        // gestione imgs
+        if(array_key_exists('image',$data)){
+            $imgs_path = Storage::put('images', $data['image']);
+
+            $data['imgs'] = $imgs_path;
+        }
 
         // CONVERSIONE INDIRIZZO IN LAT LOT CON API TOMTOM
 

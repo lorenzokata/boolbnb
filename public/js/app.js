@@ -43928,7 +43928,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control-file",
-        attrs: { type: "file", name: "image", id: "imgIn", multiple: "" }
+        attrs: { type: "file", name: "image", id: "imgIn" }
       })
     ])
   },

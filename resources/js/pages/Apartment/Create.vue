@@ -164,7 +164,7 @@
                 <!-- immagine -->
                 <div class="form-group">
                     <label for="imgIn">Carica foto</label>
-                    <input type="file" name="image" class="form-control-file" id="imgIn" multiple>
+                    <input type="file" name="image" class="form-control-file" id="imgIn">
                 </div>
 
                 <hr>
