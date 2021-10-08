@@ -1,8 +1,8 @@
 <template>
     <div class="container margin-nav">
-        <h1 class="pt-3 mb-3">Edit</h1>
+        <h4 class="pt-3 mb-3">Edit</h4>
         <div>
-            <h1> {{apartment.title}} </h1>
+            <h1 class="viola"> {{apartment.title}} </h1>
             <form class="form-group" action="../api/apartment/store" method="post" >
 
                 <!-- <p v-if="errors.length">
@@ -11,37 +11,50 @@
                         <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
                     </ul>
                 </p> -->
+                
+                <div class="form-row d-flex justify-content-between align-items-center">
 
-                <div class="form-group">
-                    <label for="title">Titolo</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="title"
-                        v-model="apartment.title"
-                        name="title"
-                        required
-                    />
+                    <!-- indirizzo -->
+                    <div class="input-group mb-3 col-md-6 col-sm-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Modifica titolo</span>
+                        </div>
+                        <input id="title" v-model="apartment.title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                    </div>   
+                    
+                    <div class="ml-3 mr-3">
+                        <label for="visible">Visibile</label>
+                        <input
+                            id="visible"
+                            v-model="apartment.visible"
+                            type="checkbox"
+                            name="visible"
+                        />
+                    </div>  
                 </div>
+                
+                <!-- <div class="input-group mb-3 col-md-6 col-sm-12">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input  v-model="apartment.visible" type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input id="visible" type="text" class="form-control" aria-label="Text input with checkbox">
+                </div>                                               -->
 
                 <!-- qui stampo la foto -->
                 <div>
-                    <!-- aggiungere v-if img c'é -->
                     <img class="my-w-100" :src="apartment.imgs" alt="apartment.title">
                 </div>
 
-                <div class="form-group">
-                    <label for="desc">Descrizione</label>
-                    <textarea
-                        class="form-control"
-                        id="desc"
-                        v-model="apartment.description"
-                        type="text"
-                        name="description"
-                        required
-                    >
-                    </textarea>
-                </div>
+                <h4 class="mt-3">Descrizione</h4>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Modifica descrizione</span>
+                    </div>
+                    <textarea v-model="apartment.description" id="desc" class="form-control" aria-label="With textarea" name="description" required></textarea>
+                </div>                
 
                 <hr>
 
@@ -73,48 +86,34 @@
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
 
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="n_rooms">Numero stanze</label>
-                        <input
-                            id="n_rooms"
-                            v-model="apartment.n_rooms"
-                            type="number"
-                            name="n_rooms"
-                            required
-                        />
-                    </div>
+                    <div class="input-group mb-3 col-md-3 col-sm-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">N. stanze</span>
+                        </div>
+                        <input id="address" v-model="apartment.n_rooms" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="n_rooms" required>
+                    </div>   
 
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="n_beds">Numero letti</label>
-                        <input
-                            id="n_beds"
-                            v-model="apartment.n_beds"
-                            type="number"
-                            name="n_beds"
-                            required
-                        />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="n_baths">Numero bagni</label>
-                        <input
-                            id="n_baths"
-                            v-model="apartment.n_baths"
-                            type="number"
-                            name="n_baths"
-                            required
-                        />
-                    </div>
+                    <div class="input-group mb-3 col-md-3 col-sm-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">N. letti</span>
+                        </div>
+                        <input id="address" v-model="apartment.n_beds" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="n_beds" required>
+                    </div> 
 
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="square_meters">Metri quadri</label>
-                        <input
-                            id="square_meters"
-                            v-model="apartment.square_meters"
-                            type="number"
-                            name="square_meters"
-                            required
-                        />
-                    </div>
+                    <div class="input-group mb-3 col-md-3 col-sm-6 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">N. bagni</span>
+                        </div>
+                        <input id="address" v-model="apartment.n_baths" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="n_baths" required>
+                    </div>                    
+
+                    <div class="input-group mb-3 col-md-3 col-sm-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">Metri quadri</span>
+                        </div>
+                        <input id="address" v-model="apartment.square_meters" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="square_meters" required>
+                    </div>                    
+
                 </div>
 
                 <hr>
@@ -122,79 +121,45 @@
                 <h4>Indirizzo</h4>
 
                 <!-- indirizzo -->
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="city">Cittá</label>
-                        <input
-                            id="city"
-                            v-model="apartment.city"
-                            type="text"
-                            name="city"
-                            required
-                        />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="address">Modifica indirizzo</span>
                     </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="zip_code">CAP</label>
-                        <input
-                            id="zip_code"
-                            v-model="apartment.zip_code"
-                            type="number"
-                            name="zip_code"
-                            required
-                        />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="street">Indirizzo</label>
-                        <input
-                            id="street"
-                            v-model="apartment.street"
-                            type="text"
-                            name="street"
-                            required
-                        />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="address">Civico</label>
-                        <input
-                            id="address"
-                            v-model="apartment.address"
-                            type="text"
-                            name="address"
-                            required
-                        />
-                    </div>
-                </div>
-
-                <hr>
-                <!-- immagine -->
-                <div class="form-group">
-                    <label for="imgIn">Cambia foto</label>
-                    <input type="file" name="image" class="form-control-file" id="imgIn">
+                    <input id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
                 </div>
 
                 <hr>
 
-                <div>
-                    <label for="visible">Visibile</label>
-                    <input
-                        id="visible"
-                        v-model="apartment.visible"
-                        type="checkbox"
-                        name="visible"
-                    />
+                <h4>Cambia foto</h4>
+                <div class="form-row d-flex justify-content-between align-items-center">
+                    <!-- immagine -->
+                    <div class="input-group mb-3 col-md-6 col-sm-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="mb-3 mr-3">
+                            <!-- <input type="submit" value="Submit"/> -->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <div class="mb-3">
+                            <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                        </div>
+
+                    </div>
                 </div>
+
+
+                <!-- user id display:none - non toccare -->
                 <div class="d-none">
                     <input type="text" name="user_id" :value="form.user_id">
                 </div>
-
-                <div class="mt-3">
-                    <!-- <input type="submit" value="Submit"/> -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
             </form>
 
-            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
         </div>
     </div>
 </template>
@@ -273,6 +238,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-        
+
 </style>
 
