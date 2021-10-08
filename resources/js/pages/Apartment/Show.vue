@@ -3,7 +3,7 @@
         <div class="row altezza">
             <div class="col-12 col-lg-8 col-xl-7">
             <h1 class="viola text-center"> {{apartment.title}} </h1>
-            <div class="margin-l-4 ">{{apartment.city}} {{apartment.street}} {{apartment.adddress}}</div>
+            <div class="margin-l-7 indirizzo opal">{{apartment.address}}</div>
             <!-- qui stampo la foto -->
                     <div class="img-show ombra">
                         <!-- aggiungere v-if img c'é -->
@@ -15,10 +15,10 @@
                 <h3 class="d-block viola">Dettagli casa</h3>
                 <div>
                     <ul class="dettagli d-inline-block">
-                        <li>numero camere:{{apartment.n_rooms}} <i class="fas fa-door-open viola"></i></li>
-                        <li>numero letti:{{apartment.n_beds}} <i class="fas fa-bed viola"></i></li>
-                        <li>numero bagni:{{apartment.n_baths}} <i class="fas fa-toilet viola"></i></li>
-                        <li>numero metri quadri:{{apartment.square_meters}} <i class="fas fa-home viola"></i></li>
+                        <li class="d-flex align-items-center"><i class="fas fa-door-open viola icone my-2 mr-md-2"></i>     numero camere:{{apartment.n_rooms}}</li>
+                        <li class="d-flex align-items-center"><i class="fas fa-bed viola icone my-2 mr-md-2"></i>     numero letti:{{apartment.n_beds}} </li>
+                        <li class="d-flex align-items-center"><i class="fas fa-toilet viola icone my-2 mr-md-2"></i>    numero bagni:{{apartment.n_baths}} </li>
+                        <li class="d-flex align-items-center"><i class="fas fa-home viola icone my-2 mr-md-2"></i>    numero metri quadri:{{apartment.square_meters}}</li>
                     </ul>
                     <h3 class="d-block viola mt-3">Servizi della casa</h3>
                     <div>
@@ -53,7 +53,7 @@
     export default {
         data(){
            return{
-               id: '13',
+               id: '11',
                 apartment: [],
                 
            }
@@ -78,6 +78,15 @@
 </script>
 
 <style lang="scss" scoped>
+.indirizzo{
+    text-decoration: underline;
+    font-size: 18px;
+
+}
+.icone{
+    font-size: 25px;
+}
+
 .altezza{
     height: 100%;
     
