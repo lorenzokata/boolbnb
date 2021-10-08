@@ -20,9 +20,11 @@ window.axios = require('axios');
 
 // Vue
 window.Vue = require('vue');
+delete window.axios.defaults.headers.common['X-Requested-With'];
 
 // info user autenticato
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+
 
 import Main from './Main';
 import router from './router';

@@ -28,32 +28,32 @@ class Apartment extends Model
     // Relationship with users
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User);
     }
 
     // Relationship with views
     public function views()
     {
-        return $this->hasMany('App\View');
+        return $this->hasMany(View::class);
     }
 
     // Relationship with messages
     public function messages()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasMany(Message::class);
     }
 
     // Relationship with services (pivot)
     public function services()
     {
-        return $this->belongsToMany('App\Service');
+        return $this->belongsToMany(Service::class);
     }
 
     // Relationship with sponsors (pivot)
     public function sponsors()
     {
-        return $this->belongsToMany('App\Sponsor')
-        ->withPivot('date_start', 'date_stop')
+        return $this->belongsToMany(Apartment::class)
+        // ->withPivot('date_start', 'date_end')
         ->withTimestamps();
     }
 
