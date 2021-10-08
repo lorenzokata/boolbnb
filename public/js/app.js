@@ -6593,6 +6593,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6627,7 +6632,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    pippo: function pippo(id) {
+    addressClick: function addressClick(id) {
       this.form.address = this.arrayAddress[id];
       this.addressActive = true;
     },
@@ -7134,6 +7139,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
+  data: function data() {
+    return {
+      userInput: ''
+    };
+  },
   mounted: function mounted() {
     console.log("Component mounted.");
   }
@@ -7154,9 +7164,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "SearchResults",
+  data: function data() {
+    return {
+      sponsored_apartments: [],
+      apartments: []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    console.log("Component mounted.");
+    console.log(this.$route.params.userInput); // api per elenco servizi
+
+    axios.get('/api/home/' + this.$route.params.userInput).then(function (response) {
+      _this.sponsored_apartments = response.data.results.sponsored_appartments;
+      _this.apartments = response.data.results.apartments;
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -43892,7 +43934,7 @@ var render = function() {
                               attrs: { "v-model": _vm.arrayAddress[id] },
                               on: {
                                 click: function($event) {
-                                  return _vm.pippo(id)
+                                  return _vm.addressClick(id)
                                 }
                               }
                             },
@@ -44803,7 +44845,54 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "d-flex flex-row test" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-3 d-flex flex-row test justify-content-center"
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.userInput,
+                        expression: "userInput"
+                      }
+                    ],
+                    staticClass:
+                      "form-ricerca text-center cream-background d-inline-block",
+                    attrs: { name: "userInput", type: "text", placeholder: "" },
+                    domProps: { value: _vm.userInput },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.userInput = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "bottone rosso-background cream",
+                      attrs: {
+                        to: {
+                          name: "results",
+                          params: { userInput: _vm.userInput }
+                        }
+                      }
+                    },
+                    [_vm._v("cerca")]
+                  )
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
             this.$userId
               ? _c(
@@ -44825,42 +44914,12 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-row test" }, [
-      _c(
-        "form",
-        {
-          staticClass: "mt-3 d-flex flex-row test justify-content-center",
-          attrs: { action: "../api/home", method: "post" }
-        },
-        [
-          _c("input", {
-            staticClass:
-              "form-ricerca text-center cream-background d-inline-block",
-            attrs: { name: "userInput", type: "text", placeholder: "" }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "bottone rosso-background cream ",
-              attrs: { type: "submit" }
-            },
-            [_vm._v(" Cerca")]
-          )
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -44907,7 +44966,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("SEARCH RESULTS")])
+  return _c("div", [
+    _c("h1", [_vm._v("SEARCH RESULTS")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "div" },
+      _vm._l(_vm.sponsored_apartments, function(post_spons) {
+        return _c("p", { key: post_spons.id }, [
+          _vm._v(_vm._s(post_spons.title))
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "div" },
+      _vm._l(_vm.apartments, function(post, i) {
+        return _c("p", { key: i }, [_vm._v(_vm._s(post.title))])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61039,14 +61122,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./resources/js/pages/SearchResults.vue ***!
   \**********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchResults_vue_vue_type_template_id_7e5ab916___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchResults.vue?vue&type=template&id=7e5ab916& */ "./resources/js/pages/SearchResults.vue?vue&type=template&id=7e5ab916&");
 /* harmony import */ var _SearchResults_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchResults.vue?vue&type=script&lang=js& */ "./resources/js/pages/SearchResults.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SearchResults_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SearchResults_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -61076,7 +61160,7 @@ component.options.__file = "resources/js/pages/SearchResults.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/pages/SearchResults.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

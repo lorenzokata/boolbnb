@@ -40,8 +40,5 @@ class CreateApartmentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('apartments');
-        Schema::table('apartments', function (Blueprint $table){
-            $table->dropColumn('imgs');
-        });
     }
 }

@@ -15,8 +15,7 @@ class Sponsor extends Model
     // Relationship with apartments (pivot)
     public function apartments()
     {
-        return $this->belongsToMany('App\Service')
-        // ->withPivot('date_start', 'date_end')
+        return $this->belongsToMany('App\Apartment')
         ->withTimestamps();
     }
 
