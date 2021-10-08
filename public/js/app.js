@@ -6885,7 +6885,7 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '19',
+      id: '12',
       apartment: [],
       services: [] // errors: [],
 
@@ -6960,6 +6960,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -11607,7 +11610,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".img-show[data-v-3beb0ca3] {\n  margin: auto;\n}\n.img-show img[data-v-3beb0ca3] {\n  height: 70%;\n  width: 70%;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
+exports.push([module.i, ".pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n  margin-top: 56px;\n}\n.img-show[data-v-3beb0ca3] {\n  height: 90%;\n  width: 100%;\n  margin: auto;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
 
 // exports
 
@@ -44103,8 +44106,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.form.title,
-                    expression: "form.title"
+                    value: _vm.apartment.title,
+                    expression: "apartment.title"
                   }
                 ],
                 staticClass: "form-control",
@@ -44114,13 +44117,13 @@ var render = function() {
                   name: "title",
                   required: ""
                 },
-                domProps: { value: _vm.form.title },
+                domProps: { value: _vm.apartment.title },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.form, "title", $event.target.value)
+                    _vm.$set(_vm.apartment, "title", $event.target.value)
                   }
                 }
               })
@@ -44138,8 +44141,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.form.description,
-                    expression: "form.description"
+                    value: _vm.apartment.description,
+                    expression: "apartment.description"
                   }
                 ],
                 staticClass: "form-control",
@@ -44149,13 +44152,13 @@ var render = function() {
                   name: "description",
                   required: ""
                 },
-                domProps: { value: _vm.form.description },
+                domProps: { value: _vm.apartment.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.form, "description", $event.target.value)
+                    _vm.$set(_vm.apartment, "description", $event.target.value)
                   }
                 }
               })
@@ -44245,8 +44248,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.n_rooms,
-                      expression: "form.n_rooms"
+                      value: _vm.apartment.n_rooms,
+                      expression: "apartment.n_rooms"
                     }
                   ],
                   attrs: {
@@ -44255,13 +44258,13 @@ var render = function() {
                     name: "n_rooms",
                     required: ""
                   },
-                  domProps: { value: _vm.form.n_rooms },
+                  domProps: { value: _vm.apartment.n_rooms },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "n_rooms", $event.target.value)
+                      _vm.$set(_vm.apartment, "n_rooms", $event.target.value)
                     }
                   }
                 })
@@ -44279,8 +44282,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.n_beds,
-                      expression: "form.n_beds"
+                      value: _vm.apartment.n_beds,
+                      expression: "apartment.n_beds"
                     }
                   ],
                   attrs: {
@@ -44289,13 +44292,13 @@ var render = function() {
                     name: "n_beds",
                     required: ""
                   },
-                  domProps: { value: _vm.form.n_beds },
+                  domProps: { value: _vm.apartment.n_beds },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "n_beds", $event.target.value)
+                      _vm.$set(_vm.apartment, "n_beds", $event.target.value)
                     }
                   }
                 })
@@ -44313,8 +44316,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.n_baths,
-                      expression: "form.n_baths"
+                      value: _vm.apartment.n_baths,
+                      expression: "apartment.n_baths"
                     }
                   ],
                   attrs: {
@@ -44323,13 +44326,13 @@ var render = function() {
                     name: "n_baths",
                     required: ""
                   },
-                  domProps: { value: _vm.form.n_baths },
+                  domProps: { value: _vm.apartment.n_baths },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "n_baths", $event.target.value)
+                      _vm.$set(_vm.apartment, "n_baths", $event.target.value)
                     }
                   }
                 })
@@ -44347,8 +44350,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.square_meters,
-                      expression: "form.square_meters"
+                      value: _vm.apartment.square_meters,
+                      expression: "apartment.square_meters"
                     }
                   ],
                   attrs: {
@@ -44357,13 +44360,17 @@ var render = function() {
                     name: "square_meters",
                     required: ""
                   },
-                  domProps: { value: _vm.form.square_meters },
+                  domProps: { value: _vm.apartment.square_meters },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "square_meters", $event.target.value)
+                      _vm.$set(
+                        _vm.apartment,
+                        "square_meters",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -44387,8 +44394,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.city,
-                      expression: "form.city"
+                      value: _vm.apartment.city,
+                      expression: "apartment.city"
                     }
                   ],
                   attrs: {
@@ -44397,13 +44404,13 @@ var render = function() {
                     name: "city",
                     required: ""
                   },
-                  domProps: { value: _vm.form.city },
+                  domProps: { value: _vm.apartment.city },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "city", $event.target.value)
+                      _vm.$set(_vm.apartment, "city", $event.target.value)
                     }
                   }
                 })
@@ -44421,8 +44428,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.zip_code,
-                      expression: "form.zip_code"
+                      value: _vm.apartment.zip_code,
+                      expression: "apartment.zip_code"
                     }
                   ],
                   attrs: {
@@ -44431,13 +44438,13 @@ var render = function() {
                     name: "zip_code",
                     required: ""
                   },
-                  domProps: { value: _vm.form.zip_code },
+                  domProps: { value: _vm.apartment.zip_code },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "zip_code", $event.target.value)
+                      _vm.$set(_vm.apartment, "zip_code", $event.target.value)
                     }
                   }
                 })
@@ -44455,8 +44462,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.street,
-                      expression: "form.street"
+                      value: _vm.apartment.street,
+                      expression: "apartment.street"
                     }
                   ],
                   attrs: {
@@ -44465,13 +44472,13 @@ var render = function() {
                     name: "street",
                     required: ""
                   },
-                  domProps: { value: _vm.form.street },
+                  domProps: { value: _vm.apartment.street },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "street", $event.target.value)
+                      _vm.$set(_vm.apartment, "street", $event.target.value)
                     }
                   }
                 })
@@ -44489,8 +44496,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.address,
-                      expression: "form.address"
+                      value: _vm.apartment.address,
+                      expression: "apartment.address"
                     }
                   ],
                   attrs: {
@@ -44499,13 +44506,13 @@ var render = function() {
                     name: "address",
                     required: ""
                   },
-                  domProps: { value: _vm.form.address },
+                  domProps: { value: _vm.apartment.address },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "address", $event.target.value)
+                      _vm.$set(_vm.apartment, "address", $event.target.value)
                     }
                   }
                 })
@@ -44526,19 +44533,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.form.visible,
-                    expression: "form.visible"
+                    value: _vm.apartment.visible,
+                    expression: "apartment.visible"
                   }
                 ],
                 attrs: { id: "visible", type: "checkbox", name: "visible" },
                 domProps: {
-                  checked: Array.isArray(_vm.form.visible)
-                    ? _vm._i(_vm.form.visible, null) > -1
-                    : _vm.form.visible
+                  checked: Array.isArray(_vm.apartment.visible)
+                    ? _vm._i(_vm.apartment.visible, null) > -1
+                    : _vm.apartment.visible
                 },
                 on: {
                   change: function($event) {
-                    var $$a = _vm.form.visible,
+                    var $$a = _vm.apartment.visible,
                       $$el = $event.target,
                       $$c = $$el.checked ? true : false
                     if (Array.isArray($$a)) {
@@ -44546,17 +44553,17 @@ var render = function() {
                         $$i = _vm._i($$a, $$v)
                       if ($$el.checked) {
                         $$i < 0 &&
-                          _vm.$set(_vm.form, "visible", $$a.concat([$$v]))
+                          _vm.$set(_vm.apartment, "visible", $$a.concat([$$v]))
                       } else {
                         $$i > -1 &&
                           _vm.$set(
-                            _vm.form,
+                            _vm.apartment,
                             "visible",
                             $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                           )
                       }
                     } else {
-                      _vm.$set(_vm.form, "visible", $$c)
+                      _vm.$set(_vm.apartment, "visible", $$c)
                     }
                   }
                 }
@@ -44654,51 +44661,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row  flex-column" }, [
-      _c("h1", { staticClass: "margin-t-6 text-center viola" }, [
-        _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "img-show" }, [
-        _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row flex-column" }, [
-      _c("h3", { staticClass: "d-block viola" }, [_vm._v("dettagli casa")]),
-      _vm._v(" "),
-      _c("div", [
-        _c("ul", { staticClass: "dettagli d-inline-block" }, [
-          _c("li", [
-            _vm._v("numero camere:" + _vm._s(_vm.apartment.n_rooms) + " "),
-            _c("i", { staticClass: "fas fa-door-open viola" })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v("numero letti:" + _vm._s(_vm.apartment.n_beds) + " "),
-            _c("i", { staticClass: "fas fa-bed viola" })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v("numero bagni:" + _vm._s(_vm.apartment.n_baths) + " "),
-            _c("i", { staticClass: "fas fa-toilet viola" })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v(
-              "numero metri quadri:" + _vm._s(_vm.apartment.square_meters) + " "
-            ),
-            _c("i", { staticClass: "fas fa-home viola" })
-          ])
+  return _c("div", { staticClass: "container-fluid pippo" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 col-lg" }, [
+        _c("h1", { staticClass: " viola text-center" }, [
+          _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
         ]),
         _vm._v(" "),
-        _c("div")
+        _c("div", { staticClass: "img-show" }, [
+          _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
+        ])
       ]),
       _vm._v(" "),
-      _c("h3", { staticClass: "d-block viola" }, [_vm._v("Descrizione")]),
-      _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.apartment.description))])
+      _c("div", { staticClass: "col-12 col-lg-5" }, [
+        _c("h3", { staticClass: "d-block viola" }, [_vm._v("dettagli casa")]),
+        _vm._v(" "),
+        _c("div", [
+          _c("ul", { staticClass: "dettagli d-inline-block" }, [
+            _c("li", [
+              _vm._v("numero camere:" + _vm._s(_vm.apartment.n_rooms) + " "),
+              _c("i", { staticClass: "fas fa-door-open viola" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v("numero letti:" + _vm._s(_vm.apartment.n_beds) + " "),
+              _c("i", { staticClass: "fas fa-bed viola" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v("numero bagni:" + _vm._s(_vm.apartment.n_baths) + " "),
+              _c("i", { staticClass: "fas fa-toilet viola" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "numero metri quadri:" +
+                  _vm._s(_vm.apartment.square_meters) +
+                  " "
+              ),
+              _c("i", { staticClass: "fas fa-home viola" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div")
+        ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "d-block viola" }, [_vm._v("Descrizione")]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.apartment.description))])
+      ])
     ])
   ])
 }

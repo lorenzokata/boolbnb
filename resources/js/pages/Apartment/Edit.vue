@@ -18,7 +18,7 @@
                         class="form-control"
                         type="text"
                         id="title"
-                        v-model="form.title"
+                        v-model="apartment.title"
                         name="title"
                         required
                     />
@@ -35,7 +35,7 @@
                     <textarea
                         class="form-control"
                         id="desc"
-                        v-model="form.description"
+                        v-model="apartment.description"
                         type="text"
                         name="description"
                         required
@@ -77,7 +77,7 @@
                         <label class="d-block" for="n_rooms">Numero stanze</label>
                         <input
                             id="n_rooms"
-                            v-model="form.n_rooms"
+                            v-model="apartment.n_rooms"
                             type="number"
                             name="n_rooms"
                             required
@@ -88,7 +88,7 @@
                         <label class="d-block" for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
-                            v-model="form.n_beds"
+                            v-model="apartment.n_beds"
                             type="number"
                             name="n_beds"
                             required
@@ -98,7 +98,7 @@
                         <label class="d-block" for="n_baths">Numero bagni</label>
                         <input
                             id="n_baths"
-                            v-model="form.n_baths"
+                            v-model="apartment.n_baths"
                             type="number"
                             name="n_baths"
                             required
@@ -109,7 +109,7 @@
                         <label class="d-block" for="square_meters">Metri quadri</label>
                         <input
                             id="square_meters"
-                            v-model="form.square_meters"
+                            v-model="apartment.square_meters"
                             type="number"
                             name="square_meters"
                             required
@@ -127,7 +127,7 @@
                         <label class="d-block" for="city">Cittá</label>
                         <input
                             id="city"
-                            v-model="form.city"
+                            v-model="apartment.city"
                             type="text"
                             name="city"
                             required
@@ -138,7 +138,7 @@
                         <label class="d-block" for="zip_code">CAP</label>
                         <input
                             id="zip_code"
-                            v-model="form.zip_code"
+                            v-model="apartment.zip_code"
                             type="number"
                             name="zip_code"
                             required
@@ -148,7 +148,7 @@
                         <label class="d-block" for="street">Indirizzo</label>
                         <input
                             id="street"
-                            v-model="form.street"
+                            v-model="apartment.street"
                             type="text"
                             name="street"
                             required
@@ -158,7 +158,7 @@
                         <label class="d-block" for="address">Civico</label>
                         <input
                             id="address"
-                            v-model="form.address"
+                            v-model="apartment.address"
                             type="text"
                             name="address"
                             required
@@ -179,7 +179,7 @@
                     <label for="visible">Visibile</label>
                     <input
                         id="visible"
-                        v-model="form.visible"
+                        v-model="apartment.visible"
                         type="checkbox"
                         name="visible"
                     />
@@ -221,7 +221,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '19',
+            id: '12',
             apartment: [],
 
             services: []
