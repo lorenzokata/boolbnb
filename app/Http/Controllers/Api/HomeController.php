@@ -93,7 +93,7 @@ class HomeController extends Controller
         return response()->json([
             'success' => true,
             'results' => [
-                'sponsored_appartments' => $sponsored_apartments,
+                'sponsored_apartments' => $sponsored_apartments,
                 'apartments' => $apartments
             ]
         ]);
