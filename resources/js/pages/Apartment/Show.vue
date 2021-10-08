@@ -65,6 +65,7 @@
 .pippo{
     height: calc(100vh - 56px);
     margin-top: 55px;
+    // margin-top: 56px;
 }
     .img-show{
             width: 100%;

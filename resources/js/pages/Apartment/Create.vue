@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-t-4">
+    <div class="container margin-nav">
         <h1 class="mt-3 mb-3">Create</h1>
         <div>
             <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >

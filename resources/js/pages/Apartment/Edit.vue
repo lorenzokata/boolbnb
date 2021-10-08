@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-t-4">
+    <div class="container margin-nav">
         <h1 class="mt-3 mb-3">Edit</h1>
         <div>
             <h1> {{apartment.title}} </h1>
