@@ -6885,7 +6885,7 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '12',
+      id: '17',
       apartment: [],
       services: [] // errors: [],
 
@@ -6960,6 +6960,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -11610,7 +11611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n}\n.img-show[data-v-3beb0ca3] {\n  height: 90%;\n  width: 100%;\n  margin: auto;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
+exports.push([module.i, ".altezza[data-v-3beb0ca3] {\n  height: 100%;\n}\n.pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n  margin-top: 55px;\n}\n.img-show[data-v-3beb0ca3] {\n  width: 100%;\n}\n.img-show img[data-v-3beb0ca3] {\n  width: 100%;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
 
 // exports
 
@@ -43536,7 +43537,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container margin-nav" }, [
-    _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Create")]),
+    _c("h1", { staticClass: "pt-3 mb-3" }, [_vm._v("Create")]),
     _vm._v(" "),
     _c(
       "div",
@@ -44084,7 +44085,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container margin-nav" }, [
-    _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Edit")]),
+    _c("h1", { staticClass: "pt-3 mb-3" }, [_vm._v("Edit")]),
     _vm._v(" "),
     _c(
       "div",
@@ -44130,7 +44131,10 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", [
-              _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
+              _c("img", {
+                staticClass: "my-w-100",
+                attrs: { src: _vm.apartment.imgs, alt: "apartment.title" }
+              })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -44595,7 +44599,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "imgIn" } }, [_vm._v("Carica foto")]),
+      _c("label", { attrs: { for: "imgIn" } }, [_vm._v("Cambia foto")]),
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control-file",
@@ -44662,18 +44666,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid pippo margin-nav" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 col-lg" }, [
-        _c("h1", { staticClass: " viola text-center" }, [
+    _c("div", { staticClass: "row altezza" }, [
+      _c("div", { staticClass: "col-12 col-lg-8 col-xl-7" }, [
+        _c("h1", { staticClass: "viola text-center" }, [
           _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "img-show" }, [
+        _c("div", { staticClass: "margin-l-4 " }, [
+          _vm._v(
+            _vm._s(_vm.apartment.city) +
+              " " +
+              _vm._s(_vm.apartment.street) +
+              " " +
+              _vm._s(_vm.apartment.adddress)
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "img-show ombra" }, [
           _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-lg-5" }, [
+      _c("div", { staticClass: "col-12 col-lg-4 col-xl-5 margin-t-5" }, [
         _c("h3", { staticClass: "d-block viola" }, [_vm._v("dettagli casa")]),
         _vm._v(" "),
         _c("div", [

@@ -1,6 +1,6 @@
 <template>
     <div class="container margin-nav">
-        <h1 class="mt-3 mb-3">Edit</h1>
+        <h1 class="pt-3 mb-3">Edit</h1>
         <div>
             <h1> {{apartment.title}} </h1>
             <form class="form-group" action="../api/apartment/store" method="post" >
@@ -27,7 +27,7 @@
                 <!-- qui stampo la foto -->
                 <div>
                     <!-- aggiungere v-if img c'é -->
-                    <img :src="apartment.imgs" alt="">
+                    <img class="my-w-100" :src="apartment.imgs" alt="apartment.title">
                 </div>
 
                 <div class="form-group">
@@ -169,7 +169,7 @@
                 <hr>
                 <!-- immagine -->
                 <div class="form-group">
-                    <label for="imgIn">Carica foto</label>
+                    <label for="imgIn">Cambia foto</label>
                     <input type="file" name="image" class="form-control-file" id="imgIn">
                 </div>
 
@@ -221,7 +221,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '12',
+            id: '17',
             apartment: [],
 
             services: []
