@@ -146,7 +146,7 @@
                                 v-for="(address, id) in arrayAddress"
                                 :key="id"
                                 :v-model="arrayAddress[id]"
-                                @click="pippo(id)"
+                                @click="addressClick(id)"
                             >
                                 {{ address }}
                             </li>
@@ -224,7 +224,7 @@ export default {
 
     methods: {
 
-        pippo: function(id) {
+        addressClick: function(id) {
             this.form.address = this.arrayAddress[id];
             this.addressActive = true;
         },
