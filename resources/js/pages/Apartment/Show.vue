@@ -1,16 +1,17 @@
 <template>
-    <div class="container-fluid pippo">
-        <div class="row">
-            <div class="col-12 col-lg">
-            <h1 class=" viola text-center"> {{apartment.title}} </h1>
+    <div class="container-fluid pippo margin-nav">
+        <div class="row altezza">
+            <div class="col-12 col-lg-8 col-xl-7">
+            <h1 class="viola text-center"> {{apartment.title}} </h1>
+            <div class="margin-l-4 ">{{apartment.city}} {{apartment.street}} {{apartment.adddress}}</div>
             <!-- qui stampo la foto -->
-                    <div class="img-show">
+                    <div class="img-show ombra">
                         <!-- aggiungere v-if img c'é -->
                         <img :src="apartment.imgs" alt="">
                     </div>
 
             </div>
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-4 col-xl-5 margin-t-5">
                 <h3 class="d-block viola">dettagli casa</h3>
                 <div>
                     <ul class="dettagli d-inline-block">
@@ -57,14 +58,19 @@
 </script>
 
 <style lang="scss" scoped>
+.altezza{
+    height: 100%;
+    
+}
 .pippo{
     height: calc(100vh - 56px);
-    margin-top: 56px;
+    margin-top: 55px;
 }
     .img-show{
-         height: 90%;
             width: 100%;
-       margin: auto;
+       img{
+            width: 100%;    
+       }
     }
     .dettagli{
         list-style-type:none;
