@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 // import model
 use App\Service;
@@ -23,11 +24,12 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
 
-
         return response()->json([
             'success' => true,
             'results' => $services
         ]);
+
+        
     }
 
     /**
@@ -50,10 +52,12 @@ class ApartmentController extends Controller
             'square_meters' => 'required',
             'address' => 'required',
             'visible' => 'nullable',
+            'image' => 'nullable|image'
         ]);
         
-        // // salvo la request
+        // salvo la request
         $data = $request->all();
+        // dd($data);
 
         // scusa mamma
         if($data['visible'] == 'on'){
@@ -88,6 +92,13 @@ class ApartmentController extends Controller
         }
 
         $newApartment->slug = $slug;
+
+        // gestione imgs
+        if(array_key_exists('image',$data)){
+            $imgs_path = Storage::put('images', $data['image']);
+
+            $data['imgs'] = $imgs_path;
+        }
 
         // CONVERSIONE INDIRIZZO IN LAT LOT CON API TOMTOM
 
@@ -134,7 +145,16 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $apartment = Apartment::where('id', $slug)->first();
+
+        if($apartment->imgs){
+            $apartment->imgs = url('storage/' . $apartment->imgs);
+        }
+
+        return response()->json([
+            'success' => true,
+            'results' => $apartment
+        ]);
     }
 
     /**
@@ -143,9 +163,22 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        // dd($slug);
+        // $apartments = Apartment::all();
+        $apartment = Apartment::where('id', $slug)->first();
+
+        if($apartment->imgs){
+            $apartment->imgs = url('storage/' . $apartment->imgs);
+        }
+
+        return response()->json([
+            'success' => true,
+            'results' => $apartment
+        ]);
+
+
     }
 
     /**

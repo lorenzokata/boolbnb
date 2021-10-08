@@ -10,6 +10,9 @@
                             <button type="submit" class="bottone rosso-background cream "> Cerca</button>
                         </form>
                     </div>
+                        <div v-if="this.$userId" class="mt-2 bottone rosso-background ombra">
+                            <router-link class="cream" :to="{ name: 'dashboard'}">DASHBOARD</router-link>
+                        </div>
                 </div>
                 <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">
                     <h3 class="text-center margin-t-6">In Primo Piano</h3>
@@ -20,9 +23,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div v-if="this.$userId">
-            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
         </div>
     </main>
 

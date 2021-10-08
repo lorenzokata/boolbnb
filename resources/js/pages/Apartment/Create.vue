@@ -1,12 +1,9 @@
 <template>
-    <div class="container margin-t-4">
+    <div class="container margin-nav">
         <h1 class="mt-3 mb-3">Create</h1>
         <div>
-            <form
-                class="form-group"
-                action="../api/apartment/store"
-                method="post"
-            >
+            <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
+
                 <!-- <p v-if="errors.length">
                     <b>Please correct the following error(s):</b>
                     <ul>
@@ -154,7 +151,15 @@
                     </div>
                 </div>
 
-                <hr/>
+                <hr>
+                
+                <!-- immagine -->
+                <div class="form-group">
+                    <label for="imgIn">Carica foto</label>
+                    <input type="file" name="image" class="form-control-file" id="imgIn">
+                </div>
+
+                <hr>
 
                 <div>
                     <label for="visible">Visibile</label>
