@@ -16,8 +16,8 @@ class Apartment_SponsorSeeder extends Seeder
         for ($i=0; $i < 4; $i++) { 
 
             DB::table('apartment_sponsor')->insert([
-                'apartment_id' => $i+1,
-                'sponsor_id' => rand(1, 3),
+                'apartment_id' => $i+2,
+                'sponsor_id' => 1,
                 'date_start' => now(),
                 'date_end' => $faker->dateTimeInInterval('0 week', '+3 week'),
                 'created_at' => now(),

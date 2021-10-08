@@ -17063,6 +17063,12 @@ readers do not read off random characters that represent icons */
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
+.my-primo-piano {
+  height: 83vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
 /* color */
 
 .rosso {
@@ -17124,6 +17130,12 @@ readers do not read off random characters that represent icons */
   transition: 0.5s;
 }
 
+/* width */
+
+.my-w-100 {
+  width: 100%;
+}
+
 /* margin top */
 
 .margin-t-4 {
@@ -17154,7 +17166,7 @@ readers do not read off random characters that represent icons */
   margin-top: 100px;
 }
 
-/* margin bot */
+/* margin bottom */
 
 .margin-b-4 {
   margin-bottom: 40px;

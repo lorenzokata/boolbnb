@@ -15,14 +15,23 @@ class CreateApartmentSponsorTable extends Migration
     {
         Schema::create('apartment_sponsor', function (Blueprint $table) {
 
-            $table->foreignId('apartment_id')->constrained('apartments')->onDelete('cascade');
-            $table->foreignId('sponsor_id')->constrained('sponsors');
+
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
+            
+
+            $table->unsignedBigInteger('sponsor_id');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors');
+
             $table->primary(['apartment_id', 'sponsor_id']);
+            
             $table->dateTime('date_start');
             $table->dateTime('date_end');
+            
+            
             $table->timestamps();
 
-        });
+        }); 
     }
 
     /**
