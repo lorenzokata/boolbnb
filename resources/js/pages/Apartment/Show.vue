@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid pippo">
+    <div class="container-fluid pippo margin-nav">
         <div class="row">
             <div class="col-12 col-lg">
             <h1 class=" viola text-center"> {{apartment.title}} </h1>
@@ -59,7 +59,7 @@
 <style lang="scss" scoped>
 .pippo{
     height: calc(100vh - 56px);
-    margin-top: 56px;
+    // margin-top: 56px;
 }
     .img-show{
          height: 90%;

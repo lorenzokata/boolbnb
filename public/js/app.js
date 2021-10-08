@@ -11610,7 +11610,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n  margin-top: 56px;\n}\n.img-show[data-v-3beb0ca3] {\n  height: 90%;\n  width: 100%;\n  margin: auto;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
+exports.push([module.i, ".pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n}\n.img-show[data-v-3beb0ca3] {\n  height: 90%;\n  width: 100%;\n  margin: auto;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
 
 // exports
 
@@ -43535,7 +43535,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container margin-t-4" }, [
+  return _c("div", { staticClass: "container margin-nav" }, [
     _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Create")]),
     _vm._v(" "),
     _c(
@@ -44083,7 +44083,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container margin-t-4" }, [
+  return _c("div", { staticClass: "container margin-nav" }, [
     _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Edit")]),
     _vm._v(" "),
     _c(
@@ -44661,7 +44661,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid pippo" }, [
+  return _c("div", { staticClass: "container-fluid pippo margin-nav" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12 col-lg" }, [
         _c("h1", { staticClass: " viola text-center" }, [
@@ -44785,7 +44785,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container margin-t-4" },
+    { staticClass: "container margin-nav" },
     [
       _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Dashboard")]),
       _vm._v(" "),
@@ -61238,8 +61238,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\programmi-visual\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

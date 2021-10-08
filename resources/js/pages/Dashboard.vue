@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-t-4">
+    <div class="container margin-nav">
         <h1 class="mt-3 mb-3">Dashboard</h1>
 
         <router-link :to="{ name: 'create'}">Crea</router-link>
