@@ -6593,6 +6593,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6627,7 +6632,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    pippo: function pippo(id) {
+    addressClick: function addressClick(id) {
       this.form.address = this.arrayAddress[id];
       this.addressActive = true;
     },
@@ -6890,7 +6895,7 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '17',
+      id: '31',
       apartment: [],
       services: [] // errors: [],
 
@@ -43892,7 +43897,7 @@ var render = function() {
                               attrs: { "v-model": _vm.arrayAddress[id] },
                               on: {
                                 click: function($event) {
-                                  return _vm.pippo(id)
+                                  return _vm.addressClick(id)
                                 }
                               }
                             },
@@ -61199,8 +61204,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
