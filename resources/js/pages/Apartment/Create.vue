@@ -1,6 +1,6 @@
 <template>
     <div class="container margin-nav">
-        <h1 class="mt-3 mb-3">Create</h1>
+        <h1 class="pt-3 mb-3">Create</h1>
         <div>
             <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
 
@@ -36,7 +36,7 @@
                     </textarea>
                 </div>
 
-                <hr>
+                <hr />
 
                 <h4>Servizi</h4>
 
@@ -59,15 +59,16 @@
                     </div>
                 </div>
 
-                <hr>
+                <hr />
 
                 <h4>Dati casa</h4>
 
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
-
                     <div class="form-group col-md-3">
-                        <label class="d-block" for="n_rooms">Numero stanze</label>
+                        <label class="d-block" for="n_rooms"
+                            >Numero stanze</label
+                        >
                         <input
                             id="n_rooms"
                             v-model="form.n_rooms"
@@ -88,7 +89,9 @@
                         />
                     </div>
                     <div class="form-group col-md-3">
-                        <label class="d-block" for="n_baths">Numero bagni</label>
+                        <label class="d-block" for="n_baths"
+                            >Numero bagni</label
+                        >
                         <input
                             id="n_baths"
                             v-model="form.n_baths"
@@ -99,7 +102,9 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label class="d-block" for="square_meters">Metri quadri</label>
+                        <label class="d-block" for="square_meters"
+                            >Metri quadri</label
+                        >
                         <input
                             id="square_meters"
                             v-model="form.square_meters"
@@ -110,52 +115,39 @@
                     </div>
                 </div>
 
-                <hr>
+                <hr />
 
                 <h4>Indirizzo</h4>
 
                 <!-- indirizzo -->
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="city">Cittá</label>
-                        <input
-                            id="city"
-                            v-model="form.city"
-                            type="text"
-                            name="city"
-                            required
-                        />
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="zip_code">CAP</label>
-                        <input
-                            id="zip_code"
-                            v-model="form.zip_code"
-                            type="number"
-                            name="zip_code"
-                            required
-                        />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="street">Indirizzo</label>
-                        <input
-                            id="street"
-                            v-model="form.street"
-                            type="text"
-                            name="street"
-                            required
-                        />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label class="d-block" for="address">Civico</label>
-                        <input
-                            id="address"
-                            v-model="form.address"
-                            type="text"
-                            name="address"
-                            required
-                        />
+                <div class="form-group">
+                    <label class="d-block" for="address">Indirizzo</label>
+                    <input
+                        id="address"
+                        class="d-block w-100 p-3 rounded-pill border border-light"
+                        v-model="form.address"
+                        type="text"
+                        name="address"
+                        required
+                        @input="autoAddress()"
+                    />
+                    <!-- AGGIUNTO PER TEST -->
+                    <div
+                        class="list-group"
+                        :class="{ 'd-none': addressActive }"
+                        v-if="arrayAddress != []"
+                    >
+                        <ul>
+                            <li
+                                class="list-group-item"
+                                v-for="(address, id) in arrayAddress"
+                                :key="id"
+                                :v-model="arrayAddress[id]"
+                                @click="addressClick(id)"
+                            >
+                                {{ address }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -179,16 +171,18 @@
                     />
                 </div>
                 <div class="d-none">
-                    <input type="text" name="user_id" :value="form.user_id">
+                    <input type="text" name="user_id" :value="form.user_id" />
                 </div>
 
                 <div class="mt-3">
                     <!-- <input type="submit" value="Submit"/> -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
                 </div>
             </form>
 
-            <router-link :to="{ name: 'dashboard'}">DASHBOARD</router-link>
+            <router-link :to="{ name: 'dashboard' }">DASHBOARD</router-link>
         </div>
     </div>
 </template>
@@ -207,15 +201,13 @@ export default {
                 n_beds: 1,
                 n_baths: 1,
                 square_meters: null,
-                city: null,
-                zip_code: null,
-                street: null,
-                address: null,
+                address: "",
                 visible: 1,
                 SelectedServices: []
             },
-
-            services: []
+            services: [],
+            arrayAddress: [],
+            addressActive: true
             // errors: [],
         };
     },
@@ -228,30 +220,49 @@ export default {
             .get("/api/apartment/create")
             .then(response => {
                 this.services = response.data.results;
-                console.log(this.services);
+                // console.log(this.services);
             })
             .catch(error => {
                 console.log(error);
             });
     },
 
-    // checkForm: function(e) {
-    //     if (this.name && this.age) {
-    //         return true;
-    //     }
-    //     this.errors = [];
-    //     if (!this.name) {
-    //         this.errors.push("Name required.");
-    //     }
-    //     if (!this.age) {
-    //         this.errors.push("Age required.");
-    //     }
-    //     e.preventDefault();
-    // }
+    methods: {
+
+        addressClick: function(id) {
+            this.form.address = this.arrayAddress[id];
+            this.addressActive = true;
+        },
+
+        autoAddress: function() {
+            // caso attivo quando form.city !== '' (caso base, PASSO 1)
+            axios
+                .get("https://api.tomtom.com/search/2/search/.json?", {
+                    params: {
+                        key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+                        query: this.form.address,
+                        // entityTypeSet: "Municipality",
+                        language: "it-IT",
+                        typeahead: 1,
+                        countrySet: "IT"
+                    }
+                })
+                .then(response => {
+                    let arr = [];
+                    response.data.results.forEach(element => {
+                        arr.push(element.address.freeformAddress);
+                    });
+                    this.arrayAddress = arr;
+                    console.log(this.arrayAddress);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            this.addressActive = false;
+        }
+    }
+
 };
 </script>
 
-<style lang="scss" scoped>
-        
-</style>
-
+<style lang="scss" scoped></style>

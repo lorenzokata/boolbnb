@@ -24,9 +24,6 @@ class CreateApartmentsTable extends Migration
             $table->smallInteger('square_meters');
             $table->decimal('lat', 10, 8);
             $table->decimal('lon', 11, 8);
-            $table->string('city');
-            $table->integer('zip_code')->unsigned();
-            $table->string('street');
             $table->string('address');
             $table->string('imgs')->nullable();
             $table->boolean('visible')->default(true);

@@ -5,7 +5,7 @@
     box-sizing: border-box;
   }
 
-  .margin-nav{margin-top: 55px;}
+.margin-nav{margin-top: 55px;}
 
   /* bottone */
 .bottone{
@@ -16,6 +16,7 @@
     border-radius: 200px;
     cursor: pointer;
 }
+
 .ombra{
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
@@ -46,15 +47,18 @@
     background-color: rgb(190, 66, 72);
   }
   
-  .cream-background:hover{
-    background-color: #ced1cc;
-    transition: 0.5s;}
-  
-  .hover-black:hover{
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: 0.5s;
-  }
+.cream-background:hover{
+  background-color: #ced1cc;
+  transition: 0.5s;}
 
+.hover-black:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+
+/* width */
+
+.my-w-100{width: 100%;}
 
 
 /* margin top */
@@ -66,7 +70,7 @@
 .margin-t-9{margin-top: 90px;}
 .margin-t-10{margin-top: 100px;}
 
-/* margin bot */
+/* margin bottom */
 .margin-b-4{ margin-bottom: 40px;}
 .margin-b-5{margin-bottom: 50px;}
 .margin-b-6{margin-bottom: 60px;}

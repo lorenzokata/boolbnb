@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 use App\Apartment;
+use App\Sponsor;
 
 class HomeController extends Controller
 {
@@ -40,16 +42,12 @@ class HomeController extends Controller
         $poi_list = [];
 
         foreach ($apartments as $apartment) {
-            
-            $id = $apartment->id;
-            $lat = $apartment->lat;
-            $lon = $apartment->lon;
-            
+  
             $array = [
                     'poi' => 
-                        ['name' => $id] ,
+                        ['name' => $apartment->id] ,
                     'position' => 
-                        ['lat' => $lat , 'lon' => $lon]
+                        ['lat' => $apartment->lat , 'lon' => $apartment->lon]
             ];
 
             array_push( $poi_list , $array);
@@ -59,23 +57,47 @@ class HomeController extends Controller
         // dati per chiamata geometryList
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
         $base_url = 'https://api.tomtom.com/search/2/geometryFilter.json';
-        $geometry_list = ["type" => "CIRCLE", "position" => $lat_center . ',' . $lon_center, "radius" => 1000000];
+        $geometry_list = ["type" => "CIRCLE", "position" => $lat_center . ',' . $lon_center, "radius" => 1000000000000000];
         $geometry_list = json_encode($geometry_list);
         $poi_list = json_encode($poi_list);
         $complete_url = $base_url . '?geometryList=[' . $geometry_list . ']&poiList=' . $poi_list . '&key=' . $key;
 
-        dump($complete_url);
-        dump($geometry_list);
-        dump($poi_list);
+        // dump($complete_url);
+        // dump($geometry_list);
+        // dump($poi_list);
         
         // chiamata Geocode
         $response = Http::withOptions(['verify' => false])->get($complete_url);
-
+        // dump($response);
         $response = $response->json();        
-        dump($response);
+        // dd($response);
 
-        // confrontare id della risposta API con id appartamenti in db e fornirli alla view SearchResults.vue
+        // cercare nella tabella ponte l'ID dell'appartamento
+        $apartments = [];
+        $sponsored_apartments= [];
+        foreach ($response['results'] as $item) {
+            $apartment = Apartment::where('id', $item['poi']['name'])->first();
+            // dump($apartment);
+            $now = Carbon::now();
+            $now = $now->toDateTimeString();
+            // $apartment = $apartment->find(1);
+            $date_end = $apartment->sponsors->pivot->date_end;
 
+            // $date_end = $date_end->date_end;
+            // $apartment->sponsors()->first()
+            // $date_end = $date_end['attributes']['date_'];
+            dd($date_end);
 
+            if($apartment->sponsors()->where('apartment_id', $apartment->id)->exists() && $apartment->sponsors()->where('date_end','<', $now)){
+                array_push($sponsored_apartments, $apartment);
+            }
+            else{
+                array_push($apartments, $apartment);
+            }
+        };
+        
+        dump($apartments);
+        dd($sponsored_apartments);
+        
     }
 }
