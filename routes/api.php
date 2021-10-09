@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
 // con autenticazione
 Route::namespace('Api')->group(function () {
     
-    Route::post('/home', 'HomeController@home');
+    Route::get('/home/{userInput}/{radius}', 'HomeController@home');
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/apartment/create', 'ApartmentController@create');
     Route::post('/apartment/store', 'ApartmentController@store');
