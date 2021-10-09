@@ -1,7 +1,17 @@
 <template>
     <div class="container margin-nav">
-        <h1 class="pt-3 mb-3">Create</h1>
+        <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
+
+            <div class="d-flex justify-content-between align-items-center pt-3">
+                <h4 class="">Create</h4>
+                <div class="">
+                    <router-link class="btn btn-primary" :to="{ name: 'dashboard'}  ">Dashboard</router-link>
+                </div>
+            </div>
+
+
+
             <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
 
                 <!-- <p v-if="errors.length">
@@ -20,6 +30,16 @@
                         v-model="form.title"
                         name="title"
                         required
+                    />
+                </div>
+
+                <div>
+                    <label for="visible">Visibile</label>
+                    <input
+                        id="visible"
+                        v-model="form.visible"
+                        type="checkbox"
+                        name="visible"
                     />
                 </div>
 
@@ -124,7 +144,7 @@
                     <label class="d-block" for="address">Indirizzo</label>
                     <input
                         id="address"
-                        class="d-block w-100 p-3 rounded-pill border border-light"
+                        class="form-control"
                         v-model="form.address"
                         type="text"
                         name="address"
@@ -139,7 +159,7 @@
                     >
                         <ul>
                             <li
-                                class="list-group-item"
+                                class="list-group-item input-group"
                                 v-for="(address, id) in arrayAddress"
                                 :key="id"
                                 :v-model="arrayAddress[id]"
@@ -154,35 +174,35 @@
                 <hr>
                 
                 <!-- immagine -->
-                <div class="form-group">
-                    <label for="imgIn">Carica foto</label>
-                    <input type="file" name="image" class="form-control-file" id="imgIn">
+                <h4>Carica foto</h4>
+                <div class="form-row d-flex justify-content-between align-items-center">
+                    <div class="input-group mb-3 col-md-6 col-sm-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="mb-3 mr-3">
+                            <!-- <input type="submit" value="Submit"/> -->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <div class="mb-3">
+                            <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                        </div>
+
+                    </div>
                 </div>
 
-                <hr>
 
-                <div>
-                    <label for="visible">Visibile</label>
-                    <input
-                        id="visible"
-                        v-model="form.visible"
-                        type="checkbox"
-                        name="visible"
-                    />
-                </div>
+                <!-- user id display:none - non toccare -->
                 <div class="d-none">
                     <input type="text" name="user_id" :value="form.user_id" />
                 </div>
-
-                <div class="mt-3">
-                    <!-- <input type="submit" value="Submit"/> -->
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                </div>
             </form>
 
-            <router-link :to="{ name: 'dashboard' }">DASHBOARD</router-link>
         </div>
     </div>
 </template>
@@ -265,4 +285,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

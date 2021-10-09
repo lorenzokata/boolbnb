@@ -32,17 +32,17 @@ const router = new VueRouter({
             component: Create
         },
         {
-            path: '/apartment/:slug',
+            path: '/apartment/show',
             name: "show",
             component: Show
         },
         {
-            path: '/apartment/:slug/edit',
+            path: '/apartment/edit',
             name: "edit",
             component: Edit
         },
         {
-            path: '/apartment/:slug-app/stats',
+            path: '/apartment/stats',
             name: "stats",
             component: Stats
         },

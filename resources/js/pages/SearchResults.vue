@@ -2,6 +2,22 @@
     <div class="container">
         
         <h1>SEARCH RESULTS</h1>
+
+          <div class="form-group">
+            <label for="formControlRange">raggio</label>
+            <input
+                type="range"
+                min="20000" 
+                max="100000"
+                step="1000"
+                class="form-control-range"
+                id="formControlRange"
+                v-model="radius"
+            /> 
+            <span>{{radius}}</span>
+            <div class="bottone rosso-background" @click="loadApartments(radius)">applica filtro</div>
+          </div>
+
         <input type="num" v-model="radius" @input="loadApartments(radius)">
         <h2>Sponsored Apartments</h2>
         
@@ -51,7 +67,8 @@ export default {
     return {
       sponsored_apartments: [],
       apartments: [],
-      radius: 20000
+      radius: 20000,
+      
     };
   },
 

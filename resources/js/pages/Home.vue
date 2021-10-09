@@ -7,11 +7,11 @@
                     <div class="d-flex flex-row test">
                         <div class="mt-3 d-flex flex-row test justify-content-center">
                             <input v-model='userInput' name='userInput' type="text" class="form-ricerca text-center cream-background d-inline-block" placeholder="">
-                            <router-link class="bottone rosso-background cream" :to="{ name: 'results', params: { userInput: userInput }}">cerca</router-link>
+                            <router-link class="bottone rosso-background cream" :to="{ name: 'results', params: { userInput: userInput }}">Cerca</router-link>
                         </div>
                     </div>
                         <div v-if="this.$userId" class="mt-2 bottone rosso-background ombra">
-                            <router-link class="cream" :to="{ name: 'dashboard'}">DASHBOARD</router-link>
+                            <router-link class="cream" :to="{ name: 'dashboard'}">Dashboard</router-link>
                         </div>
                 </div>
                 <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">

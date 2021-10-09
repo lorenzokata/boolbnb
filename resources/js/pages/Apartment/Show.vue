@@ -12,7 +12,18 @@
 
             </div>
             <div class="col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano">
-                <h3 class="d-block viola">Dettagli casa</h3>
+
+
+
+                <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
+
+                <div class="d-flex justify-content-between align-items-center pt-3">
+                    <h3 class="d-block viola">Dettagli casa</h3>
+                    <div>
+                        <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}      ">Dashboard</router-link>
+                    </div>
+                </div>
+
                 <div>
                     <ul class="dettagli d-inline-block">
                         <li class="d-flex align-items-center"><i class="fas fa-door-open viola icone my-2 mr-md-2"></i>     numero camere:{{apartment.n_rooms}}</li>

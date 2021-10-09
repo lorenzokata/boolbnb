@@ -3,7 +3,7 @@
 
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Edit</h4>
-            <div class="">
+            <div>
                 <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
             </div>
         </div>
@@ -137,9 +137,9 @@
 
                 <hr>
 
+                <!-- immagine -->
                 <h4>Cambia foto</h4>
                 <div class="form-row d-flex justify-content-between align-items-center">
-                    <!-- immagine -->
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01">
@@ -244,11 +244,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
 
-.bgr-img{
-    background-image: url("https://www.patternpictures.com/wp-content/uploads/White-brick-wall-background-texture-PhotosPublic4419FD-1600x1003.jpg");
-}
-
-</style>
 

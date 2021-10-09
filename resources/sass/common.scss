@@ -37,7 +37,17 @@
 .cream{color: #f3f7f0;}
 
 /* background color */
-.rosso-background{background-color:#f2545b;}
+.rosso-background{
+  background-color:#f2545b;
+  color: #f3f7f0;
+
+}
+.rosso-background:hover{
+  text-decoration: none;
+}
+
+
+
 .viola-background{background-color: #a93f55;}
 .gunmetal-background{background-color: #19323c;}
 .opal-background{background-color: #9cbcbe;}
