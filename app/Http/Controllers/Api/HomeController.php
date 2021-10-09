@@ -18,7 +18,7 @@ class HomeController extends Controller
         //
     }
 
-    public function home($userInput)
+    public function home($userInput , $radius)
     {
 
         // dati per chiamata Geocode
@@ -54,7 +54,8 @@ class HomeController extends Controller
         // dati per chiamata geometryList
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
         $base_url = 'https://api.tomtom.com/search/2/geometryFilter.json';
-        $geometry_list = ["type" => "CIRCLE", "position" => $lat_center . ',' . $lon_center, "radius" => 1000000000000000];
+        // il raggio della ricerca è espresso in metri
+        $geometry_list = ["type" => "CIRCLE", "position" => $lat_center . ',' . $lon_center, "radius" => (int)$radius];
         $geometry_list = json_encode($geometry_list);
         $poi_list = json_encode($poi_list);
         $complete_url = $base_url . '?geometryList=[' . $geometry_list . ']&poiList=' . $poi_list . '&key=' . $key;

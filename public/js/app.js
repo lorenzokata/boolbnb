@@ -7195,20 +7195,23 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sponsored_apartments: [],
-      apartments: []
+      apartments: [],
+      radius: 20000
     };
   },
   mounted: function mounted() {
     console.log("Component mounted.");
     console.log(this.$route.params.userInput); // api per elenco servizi
 
-    this.loadApartments();
+    this.loadApartments(this.radius);
   },
   methods: {
-    loadApartments: function loadApartments() {
+    loadApartments: function loadApartments(radius) {
       var _this = this;
 
-      axios.get("/api/home/" + this.$route.params.userInput).then(function (response) {
+      // il raggio della ricerca è espresso in metri
+      console.log(radius);
+      axios.get("/api/home/" + this.$route.params.userInput + '/' + radius.toString()).then(function (response) {
         console.log(response.data.results);
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
         _this.apartments = response.data.results.apartments;
@@ -45111,6 +45114,32 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("SEARCH RESULTS")]),
     _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.radius,
+          expression: "radius"
+        }
+      ],
+      attrs: { type: "num" },
+      domProps: { value: _vm.radius },
+      on: {
+        input: [
+          function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.radius = $event.target.value
+          },
+          function($event) {
+            return _vm.loadApartments(_vm.radius)
+          }
+        ]
+      }
+    }),
+    _vm._v(" "),
     _c("h2", [_vm._v("Sponsored Apartments")]),
     _vm._v(" "),
     _c(
@@ -61482,8 +61511,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

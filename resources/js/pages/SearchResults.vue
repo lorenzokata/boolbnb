@@ -2,9 +2,9 @@
     <div class="container">
         
         <h1>SEARCH RESULTS</h1>
-        
+        <input type="num" v-model="radius" @input="loadApartments(radius)">
         <h2>Sponsored Apartments</h2>
-
+        
         <div class="row row-cols-4 gx-5">
           <div 
             class="col card border border-danger rounded" 
@@ -51,6 +51,7 @@ export default {
     return {
       sponsored_apartments: [],
       apartments: [],
+      radius: 20000
     };
   },
 
@@ -58,13 +59,15 @@ export default {
     console.log("Component mounted.");
     console.log(this.$route.params.userInput);
     // api per elenco servizi
-    this.loadApartments();
+    this.loadApartments(this.radius);
   },
 
   methods: {
-    loadApartments: function () {
+    loadApartments: function (radius) {
+      // il raggio della ricerca è espresso in metri
+      console.log(radius)
       axios
-        .get("/api/home/" + this.$route.params.userInput)
+        .get("/api/home/" + this.$route.params.userInput + '/' + radius.toString())
         .then((response) => {
           console.log(response.data.results);
           this.sponsored_apartments = response.data.results.sponsored_apartments;

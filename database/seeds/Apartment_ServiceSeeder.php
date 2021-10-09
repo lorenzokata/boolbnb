@@ -15,7 +15,7 @@ class Apartment_ServiceSeeder extends Seeder
         for ($i=0; $i < 10; $i++) { 
 
             DB::table('apartment_service')->insert([
-                'apartment_id' => rand(1, 10),
+                'apartment_id' => $i+1,
                 'service_id' => rand(1, 10),
                 'created_at' => now(),
                 'updated_at' => now(),
