@@ -6593,6 +6593,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6627,7 +6632,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    pippo: function pippo(id) {
+    addressClick: function addressClick(id) {
       this.form.address = this.arrayAddress[id];
       this.addressActive = true;
     },
@@ -6843,34 +6848,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6890,7 +6867,7 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '12',
+      id: '32',
       apartment: [],
       services: [] // errors: [],
 
@@ -6995,10 +6972,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      id: '12',
+      id: '32',
       apartment: []
     };
   },
@@ -7007,8 +7005,8 @@ __webpack_require__.r(__webpack_exports__);
 
     console.log('Component mounted.'); // api show appartamenti
 
-    axios.get("/api/apartment/" + this.id + "/edit").then(function (respo) {
-      _this.apartment = respo.data.results;
+    axios.get("/api/apartment/" + this.$route.params.slug).then(function (response) {
+      _this.apartment = response.data.results;
       console.log(_this.apartment);
     })["catch"](function (error) {
       console.log(error);
@@ -7133,6 +7131,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
+  data: function data() {
+    return {
+      userInput: ''
+    };
+  },
   mounted: function mounted() {
     console.log("Component mounted.");
   }
@@ -7153,9 +7156,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "SearchResults",
+  data: function data() {
+    return {
+      sponsored_apartments: [],
+      apartments: [],
+      radius: 20000
+    };
+  },
+  beforeCreate: function beforeCreate() {
+    console.log("Component beforeCreated.");
+  },
+  created: function created() {
+    console.log("Component created.");
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
+    console.log(this.$route.params.userInput); // api per elenco servizi
+
+    this.loadApartments(this.radius);
+  },
+  methods: {
+    loadApartments: function loadApartments(radius) {
+      var _this = this;
+
+      // il raggio della ricerca è espresso in metri
+      console.log(radius);
+      axios.get("/api/home/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
+        console.log(response.data.results);
+        _this.sponsored_apartments = response.data.results.sponsored_apartments;
+        _this.apartments = response.data.results.apartments;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } // creare la funzione che fa chiamata axios verso homecontroller@home
+    // parametri saranno userInput e radius
+    // la funzione sará chiamata su mounted con parametro fisso a 20km convertiti
+    // la funzione verrá chiamata al click del tasto 'applica' della sezione filtri
+
   }
 });
 
@@ -11634,7 +11729,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n}\n.img-show[data-v-3beb0ca3] {\n  height: 90%;\n  width: 100%;\n  margin: auto;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
+exports.push([module.i, ".indirizzo[data-v-3beb0ca3] {\n  text-decoration: underline;\n  font-size: 18px;\n}\n.icone[data-v-3beb0ca3] {\n  font-size: 25px;\n}\n.altezza[data-v-3beb0ca3] {\n  height: 100%;\n}\n.pippo[data-v-3beb0ca3] {\n  height: calc(100vh - 56px);\n  margin-top: 55px;\n}\n.img-show[data-v-3beb0ca3] {\n  width: 100%;\n}\n.img-show img[data-v-3beb0ca3] {\n  width: 100%;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}", ""]);
 
 // exports
 
@@ -43590,7 +43685,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container margin-nav" }, [
-    _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Create")]),
+    _c("h1", { staticClass: "pt-3 mb-3" }, [_vm._v("Create")]),
     _vm._v(" "),
     _c(
       "div",
@@ -43940,7 +44035,7 @@ var render = function() {
                               attrs: { "v-model": _vm.arrayAddress[id] },
                               on: {
                                 click: function($event) {
-                                  return _vm.pippo(id)
+                                  return _vm.addressClick(id)
                                 }
                               }
                             },
@@ -44078,510 +44173,468 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container margin-nav" }, [
-    _c("h1", { staticClass: "mt-3 mb-3" }, [_vm._v("Edit")]),
-    _vm._v(" "),
+  return _c("div", { staticClass: "container margin-nav mb-3" }, [
     _c(
       "div",
+      { staticClass: "d-flex justify-content-between align-items-center pt-3" },
       [
-        _c("h1", [_vm._v(" " + _vm._s(_vm.apartment.title) + " ")]),
+        _c("h4", {}, [_vm._v("Edit")]),
         _vm._v(" "),
         _c(
-          "form",
-          {
-            staticClass: "form-group",
-            attrs: { action: "../api/apartment/store", method: "post" }
-          },
+          "div",
+          {},
           [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "title" } }, [_vm._v("Titolo")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.apartment.title,
-                    expression: "apartment.title"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "title",
-                  name: "title",
-                  required: ""
-                },
-                domProps: { value: _vm.apartment.title },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.apartment, "title", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "desc" } }, [_vm._v("Descrizione")]),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.apartment.description,
-                    expression: "apartment.description"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  id: "desc",
-                  type: "text",
-                  name: "description",
-                  required: ""
-                },
-                domProps: { value: _vm.apartment.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.apartment, "description", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("h4", [_vm._v("Servizi")]),
-            _vm._v(" "),
             _c(
-              "div",
-              { staticClass: "row row-cols-3" },
-              _vm._l(_vm.services, function(service) {
-                return _c("div", { key: service.id, staticClass: "col" }, [
+              "router-link",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { to: { name: "dashboard" } }
+              },
+              [_vm._v("Dashboard")]
+            )
+          ],
+          1
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", [
+      _c("h1", { staticClass: "viola" }, [
+        _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "form-group",
+          attrs: { action: "../api/apartment/store", method: "post" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "form-row d-flex justify-content-between align-items-center"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "input-group mb-3 col-md-6 col-sm-12" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.SelectedServices,
-                        expression: "form.SelectedServices"
+                        value: _vm.apartment.title,
+                        expression: "apartment.title"
                       }
                     ],
+                    staticClass: "form-control",
                     attrs: {
-                      type: "checkbox",
-                      id: service.name,
-                      name: "SelectedServices[]"
+                      id: "title",
+                      type: "text",
+                      "aria-label": "Default",
+                      "aria-describedby": "inputGroup-sizing-default",
+                      required: ""
                     },
-                    domProps: {
-                      value: service.id,
-                      checked: Array.isArray(_vm.form.SelectedServices)
-                        ? _vm._i(_vm.form.SelectedServices, service.id) > -1
-                        : _vm.form.SelectedServices
-                    },
+                    domProps: { value: _vm.apartment.title },
                     on: {
-                      change: function($event) {
-                        var $$a = _vm.form.SelectedServices,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = service.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.form,
-                                "SelectedServices",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "SelectedServices",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "SelectedServices", $$c)
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
+                        _vm.$set(_vm.apartment, "title", $event.target.value)
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: service.name } }, [
-                    _vm._v(_vm._s(service.name))
-                  ])
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "ml-3 mr-3" }, [
+                _c("label", { attrs: { for: "visible" } }, [
+                  _vm._v("Visibile")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.apartment.visible,
+                      expression: "apartment.visible"
+                    }
+                  ],
+                  attrs: { id: "visible", type: "checkbox", name: "visible" },
+                  domProps: {
+                    checked: Array.isArray(_vm.apartment.visible)
+                      ? _vm._i(_vm.apartment.visible, null) > -1
+                      : _vm.apartment.visible
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.apartment.visible,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.apartment,
+                              "visible",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.apartment,
+                              "visible",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.apartment, "visible", $$c)
+                      }
+                    }
+                  }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c("img", {
+              staticClass: "my-w-100",
+              attrs: { src: _vm.apartment.imgs, alt: "apartment.title" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "mt-3" }, [_vm._v("Descrizione")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.apartment.description,
+                  expression: "apartment.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                id: "desc",
+                "aria-label": "With textarea",
+                name: "description",
+                required: ""
+              },
+              domProps: { value: _vm.apartment.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.apartment, "description", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Servizi")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row row-cols-3" },
+            _vm._l(_vm.services, function(service) {
+              return _c("div", { key: service.id, staticClass: "col" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.SelectedServices,
+                      expression: "form.SelectedServices"
+                    }
+                  ],
+                  attrs: {
+                    type: "checkbox",
+                    id: service.name,
+                    name: "SelectedServices[]"
+                  },
+                  domProps: {
+                    value: service.id,
+                    checked: Array.isArray(_vm.form.SelectedServices)
+                      ? _vm._i(_vm.form.SelectedServices, service.id) > -1
+                      : _vm.form.SelectedServices
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.form.SelectedServices,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = service.id,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.form,
+                              "SelectedServices",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form,
+                              "SelectedServices",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.form, "SelectedServices", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: service.name } }, [
+                  _vm._v(_vm._s(service.name))
                 ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("h4", [_vm._v("Dati casa")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "n_rooms" } },
-                  [_vm._v("Numero stanze")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.n_rooms,
-                      expression: "apartment.n_rooms"
-                    }
-                  ],
-                  attrs: {
-                    id: "n_rooms",
-                    type: "number",
-                    name: "n_rooms",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.n_rooms },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "n_rooms", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "n_beds" } },
-                  [_vm._v("Numero letti")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.n_beds,
-                      expression: "apartment.n_beds"
-                    }
-                  ],
-                  attrs: {
-                    id: "n_beds",
-                    type: "number",
-                    name: "n_beds",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.n_beds },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "n_beds", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "n_baths" } },
-                  [_vm._v("Numero bagni")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.n_baths,
-                      expression: "apartment.n_baths"
-                    }
-                  ],
-                  attrs: {
-                    id: "n_baths",
-                    type: "number",
-                    name: "n_baths",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.n_baths },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "n_baths", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "square_meters" } },
-                  [_vm._v("Metri quadri")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.square_meters,
-                      expression: "apartment.square_meters"
-                    }
-                  ],
-                  attrs: {
-                    id: "square_meters",
-                    type: "number",
-                    name: "square_meters",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.square_meters },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.apartment,
-                        "square_meters",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
               ])
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("h4", [_vm._v("Indirizzo")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "city" } },
-                  [_vm._v("Cittá")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.city,
-                      expression: "apartment.city"
-                    }
-                  ],
-                  attrs: {
-                    id: "city",
-                    type: "text",
-                    name: "city",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.city },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "city", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "zip_code" } },
-                  [_vm._v("CAP")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.zip_code,
-                      expression: "apartment.zip_code"
-                    }
-                  ],
-                  attrs: {
-                    id: "zip_code",
-                    type: "number",
-                    name: "zip_code",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.zip_code },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "zip_code", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "street" } },
-                  [_vm._v("Indirizzo")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.street,
-                      expression: "apartment.street"
-                    }
-                  ],
-                  attrs: {
-                    id: "street",
-                    type: "text",
-                    name: "street",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.street },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "street", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("Civico")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.apartment.address,
-                      expression: "apartment.address"
-                    }
-                  ],
-                  attrs: {
-                    id: "address",
-                    type: "text",
-                    name: "address",
-                    required: ""
-                  },
-                  domProps: { value: _vm.apartment.address },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.apartment, "address", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", [
-              _c("label", { attrs: { for: "visible" } }, [_vm._v("Visibile")]),
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Dati casa")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "input-group mb-3 col-md-3 col-sm-6" }, [
+              _vm._m(2),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.apartment.visible,
-                    expression: "apartment.visible"
+                    value: _vm.apartment.n_rooms,
+                    expression: "apartment.n_rooms"
                   }
                 ],
-                attrs: { id: "visible", type: "checkbox", name: "visible" },
-                domProps: {
-                  checked: Array.isArray(_vm.apartment.visible)
-                    ? _vm._i(_vm.apartment.visible, null) > -1
-                    : _vm.apartment.visible
+                staticClass: "form-control",
+                attrs: {
+                  id: "address",
+                  type: "text",
+                  "aria-label": "Default",
+                  "aria-describedby": "inputGroup-sizing-default",
+                  name: "n_rooms",
+                  required: ""
                 },
+                domProps: { value: _vm.apartment.n_rooms },
                 on: {
-                  change: function($event) {
-                    var $$a = _vm.apartment.visible,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          _vm.$set(_vm.apartment, "visible", $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            _vm.apartment,
-                            "visible",
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
-                      }
-                    } else {
-                      _vm.$set(_vm.apartment, "visible", $$c)
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
+                    _vm.$set(_vm.apartment, "n_rooms", $event.target.value)
                   }
                 }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "d-none" }, [
+            _c("div", { staticClass: "input-group mb-3 col-md-3 col-sm-6" }, [
+              _vm._m(3),
+              _vm._v(" "),
               _c("input", {
-                attrs: { type: "text", name: "user_id" },
-                domProps: { value: _vm.form.user_id }
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartment.n_beds,
+                    expression: "apartment.n_beds"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "address",
+                  type: "text",
+                  "aria-label": "Default",
+                  "aria-describedby": "inputGroup-sizing-default",
+                  name: "n_beds",
+                  required: ""
+                },
+                domProps: { value: _vm.apartment.n_beds },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.apartment, "n_beds", $event.target.value)
+                  }
+                }
               })
             ]),
             _vm._v(" "),
-            _vm._m(1)
-          ]
-        ),
-        _vm._v(" "),
-        _c("router-link", { attrs: { to: { name: "dashboard" } } }, [
-          _vm._v("DASHBOARD")
-        ])
-      ],
-      1
-    )
+            _c("div", { staticClass: "input-group mb-3 col-md-3 col-sm-6 " }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartment.n_baths,
+                    expression: "apartment.n_baths"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "address",
+                  type: "text",
+                  "aria-label": "Default",
+                  "aria-describedby": "inputGroup-sizing-default",
+                  name: "n_baths",
+                  required: ""
+                },
+                domProps: { value: _vm.apartment.n_baths },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.apartment, "n_baths", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group mb-3 col-md-3 col-sm-6" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartment.square_meters,
+                    expression: "apartment.square_meters"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "address",
+                  type: "text",
+                  "aria-label": "Default",
+                  "aria-describedby": "inputGroup-sizing-default",
+                  name: "square_meters",
+                  required: ""
+                },
+                domProps: { value: _vm.apartment.square_meters },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.apartment,
+                      "square_meters",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Indirizzo")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.apartment.address,
+                  expression: "apartment.address"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                id: "address",
+                type: "text",
+                "aria-label": "Default",
+                "aria-describedby": "inputGroup-sizing-default",
+                required: ""
+              },
+              domProps: { value: _vm.apartment.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.apartment, "address", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Cambia foto")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "form-row d-flex justify-content-between align-items-center"
+            },
+            [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "d-flex justify-content-between" }, [
+                _vm._m(8),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "mb-3" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { to: { name: "dashboard" } }
+                      },
+                      [_vm._v("Dashboard")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-none" }, [
+            _c("input", {
+              attrs: { type: "text", name: "user_id" },
+              domProps: { value: _vm.form.user_id }
+            })
+          ])
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -44589,20 +44642,114 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "imgIn" } }, [_vm._v("Carica foto")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control-file",
-        attrs: { type: "file", name: "image", id: "imgIn" }
-      })
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Modifica titolo")]
+      )
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-3" }, [
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _vm._v("Modifica descrizione")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "address" } },
+        [_vm._v("N. stanze")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "address" } },
+        [_vm._v("N. letti")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "address" } },
+        [_vm._v("N. bagni")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "address" } },
+        [_vm._v("Metri quadri")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "address" } },
+        [_vm._v("Modifica indirizzo")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group mb-3 col-md-6 col-sm-12" }, [
+      _c("div", { staticClass: "custom-file" }, [
+        _c("input", {
+          staticClass: "custom-file-input",
+          attrs: { type: "file", id: "inputGroupFile01" }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-file-label",
+            attrs: { for: "inputGroupFile01" }
+          },
+          [_vm._v("Scegli file...")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3 mr-3" }, [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
@@ -44657,58 +44804,162 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid pippo margin-nav" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 col-lg" }, [
-        _c("h1", { staticClass: " viola text-center" }, [
+    _c("div", { staticClass: "row altezza" }, [
+      _c("div", { staticClass: "col-12 col-lg-8 col-xl-7" }, [
+        _c("h1", { staticClass: "viola text-center" }, [
           _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "img-show" }, [
+        _c("div", { staticClass: "margin-l-7 indirizzo opal" }, [
+          _vm._v(_vm._s(_vm.apartment.address))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "img-show ombra" }, [
           _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-lg-5" }, [
-        _c("h3", { staticClass: "d-block viola" }, [_vm._v("dettagli casa")]),
-        _vm._v(" "),
-        _c("div", [
-          _c("ul", { staticClass: "dettagli d-inline-block" }, [
-            _c("li", [
-              _vm._v("numero camere:" + _vm._s(_vm.apartment.n_rooms) + " "),
-              _c("i", { staticClass: "fas fa-door-open viola" })
+      _c(
+        "div",
+        { staticClass: "col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano" },
+        [
+          _c("h3", { staticClass: "d-block viola" }, [_vm._v("Dettagli casa")]),
+          _vm._v(" "),
+          _c("div", [
+            _c("ul", { staticClass: "dettagli d-inline-block" }, [
+              _c("li", { staticClass: "d-flex align-items-center" }, [
+                _c("i", {
+                  staticClass: "fas fa-door-open viola icone my-2 mr-md-2"
+                }),
+                _vm._v("     numero camere:" + _vm._s(_vm.apartment.n_rooms))
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "d-flex align-items-center" }, [
+                _c("i", { staticClass: "fas fa-bed viola icone my-2 mr-md-2" }),
+                _vm._v(
+                  "     numero letti:" + _vm._s(_vm.apartment.n_beds) + " "
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "d-flex align-items-center" }, [
+                _c("i", {
+                  staticClass: "fas fa-toilet viola icone my-2 mr-md-2"
+                }),
+                _vm._v(
+                  "    numero bagni:" + _vm._s(_vm.apartment.n_baths) + " "
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "d-flex align-items-center" }, [
+                _c("i", {
+                  staticClass: "fas fa-home viola icone my-2 mr-md-2"
+                }),
+                _vm._v(
+                  "    numero metri quadri:" +
+                    _vm._s(_vm.apartment.square_meters)
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("li", [
-              _vm._v("numero letti:" + _vm._s(_vm.apartment.n_beds) + " "),
-              _c("i", { staticClass: "fas fa-bed viola" })
+            _c("h3", { staticClass: "d-block viola mt-3" }, [
+              _vm._v("Servizi della casa")
             ]),
             _vm._v(" "),
-            _c("li", [
-              _vm._v("numero bagni:" + _vm._s(_vm.apartment.n_baths) + " "),
-              _c("i", { staticClass: "fas fa-toilet viola" })
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v(
-                "numero metri quadri:" +
-                  _vm._s(_vm.apartment.square_meters) +
-                  " "
-              ),
-              _c("i", { staticClass: "fas fa-home viola" })
-            ])
+            _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("div")
-        ]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "d-block viola" }, [_vm._v("Descrizione")]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.apartment.description))])
-      ])
+          _c("h3", { staticClass: "d-block viola mt-3" }, [
+            _vm._v("Descrizione")
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              _vm._s(_vm.apartment.description) +
+                " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quisquam commodi magni exercitationem corporis odio, asperiores totam illo rem doloribus! Debitis inventore asperiores eum, unde distinctio accusantium quisquam ducimus cupiditate? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eaque beatae minima nemo eligendi quos facere molestias vitae laudantium quaerat iste quasi voluptas incidunt totam nam iure, voluptatum veritatis dolores?"
+            )
+          ]),
+          _vm._v(" "),
+          _c("h3", { staticClass: "d-block viola mt-3" }, [
+            _vm._v("Locazione della casa")
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("h3", { staticClass: "d-block viola mt-3" }, [
+            _vm._v("Invia un mail al propietario")
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ]
+      )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, illum accusamus rem ad expedita architecto saepe magnam? Dolores quia iste cumque culpa unde ducimus sint vel dolorum dolorem, quam est."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "img-show" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://developers.google.com/codelabs/maps-platform/webgl/img/webgl_pin_final.png",
+          alt: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "form",
+      { staticClass: "d-flex flex-column", attrs: { action: "" } },
+      [
+        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
+          _vm._v("Nome e Cognome")
+        ]),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "text" } }),
+        _vm._v(" "),
+        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
+          _vm._v("email")
+        ]),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "text" } }),
+        _vm._v(" "),
+        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
+          _vm._v("Messaggio")
+        ]),
+        _vm._v(" "),
+        _c("textarea"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "bottone rosso-background cream mt-3",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Invia")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -44838,7 +45089,54 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "d-flex flex-row test" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-3 d-flex flex-row test justify-content-center"
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.userInput,
+                        expression: "userInput"
+                      }
+                    ],
+                    staticClass:
+                      "form-ricerca text-center cream-background d-inline-block",
+                    attrs: { name: "userInput", type: "text", placeholder: "" },
+                    domProps: { value: _vm.userInput },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.userInput = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "bottone rosso-background cream",
+                      attrs: {
+                        to: {
+                          name: "results",
+                          params: { userInput: _vm.userInput }
+                        }
+                      }
+                    },
+                    [_vm._v("cerca")]
+                  )
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
             this.$userId
               ? _c(
@@ -44860,42 +45158,12 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-row test" }, [
-      _c(
-        "form",
-        {
-          staticClass: "mt-3 d-flex flex-row test justify-content-center",
-          attrs: { action: "../api/home", method: "post" }
-        },
-        [
-          _c("input", {
-            staticClass:
-              "form-ricerca text-center cream-background d-inline-block",
-            attrs: { name: "userInput", type: "text", placeholder: "" }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "bottone rosso-background cream ",
-              attrs: { type: "submit" }
-            },
-            [_vm._v(" Cerca")]
-          )
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -44942,7 +45210,151 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("SEARCH RESULTS")])
+  return _c("div", { staticClass: "container pt-5" }, [
+    _c("h1", [_vm._v("SEARCH RESULTS")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "formControlRange" } }, [_vm._v("raggio")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.radius,
+            expression: "radius"
+          }
+        ],
+        staticClass: "form-control-range",
+        attrs: {
+          type: "range",
+          min: "20000",
+          max: "100000",
+          step: "1000",
+          id: "formControlRange"
+        },
+        domProps: { value: _vm.radius },
+        on: {
+          __r: function($event) {
+            _vm.radius = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("span", [_vm._v(_vm._s(_vm.radius))]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "bottone rosso-background",
+          on: {
+            click: function($event) {
+              return _vm.loadApartments(_vm.radius)
+            }
+          }
+        },
+        [_vm._v("applica filtro")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Sponsored Apartments")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row row-cols-4 gx-5" },
+      _vm._l(_vm.sponsored_apartments, function(s_app) {
+        return _c(
+          "div",
+          {
+            key: s_app.id,
+            staticClass: "col card border border-danger rounded",
+            staticStyle: { width: "18rem" }
+          },
+          [
+            _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: "", alt: "" }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(s_app.title))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(s_app.description))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: {
+                      to: { name: "show", params: { slug: s_app.slug } }
+                    }
+                  },
+                  [_vm._v("Dettagli")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Results")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row row-cols-4" },
+      _vm._l(_vm.apartments, function(app) {
+        return _c(
+          "div",
+          {
+            key: app.id,
+            staticClass: "col card border rounded",
+            staticStyle: { width: "18rem" }
+          },
+          [
+            _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: "", alt: "" }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(app.title))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(app.description))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: { name: "show", params: { slug: app.slug } } }
+                  },
+                  [_vm._v("Dettagli")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61191,7 +61603,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  mode: "history",
+  mode: 'history',
   routes: [{
     path: '/',
     name: "home",
@@ -61225,9 +61637,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "email",
     component: _pages_Apartment_Email__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
-    path: '/apartment/results',
+    path: '/apartment/results/:userInput',
     name: "results",
-    component: _pages_SearchResults__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _pages_SearchResults__WEBPACK_IMPORTED_MODULE_10__["default"],
+    props: true
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -61252,8 +61665,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

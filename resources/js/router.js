@@ -14,7 +14,7 @@ import Stats from './pages/Apartment/Stats';
 import SearchResults from './pages/SearchResults';
 
 const router = new VueRouter({
-    mode: "history",
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -57,9 +57,10 @@ const router = new VueRouter({
             component: Email
         },
         {
-            path: '/apartment/results',
+            path: '/apartment/results/:userInput',
             name: "results",
-            component: SearchResults
+            component: SearchResults,
+            props: true
         },
     ]
 });

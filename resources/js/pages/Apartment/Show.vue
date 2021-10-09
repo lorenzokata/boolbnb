@@ -64,9 +64,9 @@
 
             // api show appartamenti
          axios
-            .get("/api/apartment/" + this.id + "/edit")
-            .then(respo => {
-                this.apartment = respo.data.results;
+            .get("/api/apartment/" + this.$route.params.slug)
+            .then(response => {
+                this.apartment = response.data.results;
                 console.log(this.apartment);
             })
             .catch(error => {

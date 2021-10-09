@@ -42,7 +42,7 @@ Route::namespace('Api')->group(function () {
     Route::post('/apartment/{slug}/delete', 'ApartmentController@destroy');
     Route::get('/apartment/{slug}/sponsor', 'ApartmentController@sponsor');
     Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
-    Route::get('/apartment/show', 'ApartmentController@show');
+    Route::get('/apartment/{slug}', 'ApartmentController@show');
     Route::get('/apartment/{slug}/email', 'ApartmentController@email');
     Route::get('/apartment/search-results', 'ApartmentController@searchApartments');
 

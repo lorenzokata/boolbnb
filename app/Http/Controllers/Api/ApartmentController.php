@@ -145,8 +145,8 @@ class ApartmentController extends Controller
      */
     public function show($slug)
     {
-        $apartment = Apartment::where('id', $slug)->first();
-
+        $apartment = Apartment::where('slug', $slug)->first();
+        
         if($apartment->imgs){
             $apartment->imgs = url('storage/' . $apartment->imgs);
         }
