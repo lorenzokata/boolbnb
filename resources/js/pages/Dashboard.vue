@@ -1,6 +1,6 @@
 <template>
-    <div class="container margin-nav">
-        <h1 class="mt-3 mb-3">Dashboard</h1>
+    <div class="container margin-nav pt-3">
+        <h1 class="mb-3">Dashboard</h1>
 
         <router-link :to="{ name: 'create'}">Crea</router-link>
         <router-link :to="{ name: 'edit'}">Edit</router-link> <!-- da togliere -->
