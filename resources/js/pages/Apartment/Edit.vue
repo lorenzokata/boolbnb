@@ -1,6 +1,13 @@
 <template>
-    <div class="container margin-nav">
-        <h4 class="pt-3 mb-3">Edit</h4>
+    <div class="container margin-nav mb-3">
+
+        <div class="d-flex justify-content-between align-items-center pt-3">
+            <h4 class="">Edit</h4>
+            <div class="">
+                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+            </div>
+        </div>
+
         <div>
             <h1 class="viola"> {{apartment.title}} </h1>
             <form class="form-group" action="../api/apartment/store" method="post" >
@@ -186,7 +193,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '31',
+            id: '32',
             apartment: [],
 
             services: []
@@ -238,6 +245,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.bgr-img{
+    background-image: url("https://www.patternpictures.com/wp-content/uploads/White-brick-wall-background-texture-PhotosPublic4419FD-1600x1003.jpg");
+}
 
 </style>
 

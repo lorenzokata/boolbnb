@@ -53,7 +53,7 @@
     export default {
         data(){
            return{
-               id: '11',
+                id: '32',
                 apartment: [],
                 
            }
