@@ -13,20 +13,18 @@ use App\Sponsor;
 
 class HomeController extends Controller
 {
-    public function dashboard(){
+    public function dashboard()
+    {
         //
     }
 
-    public function home(Request $request){
-        
-        // preleriamo la stringa dal form Home.vue
-        $data = $request->all();
-        $userInput = trim($data['userInput']);
-        
+    public function home($userInput)
+    {
+
         // dati per chiamata Geocode
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
         $base_url = 'https://api.tomtom.com/search/2/geocode/';
-        $complete_url = $base_url . Str::slug($userInput , '%20') . '.json' . '?key=' . $key;
+        $complete_url = $base_url . Str::slug(trim($userInput), '%20') . '.json' . '?key=' . $key;
 
         // chiamata Geocode
         $response = Http::withOptions(['verify' => false])->get($complete_url);
@@ -42,16 +40,15 @@ class HomeController extends Controller
         $poi_list = [];
 
         foreach ($apartments as $apartment) {
-  
+
             $array = [
-                    'poi' => 
-                        ['name' => $apartment->id] ,
-                    'position' => 
-                        ['lat' => $apartment->lat , 'lon' => $apartment->lon]
+                'poi' =>
+                ['name' => $apartment->id],
+                'position' =>
+                ['lat' => $apartment->lat, 'lon' => $apartment->lon]
             ];
 
-            array_push( $poi_list , $array);
-    
+            array_push($poi_list, $array);
         }
 
         // dati per chiamata geometryList
@@ -62,42 +59,43 @@ class HomeController extends Controller
         $poi_list = json_encode($poi_list);
         $complete_url = $base_url . '?geometryList=[' . $geometry_list . ']&poiList=' . $poi_list . '&key=' . $key;
 
-        // dump($complete_url);
-        // dump($geometry_list);
-        // dump($poi_list);
         
         // chiamata Geocode
         $response = Http::withOptions(['verify' => false])->get($complete_url);
-        // dump($response);
-        $response = $response->json();        
-        // dd($response);
+        $response = $response->json();
 
         // cercare nella tabella ponte l'ID dell'appartamento
         $apartments = [];
-        $sponsored_apartments= [];
+        $sponsored_apartments = [];
+    
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+
         foreach ($response['results'] as $item) {
             $apartment = Apartment::where('id', $item['poi']['name'])->first();
-            // dump($apartment);
-            $now = Carbon::now();
-            $now = $now->toDateTimeString();
-            // $apartment = $apartment->find(1);
-            $date_end = $apartment->sponsors->pivot->date_end;
 
-            // $date_end = $date_end->date_end;
-            // $apartment->sponsors()->first()
-            // $date_end = $date_end['attributes']['date_'];
-            dd($date_end);
+            foreach ($apartment->sponsors as $sponsor) {
+              
+                if($sponsor->pivot->date_end > $now){
+                    // dump($sponsor->pivot->date_end);
+                    array_push($sponsored_apartments, $apartment);
+                    break;
+                }
 
-            if($apartment->sponsors()->where('apartment_id', $apartment->id)->exists() && $apartment->sponsors()->where('date_end','<', $now)){
-                array_push($sponsored_apartments, $apartment);
-            }
-            else{
-                array_push($apartments, $apartment);
-            }
+            };
+            array_push($apartments, $apartment);
+            
         };
-        
-        dump($apartments);
-        dd($sponsored_apartments);
-        
+
+        // dump($apartments);           array dei risultati non sponsorizzati
+        // dd($sponsored_apartments);             array dai risultati sponsorizzati
+
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'sponsored_appartments' => $sponsored_apartments,
+                'apartments' => $apartments
+            ]
+        ]);
     }
 }
