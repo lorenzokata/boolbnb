@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div class="container ">
         
-        <h1>SEARCH RESULTS</h1>
+        <h1>Search results</h1>
 
           <div class="form-group">
             <label for="formControlRange">raggio</label>
