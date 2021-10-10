@@ -11,8 +11,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <title>TEST</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

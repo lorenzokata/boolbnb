@@ -74,16 +74,17 @@ class HomeController extends Controller
 
         foreach ($response['results'] as $item) {
             $apartment = Apartment::where('id', $item['poi']['name'])->first();
-
+            
             foreach ($apartment->sponsors as $sponsor) {
-              
+                
                 if($sponsor->pivot->date_end > $now){
                     // dump($sponsor->pivot->date_end);
                     array_push($sponsored_apartments, $apartment);
                     break;
                 }
-
+                
             };
+
             array_push($apartments, $apartment);
             
         };
