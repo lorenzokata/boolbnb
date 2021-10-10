@@ -6632,7 +6632,8 @@ __webpack_require__.r(__webpack_exports__);
         square_meters: null,
         address: "",
         visible: 1,
-        SelectedServices: []
+        SelectedServices: [],
+        image: null
       },
       services: [],
       arrayAddress: [],
@@ -6887,7 +6888,7 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '32',
+      id: '11',
       apartment: [],
       services: [] // errors: [],
 
@@ -7027,7 +7028,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      id: '32',
+      id: '11',
       apartment: []
     };
   },
@@ -11767,7 +11768,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mega-bot[data-v-82704d4a] {\n  font-size: 5rem;\n  text-align: center;\n  padding: 5rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n  border-radius: 3rem;\n}\n.mega-bot .rou-link[data-v-82704d4a] {\n  color: white;\n  text-align: center;\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "/*   .mega-bot{\n      font-size: 5rem;\n      text-align: center;\n      padding: 5rem;\n      margin-top: 3rem;\n      margin-bottom: 3rem;\n      border-radius: 3rem;\n\n\n      } */\n.rou-link[data-v-82704d4a] {\n  font-size: 5rem;\n  text-align: center;\n  padding: 4rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n  border-radius: 3rem;\n  color: white;\n  text-align: center;\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -11786,7 +11787,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n}\n.test[data-v-b3c5cf30] {\n  width: 100%;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  text-align: center;\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768);\n  background-position: center;\n  height: 90%;\n  width: 80%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: 84vh;\n  width: 100%;\n  overflow-y: scroll;\n}", ""]);
+exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n}\n.test[data-v-b3c5cf30] {\n  width: 100%;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  text-align: center;\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768);\n  background-position: center;\n  height: 90%;\n  width: 80%;\n  border-radius: 1.25rem;\n}\n\n/* .my-primo-piano{\n    height: 84vh;\n    width: 100%;\n    overflow-y: scroll;\n} */", ""]);
 
 // exports
 
@@ -44206,16 +44207,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group mb-3 col-md-6 col-sm-12" }, [
       _c("div", { staticClass: "custom-file" }, [
         _c("input", {
-          staticClass: "custom-file-input",
-          attrs: { type: "file", id: "inputGroupFile01" }
+          staticClass: "form-control-file",
+          attrs: { type: "file", name: "image", id: "imgIn" }
         }),
         _vm._v(" "),
         _c(
           "label",
-          {
-            staticClass: "custom-file-label",
-            attrs: { for: "inputGroupFile01" }
-          },
+          { staticClass: "custom-file-label", attrs: { for: "imgIn" } },
           [_vm._v("Scegli file...")]
         )
       ])
@@ -44907,8 +44905,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass:
-                "d-flex justify-content-between align-items-center pt-3"
+              staticClass: "d-flex justify-content-between align-items-center "
             },
             [
               _c("h3", { staticClass: "d-block viola" }, [
@@ -45139,71 +45136,52 @@ var render = function() {
   return _c("div", { staticClass: "container margin-nav pt-3" }, [
     _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-row justify-content-between" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "mega-bot col-sm-11 col-md-5 bottone rosso-background ombra"
-        },
-        [
-          _c(
-            "router-link",
-            { staticClass: "rou-link", attrs: { to: { name: "create" } } },
-            [_vm._v("Crea")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "mega-bot col-sm-11 col-md-5 bottone rosso-background ombra"
-        },
-        [
-          _c(
-            "router-link",
-            { staticClass: "rou-link", attrs: { to: { name: "edit" } } },
-            [_vm._v("Edit")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "mega-bot col-sm-11 col-md-5 bottone rosso-background ombra"
-        },
-        [
-          _c(
-            "router-link",
-            { staticClass: "rou-link", attrs: { to: { name: "home" } } },
-            [_vm._v("Home")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "mega-bot col-sm-11 col-md-5 bottone rosso-background ombra"
-        },
-        [
-          _c(
-            "router-link",
-            { staticClass: "rou-link", attrs: { to: { name: "show" } } },
-            [_vm._v("Show")]
-          )
-        ],
-        1
-      )
-    ])
+    _c(
+      "div",
+      { staticClass: "form-row justify-content-between" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass:
+              "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
+            attrs: { to: { name: "create" } }
+          },
+          [_vm._v("Crea")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass:
+              "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
+            attrs: { to: { name: "edit" } }
+          },
+          [_vm._v("Edit")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass:
+              "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
+            attrs: { to: { name: "home" } }
+          },
+          [_vm._v("Home")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass:
+              "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
+            attrs: { to: { name: "show" } }
+          },
+          [_vm._v("Show")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -45299,12 +45277,12 @@ var render = function() {
             this.$userId
               ? _c(
                   "div",
-                  { staticClass: "mt-2 bottone rosso-background ombra" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "cream",
+                        staticClass:
+                          "mt-2 bottone rosso-background ombra cream",
                         attrs: { to: { name: "dashboard" } }
                       },
                       [_vm._v("Dashboard")]
@@ -45368,8 +45346,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("SEARCH RESULTS")]),
+  return _c("div", { staticClass: "container " }, [
+    _c("h1", [_vm._v("Search results")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "formControlRange" } }, [_vm._v("raggio")]),
