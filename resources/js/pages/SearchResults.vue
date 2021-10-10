@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container margin-nav">
         
         <h1>SEARCH RESULTS</h1>
 
@@ -19,7 +19,7 @@
           </div>
 
         <input type="num" v-model="radius" @input="loadApartments(radius)">
-        <h2>Sponsored Apartments</h2>
+        <h2 class="viola">Sponsored Apartments</h2>
         
         <div class="row row-cols-4 gx-5">
           <div 
@@ -27,28 +27,31 @@
             style="width: 18rem;" 
             v-for="s_app in sponsored_apartments" :key='s_app.id'
           >
-            <img src="" class="card-img-top" alt="">
+            <img :src="s_app.imgs" class="card-img-top" :alt="s_app.title">
             <div class="card-body">
                 <h5 class="card-title">{{s_app.title}}</h5>
-                <p class="card-text">{{s_app.description}}</p>
+                <p class="card-text text-truncate">{{s_app.description}}</p>
                 <a href="#" class="btn btn-primary">Dettagli</a>
             </div>
           </div> 
         </div>
 
-        <h2>Results</h2>
+        <h2 class="viola">Results</h2>
 
-        <div class="row row-cols-4">
+        <div class="row  ">
           <div 
-            class="col card border rounded" 
+            class="col-5 card bordo-card rounded  mx-4 my-4" 
             style="width: 18rem;" 
             v-for="app in apartments" :key='app.id'
           >
-            <img src="" class="card-img-top" alt="">
+            <img :src="app.imgs" class="card-img-top" :alt="app.title">
             <div class="card-body">
-                <h5 class="card-title">{{app.title}}</h5>
-                <p class="card-text">{{app.description}}</p>
-                <a href="#" class="btn btn-primary">Dettagli</a>
+                <h5 class="card-title text-truncate viola font-weight-bold text-uppercase">{{app.title}}</h5>
+                <p class="card-text text-truncate">{{app.description}}</p>
+                <div class="text-right">
+                    <a href="#" class="bottone rosso-background ombra cream">Dettagli</a>
+
+                </div>
             </div>
           </div> 
         </div>
