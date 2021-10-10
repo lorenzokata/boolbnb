@@ -10,8 +10,8 @@
                             <router-link class="bottone rosso-background cream" :to="{ name: 'results', params: { userInput: userInput }}">Cerca</router-link>
                         </div>
                     </div>
-                        <div v-if="this.$userId" class="mt-2 bottone rosso-background ombra">
-                            <router-link class="cream" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                        <div v-if="this.$userId" >
+                            <router-link class="mt-2 bottone rosso-background ombra cream" :to="{ name: 'dashboard'}">Dashboard</router-link>
                         </div>
                 </div>
                 <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">
@@ -78,9 +78,9 @@ export default {
     border-radius: 1.25rem;
 }
 
-.my-primo-piano{
+/* .my-primo-piano{
     height: 84vh;
     width: 100%;
     overflow-y: scroll;
-}
+} */
 </style>

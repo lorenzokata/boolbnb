@@ -3,21 +3,21 @@
         <h1 class="mb-3">Dashboard</h1>
 
         <div class="form-row justify-content-between">
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'create'}">Crea</router-link>
-            </div>
+  
+                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
+           
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'edit'}">Edit</router-link> <!-- da togliere -->
-            </div>
+            
+                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'edit'}">Edit</router-link> <!-- da togliere -->
+    
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'home'}">Home</router-link>
-            </div>
+       
+                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'home'}">Home</router-link>
+       
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'show'}">Show</router-link> 
-            </div>
+      
+                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'show'}">Show</router-link> 
+           
         </div>
         
     </div>
@@ -33,7 +33,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .mega-bot{
+  /*   .mega-bot{
         font-size: 5rem;
         text-align: center;
         padding: 5rem;
@@ -42,12 +42,20 @@
         border-radius: 3rem;
 
 
+        } */
         .rou-link {
+        font-size: 5rem;
+        text-align: center;
+        padding: 4rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        border-radius: 3rem;
+
+
         color: white;
         text-align: center;
         text-decoration: none;
         }
-    }
 
 
 </style>

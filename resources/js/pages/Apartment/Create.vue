@@ -178,7 +178,7 @@
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                             <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
                         </div>
                     </div>
@@ -223,7 +223,8 @@ export default {
                 square_meters: null,
                 address: "",
                 visible: 1,
-                SelectedServices: []
+                SelectedServices: [],
+                image:null,
             },
             services: [],
             arrayAddress: [],

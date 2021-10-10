@@ -17,7 +17,7 @@
 
                 <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
 
-                <div class="d-flex justify-content-between align-items-center pt-3">
+                <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block viola">Dettagli casa</h3>
                     <div>
                         <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}      ">Dashboard</router-link>
@@ -64,7 +64,7 @@
     export default {
         data(){
            return{
-                id: '32',
+                id: '11',
                 apartment: [],
                 
            }
