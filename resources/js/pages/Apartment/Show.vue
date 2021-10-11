@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid pippo margin-nav">
+    <div class="container-fluid  margin-nav">
         <div class="row altezza">
             <div class="col-12 col-lg-8 col-xl-7">
             <h1 class="viola text-center"> {{apartment.title}} </h1>
@@ -12,8 +12,6 @@
 
             </div>
             <div class="col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano">
-
-
 
                 <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
 

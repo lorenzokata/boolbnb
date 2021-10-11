@@ -15,9 +15,10 @@
                         </div>
                 </div>
                 <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">
-                    <h3 class="text-center margin-t-6">In Primo Piano</h3>
+                    <h3 class="text-center">In Primo Piano</h3>
                     <div class="overflow-auto my-primo-piano">
-                        <!-- <a href=""><div class="my-card margin-t-4 mx-auto"><img :src="{{apartment.imgs}}" alt=""><router-link class="img-dettagli bottone rosso-background ombra cream" :to="{ name: 'show', params: { slug: app.slug }}">Dettagli</router-link></div></a> -->
+                        <!-- <router-link class="img-dettagli" :to="{ name: 'show', params: { slug: app.slug }}"><div class="my-card margin-t-4 mx-auto"><img :src="apartment.imgs" alt=""></div></router-link> -->
+                        
                         <div class="my-card margin-t-4 mx-auto"></div>
                         <div class="my-card margin-t-4 mx-auto"></div>
                     </div>
@@ -49,7 +50,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: calc(100vh - 60px);
 }
 
 .test{
@@ -89,7 +90,7 @@ export default {
 }
 
 /* .my-primo-piano{
-    height: 84vh;
+    height: 83vh;
     width: 100%;
     overflow-y: scroll;
 } */
