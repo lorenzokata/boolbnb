@@ -2,12 +2,15 @@
     <div class="container pt-3">
         <h1 class="mb-3">Dashboard</h1>
 
+                <router-link class="bottone rosso-background ombra bottone rosso-background" :to="{ name: 'create'}">Crea</router-link>
         <div class="row flex-column">
                 <h3>i miei appartamenti</h3>
-                <div class="d-flex cream-background">
+                <div class="d-flex justify-content-between cream-background">
                     <div>Nome Appartamento</div>
+                    <div class="text-right">
                     <router-link class="bottone rosso-background  bottone rosso-background ombra mx-3" :to="{ name: 'show'}">Show</router-link> 
                     <router-link class="bottone rosso-background ombra bottone rosso-background ombra " :to="{ name: 'edit'}">Edit</router-link>
+                    </div>
                 </div>
         </div>
 
