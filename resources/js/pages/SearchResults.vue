@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-nav">
+    <div class="container">
         
         <h1>Search results</h1>
 

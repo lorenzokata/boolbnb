@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-nav pt-3">
+    <div class="container pt-3">
         <h1 class="mb-3">Dashboard</h1>
 
         <div class="row flex-column">

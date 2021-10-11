@@ -1,16 +1,12 @@
 <template>
-    <div class="container margin-nav">
+    <div class="container">
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
 
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <h4 class="">Create</h4>
-                <div class="">
-                    <router-link class="btn btn-primary" :to="{ name: 'dashboard'}  ">Dashboard</router-link>
-                </div>
+                <h4>Create</h4>
+                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
             </div>
-
-
 
             <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
 

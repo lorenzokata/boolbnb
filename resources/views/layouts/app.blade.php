@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light cream-background ombra fixed-top">
+    <nav class="navbar navbar-expand-md navbar-light cream-background ombra fixed-top altezza-nav">
         <div class="container-fluid cream">
             <a class=" navbar-brand " href="{{ url('/') }}">
                 BoolBnB<!-- {{ config('app.name', 'Laravel') }} -->

@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-nav mb-3">
+    <div class="container mb-3">
 
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Edit</h4>

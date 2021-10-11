@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="margin-nav">
       <router-view></router-view>
    </div>
 
