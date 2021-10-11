@@ -41,6 +41,7 @@
 
                  <h3 class="d-block viola mt-3">Locazione della casa</h3>
                     <div class="img-show">
+                        <!-- <div id="map" style="width: 100px; height: 100px;"></div> -->
                         <img src="https://developers.google.com/codelabs/maps-platform/webgl/img/webgl_pin_final.png" alt="">
                     </div>
 
@@ -66,7 +67,7 @@
 
         data(){
            return{
-                form: {
+               /*  form: {
                     title: null,
                     description: null,
                     user_id: JSON.parse(this.$userId).id,
@@ -80,9 +81,9 @@
                     address: null,
                     visible: 1,
                     SelectedServices: []
-                },
-
-               id: '15',
+                }, */
+              
+               id: '12',
                apartment: [],
            }
 
@@ -96,6 +97,7 @@
             .then(response => {
                 this.apartment = response.data.results;
                 console.log(this.apartment);
+                console.log(this.apartment.title);
             })
             .catch(error => {
                 console.log(error);

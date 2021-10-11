@@ -12,11 +12,12 @@ class ServiceSeeder extends Seeder
      * @return void
      */
     public function run(Faker $faker)
-    {
-        for ($i=0; $i < 10; $i++) { 
+    {   
+        $array_servizi=['WiFi', 'Posto macchina', 'Piscina', 'Portineria', 'Sauna', 'Vista mare', 'Asciugacapelli', 'Prodotti per la pulizia', 'Sapone per il corpo', 'Bidet', 'Acqua calda', 'Gel doccia', 'Appendiabiti', 'Biancheria da letto', 'Cuscini e coperte extra', 'Tende oscuranti', 'Ferro da stiro', 'TV', 'Libri e materiale di lettura', 'Raccomandazioni sui babysitter', 'Climatizzatore', 'Riscaldamento', 'Allarme antincendio', 'Rilevatore di monossido di carbonio', 'Estintore', 'Kit di pronto soccorso', 'Spazio di lavoro dedicato', 'Cucina', 'Frigorifero', 'Forno a microonde'];
+        for ($i=0; $i < sizeof($array_servizi); $i++) { 
 
             DB::table('services')->insert([
-                'name' => $faker->words(2, true),
+                'name' => $array_servizi[$i],
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

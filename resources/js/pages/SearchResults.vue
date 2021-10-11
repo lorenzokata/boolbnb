@@ -15,11 +15,11 @@
                 v-model="radius"
                 
             /> 
-            <span>{{radius}}</span>
+            <span>{{radius/1000}}Km</span>
             <div class="bottone rosso-background" @click="loadApartments(radius)">applica filtro</div>
           </div>
 
-        <input type="num" v-model="radius" @input="loadApartments(radius)">
+        <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
         <h2 class="viola">Sponsored Apartments</h2>
 
         <div class="row row-cols-4 gx-5">
@@ -43,7 +43,7 @@
 
         <div class="row">
             <div
-                class="col-5 card bordo-card rounded  mx-4 my-4"
+                class="col-12 col-md-5 card bordo-card rounded  mx-4 my-4"
                 style="width: 18rem;"
                 v-for="app in apartments"
                 :key="app.id"

@@ -17,7 +17,7 @@
                 <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">
                     <h3 class="text-center margin-t-6">In Primo Piano</h3>
                     <div class="overflow-auto my-primo-piano">
-                        <div class="my-card margin-t-4 mx-auto"></div>
+                        <!-- <a href=""><div class="my-card margin-t-4 mx-auto"><img :src="{{apartment.imgs}}" alt=""><router-link class="img-dettagli bottone rosso-background ombra cream" :to="{ name: 'show', params: { slug: app.slug }}">Dettagli</router-link></div></a> -->
                         <div class="my-card margin-t-4 mx-auto"></div>
                         <div class="my-card margin-t-4 mx-auto"></div>
                     </div>
@@ -76,6 +76,16 @@ export default {
     height: 90%;
     width: 80%;
     border-radius: 1.25rem;
+    position: relative;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+    .img-dettagli{
+        position:absolute;
+        bottom: 10%;
+        right: 10%;
+    }
 }
 
 /* .my-primo-piano{

@@ -2,6 +2,15 @@
     <div class="container margin-nav pt-3">
         <h1 class="mb-3">Dashboard</h1>
 
+        <div class="row flex-column">
+                <h3>i miei appartamenti</h3>
+                <div class="d-flex cream-background">
+                    <div>Nome Appartamento</div>
+                    <router-link class="bottone rosso-background  bottone rosso-background ombra mx-3" :to="{ name: 'show'}">Show</router-link> 
+                    <router-link class="bottone rosso-background ombra bottone rosso-background ombra " :to="{ name: 'edit'}">Edit</router-link>
+                </div>
+        </div>
+
         <div class="form-row justify-content-between">
   
                 <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>

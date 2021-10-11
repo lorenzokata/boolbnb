@@ -168,6 +168,7 @@ class ApartmentController extends Controller
         // dd($slug);
         // $apartments = Apartment::all();
         $apartment = Apartment::where('id', $slug)->first();
+        $services = Service::all();
 
         if($apartment->imgs){
             $apartment->imgs = url('storage/' . $apartment->imgs);
@@ -175,9 +176,12 @@ class ApartmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'results' => $apartment
+            'results' => [
+                'apartment' => $apartment,
+                'services' => $services
+            ]
+            
         ]);
-
 
     }
 

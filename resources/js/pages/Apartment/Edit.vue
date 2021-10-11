@@ -193,7 +193,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '15',
+            id: '11',
             apartment: [],
 
             services: []
@@ -219,7 +219,8 @@ export default {
         axios
             .get("/api/apartment/" + this.id + "/edit")
             .then(respo => {
-                this.apartment = respo.data.results;
+                this.apartment = respo.data.results.apartment;
+                this.services = respo.data.results.services;
                 console.log(this.apartment);
             })
             .catch(error => {
