@@ -173,10 +173,12 @@
                 <h4>Carica foto</h4>
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="custom-file">
-                            <input type="file" name="image" class="form-control-file" id="imgIn">
-                            <label class="custom-file-label" for="imgIn">Scegli file...</label>
+
+                        <div class="form-group ">
+                          <label for="exampleFormControlFile1">Example file input</label>
+                          <input type="file" class="form-control-file form-control" id="exampleFormControlFile1">
                         </div>
+                        
                     </div>
 
                     <div class="d-flex justify-content-between">
