@@ -2,8 +2,8 @@
     <main>
         <div class="container-fluid">
             <div class="row ">
-                <div class=" col-12 col-lg ricerca d-flex flex-column  align-items-center">
-                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" class="logo margin-t-10" alt="">
+                <div class=" col-12 col-lg ricerca d-flex flex-column justify-content-center   align-items-center pb-5">
+                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" class="logo " alt="">
                     <div class="d-flex flex-row test">
                         <div class="mt-3 d-flex flex-row test justify-content-center">
                             <input v-model='userInput' name='userInput' type="text" class="form-ricerca text-center cream-background d-inline-block" placeholder="">
@@ -14,14 +14,13 @@
                             <router-link class="mt-2 bottone rosso-background ombra cream" :to="{ name: 'dashboard'}">Dashboard</router-link>
                         </div>
                 </div>
-                <div class=" col-12 col-lg-4 d-flex flex-column  align-items-center">
-                    <h3 class="text-center">In Primo Piano</h3>
-                    <div class="overflow-auto my-primo-piano">
+                <div class=" col-12 col-lg-4 overflow-auto my-primo-piano align-items-center pb-2">
+                    <h3 class="text-center pt-3 ">In Primo Piano</h3>
                         <!-- <router-link class="img-dettagli" :to="{ name: 'show', params: { slug: app.slug }}"><div class="my-card margin-t-4 mx-auto"><img :src="apartment.imgs" alt=""></div></router-link> -->
                         
                         <div class="my-card margin-t-4 mx-auto"></div>
                         <div class="my-card margin-t-4 mx-auto"></div>
-                    </div>
+                        <div class="my-card margin-t-4 mx-auto"></div>
                 </div>
             </div>
         </div>
@@ -77,21 +76,15 @@ export default {
     height: 90%;
     width: 80%;
     border-radius: 1.25rem;
-    position: relative;
     img{
         height: 100%;
         width: 100%;
     }
-    .img-dettagli{
-        position:absolute;
-        bottom: 10%;
-        right: 10%;
-    }
 }
 
-/* .my-primo-piano{
-    height: 83vh;
+.my-primo-piano{
+    height: calc(100vh - 60px);
     width: 100%;
     overflow-y: scroll;
-} */
+}
 </style>

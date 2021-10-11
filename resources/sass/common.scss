@@ -34,10 +34,8 @@
   margin-top: 60px;
 }
 
-.my-primo-piano{
-  height: 81vh;
-  width: 100%;
-  overflow-y: scroll;
+.altezza{
+  height: calc(100vh - 60px);
 }
 
 /* color */

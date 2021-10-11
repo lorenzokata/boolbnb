@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-        <div class="row altezza">
-            <div class="col-12 col-lg-8 col-xl-7">
+        <div class="row">
+            <div class="col-12 col-lg-7 altezza">
             <h1 class="viola text-center"> {{apartment.title}} </h1>
             <div class="margin-l-7 indirizzo opal">{{apartment.address}}</div>
             <!-- qui stampo la foto -->
@@ -9,9 +9,8 @@
                         <!-- aggiungere v-if img c'é -->
                         <img :src="apartment.imgs" alt="apartment.title">
                     </div>
-
             </div>
-            <div class="col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano">
+            <div class="col-12 col-lg-5 my-descrizione">
 
                 <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
 
@@ -115,23 +114,23 @@
     font-size: 25px;
 }
 
-.altezza{
-    height: 100%;
-    
-}
-.pippo{
-    height: calc(100vh - 56px);
-    margin-top: 55px;
-    // margin-top: 56px;
-}
-    .img-show{
+   .img-show{
             width: 100%;
+            height: 83%;
        img{
+           height: 100%;
             width: 100%;    
+            object-fit: cover;
        }
     }
     .dettagli{
         list-style-type:none;
           
+    }
+    .my-descrizione{
+         height: calc(100vh - 60px);
+        width: 100%;
+        overflow-y: scroll;
+        padding-top:60px ;
     }
 </style>
