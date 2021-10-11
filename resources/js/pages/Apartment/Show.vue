@@ -13,8 +13,6 @@
             </div>
             <div class="col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano">
 
-
-
                 <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
 
                 <div class="d-flex justify-content-between align-items-center ">
