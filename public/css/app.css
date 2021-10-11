@@ -17048,10 +17048,6 @@ readers do not read off random characters that represent icons */
   border: 1px solid greenyellow;
 }
 
-.margin-nav {
-  margin-top: 55px;
-}
-
 /* bottone */
 
 .bottone {
@@ -17063,14 +17059,25 @@ readers do not read off random characters that represent icons */
   cursor: pointer;
 }
 
+.bordo-card {
+  border: 2px solid #19323c5b;
+}
+
 .ombra {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.my-primo-piano {
-  height: 81vh;
-  width: 100%;
-  overflow-y: scroll;
+.altezza-nav {
+  height: 60px;
+  background-color: red;
+}
+
+.margin-nav {
+  margin-top: 60px;
+}
+
+.altezza {
+  height: calc(100vh - 60px);
 }
 
 /* color */
