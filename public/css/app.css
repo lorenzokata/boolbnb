@@ -17068,7 +17068,7 @@ readers do not read off random characters that represent icons */
 }
 
 .my-primo-piano {
-  height: 83vh;
+  height: 81vh;
   width: 100%;
   overflow-y: scroll;
 }

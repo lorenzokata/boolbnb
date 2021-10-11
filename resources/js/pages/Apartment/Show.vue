@@ -7,7 +7,7 @@
             <!-- qui stampo la foto -->
                     <div class="img-show ombra">
                         <!-- aggiungere v-if img c'é -->
-                        <img :src="apartment.imgs" alt="">
+                        <img :src="apartment.imgs" alt="apartment.title">
                     </div>
 
             </div>
@@ -20,7 +20,7 @@
                 <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block viola">Dettagli casa</h3>
                     <div>
-                        <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}      ">Dashboard</router-link>
+                        <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
                     </div>
                 </div>
 
@@ -62,11 +62,28 @@
 
 <script>
     export default {
+        name:"Show",
+
         data(){
            return{
-                id: '11',
-                apartment: [],
-                
+                form: {
+                    title: null,
+                    description: null,
+                    user_id: JSON.parse(this.$userId).id,
+                    n_rooms: 1,
+                    n_beds: 1,
+                    n_baths: 1,
+                    square_meters: null,
+                    city: null,
+                    zip_code: null,
+                    street: null,
+                    address: null,
+                    visible: 1,
+                    SelectedServices: []
+                },
+
+               id: '15',
+               apartment: [],
            }
 
         },
@@ -75,9 +92,9 @@
 
             // api show appartamenti
          axios
-            .get("/api/apartment/" + this.id + "/edit")
-            .then(respo => {
-                this.apartment = respo.data.results;
+            .get("/api/apartment/" + this.$route.params.slug)
+            .then(response => {
+                this.apartment = response.data.results;
                 console.log(this.apartment);
             })
             .catch(error => {

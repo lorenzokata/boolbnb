@@ -178,8 +178,8 @@
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="custom-file">
-                            <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
+                            <input type="file" name="image" class="form-control-file" id="imgIn">
+                            <label class="custom-file-label" for="imgIn">Scegli file...</label>
                         </div>
                     </div>
 

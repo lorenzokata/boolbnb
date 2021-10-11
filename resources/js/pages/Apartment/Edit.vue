@@ -173,7 +173,7 @@
 
 <script>
 export default {
-    name: "Create",
+    name: "Edit",
 
     data() {
         return {
@@ -193,7 +193,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '11',
+            id: '15',
             apartment: [],
 
             services: []
