@@ -1,36 +1,27 @@
 <template>
-    <div class="container pt-3">
+    <div class="container pt-3 altezza">
         <h1 class="mb-3">Dashboard</h1>
 
-                <router-link class="bottone rosso-background ombra bottone rosso-background" :to="{ name: 'create'}">Crea</router-link>
-        <div class="row flex-column">
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
                 <h3>i miei appartamenti</h3>
-                <div class="d-flex justify-content-between cream-background">
-                    <div>Nome Appartamento</div>
-                    <div class="text-right">
-                    <router-link class="bottone rosso-background  bottone rosso-background ombra mx-3" :to="{ name: 'show'}">Show</router-link> 
-                    <router-link class="bottone rosso-background ombra bottone rosso-background ombra " :to="{ name: 'edit'}">Edit</router-link>
+        <div class="row ">
+            <div class="col-4 card" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="Nome Appartamento">
+                <div class="card-body">
+                    <h5 class="card-title">Nome Appartamento</h5>
+                    <div class="d-flex justify-content-between">
+
+                            <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                            <router-link class=" bottone rosso-background ombra  " :to="{ name: 'edit'}">Edit</router-link>
+
+                                <router-link class="  bottone  rosso-background ombra  " :to="{ name: 'stats'}">Statistiche</router-link>
+                                <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
+
                     </div>
                 </div>
+            </div>
         </div>
 
-        <div class="form-row justify-content-between">
-  
-                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
-           
-
-            
-                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'edit'}">Edit</router-link> <!-- da togliere -->
-    
-
-       
-                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'home'}">Home</router-link>
-       
-
-      
-                <router-link class="rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra" :to="{ name: 'show'}">Show</router-link> 
-           
-        </div>
         
     </div>
 </template>
