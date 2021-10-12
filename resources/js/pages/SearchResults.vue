@@ -47,12 +47,12 @@
 
         <div class="row">
             <div
-                class="col-12 col-md-5 card bordo-card rounded  mx-4 my-4"
+                class="col-12 col-md-5 card bordo-card rounded  mx-4 my-4 "
                 style="width: 18rem;"
                 v-for="app in apartments"
                 :key="app.id"
             >
-                <img :src="app.imgs" class="card-img-top" alt="" />
+                <img :src="'storage/'+app.imgs" class="card-img-top " alt="" />
                 <div class="card-body">
                     <h5 class="card-title text-truncate viola font-weight-bold text-uppercase">{{ app.title }}</h5>
                     <p class="card-text text-truncate">{{ app.description }}</p>

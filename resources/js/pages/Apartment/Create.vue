@@ -174,9 +174,9 @@
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
 
-                        <div class="form-group ">
+                        <div class="form-group">
                           <label for="exampleFormControlFile1">Example file input</label>
-                          <input type="file" class="form-control-file form-control" id="exampleFormControlFile1">
+                          <input type="file" class="form-control-file form-control" name="image" id="exampleFormControlFile1">
                         </div>
                         
                     </div>
