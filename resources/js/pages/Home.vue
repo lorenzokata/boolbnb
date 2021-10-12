@@ -49,11 +49,14 @@
                 </div>
                 <div class=" col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2">
                     <h3 class="text-center pt-3 ">In Primo Piano</h3>
-                        <!-- <router-link class="my-card margin-t-4 mx-auto ombra" :to="{ name: 'show', params: { slug: app.slug }}"><img :src="apartment.imgs" alt=""></router-link> -->
+                        <div class="margin-t-4"
+                        v-for="app in sponsor_apartment"
+                        :key="app.id">
+
+                        <router-link class="my-card margin-t-4 mx-auto ombra" :to="{ name: 'show', params: { slug: app.slug }}"><img :src="'storage/'+app.imgs" alt=""></router-link>
                         
-                        <div class="my-card margin-t-4 mx-auto ombra"> <img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
-                        <div class="my-card margin-t-4 mx-auto ombra"><img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
-                        <div class="my-card margin-t-4 mx-auto ombra"><img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
+                        </div>
+                        
                 </div>
             </div>
         </div>
@@ -67,7 +70,8 @@ export default {
         return {
             userInput: "",
             arrayAddress: [],
-            addressActive: true
+            addressActive: true,
+            sponsor_apartment:[]
         };
     },
     mounted() {
@@ -76,8 +80,8 @@ export default {
         axios
             .get("/api/home")
             .then(response => {
-                this.apartment = response.data.results;
-                console.log(this.apartment);
+                this.sponsor_apartment = response.data.results.sponsored_apartments;
+                console.log(this.sponsor_apartment);
             })
             .catch(error => {
                 console.log(error);
