@@ -7,18 +7,53 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\Apartment;
 use App\Sponsor;
 
 class HomeController extends Controller
 {
-    public function dashboard()
+    public function dashboard($userId)
     {
-        //
+        // controllare gli appartamenti che hanno come user_id = $userId
+        $apartments = Apartment::where('user_id', $userId)->get();
+
+        $sponsored_apartments = [];
+        $not_sponsored_apartments = [];
+
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        
+        // possibile funzione helper
+        foreach($apartments as $apartment){
+            $semaforo=false;
+            foreach ($apartment->sponsors as $sponsor) {
+
+                if ($sponsor->pivot->date_end > $now) {
+                    array_push($sponsored_apartments, $apartment);
+                    $semaforo = true;
+                    break;
+                }
+            };
+            if($semaforo == false){
+
+                array_push($not_sponsored_apartments, $apartment);
+            }
+        }
+            
+        // dump($sponsored_apartments);
+        // dd($not_sponsored_apartments);
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'sponsored_apartments' => $sponsored_apartments,
+                'apartments' => $not_sponsored_apartments
+            ]
+        ]);
     }
 
-    public function home($userInput , $radius)
+    public function home($userInput, $radius)
     {
 
         // dati per chiamata Geocode
@@ -60,7 +95,7 @@ class HomeController extends Controller
         $poi_list = json_encode($poi_list);
         $complete_url = $base_url . '?geometryList=[' . $geometry_list . ']&poiList=' . $poi_list . '&key=' . $key;
 
-        
+
         // chiamata Geocode
         $response = Http::withOptions(['verify' => false])->get($complete_url);
         $response = $response->json();
@@ -68,28 +103,56 @@ class HomeController extends Controller
         // cercare nella tabella ponte l'ID dell'appartamento
         $apartments = [];
         $sponsored_apartments = [];
-    
+
         $now = Carbon::now();
         $now = $now->toDateTimeString();
 
         foreach ($response['results'] as $item) {
+
             $apartment = Apartment::where('id', $item['poi']['name'])->first();
+            $distance = getDistanceBetweenPoints($lat_center, $lon_center, $apartment->lat, $apartment->lon);
+            // dd($distance);
+            $element = [
+                'apartment' => $apartment,
+                'distance' => $distance
+            ];
+            $semaforo = false;
+
+            // dd($element['distance']);
 
             foreach ($apartment->sponsors as $sponsor) {
-              
-                if($sponsor->pivot->date_end > $now){
-                    // dump($sponsor->pivot->date_end);
-                    array_push($sponsored_apartments, $apartment);
+
+                if ($sponsor->pivot->date_end > $now) {
+                    $semaforo = true;
+                    array_push($sponsored_apartments, $element);
                     break;
                 }
-
             };
-            array_push($apartments, $apartment);
+            if($semaforo == false){
+
+                array_push($apartments, $element);
+            }
             
         };
 
-        // dump($apartments);           array dei risultati non sponsorizzati
-        // dd($sponsored_apartments);             array dai risultati sponsorizzati
+        $distance = [];
+        foreach ($apartments as $key => $row) {
+
+            $distance[$key] = $row['distance'];
+        }
+
+        array_multisort($distance, SORT_ASC, $apartments);
+
+        $distance = [];
+        foreach ($sponsored_apartments as $key => $row) {
+
+            $distance[$key] = $row['distance'];
+        }
+
+        array_multisort($distance, SORT_ASC, $sponsored_apartments);
+
+        // dump($apartments);
+        // dump($sponsored_apartments);
 
         return response()->json([
             'success' => true,
@@ -99,4 +162,34 @@ class HomeController extends Controller
             ]
         ]);
     }
+
+    public function getTrending(){
+        // funzione query per ottenere lista di appartamenti sponsorizzati
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $sponsored_apartments = DB::table('apartments')
+                                ->leftJoin('apartment_sponsor', 'apartments.id', '=', 'apartment_sponsor.apartment_id')
+                                ->where('apartment_sponsor.date_end', '>', $now )
+                                ->select('apartments.*')
+                                ->groupBy('apartments.id')
+                                ->get();
+        // fine query
+
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'sponsored_apartments' => $sponsored_apartments,
+            ]
+        ]);
+    }
 }
+
+
+// $users = DB::table('users')
+//                 ->join('specialization_user', 'users.id', '=', 'specialization_user.user_id')
+//                 ->join('reviews', 'reviews.user_id', '=', 'users.id')
+//                 ->selectRaw('users., count(reviews.id) as reviews_count')
+//                 ->where('specialization_id',$specs)
+//                 ->groupBy('users.id')
+//                 ->orderBy('reviews_count','desc')
+//                 ->paginate(9);

@@ -167,15 +167,21 @@ class ApartmentController extends Controller
     {
         // dd($slug);
         // $apartments = Apartment::all();
-        $apartment = Apartment::where('id', $slug)->first();
+        $apartment = Apartment::where('slug', $slug)->first();
+        $services = Service::all();
+        $selected_services = $apartment->services();
 
         if($apartment->imgs){
             $apartment->imgs = url('storage/' . $apartment->imgs);
-        }
+        };
 
         return response()->json([
             'success' => true,
-            'results' => $apartment
+            'results' => [
+                'apartments' => $apartment,
+                'services' => $services,
+                'selected_services' => $selected_services
+            ]
         ]);
 
 
@@ -190,7 +196,17 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'n_rooms' => 'required',
+            'n_beds' => 'required',
+            'n_baths' => 'required',
+            'square_meters' => 'required',
+            'address' => 'required',
+            'visible' => 'nullable',
+            'image' => 'nullable|image'
+        ]);
     }
 
     /**

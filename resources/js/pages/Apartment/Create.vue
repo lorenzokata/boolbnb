@@ -151,7 +151,7 @@
                         required
                         @input="autoAddress()"
                     />
-                    <!-- AGGIUNTO PER TEST -->
+                    <!-- Autocomp -->
                     <div
                         class="list-group"
                         :class="{ 'd-none': addressActive }"

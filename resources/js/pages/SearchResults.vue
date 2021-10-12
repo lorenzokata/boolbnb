@@ -1,21 +1,25 @@
 <template>
-    <div class="container pt-5">
+    <div class="container pt-5 margin-nav">
         <h1>SEARCH RESULTS</h1>
-       
+
         <div class="form-group">
             <label for="formControlRange">raggio</label>
             <input
                 type="range"
-                min="20000" 
+                min="20000"
                 max="100000"
                 step="1000"
                 class="form-control-range"
                 id="formControlRange"
                 v-model="radius"
-                
-            /> 
-            <span>{{radius}}</span>
-            <div class="bottone rosso-background" @click="loadApartments(radius)">applica filtro</div>
+            />
+            <span>{{ radius }}</span>
+            <div
+                class="bottone rosso-background"
+                @click="loadApartments(radius)"
+            >
+                applica filtro
+            </div>
         </div>
         <h2>Sponsored Apartments</h2>
 
@@ -30,7 +34,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ s_app.title }}</h5>
                     <p class="card-text">{{ s_app.description }}</p>
-                    <router-link class="btn btn-primary" :to="{ name: 'show', params: { slug: s_app.slug }}">Dettagli</router-link>
+                    <router-link
+                        class="btn btn-primary"
+                        :to="{ name: 'show', params: { slug: s_app.slug } }"
+                        >Dettagli</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -48,7 +56,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ app.title }}</h5>
                     <p class="card-text">{{ app.description }}</p>
-                    <router-link class="btn btn-primary" :to="{ name: 'show', params: { slug: app.slug }}">Dettagli</router-link>
+                    <router-link
+                        class="btn btn-primary"
+                        :to="{ name: 'show', params: { slug: app.slug } }"
+                        >Dettagli</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -66,14 +78,14 @@ export default {
         return {
             sponsored_apartments: [],
             apartments: [],
-            radius: 20000,
+            radius: 20000
         };
     },
-    beforeCreate(){
-      console.log("Component beforeCreated.");
+    beforeCreate() {
+        console.log("Component beforeCreated.");
     },
-    created(){
-      console.log("Component created.");
+    created() {
+        console.log("Component created.");
     },
     mounted() {
         console.log("Component mounted.");
@@ -88,13 +100,13 @@ export default {
             console.log(radius);
             axios
                 .get(
-                    "/api/home/" +
+                    "/api/search-results/" +
                         this.$route.params.userInput +
                         "/" +
                         radius.toString()
                 )
                 .then(response => {
-                    console.log(response.data.results);
+                    console.log(response.data.results.sponsored_apartments);
                     this.sponsored_apartments =
                         response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
