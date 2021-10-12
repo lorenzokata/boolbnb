@@ -2,14 +2,11 @@
     <main>
         <div class="container-fluid">
             <div class="row ">
-                <div
-                    class=" col-12 col-lg ricerca d-flex flex-column  align-items-center"
-                >
-                    <img
-                        src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png"
-                        class="logo margin-t-10"
-                        alt=""
-                    />
+                <div class=" col-12 col-lg-7 col-xl-8 ricerca d-flex flex-column justify-content-center   align-items-center pb-5 position-relative">
+                        <div v-if="this.$userId" >
+                            <router-link class="mt-2 bottone rosso-background ombra cream home-dash" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                        </div>
+                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" class="logo " alt="">
                     <div class="d-flex flex-row test">
                         <div
                             class="mt-3 d-flex flex-row test justify-content-center"
@@ -49,24 +46,14 @@
                             >
                         </div>
                     </div>
-                    <div
-                        v-if="this.$userId"
-                        class="mt-2 bottone rosso-background ombra"
-                    >
-                        <router-link class="cream" :to="{ name: 'dashboard' }"
-                            >DASHBOARD</router-link
-                        >
-                    </div>
                 </div>
-                <div
-                    class=" col-12 col-lg-4 d-flex flex-column  align-items-center"
-                >
-                    <h3 class="text-center margin-t-6">In Primo Piano</h3>
-                    <div class="overflow-auto my-primo-piano">
-                        <div class="my-card margin-t-4 mx-auto"></div>
-                        <div class="my-card margin-t-4 mx-auto"></div>
-                        <div class="my-card margin-t-4 mx-auto"></div>
-                    </div>
+                <div class=" col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2">
+                    <h3 class="text-center pt-3 ">In Primo Piano</h3>
+                        <!-- <router-link class="my-card margin-t-4 mx-auto ombra" :to="{ name: 'show', params: { slug: app.slug }}"><img :src="apartment.imgs" alt=""></router-link> -->
+                        
+                        <div class="my-card margin-t-4 mx-auto ombra"> <img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
+                        <div class="my-card margin-t-4 mx-auto ombra"><img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
+                        <div class="my-card margin-t-4 mx-auto ombra"><img src="https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768" alt=""></div>
                 </div>
             </div>
         </div>
@@ -138,7 +125,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: calc(100vh - 60px);
 }
 
 .test {
@@ -160,17 +147,31 @@ export default {
     transform: rotate(180deg);
 }
 
-.my-card {
-    background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768);
+.my-card{
+    /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */
     background-position: center;
-    height: 90%;
-    width: 80%;
+    background-repeat:no-repeat;
+    /* height: 80%; */
+    width: 90%;
     border-radius: 1.25rem;
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        border-radius: 1.25rem;
+    }
 }
 
-.my-primo-piano {
-    height: 84vh;
+.my-primo-piano{
+    height: calc(100vh - 60px);
     width: 100%;
     overflow-y: scroll;
+}
+
+.home-dash{
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 </style>

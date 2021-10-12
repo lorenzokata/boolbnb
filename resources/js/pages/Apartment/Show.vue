@@ -1,26 +1,23 @@
 <template>
-    <div class="container-fluid pippo margin-nav">
-        <div class="row altezza">
-            <div class="col-12 col-lg-8 col-xl-7">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-7 altezza">
             <h1 class="viola text-center"> {{apartment.title}} </h1>
             <div class="margin-l-7 indirizzo opal">{{apartment.address}}</div>
             <!-- qui stampo la foto -->
                     <div class="img-show ombra">
                         <!-- aggiungere v-if img c'é -->
-                        <img :src="apartment.imgs" alt="">
+                        <img :src="apartment.imgs" alt="apartment.title">
                     </div>
-
             </div>
-            <div class="col-12 col-lg-4 col-xl-5 margin-t-5 my-primo-piano">
-
-
+            <div class="col-12 col-lg-5 my-descrizione">
 
                 <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
 
-                <div class="d-flex justify-content-between align-items-center pt-3">
+                <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block viola">Dettagli casa</h3>
                     <div>
-                        <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}      ">Dashboard</router-link>
+                        <router-link class=" bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
                     </div>
                 </div>
 
@@ -41,6 +38,7 @@
 
                  <h3 class="d-block viola mt-3">Locazione della casa</h3>
                     <div class="img-show">
+                        <!-- <div id="map" style="width: 100px; height: 100px;"></div> -->
                         <img src="https://developers.google.com/codelabs/maps-platform/webgl/img/webgl_pin_final.png" alt="">
                     </div>
 
@@ -62,11 +60,28 @@
 
 <script>
     export default {
+        name:"Show",
+
         data(){
            return{
-                id: '32',
-                apartment: [],
-                
+               /*  form: {
+                    title: null,
+                    description: null,
+                    user_id: JSON.parse(this.$userId).id,
+                    n_rooms: 1,
+                    n_beds: 1,
+                    n_baths: 1,
+                    square_meters: null,
+                    city: null,
+                    zip_code: null,
+                    street: null,
+                    address: null,
+                    visible: 1,
+                    SelectedServices: []
+                }, */
+              
+               id: '12',
+               apartment: [],
            }
 
         },
@@ -79,6 +94,7 @@
             .then(response => {
                 this.apartment = response.data.results;
                 console.log(this.apartment);
+                console.log(this.apartment.title);
             })
             .catch(error => {
                 console.log(error);
@@ -98,23 +114,23 @@
     font-size: 25px;
 }
 
-.altezza{
-    height: 100%;
-    
-}
-.pippo{
-    height: calc(100vh - 56px);
-    margin-top: 55px;
-    // margin-top: 56px;
-}
-    .img-show{
+   .img-show{
             width: 100%;
+            height: 83%;
        img{
+           height: 100%;
             width: 100%;    
+            object-fit: cover;
        }
     }
     .dettagli{
         list-style-type:none;
           
+    }
+    .my-descrizione{
+         height: calc(100vh - 60px);
+        width: 100%;
+        overflow-y: scroll;
+        padding-top:60px ;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container margin-nav mb-3">
+    <div class="container mb-3">
 
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Edit</h4>
@@ -173,7 +173,7 @@
 
 <script>
 export default {
-    name: "Create",
+    name: "Edit",
 
     data() {
         return {
@@ -193,7 +193,7 @@ export default {
                 SelectedServices: []
             },
 
-            id: '32',
+            id: '11',
             apartment: [],
 
             services: []
@@ -219,7 +219,8 @@ export default {
         axios
             .get("/api/apartment/" + this.id + "/edit")
             .then(respo => {
-                this.apartment = respo.data.results;
+                this.apartment = respo.data.results.apartment;
+                this.services = respo.data.results.services;
                 console.log(this.apartment);
             })
             .catch(error => {

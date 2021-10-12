@@ -1,24 +1,70 @@
 <template>
-    <div class="container pt-3">
+    <div class="container pt-3 altezza">
+       
+        <router-link class="bottone rosso-background ombra fl-right" :to="{ name: 'create'}">Crea</router-link>
+
         <h1 class="mb-3">Dashboard</h1>
 
-        <div class="form-row justify-content-between">
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'create'}">Crea</router-link>
-            </div>
+        <h3>i miei appartamenti</h3>
+        <div class="row ">
+            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="Nome Appartamento">
+                <div class="card-body">
+                    <h5 class="card-title">Nome Appartamento</h5>
+                    <div class="d-flex justify-content-end">
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'edit'}">Edit</router-link> <!-- da togliere -->
-            </div>
+                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
+                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'home'}">Home</router-link>
+                    </div>
+                </div>
             </div>
+            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="Nome Appartamento">
+                <div class="card-body">
+                    <h5 class="card-title">Nome Appartamento</h5>
+                    <div class="d-flex justify-content-end">
 
-            <div class="mega-bot col-sm-11 col-md-5 bottone rosso-background ombra">
-                <router-link class="rou-link" :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
+                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
+
+                    </div>
+                </div>
+            </div>
+            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="Nome Appartamento">
+                <div class="card-body">
+                    <h5 class="card-title">Nome Appartamento</h5>
+                    <div class="d-flex justify-content-end">
+
+                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
+                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
+
+                    </div>
+                </div>
+            </div>
+            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="Nome Appartamento">
+                <div class="card-body">
+                    <h5 class="card-title">Nome Appartamento</h5>
+                    <div class="d-flex justify-content-end">
+
+                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
+                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
+
+                    </div>
+                </div>
             </div>
         </div>
+
         
     </div>
 </template>
@@ -48,21 +94,25 @@
 </script>
 
 <style lang="scss" scoped>
-    .mega-bot{
+  /*   .mega-bot{
         font-size: 5rem;
         text-align: center;
         padding: 5rem;
         margin-top: 3rem;
         margin-bottom: 3rem;
         border-radius: 3rem;
-
+        } */
 
         .rou-link {
-        color: white;
-        text-align: center;
-        text-decoration: none;
+            font-size: 5rem;
+            text-align: center;
+            padding: 4rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 3rem;
+            color: white;
+            text-align: center;
+            text-decoration: none;
         }
-    }
-
 
 </style>

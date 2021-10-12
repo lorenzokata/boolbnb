@@ -184,7 +184,6 @@ class ApartmentController extends Controller
             ]
         ]);
 
-
     }
 
     /**

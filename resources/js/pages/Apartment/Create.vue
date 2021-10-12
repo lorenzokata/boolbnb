@@ -1,16 +1,12 @@
 <template>
-    <div class="container margin-nav">
+    <div class="container">
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
 
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <h4 class="">Create</h4>
-                <div class="">
-                    <router-link class="btn btn-primary" :to="{ name: 'dashboard'}  ">Dashboard</router-link>
-                </div>
+                <h4>Create</h4>
+                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
             </div>
-
-
 
             <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
 
@@ -177,10 +173,12 @@
                 <h4>Carica foto</h4>
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
+
+                        <div class="form-group ">
+                          <label for="exampleFormControlFile1">Example file input</label>
+                          <input type="file" class="form-control-file form-control" id="exampleFormControlFile1">
                         </div>
+                        
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -223,7 +221,8 @@ export default {
                 square_meters: null,
                 address: "",
                 visible: 1,
-                SelectedServices: []
+                SelectedServices: [],
+                image:null,
             },
             services: [],
             arrayAddress: [],

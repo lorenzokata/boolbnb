@@ -1,8 +1,9 @@
 <template>
-    <div class="container pt-5 margin-nav">
-        <h1>SEARCH RESULTS</h1>
+    <div class="container">
+        
+        <h1>Search results</h1>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="formControlRange">raggio</label>
             <input
                 type="range"
@@ -12,16 +13,14 @@
                 class="form-control-range"
                 id="formControlRange"
                 v-model="radius"
-            />
-            <span>{{ radius }}</span>
-            <div
-                class="bottone rosso-background"
-                @click="loadApartments(radius)"
-            >
-                applica filtro
-            </div>
-        </div>
-        <h2>Sponsored Apartments</h2>
+                
+            /> 
+            <span>{{radius/1000}}Km</span>
+            <div class="bottone rosso-background" @click="loadApartments(radius)">applica filtro</div>
+          </div>
+
+        <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
+        <h2 class="viola">Sponsored Apartments</h2>
 
         <div class="row row-cols-4 gx-5">
             <div
@@ -43,24 +42,21 @@
             </div>
         </div>
 
-        <h2>Results</h2>
+        <h2 class="viola">Results</h2>
 
-        <div class="row row-cols-4">
+
+        <div class="row">
             <div
-                class="col card border rounded"
+                class="col-12 col-md-5 card bordo-card rounded  mx-4 my-4"
                 style="width: 18rem;"
                 v-for="app in apartments"
                 :key="app.id"
             >
-                <img src="" class="card-img-top" alt="" />
+                <img :src="app.imgs" class="card-img-top" alt="" />
                 <div class="card-body">
-                    <h5 class="card-title">{{ app.title }}</h5>
-                    <p class="card-text">{{ app.description }}</p>
-                    <router-link
-                        class="btn btn-primary"
-                        :to="{ name: 'show', params: { slug: app.slug } }"
-                        >Dettagli</router-link
-                    >
+                    <h5 class="card-title text-truncate viola font-weight-bold text-uppercase">{{ app.title }}</h5>
+                    <p class="card-text text-truncate">{{ app.description }}</p>
+                    <router-link class="bottone rosso-background ombra cream" :to="{ name: 'show', params: { slug: app.slug }}">Dettagli</router-link>
                 </div>
             </div>
         </div>
