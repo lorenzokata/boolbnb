@@ -72,6 +72,12 @@
 <script>
     export default {
         name: 'Dashboard',
+        data() {
+            return{
+                sponsored_apartments:[],
+                apartments:[]
+            }
+        },
         mounted() {
             axios
                 .get(
@@ -79,10 +85,12 @@
                         JSON.parse(this.$userId).id 
                 )
                 .then(response => {
-                    console.log(response.data.results);
-    // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
+                    /* console.log(response.data.results); */
+                    // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
                     this.sponsored_apartments = response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
+                    console.log(this.sponsored_apartments);
+                    console.log(this.apartments);
                 })
                 .catch(error => {
                     console.log(error);
