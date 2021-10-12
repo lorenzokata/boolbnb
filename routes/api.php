@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 // qui vanno definite tutte le rotte API che possono essere chiamate dalle pages di Vue per prelevare i dati dal db
@@ -33,8 +33,8 @@ use Illuminate\Support\Facades\Auth;
 // con autenticazione
 Route::namespace('Api')->group(function () {
     
-    Route::get('/home/{userInput}/{radius}', 'HomeController@home');
-    Route::get('/dashboard', 'HomeController@dashboard');
+    Route::get('/search-results/{userInput}/{radius}', 'HomeController@home');
+    Route::get('/dashboard/{userId}', 'HomeController@dashboard');
     Route::get('/apartment/create', 'ApartmentController@create');
     Route::post('/apartment/store', 'ApartmentController@store');
     Route::get('/apartment/{slug}/edit', 'ApartmentController@edit');
@@ -44,7 +44,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
     Route::get('/apartment/{slug}', 'ApartmentController@show');
     Route::get('/apartment/{slug}/email', 'ApartmentController@email');
-    Route::get('/apartment/search-results', 'ApartmentController@searchApartments');
+    Route::get('/home', 'HomeController@getTrending');
 
 });
 

@@ -7083,7 +7083,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    axios.get("/api/dashboard/" + JSON.parse(this.$userId).id).then(function (response) {
+      console.log(response.data.results); // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
+
+      _this.sponsored_apartments = response.data.results.sponsored_apartments;
+      _this.apartments = response.data.results.apartments;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+    console.log();
   }
 });
 
@@ -7129,15 +7139,100 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
     return {
-      userInput: ''
+      userInput: "",
+      arrayAddress: [],
+      addressActive: true
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     console.log("Component mounted.");
+    axios.get("/api/home").then(function (response) {
+      _this.apartment = response.data.results;
+      console.log(_this.apartment);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  },
+  methods: {
+    addressClick: function addressClick(id) {
+      this.userInput = this.arrayAddress[id];
+      this.addressActive = true;
+    },
+    autoAddress: function autoAddress() {
+      var _this2 = this;
+
+      // caso attivo quando form.city !== '' (caso base, PASSO 1)
+      axios.get("https://api.tomtom.com/search/2/search/.json?", {
+        params: {
+          key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+          query: this.userInput,
+          // entityTypeSet: "Municipality",
+          language: "it-IT",
+          typeahead: 1,
+          countrySet: "IT"
+        }
+      }).then(function (response) {
+        var arr = [];
+        response.data.results.forEach(function (element) {
+          arr.push(element.address.freeformAddress);
+        });
+        _this2.arrayAddress = arr;
+        console.log(_this2.arrayAddress);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.addressActive = false;
+    }
   }
 });
 
@@ -7152,6 +7247,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7239,8 +7346,8 @@ __webpack_require__.r(__webpack_exports__);
 
       // il raggio della ricerca è espresso in metri
       console.log(radius);
-      axios.get("/api/home/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
-        console.log(response.data.results);
+      axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
+        console.log(response.data.results.sponsored_apartments);
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
         _this.apartments = response.data.results.apartments;
       })["catch"](function (error) {
@@ -45031,7 +45138,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container margin-nav pt-3" },
+    { staticClass: "container pt-3" },
     [
       _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
       _vm._v(" "),
@@ -45111,14 +45218,57 @@ var render = function() {
                     attrs: { name: "userInput", type: "text", placeholder: "" },
                     domProps: { value: _vm.userInput },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.userInput = $event.target.value
+                        },
+                        function($event) {
+                          return _vm.autoAddress()
                         }
-                        _vm.userInput = $event.target.value
-                      }
+                      ]
                     }
                   }),
+                  _vm._v(" "),
+                  _vm.arrayAddress != []
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "list-group",
+                          class: { "d-none": _vm.addressActive }
+                        },
+                        [
+                          _c(
+                            "ul",
+                            _vm._l(_vm.arrayAddress, function(address, id) {
+                              return _c(
+                                "li",
+                                {
+                                  key: id,
+                                  staticClass: "list-group-item",
+                                  attrs: { "v-model": _vm.arrayAddress[id] },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addressClick(id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(address) +
+                                      "\n                                "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "router-link",
@@ -45210,7 +45360,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container pt-5" }, [
+  return _c("div", { staticClass: "container pt-5 margin-nav" }, [
     _c("h1", [_vm._v("SEARCH RESULTS")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
@@ -45253,7 +45403,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("applica filtro")]
+        [_vm._v("\n            applica filtro\n        ")]
       )
     ]),
     _vm._v(" "),
@@ -61665,8 +61815,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
