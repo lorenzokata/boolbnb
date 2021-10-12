@@ -7288,6 +7288,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -11957,7 +11967,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: calc(100vh - 60px);\n}\n.test[data-v-b3c5cf30] {\n  width: 100%;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  text-align: center;\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */\n  background-position: center;\n  background-repeat: no-repeat;\n  /* height: 80%; */\n  width: 90%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n}\n.home-dash[data-v-b3c5cf30] {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n}", ""]);
+exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: calc(100vh - 60px);\n}\n.box-cerca[data-v-b3c5cf30] {\n  position: absolute;\n  top: 40%;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 350px;\n}\n.box-cerca .input[data-v-b3c5cf30] {\n  height: 41px;\n  width: calc(100% - 70px);\n}\n.box-cerca router-link[data-v-b3c5cf30] {\n  height: 41px;\n  width: 61px;\n}\n.box-cerca .suggeriti[data-v-b3c5cf30] {\n  max-height: 45vh;\n  overflow-y: auto;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  position: absolute;\n  top: calc(40% - 150px);\n  left: calc(50% - 50px);\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */\n  background-position: center;\n  background-repeat: no-repeat;\n  /* height: 80%; */\n  width: 90%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n}\n.home-dash[data-v-b3c5cf30] {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n}", ""]);
 
 // exports
 
@@ -45405,8 +45415,7 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass:
-              " col-12 col-lg-7 col-xl-8 ricerca d-flex flex-column justify-content-center   align-items-center pb-5 position-relative"
+            staticClass: " col-12 col-lg-7 col-xl-8 ricerca position-relative"
           },
           [
             this.$userId
@@ -45432,101 +45441,96 @@ var render = function() {
               attrs: {
                 src:
                   "https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png",
-                alt: ""
+                alt: "logo boolbnb"
               }
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "d-flex flex-row test" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "mt-3 d-flex flex-row test justify-content-center"
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.userInput,
-                        expression: "userInput"
-                      }
-                    ],
-                    staticClass:
-                      "form-ricerca text-center cream-background d-inline-block",
-                    attrs: { name: "userInput", type: "text", placeholder: "" },
-                    domProps: { value: _vm.userInput },
-                    on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.userInput = $event.target.value
-                        },
-                        function($event) {
-                          return _vm.autoAddress()
-                        }
-                      ]
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.arrayAddress != []
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "list-group",
-                          class: { "d-none": _vm.addressActive }
-                        },
-                        [
-                          _c(
-                            "ul",
-                            _vm._l(_vm.arrayAddress, function(address, id) {
-                              return _c(
-                                "li",
-                                {
-                                  key: id,
-                                  staticClass: "list-group-item",
-                                  attrs: { "v-model": _vm.arrayAddress[id] },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.addressClick(id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(address) +
-                                      "\n                                "
-                                  )
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
+            _c(
+              "div",
+              { staticClass: "box-cerca" },
+              [
+                _c("input", {
+                  directives: [
                     {
-                      staticClass: "bottone rosso-background cream",
-                      attrs: {
-                        to: {
-                          name: "results",
-                          params: { userInput: _vm.userInput }
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userInput,
+                      expression: "userInput"
+                    }
+                  ],
+                  staticClass:
+                    "form-ricerca text-center cream-background input mb-1",
+                  attrs: { name: "userInput", type: "text", placeholder: "" },
+                  domProps: { value: _vm.userInput },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
+                        _vm.userInput = $event.target.value
+                      },
+                      function($event) {
+                        return _vm.autoAddress()
                       }
-                    },
-                    [_vm._v("cerca")]
-                  )
-                ],
-                1
-              )
-            ])
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "bottone rosso-background cream mb-1",
+                    attrs: {
+                      to: {
+                        name: "results",
+                        params: { userInput: _vm.userInput }
+                      }
+                    }
+                  },
+                  [_vm._v("cerca\n                    ")]
+                ),
+                _vm._v(" "),
+                _vm.arrayAddress != []
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-group suggeriti",
+                        class: { "d-none": _vm.addressActive }
+                      },
+                      [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayAddress, function(address, id) {
+                            return _c(
+                              "li",
+                              {
+                                key: id,
+                                staticClass: "list-group-item",
+                                attrs: { "v-model": _vm.arrayAddress[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addressClick(id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(address) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
+            )
           ]
         ),
         _vm._v(" "),

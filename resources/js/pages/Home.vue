@@ -2,51 +2,60 @@
     <main>
         <div class="container-fluid">
             <div class="row ">
-                <div class=" col-12 col-lg-7 col-xl-8 ricerca d-flex flex-column justify-content-center   align-items-center pb-5 position-relative">
-                        <div v-if="this.$userId" >
-                            <router-link class="mt-2 bottone rosso-background ombra cream home-dash" :to="{ name: 'dashboard'}">Dashboard</router-link>
-                        </div>
-                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" class="logo " alt="">
-                    <div class="d-flex flex-row test">
-                        <div
-                            class="mt-3 d-flex flex-row test justify-content-center"
-                        >
-                            <input
+                <div class=" col-12 col-lg-7 col-xl-8 ricerca position-relative">
+                    
+                    <!-- btn dashboard -->
+                    <div v-if="this.$userId" >
+                        <router-link class="mt-2 bottone rosso-background ombra cream home-dash" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                    </div>
+
+                    <!-- logo -->
+                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" class="logo " alt="logo boolbnb">
+
+                    <div class="box-cerca">
+                            
+                        <!-- input -->
+                        <input class="form-ricerca text-center cream-background input mb-1"
                                 v-model="userInput"
                                 name="userInput"
                                 type="text"
-                                class="form-ricerca text-center cream-background d-inline-block"
                                 placeholder=""
-                                @input="autoAddress()"
-                            />
-                            <div
-                                class="list-group"
-                                :class="{ 'd-none': addressActive }"
-                                v-if="arrayAddress != []"
-                            >
-                                <ul>
-                                    <li
-                                        class="list-group-item"
-                                        v-for="(address, id) in arrayAddress"
-                                        :key="id"
-                                        :v-model="arrayAddress[id]"
-                                        @click="addressClick(id)"
-                                    >
-                                        {{ address }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <router-link
-                                class="bottone rosso-background cream"
+                            @input="autoAddress()"/>
+
+                        <!-- btn cerca -->
+                        <router-link class="bottone rosso-background cream mb-1"
                                 :to="{
                                     name: 'results',
                                     params: { userInput: userInput }
                                 }"
-                                >cerca</router-link
-                            >
-                        </div>
+                                >cerca
+                        </router-link>
+
+                        <!-- suggerimenti -->
+                        <div class="list-group suggeriti"
+                                    :class="{ 'd-none': addressActive }"
+                                    v-if="arrayAddress != []">
+
+                                    <ul>
+                                        <li
+                                            class="list-group-item"
+                                            v-for="(address, id) in arrayAddress"
+                                            :key="id"
+                                            :v-model="arrayAddress[id]"
+                                            @click="addressClick(id)"
+                                        >
+                                            {{ address }}
+                                        </li>
+                                    </ul>
+                                    
+                        </div>   
+
                     </div>
+
+
                 </div>
+
+                <!-- in primo piano -->
                 <div class=" col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2">
                     <h3 class="text-center pt-3 ">In Primo Piano</h3>
                         <div class="margin-t-4"
@@ -58,6 +67,7 @@
                         </div>
                         
                 </div>
+
             </div>
         </div>
     </main>
@@ -132,8 +142,28 @@ export default {
     height: calc(100vh - 60px);
 }
 
-.test {
-    width: 100%;
+.box-cerca{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+
+    .input{
+        height: 41px;
+        width: calc(100% - 70px);
+    }
+
+    router-link{
+        height: 41px;
+        width: 61px;
+    }
+
+    .suggeriti{
+        max-height: 45vh;
+        overflow-y: auto;
+    }
+
 }
 
 .form-ricerca {
@@ -145,7 +175,9 @@ export default {
 }
 
 .logo {
-    text-align: center;
+    position: absolute;
+    top: calc(40% - 150px);
+    left: calc(50% - 50px);
     height: 100px;
     width: 100px;
     transform: rotate(180deg);
