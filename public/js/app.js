@@ -6616,11 +6616,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-//
-//
-=======
->>>>>>> origin/frontend
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -7018,11 +7013,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-//
-//
-=======
->>>>>>> origin/frontend
 //
 //
 //
@@ -7160,16 +7150,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
+  data: function data() {
+    return {
+      sponsored_apartments: [],
+      apartments: []
+    };
+  },
   mounted: function mounted() {
     var _this = this;
 
     axios.get("/api/dashboard/" + JSON.parse(this.$userId).id).then(function (response) {
-      console.log(response.data.results); // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
-
+      /* console.log(response.data.results); */
+      // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
       _this.sponsored_apartments = response.data.results.sponsored_apartments;
       _this.apartments = response.data.results.apartments;
+      console.log(_this.sponsored_apartments);
+      console.log(_this.apartments);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -7188,19 +7223,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7387,13 +7409,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-//
-=======
->>>>>>> origin/backend
-=======
 //
 //
 //
@@ -7402,17 +7417,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
->>>>>>> origin/backend
-=======
-//
-//
-//
-//
->>>>>>> origin/frontend
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchResults",
   data: function data() {
@@ -7440,19 +7444,8 @@ __webpack_require__.r(__webpack_exports__);
 
       // il raggio della ricerca è espresso in metri
       console.log(radius);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      axios.get("/api/home/" + this.$route.params.userInput + '/' + radius.toString()).then(function (response) {
-=======
-=======
->>>>>>> origin/frontend
-      axios.get("/api/home/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
-        console.log(response.data.results);
-=======
       axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
         console.log(response.data.results.sponsored_apartments);
->>>>>>> origin/backend
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
         _this.apartments = response.data.results.apartments;
       })["catch"](function (error) {
@@ -11941,7 +11934,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/*   .mega-bot{\n      font-size: 5rem;\n      text-align: center;\n      padding: 5rem;\n      margin-top: 3rem;\n      margin-bottom: 3rem;\n      border-radius: 3rem;\n\n\n      } */\n.rou-link[data-v-82704d4a] {\n  font-size: 5rem;\n  text-align: center;\n  padding: 4rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n  border-radius: 3rem;\n  color: white;\n  text-align: center;\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "/*   .mega-bot{\n      font-size: 5rem;\n      text-align: center;\n      padding: 5rem;\n      margin-top: 3rem;\n      margin-bottom: 3rem;\n      border-radius: 3rem;\n      } */\n.rou-link[data-v-82704d4a] {\n  font-size: 5rem;\n  text-align: center;\n  padding: 4rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n  border-radius: 3rem;\n  color: white;\n  text-align: center;\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -11960,7 +11953,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: calc(100vh - 60px);\n}\n.test[data-v-b3c5cf30] {\n  width: 100%;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  text-align: center;\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768);\n  background-position: center;\n  height: 90%;\n  width: 80%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  height: 100%;\n  width: 100%;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n}", ""]);
+exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: calc(100vh - 60px);\n}\n.test[data-v-b3c5cf30] {\n  width: 100%;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  text-align: center;\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */\n  background-position: center;\n  background-repeat: no-repeat;\n  /* height: 80%; */\n  width: 90%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n}\n.home-dash[data-v-b3c5cf30] {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n}", ""]);
 
 // exports
 
@@ -44372,14 +44365,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group mb-3 col-md-6 col-sm-12" }, [
-      _c("div", { staticClass: "form-group " }, [
+      _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "exampleFormControlFile1" } }, [
           _vm._v("Example file input")
         ]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control-file form-control",
-          attrs: { type: "file", id: "exampleFormControlFile1" }
+          attrs: { type: "file", name: "image", id: "exampleFormControlFile1" }
         })
       ])
     ])
@@ -45287,125 +45280,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
-<<<<<<< HEAD
-  return _c("div", { staticClass: "container margin-nav pt-3" }, [
-    _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-row justify-content-between" }, [
-=======
   return _c(
     "div",
-    { staticClass: "container pt-3" },
+    { staticClass: "container pt-3 altezza" },
     [
-      _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
-      _vm._v(" "),
->>>>>>> origin/frontend
       _c(
         "router-link",
         {
-          staticClass:
-            "bottone rosso-background ombra bottone rosso-background",
+          staticClass: "bottone rosso-background ombra fl-right",
           attrs: { to: { name: "create" } }
         },
         [_vm._v("Crea")]
       ),
-=======
-  return _c(
-    "div",
-    { staticClass: "container pt-3" },
-    [
+      _vm._v(" "),
       _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "create" } } }, [
-        _vm._v("Crea")
-      ]),
->>>>>>> origin/backend
-      _vm._v(" "),
-      _c("div", { staticClass: "row flex-column" }, [
-        _c("h3", [_vm._v("i miei appartamenti")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex justify-content-between cream-background" },
-          [
-            _c("div", [_vm._v("Nome Appartamento")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "text-right" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "bottone rosso-background  bottone rosso-background ombra mx-3",
-                    attrs: { to: { name: "show" } }
-                  },
-                  [_vm._v("Show")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "bottone rosso-background ombra bottone rosso-background ombra ",
-                    attrs: { to: { name: "edit" } }
-                  },
-                  [_vm._v("Edit")]
-                )
-              ],
-              1
-            )
-          ]
-        )
-      ]),
+      _c("h3", [_vm._v("i miei appartamenti")]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-row justify-content-between" },
-        [
-          _c(
-            "router-link",
+        { staticClass: "row justify-content-between" },
+        _vm._l(_vm.apartments, function(app) {
+          return _c(
+            "div",
             {
-              staticClass:
-                "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
-              attrs: { to: { name: "create" } }
+              key: app.id,
+              staticClass: " col-12 col-lg-5   my-2 card ombra",
+              staticStyle: { width: "18rem" }
             },
-            [_vm._v("Crea")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
-              attrs: { to: { name: "edit" } }
-            },
-            [_vm._v("Edit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
-              attrs: { to: { name: "home" } }
-            },
-            [_vm._v("Home")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "rou-link col-sm-11 col-md-5 bottone rosso-background ombra mega-bot bottone rosso-background ombra",
-              attrs: { to: { name: "show" } }
-            },
-            [_vm._v("Show")]
+            [
+              _c("img", {
+                staticClass: "card-img-top pt-3",
+                attrs: { src: "storage/" + app.imgs, alt: app.title }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(app.title))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "d-flex justify-content-end" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "  bottone  rosso-background ombra mx-1",
+                        attrs: {
+                          to: { name: "show", params: { slug: app.slug } }
+                        }
+                      },
+                      [_vm._v("Show")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: " bottone rosso-background ombra  mx-1",
+                        attrs: { to: { name: "edit" } }
+                      },
+                      [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "  bottone  rosso-background ombra  mx-1",
+                        attrs: { to: { name: "stats" } }
+                      },
+                      [_vm._v("Statistiche")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: " bottone  rosso-background ombra mx-1 ",
+                        attrs: { to: { name: "email" } }
+                      },
+                      [_vm._v("Email")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
           )
-        ],
-        1
+        }),
+        0
       )
     ],
     1
@@ -45440,9 +45402,27 @@ var render = function() {
           "div",
           {
             staticClass:
-              " col-12 col-lg ricerca d-flex flex-column justify-content-center   align-items-center pb-5"
+              " col-12 col-lg-7 col-xl-8 ricerca d-flex flex-column justify-content-center   align-items-center pb-5 position-relative"
           },
           [
+            this.$userId
+              ? _c(
+                  "div",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "mt-2 bottone rosso-background ombra cream home-dash",
+                        attrs: { to: { name: "dashboard" } }
+                      },
+                      [_vm._v("Dashboard")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _c("img", {
               staticClass: "logo ",
               attrs: {
@@ -45537,30 +45517,12 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Cerca")]
+                    [_vm._v("cerca")]
                   )
                 ],
                 1
               )
-            ]),
-            _vm._v(" "),
-            this.$userId
-              ? _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass:
-                          "mt-2 bottone rosso-background ombra cream",
-                        attrs: { to: { name: "dashboard" } }
-                      },
-                      [_vm._v("Dashboard")]
-                    )
-                  ],
-                  1
-                )
-              : _vm._e()
+            ])
           ]
         ),
         _vm._v(" "),
@@ -45578,18 +45540,42 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          " col-12 col-lg-4 overflow-auto my-primo-piano align-items-center pb-2"
+          " col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2"
       },
       [
         _c("h3", { staticClass: "text-center pt-3 " }, [
           _vm._v("In Primo Piano")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-card margin-t-4 mx-auto" }),
+        _c("div", { staticClass: "my-card margin-t-4 mx-auto ombra" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768",
+              alt: ""
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-card margin-t-4 mx-auto" }),
+        _c("div", { staticClass: "my-card margin-t-4 mx-auto ombra" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768",
+              alt: ""
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-card margin-t-4 mx-auto" })
+        _c("div", { staticClass: "my-card margin-t-4 mx-auto ombra" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768",
+              alt: ""
+            }
+          })
+        ])
       ]
     )
   }
@@ -45615,21 +45601,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  return _c("div", { staticClass: "container" }, [
-=======
-  return _c("div", { staticClass: "container pt-5" }, [
->>>>>>> origin/backend
-=======
-  return _c("div", { staticClass: "container pt-5 margin-nav" }, [
->>>>>>> origin/backend
-    _c("h1", [_vm._v("SEARCH RESULTS")]),
-=======
   return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("Search results")]),
->>>>>>> origin/frontend
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "formControlRange" } }, [_vm._v("raggio")]),
@@ -45671,7 +45644,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n            applica filtro\n        ")]
+        [_vm._v("applica filtro")]
       )
     ]),
     _vm._v(" "),
@@ -45735,13 +45708,13 @@ var render = function() {
           "div",
           {
             key: app.id,
-            staticClass: "col-12 col-md-5 card bordo-card rounded  mx-4 my-4",
+            staticClass: "col-12 col-md-5 card bordo-card rounded  mx-4 my-4 ",
             staticStyle: { width: "18rem" }
           },
           [
             _c("img", {
-              staticClass: "card-img-top",
-              attrs: { src: app.imgs, alt: "" }
+              staticClass: "card-img-top ",
+              attrs: { src: "storage/" + app.imgs, alt: "" }
             }),
             _vm._v(" "),
             _c(
@@ -62088,23 +62061,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> origin/backend
-=======
 __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> origin/backend
-=======
-__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> origin/frontend
 
 
 /***/ })
