@@ -17069,25 +17069,19 @@ readers do not read off random characters that represent icons */
 
 .altezza-nav {
   height: 60px;
-<<<<<<< HEAD
-=======
   background-color: red;
->>>>>>> origin/frontend
+}
+
+.fl-right {
+  float: right;
 }
 
 .margin-nav {
   margin-top: 60px;
 }
 
-<<<<<<< HEAD
-.my-primo-piano {
-  height: 83vh;
-  width: 100%;
-  overflow-y: scroll;
-=======
 .altezza {
   height: calc(100vh - 60px);
->>>>>>> origin/frontend
 }
 
 /* color */
