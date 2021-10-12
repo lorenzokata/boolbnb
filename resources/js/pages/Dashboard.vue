@@ -2,8 +2,8 @@
     <div class="container pt-3 altezza">
         <h1 class="mb-3">Dashboard</h1>
 
-                <router-link class="bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
-                <h3>i miei appartamenti</h3>
+        <router-link class="bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
+        <h3>i miei appartamenti</h3>
         <div class="row ">
             <div class="col-4 card" style="width: 18rem;">
                 <img src="" class="card-img-top" alt="Nome Appartamento">
@@ -11,11 +11,10 @@
                     <h5 class="card-title">Nome Appartamento</h5>
                     <div class="d-flex justify-content-between">
 
-                            <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
-                            <router-link class=" bottone rosso-background ombra  " :to="{ name: 'edit'}">Edit</router-link>
-
-                                <router-link class="  bottone  rosso-background ombra  " :to="{ name: 'stats'}">Statistiche</router-link>
-                                <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
+                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
+                        <router-link class=" bottone rosso-background ombra  " :to="{ name: 'edit'}">Edit</router-link>
+                        <router-link class="  bottone  rosso-background ombra  " :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
 
                     </div>
                 </div>
@@ -43,22 +42,18 @@
         margin-top: 3rem;
         margin-bottom: 3rem;
         border-radius: 3rem;
-
-
         } */
+
         .rou-link {
-        font-size: 5rem;
-        text-align: center;
-        padding: 4rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-        border-radius: 3rem;
-
-
-        color: white;
-        text-align: center;
-        text-decoration: none;
+            font-size: 5rem;
+            text-align: center;
+            padding: 4rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 3rem;
+            color: white;
+            text-align: center;
+            text-decoration: none;
         }
-
 
 </style>
