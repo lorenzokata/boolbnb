@@ -1,15 +1,17 @@
 <template>
     <div class="container pt-3 altezza">
+       
+                <router-link class="bottone rosso-background ombra fl-right" :to="{ name: 'create'}">Crea</router-link>
+
         <h1 class="mb-3">Dashboard</h1>
 
-                <router-link class="bottone rosso-background ombra" :to="{ name: 'create'}">Crea</router-link>
                 <h3>i miei appartamenti</h3>
         <div class="row ">
-            <div class="col-4 card" style="width: 18rem;">
+            <div class=" col-12 col-lg-6 col-xl-4 card" style="width: 18rem;">
                 <img src="" class="card-img-top" alt="Nome Appartamento">
                 <div class="card-body">
                     <h5 class="card-title">Nome Appartamento</h5>
-                    <div class="d-flex justify-content-between">
+                    <div class="">
 
                             <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
                             <router-link class=" bottone rosso-background ombra  " :to="{ name: 'edit'}">Edit</router-link>
