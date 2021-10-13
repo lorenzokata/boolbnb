@@ -7,7 +7,7 @@
                 <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, doloribus cupiditate. Provident rem fugiat optio. Accusamus, amet! Maiores illum ullam laudantium ut impedit maxime, magnam vero tenetur natus. Aliquam, nemo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, recusandae cumque! Quaerat quia ea dolorum? Reprehenderit eius cumque voluptatibus corporis! Temporibus, voluptatibus? Nam dolore esse atque, veritatis optio expedita veniam!</div>
                     <div class="fl-right opal">13/10/2021</div>
                 </div>
 
@@ -47,6 +47,10 @@
         height: 250px;
         width: auto;
     }
+      .mess{
+            max-height: 100px;
+            overflow-y: auto;
+        }
 
     .box-mess{
         background-color: white;
