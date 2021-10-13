@@ -17048,8 +17048,6 @@ readers do not read off random characters that represent icons */
   border: 1px solid greenyellow;
 }
 
-/* bottone */
-
 .bottone {
   padding: 0.6em 0.9em;
   align-items: center;
@@ -17057,6 +17055,10 @@ readers do not read off random characters that represent icons */
   display: inline-block;
   border-radius: 200px;
   cursor: pointer;
+}
+
+.bottone:hover {
+  color: #9cbcbe;
 }
 
 .bordo-card {
@@ -17069,7 +17071,6 @@ readers do not read off random characters that represent icons */
 
 .altezza-nav {
   height: 60px;
-  background-color: red;
 }
 
 .fl-right {
