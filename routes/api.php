@@ -19,33 +19,37 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// qui vanno definite tutte le rotte API che possono essere chiamate dalle pages di Vue per prelevare i dati dal db
-
-// Route::namespace('Admin')->group(function(){
-
-//     Route::get('/apartment/create','ApartmentController@create');
-//     Route::post('/apartment/store','ApartmentController@store');
-
-//     // Route::post('/contacts', 'ContactController@store');
-// });
-
-// con autenticazione
+// senza autenticazione
 Route::namespace('Api')->group(function () {
-    
+
+    // caricamento della home Home.vue (mounted)
+    Route::get('/home', 'HomeController@getTrending');
+
+    // ricerca con filtri SearchResults.vue (mounted)
     Route::get('/search-results/{userInput}/{radius}', 'HomeController@home');
+
+    // dettagli appartamento show.vue (mounted)
+    Route::get('/apartment/{slug}', 'ApartmentController@show');
+
+    // elenco appartamenti dell'host Dashboard.vue (mounted)
     Route::get('/dashboard/{userId}', 'HomeController@dashboard');
+
+    // elenco servizi in Create.vue (mounted)
     Route::get('/apartment/create', 'ApartmentController@create');
+
+    // salvataggio dati nuovo appartamento Create.vue
     Route::post('/apartment/store', 'ApartmentController@store');
+
+    // caricamento dei dati dell'appartamento da modificare Edit.vue (mounted)
     Route::get('/apartment/{slug}/edit', 'ApartmentController@edit');
-    Route::post('/apartment/{slug}/update', 'ApartmentController@update');
+
+    // salvataggio dei dati modificati Edit.vue
+    Route::post('/apartment/update', 'ApartmentController@update');
+
+    
     Route::post('/apartment/{slug}/delete', 'ApartmentController@destroy');
     Route::get('/apartment/{slug}/sponsor', 'ApartmentController@sponsor');
     Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
-    Route::get('/apartment/{slug}', 'ApartmentController@show');
     Route::get('/apartment/{slug}/email', 'ApartmentController@email');
-    Route::get('/home', 'HomeController@getTrending');
 
 });
-
-// senza autenticazione

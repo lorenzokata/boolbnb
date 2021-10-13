@@ -67,21 +67,21 @@ export default {
         return {
             userInput: "",
             arrayAddress: [],
-            addressActive: true
+            addressActive: true,
+            sponsored_apartments:[]
         };
     },
     mounted() {
-        console.log("Component mounted.");
-
+        // sponsored_apartment contiene gli appartamenti sponsorizzati
         axios
             .get("/api/home")
             .then(response => {
-                this.apartment = response.data.results;
-                console.log(this.apartment);
+                this.sponsored_apartments = response.data.results.sponsored_apartments;
             })
             .catch(error => {
                 console.log(error);
             });
+
     },
     methods: {
         
@@ -108,7 +108,6 @@ export default {
                         arr.push(element.address.freeformAddress);
                     });
                     this.arrayAddress = arr;
-                    console.log(this.arrayAddress);
                 })
                 .catch(error => {
                     console.log(error);

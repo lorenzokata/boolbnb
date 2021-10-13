@@ -49,10 +49,11 @@ class ApartmentController extends Controller
             'n_rooms' => 'required',
             'n_beds' => 'required',
             'n_baths' => 'required',
+            'user_id' => 'required',
             'square_meters' => 'required',
             'address' => 'required',
             'visible' => 'nullable',
-            'image' => 'nullable|image'
+            'imgs' => 'nullable|image'
         ]);
         
         // salvo la request
@@ -69,7 +70,7 @@ class ApartmentController extends Controller
 
         // // creare istanza del model Apartment
         $newApartment = new Apartment();
-
+        
         // GESTIONE SLUG
         $slug = Str::slug($data['title'],'-');
 
@@ -94,8 +95,8 @@ class ApartmentController extends Controller
         $newApartment->slug = $slug;
 
         // gestione imgs
-        if(array_key_exists('image',$data)){
-            $imgs_path = Storage::put('images', $data['image']);
+        if(array_key_exists('imgs',$data)){
+            $imgs_path = Storage::put('imgs', $data['imgs']);
 
             $data['imgs'] = $imgs_path;
         }
@@ -128,12 +129,9 @@ class ApartmentController extends Controller
 
         $newApartment->save();
         
-        if(array_key_exists('services' ,$data)){
+        if(array_key_exists('SelectedServices' ,$data)){
             $newApartment->services()->attach($data['SelectedServices']);
         }
-        
-
-        return Redirect::to('/dashboard');
 
     }
 
@@ -145,8 +143,9 @@ class ApartmentController extends Controller
      */
     public function show($slug)
     {
-        $apartment = Apartment::where('slug', $slug)->first();
-        
+        $apartment = Apartment::where('slug', $slug)->with(['services'])->first();
+
+        // da controllare
         if($apartment->imgs){
             $apartment->imgs = url('storage/' . $apartment->imgs);
         }
@@ -165,11 +164,11 @@ class ApartmentController extends Controller
      */
     public function edit($slug)
     {
-        // dd($slug);
+        
         // $apartments = Apartment::all();
-        $apartment = Apartment::where('slug', $slug)->first();
+
+        $apartment = Apartment::where('slug', $slug)->with(['services'])->first();
         $services = Service::all();
-        $selected_services = $apartment->services();
 
         if($apartment->imgs){
             $apartment->imgs = url('storage/' . $apartment->imgs);
@@ -178,9 +177,8 @@ class ApartmentController extends Controller
         return response()->json([
             'success' => true,
             'results' => [
-                'apartments' => $apartment,
+                'apartment' => $apartment,
                 'services' => $services,
-                'selected_services' => $selected_services
             ]
         ]);
 
@@ -193,7 +191,7 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'title' => 'required|max:255',
@@ -201,11 +199,66 @@ class ApartmentController extends Controller
             'n_rooms' => 'required',
             'n_beds' => 'required',
             'n_baths' => 'required',
+            'slug' => 'required',
             'square_meters' => 'required',
             'address' => 'required',
             'visible' => 'nullable',
-            'image' => 'nullable|image'
+            'imgs' => 'nullable|image',
+            'user_id' => 'required'
+
         ]);
+        
+        $data = $request->all();
+
+        if($data['visible'] == 'on'){
+            $data['visible'] = 1;
+        }else{
+            $data['visible'] = 0;
+        }
+        $apartment = Apartment::where('slug', $data['slug'])->first();
+
+        if($data['user_id'] != $apartment->user_id){
+            return false;
+        };
+        
+        if($data['title'] != $apartment->title){
+
+            $slug = Str::slug($data['title'],'-');
+            
+            //se lo slug è uguale ad uno già presente
+            $slug_base = $slug; //titolo-di-esempio
+            $slug_presente = Apartment::where('slug', $slug)->first();
+
+            $contatore = 1;
+            while($slug_presente){
+                //aggiungiamo al post di prima -contatore
+                $slug = $slug_base . '-' . $contatore; //titolo-di-esempio-1
+                //controlliamo se il post esiste ancora
+                $slug_presente = Apartment::where('slug', $slug)->first();
+                //incrementiamo il contatore
+                $contatore++;
+            }
+
+            //in ogni caso assegniamo allo slug il valore ottenuto
+            $data['slug'] = $slug;
+        };
+        
+        if(array_key_exists('imgs',$data)){
+            //salviamo la nostra immagine e recuperiamo il path
+            $cover_path = Storage::put('imgs', $data['imgs']);
+
+            Storage::delete($apartment->imgs);
+            //salviamo nella colonna della tabella posts l'immagine con il suo percorso
+            $data['imgs'] = $cover_path;
+        };
+
+        $apartment->update($data);
+
+
+        if(array_key_exists('SelectedServices', $data)){
+            $apartment->services()->sync($data['SelectedServices']);
+        }
+
     }
 
     /**
@@ -230,11 +283,6 @@ class ApartmentController extends Controller
     }
 
     public function email($id)
-    {
-        //
-    }
-
-    public function searchApartments()
     {
         //
     }

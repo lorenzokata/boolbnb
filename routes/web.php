@@ -20,7 +20,6 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', 'RouteController@view');
     Route::get('/apartment/create', 'RouteController@view');
-    // Route::get('/apartment/store', 'RouteController@view');
     Route::get('/apartment{slug-app}/edit', 'RouteController@view');
     Route::get('/apartment/{slug-app}/update', 'RouteController@view');
     Route::get('/apartment/{slug-app}/delete', 'RouteController@view');

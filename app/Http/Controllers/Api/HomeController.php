@@ -22,10 +22,10 @@ class HomeController extends Controller
         $sponsored_apartments = [];
         $not_sponsored_apartments = [];
 
-        $now = Carbon::now();
-        $now = $now->toDateTimeString();
+        $now = Carbon::now()->toDateTimeString();
         
         // possibile funzione helper
+        // da convertire in query di laravel
         foreach($apartments as $apartment){
             $semaforo=false;
             foreach ($apartment->sponsors as $sponsor) {
@@ -41,9 +41,7 @@ class HomeController extends Controller
                 array_push($not_sponsored_apartments, $apartment);
             }
         }
-            
-        // dump($sponsored_apartments);
-        // dd($not_sponsored_apartments);
+
         return response()->json([
             'success' => true,
             'results' => [
@@ -104,8 +102,7 @@ class HomeController extends Controller
         $apartments = [];
         $sponsored_apartments = [];
 
-        $now = Carbon::now();
-        $now = $now->toDateTimeString();
+        $now = Carbon::now()->toDateTimeString();
 
         foreach ($response['results'] as $item) {
 
@@ -135,12 +132,12 @@ class HomeController extends Controller
             
         };
 
+        // array sorting
         $distance = [];
         foreach ($apartments as $key => $row) {
 
             $distance[$key] = $row['distance'];
         }
-
         array_multisort($distance, SORT_ASC, $apartments);
 
         $distance = [];
@@ -148,11 +145,7 @@ class HomeController extends Controller
 
             $distance[$key] = $row['distance'];
         }
-
         array_multisort($distance, SORT_ASC, $sponsored_apartments);
-
-        // dump($apartments);
-        // dump($sponsored_apartments);
 
         return response()->json([
             'success' => true,
@@ -173,7 +166,6 @@ class HomeController extends Controller
                                 ->select('apartments.*')
                                 ->groupBy('apartments.id')
                                 ->get();
-        // fine query
 
         return response()->json([
             'success' => true,
@@ -183,13 +175,3 @@ class HomeController extends Controller
         ]);
     }
 }
-
-
-// $users = DB::table('users')
-//                 ->join('specialization_user', 'users.id', '=', 'specialization_user.user_id')
-//                 ->join('reviews', 'reviews.user_id', '=', 'users.id')
-//                 ->selectRaw('users., count(reviews.id) as reviews_count')
-//                 ->where('specialization_id',$specs)
-//                 ->groupBy('users.id')
-//                 ->orderBy('reviews_count','desc')
-//                 ->paginate(9);

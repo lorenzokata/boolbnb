@@ -13,7 +13,8 @@ class Service extends Model
     // Relationship with apartments (pivot)
     public function apartments()
     {
-        return $this->belongsToMany('App\Apartment');
+        return $this->belongsToMany('App\Apartment')
+        ->withTimestamps();
     }
 
     protected $table = 'services';

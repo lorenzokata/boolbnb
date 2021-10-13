@@ -2,14 +2,21 @@
     <div class="container">
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
-
             <div class="d-flex justify-content-between align-items-center pt-3">
                 <h4>Create</h4>
-                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                <router-link class="btn btn-primary" :to="{ name: 'dashboard' }"
+                    >Dashboard</router-link
+                >
             </div>
 
-            <form class="form-group" action="../api/apartment/store" method="post" enctype="multipart/form-data" >
-
+            <form
+                id="form"
+                class="form-group"
+                action="../api/apartment/store"
+                @submit.prevent="submit"
+                method="post"
+                enctype="multipart/form-data"
+            >
                 <!-- <p v-if="errors.length">
                     <b>Please correct the following error(s):</b>
                     <ul>
@@ -167,40 +174,50 @@
                     </div>
                 </div>
 
-                <hr>
-                
+                <hr />
+
                 <!-- immagine -->
                 <h4>Carica foto</h4>
-                <div class="form-row d-flex justify-content-between align-items-center">
+                <div
+                    class="form-row d-flex justify-content-between align-items-center"
+                >
                     <div class="input-group mb-3 col-md-6 col-sm-12">
-
                         <div class="form-group">
-                          <label for="exampleFormControlFile1">Example file input</label>
-                          <input type="file" class="form-control-file form-control" name="image" id="exampleFormControlFile1">
+                            <label for="exampleFormControlFile1"
+                                >Example file input</label
+                            >
+                            <input
+                                type="file"
+                                class="form-control-file form-control"
+                                name="imgs"
+                                id="exampleFormControlFile1"
+                            />
                         </div>
-                        
                     </div>
 
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
                         </div>
 
                         <div class="mb-3">
-                            <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                            <router-link
+                                class="btn btn-primary"
+                                :to="{ name: 'dashboard' }"
+                                >Dashboard</router-link
+                            >
                         </div>
-
                     </div>
                 </div>
 
-
                 <!-- user id display:none - non toccare -->
-                <div class="d-none">
+                <!-- <div class="d-none">
                     <input type="text" name="user_id" :value="form.user_id" />
-                </div>
+                </div> -->
             </form>
-
         </div>
     </div>
 </template>
@@ -214,32 +231,30 @@ export default {
             form: {
                 title: null,
                 description: null,
-                user_id: JSON.parse(this.$userId).id,
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
-                square_meters: null,
+                square_meters: 1,
                 address: "",
                 visible: 1,
                 SelectedServices: [],
-                image:null,
+                image: null
             },
+
             services: [],
             arrayAddress: [],
             addressActive: true
-            // errors: [],
         };
     },
 
     mounted() {
-        console.log("Component mounted.");
+        // services contiene elenco di tutti i servizi disponibili
 
         // api per elenco servizi
         axios
             .get("/api/apartment/create")
             .then(response => {
                 this.services = response.data.results;
-                // console.log(this.services);
             })
             .catch(error => {
                 console.log(error);
@@ -247,7 +262,6 @@ export default {
     },
 
     methods: {
-
         addressClick: function(id) {
             this.form.address = this.arrayAddress[id];
             this.addressActive = true;
@@ -278,12 +292,22 @@ export default {
                     console.log(error);
                 });
             this.addressActive = false;
+        },
+        submit: function(e) {
+            var form = document.getElementById("form");
+            var formData = new FormData(form);
+            formData.append("user_id", JSON.parse(this.$userId).id);
+            axios
+                .post("/api/apartment/store", formData)
+                .then(response => {
+                    this.$router.push("../dashboard");
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
-
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -10,14 +10,7 @@
 
         <div>
             <h1 class="viola"> {{apartment.title}} </h1>
-            <form class="form-group" action="../api/apartment/store" method="post" >
-
-                <!-- <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
-                    </ul>
-                </p> -->
+            <form id="form" class="form-group" @submit.prevent="submit" action="../api/apartment/update" method="post" enctype="multipart/form-data">
                 
                 <div class="form-row d-flex justify-content-between align-items-center">
 
@@ -26,7 +19,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Modifica titolo</span>
                         </div>
-                        <input id="title" v-model="apartment.title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                        <input name="title" id="title" v-model="apartment.title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
                     </div>   
                     
                     <div class="ml-3 mr-3">
@@ -39,15 +32,6 @@
                         />
                     </div>  
                 </div>
-                
-                <!-- <div class="input-group mb-3 col-md-6 col-sm-12">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input  v-model="apartment.visible" type="checkbox" aria-label="Checkbox for following text input">
-                        </div>
-                    </div>
-                    <input id="visible" type="text" class="form-control" aria-label="Text input with checkbox">
-                </div>                                               -->
 
                 <!-- qui stampo la foto -->
                 <div>
@@ -89,6 +73,10 @@
                 <hr>
 
                 <h4>Dati casa</h4>
+
+                <div v-for="(service, index) in apartment.services" :key="index">
+                     {{ service.name }}
+                </div>
 
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
@@ -132,7 +120,24 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="address">Modifica indirizzo</span>
                     </div>
-                    <input id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                    <input @input="autoAddress()" id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="address" required>
+                    <div
+                        class="list-group"
+                        :class="{ 'd-none': addressActive }"
+                        v-if="arrayAddress != []"
+                    >
+                        <ul>
+                            <li
+                                class="list-group-item input-group"
+                                v-for="(address, id) in arrayAddress"
+                                :key="id"
+                                :v-model="arrayAddress[id]"
+                                @click="addressClick(id)"
+                            >
+                                {{ address }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <hr>
@@ -142,7 +147,7 @@
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <input name="imgs" type="file" class="custom-file-input" id="inputGroupFile01">
                             <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
                         </div>
                     </div>
@@ -150,7 +155,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Modifica</button>
                         </div>
 
                         <div class="mb-3">
@@ -180,7 +185,7 @@ export default {
             form: {
                 title: null,
                 description: null,
-                user_id: JSON.parse(this.$userId).id,
+ 
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
@@ -193,55 +198,77 @@ export default {
                 SelectedServices: []
             },
 
-            id: '11',
+            
             apartment: [],
-
+            arrayAddress: [],
+            addressActive: true,
             services: []
             // errors: [],
         };
     },
 
     mounted() {
-        // console.log("Component mounted.");
-
-        // api per elenco servizi
-        // axios
-        //     .get("/api/apartment/create")
-        //     .then(response => {
-        //         this.services = response.data.results;
-        //         console.log(this.services);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
 
         // api per dati appartamento
         axios
-            .get("/api/apartment/" + this.id + "/edit")
+            .get("/api/apartment/" + this.$route.params.slug + "/edit")
             .then(respo => {
                 this.apartment = respo.data.results.apartment;
                 this.services = respo.data.results.services;
-                console.log(this.apartment);
+                console.log(this.apartment.services);
             })
             .catch(error => {
                 console.log(error);
             });
 
     },
-
-    // checkForm: function(e) {
-    //     if (this.name && this.age) {
-    //         return true;
-    //     }
-    //     this.errors = [];
-    //     if (!this.name) {
-    //         this.errors.push("Name required.");
-    //     }
-    //     if (!this.age) {
-    //         this.errors.push("Age required.");
-    //     }
-    //     e.preventDefault();
-    // }
+    methods: {
+        addressClick: function(id) {
+            this.apartment.address = this.arrayAddress[id];
+            this.addressActive = true;
+        },
+        autoAddress: function() {
+            // caso attivo quando form.city !== '' (caso base, PASSO 1)
+            axios
+                .get("https://api.tomtom.com/search/2/search/.json?", {
+                    params: {
+                        key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+                        query: this.apartment.address,
+                        // entityTypeSet: "Municipality",
+                        language: "it-IT",
+                        typeahead: 1,
+                        countrySet: "IT"
+                    }
+                })
+                .then(response => {
+                    let arr = [];
+                    response.data.results.forEach(element => {
+                        arr.push(element.address.freeformAddress);
+                    });
+                    this.arrayAddress = arr;
+                    console.log(this.arrayAddress);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            this.addressActive = false;
+        },
+        submit: function(e){
+            var form = document.getElementById('form');
+            var formData = new FormData(form);
+            formData.append('user_id', JSON.parse(this.$userId).id);
+            formData.append('slug', this.apartment.slug);
+            console.log(formData);
+            axios.post('/api/apartment/update', formData)
+            .then((response) => {
+                console.log(response.data.results);
+                this.$router.push('../dashboard') 
+            })
+            .catch((error) =>{
+                console.log(error);
+            })
+        }
+    }
 };
 </script>
 

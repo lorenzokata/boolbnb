@@ -6616,6 +6616,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6623,11 +6640,10 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         title: null,
         description: null,
-        user_id: JSON.parse(this.$userId).id,
         n_rooms: 1,
         n_beds: 1,
         n_baths: 1,
-        square_meters: null,
+        square_meters: 1,
         address: "",
         visible: 1,
         SelectedServices: [],
@@ -6635,17 +6651,16 @@ __webpack_require__.r(__webpack_exports__);
       },
       services: [],
       arrayAddress: [],
-      addressActive: true // errors: [],
-
+      addressActive: true
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log("Component mounted."); // api per elenco servizi
-
+    // services contiene elenco di tutti i servizi disponibili
+    // api per elenco servizi
     axios.get("/api/apartment/create").then(function (response) {
-      _this.services = response.data.results; // console.log(this.services);
+      _this.services = response.data.results;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -6679,6 +6694,18 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
       this.addressActive = false;
+    },
+    submit: function submit(e) {
+      var _this3 = this;
+
+      var form = document.getElementById("form");
+      var formData = new FormData(form);
+      formData.append("user_id", JSON.parse(this.$userId).id);
+      axios.post("/api/apartment/store", formData).then(function (response) {
+        _this3.$router.push("../dashboard");
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -6867,6 +6894,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
   data: function data() {
@@ -6874,7 +6906,6 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         title: null,
         description: null,
-        user_id: JSON.parse(this.$userId).id,
         n_rooms: 1,
         n_beds: 1,
         n_baths: 1,
@@ -6886,8 +6917,9 @@ __webpack_require__.r(__webpack_exports__);
         visible: 1,
         SelectedServices: []
       },
-      id: '11',
       apartment: [],
+      arrayAddress: [],
+      addressActive: true,
       services: [] // errors: [],
 
     };
@@ -6895,39 +6927,62 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    // console.log("Component mounted.");
-    // api per elenco servizi
-    // axios
-    //     .get("/api/apartment/create")
-    //     .then(response => {
-    //         this.services = response.data.results;
-    //         console.log(this.services);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
     // api per dati appartamento
-    axios.get("/api/apartment/" + this.id + "/edit").then(function (respo) {
+    axios.get("/api/apartment/" + this.$route.params.slug + "/edit").then(function (respo) {
       _this.apartment = respo.data.results.apartment;
       _this.services = respo.data.results.services;
-      console.log(_this.apartment);
+      console.log(_this.apartment.services);
     })["catch"](function (error) {
       console.log(error);
     });
-  } // checkForm: function(e) {
-  //     if (this.name && this.age) {
-  //         return true;
-  //     }
-  //     this.errors = [];
-  //     if (!this.name) {
-  //         this.errors.push("Name required.");
-  //     }
-  //     if (!this.age) {
-  //         this.errors.push("Age required.");
-  //     }
-  //     e.preventDefault();
-  // }
+  },
+  methods: {
+    addressClick: function addressClick(id) {
+      this.apartment.address = this.arrayAddress[id];
+      this.addressActive = true;
+    },
+    autoAddress: function autoAddress() {
+      var _this2 = this;
 
+      // caso attivo quando form.city !== '' (caso base, PASSO 1)
+      axios.get("https://api.tomtom.com/search/2/search/.json?", {
+        params: {
+          key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
+          query: this.apartment.address,
+          // entityTypeSet: "Municipality",
+          language: "it-IT",
+          typeahead: 1,
+          countrySet: "IT"
+        }
+      }).then(function (response) {
+        var arr = [];
+        response.data.results.forEach(function (element) {
+          arr.push(element.address.freeformAddress);
+        });
+        _this2.arrayAddress = arr;
+        console.log(_this2.arrayAddress);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.addressActive = false;
+    },
+    submit: function submit(e) {
+      var _this3 = this;
+
+      var form = document.getElementById('form');
+      var formData = new FormData(form);
+      formData.append('user_id', JSON.parse(this.$userId).id);
+      formData.append('slug', this.apartment.slug);
+      console.log(formData);
+      axios.post('/api/apartment/update', formData).then(function (response) {
+        console.log(response.data.results);
+
+        _this3.$router.push('../dashboard');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -7022,38 +7077,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
   data: function data() {
     return {
-      /*  form: {
-           title: null,
-           description: null,
-           user_id: JSON.parse(this.$userId).id,
-           n_rooms: 1,
-           n_beds: 1,
-           n_baths: 1,
-           square_meters: null,
-           city: null,
-           zip_code: null,
-           street: null,
-           address: null,
-           visible: 1,
-           SelectedServices: []
-       }, */
-      id: '12',
       apartment: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log('Component mounted.'); // api show appartamenti
-
+    // l'appartamento é in apartment
+    // i services del appartamento sono in apartment.services (array)
     axios.get("/api/apartment/" + this.$route.params.slug).then(function (response) {
       _this.apartment = response.data.results;
-      console.log(_this.apartment);
-      console.log(_this.apartment.title);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -7146,47 +7229,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   data: function data() {
@@ -7199,7 +7241,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/api/dashboard/" + JSON.parse(this.$userId).id).then(function (response) {
-      /* console.log(response.data.results); */
       // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
       _this.sponsored_apartments = response.data.results.sponsored_apartments;
       _this.apartments = response.data.results.apartments;
@@ -7291,16 +7332,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       userInput: "",
       arrayAddress: [],
-      addressActive: true
+      addressActive: true,
+      sponsored_apartments: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log("Component mounted.");
+    // sponsored_apartment contiene gli appartamenti sponsorizzati
     axios.get("/api/home").then(function (response) {
-      _this.apartment = response.data.results;
-      console.log(_this.apartment);
+      _this.sponsored_apartments = response.data.results.sponsored_apartments;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -7329,7 +7370,6 @@ __webpack_require__.r(__webpack_exports__);
           arr.push(element.address.freeformAddress);
         });
         _this2.arrayAddress = arr;
-        console.log(_this2.arrayAddress);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -7417,6 +7457,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchResults",
   data: function data() {
@@ -7426,16 +7488,8 @@ __webpack_require__.r(__webpack_exports__);
       radius: 20000
     };
   },
-  beforeCreate: function beforeCreate() {
-    console.log("Component beforeCreated.");
-  },
-  created: function created() {
-    console.log("Component created.");
-  },
   mounted: function mounted() {
-    console.log("Component mounted.");
-    console.log(this.$route.params.userInput); // api per elenco servizi
-
+    // api per elenco servizi
     this.loadApartments(this.radius);
   },
   methods: {
@@ -7443,19 +7497,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // il raggio della ricerca è espresso in metri
-      console.log(radius);
       axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
-        console.log(response.data.results.sponsored_apartments);
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
         _this.apartments = response.data.results.apartments;
       })["catch"](function (error) {
         console.log(error);
       });
-    } // creare la funzione che fa chiamata axios verso homecontroller@home
-    // parametri saranno userInput e radius
-    // la funzione sará chiamata su mounted con parametro fisso a 20km convertiti
-    // la funzione verrá chiamata al click del tasto 'applica' della sezione filtri
-
+    }
   }
 });
 
@@ -43916,9 +43964,16 @@ var render = function() {
         {
           staticClass: "form-group",
           attrs: {
+            id: "form",
             action: "../api/apartment/store",
             method: "post",
             enctype: "multipart/form-data"
+          },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit.apply(null, arguments)
+            }
           }
         },
         [
@@ -44346,14 +44401,7 @@ var render = function() {
                 )
               ])
             ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-none" }, [
-            _c("input", {
-              attrs: { type: "text", name: "user_id" },
-              domProps: { value: _vm.form.user_id }
-            })
-          ])
+          )
         ]
       )
     ])
@@ -44372,7 +44420,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control-file form-control",
-          attrs: { type: "file", name: "image", id: "exampleFormControlFile1" }
+          attrs: { type: "file", name: "imgs", id: "exampleFormControlFile1" }
         })
       ])
     ])
@@ -44385,7 +44433,11 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [
+          _vm._v(
+            "\n                            Submit\n                        "
+          )
+        ]
       )
     ])
   }
@@ -44444,7 +44496,18 @@ var render = function() {
         "form",
         {
           staticClass: "form-group",
-          attrs: { action: "../api/apartment/store", method: "post" }
+          attrs: {
+            id: "form",
+            action: "../api/apartment/update",
+            method: "post",
+            enctype: "multipart/form-data"
+          },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit.apply(null, arguments)
+            }
+          }
         },
         [
           _c(
@@ -44471,6 +44534,7 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     attrs: {
+                      name: "title",
                       id: "title",
                       type: "text",
                       "aria-label": "Default",
@@ -44654,6 +44718,14 @@ var render = function() {
           _vm._v(" "),
           _c("h4", [_vm._v("Dati casa")]),
           _vm._v(" "),
+          _vm._l(_vm.apartment.services, function(service, index) {
+            return _c("div", { key: index }, [
+              _vm._v(
+                "\n                 " + _vm._s(service.name) + "\n            "
+              )
+            ])
+          }),
+          _vm._v(" "),
           _c("div", { staticClass: "form-row" }, [
             _c("div", { staticClass: "input-group mb-3 col-md-3 col-sm-6" }, [
               _vm._m(2),
@@ -44814,18 +44886,62 @@ var render = function() {
                 type: "text",
                 "aria-label": "Default",
                 "aria-describedby": "inputGroup-sizing-default",
+                name: "address",
                 required: ""
               },
               domProps: { value: _vm.apartment.address },
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.apartment, "address", $event.target.value)
+                  },
+                  function($event) {
+                    return _vm.autoAddress()
                   }
-                  _vm.$set(_vm.apartment, "address", $event.target.value)
-                }
+                ]
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.arrayAddress != []
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "list-group",
+                    class: { "d-none": _vm.addressActive }
+                  },
+                  [
+                    _c(
+                      "ul",
+                      _vm._l(_vm.arrayAddress, function(address, id) {
+                        return _c(
+                          "li",
+                          {
+                            key: id,
+                            staticClass: "list-group-item input-group",
+                            attrs: { "v-model": _vm.arrayAddress[id] },
+                            on: {
+                              click: function($event) {
+                                return _vm.addressClick(id)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(address) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -44869,7 +44985,8 @@ var render = function() {
               domProps: { value: _vm.form.user_id }
             })
           ])
-        ]
+        ],
+        2
       )
     ])
   ])
@@ -44968,7 +45085,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "custom-file" }, [
         _c("input", {
           staticClass: "custom-file-input",
-          attrs: { type: "file", id: "inputGroupFile01" }
+          attrs: { name: "imgs", type: "file", id: "inputGroupFile01" }
         }),
         _vm._v(" "),
         _c(
@@ -44990,7 +45107,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("Modifica")]
       )
     ])
   }
@@ -45044,11 +45161,15 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12 col-lg-7 altezza" }, [
         _c("h1", { staticClass: "viola text-center" }, [
-          _vm._v(" " + _vm._s(_vm.apartment.title) + " ")
+          _vm._v(_vm._s(_vm.apartment.title))
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "margin-l-7 indirizzo opal" }, [
-          _vm._v(_vm._s(_vm.apartment.address))
+          _vm._v(
+            "\n                    " +
+              _vm._s(_vm.apartment.address) +
+              "\n                "
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "img-show ombra" }, [
@@ -45070,14 +45191,16 @@ var render = function() {
             _c(
               "div",
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: " bottone rosso-background ombra",
-                    attrs: { to: { name: "dashboard" } }
-                  },
-                  [_vm._v("Dashboard")]
-                )
+                this.$userId != ""
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: " bottone rosso-background ombra",
+                        attrs: { to: { name: "dashboard" } }
+                      },
+                      [_vm._v("Dashboard")]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -45090,25 +45213,39 @@ var render = function() {
               _c("i", {
                 staticClass: "fas fa-door-open viola icone my-2 mr-md-2"
               }),
-              _vm._v("     numero camere:" + _vm._s(_vm.apartment.n_rooms))
+              _vm._v(
+                "\n                            numero camere:" +
+                  _vm._s(_vm.apartment.n_rooms) +
+                  "\n                        "
+              )
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
               _c("i", { staticClass: "fas fa-bed viola icone my-2 mr-md-2" }),
-              _vm._v("     numero letti:" + _vm._s(_vm.apartment.n_beds) + " ")
+              _vm._v(
+                "\n                            numero letti:" +
+                  _vm._s(_vm.apartment.n_beds) +
+                  "\n                        "
+              )
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
               _c("i", {
                 staticClass: "fas fa-toilet viola icone my-2 mr-md-2"
               }),
-              _vm._v("    numero bagni:" + _vm._s(_vm.apartment.n_baths) + " ")
+              _vm._v(
+                "\n                            numero bagni:" +
+                  _vm._s(_vm.apartment.n_baths) +
+                  "\n                        "
+              )
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
               _c("i", { staticClass: "fas fa-home viola icone my-2 mr-md-2" }),
               _vm._v(
-                "    numero metri quadri:" + _vm._s(_vm.apartment.square_meters)
+                "\n                            numero metri quadri:" +
+                  _vm._s(_vm.apartment.square_meters) +
+                  "\n                        "
               )
             ])
           ]),
@@ -45126,8 +45263,9 @@ var render = function() {
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            _vm._s(_vm.apartment.description) +
-              " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quisquam commodi magni exercitationem corporis odio, asperiores totam illo rem doloribus! Debitis inventore asperiores eum, unde distinctio accusantium quisquam ducimus cupiditate? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eaque beatae minima nemo eligendi quos facere molestias vitae laudantium quaerat iste quasi voluptas incidunt totam nam iure, voluptatum veritatis dolores?"
+            "\n                    " +
+              _vm._s(_vm.apartment.description) +
+              " Lorem, ipsum dolor sit amet\n                    consectetur adipisicing elit. Facilis quisquam commodi magni\n                    exercitationem corporis odio, asperiores totam illo rem\n                    doloribus! Debitis inventore asperiores eum, unde distinctio\n                    accusantium quisquam ducimus cupiditate? Lorem ipsum dolor\n                    sit amet consectetur adipisicing elit. Ut eaque beatae\n                    minima nemo eligendi quos facere molestias vitae laudantium\n                    quaerat iste quasi voluptas incidunt totam nam iure,\n                    voluptatum veritatis dolores?\n                "
           )
         ]),
         _vm._v(" "),
@@ -45154,7 +45292,7 @@ var staticRenderFns = [
     return _c("div", [
       _c("div", [
         _vm._v(
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, illum accusamus rem ad expedita architecto saepe magnam? Dolores quia iste cumque culpa unde ducimus sint vel dolorum dolorem, quam est."
+          "\n                            Lorem ipsum dolor sit amet consectetur, adipisicing\n                            elit. Eaque, illum accusamus rem ad expedita\n                            architecto saepe magnam? Dolores quia iste cumque\n                            culpa unde ducimus sint vel dolorum dolorem, quam\n                            est.\n                        "
         )
       ])
     ])
@@ -45205,7 +45343,7 @@ var staticRenderFns = [
             staticClass: "bottone rosso-background cream mt-3",
             attrs: { type: "submit" }
           },
-          [_vm._v("Invia")]
+          [_vm._v("\n                        Invia\n                    ")]
         )
       ]
     )
@@ -45338,7 +45476,9 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: " bottone rosso-background ombra  mx-1",
-                        attrs: { to: { name: "edit" } }
+                        attrs: {
+                          to: { name: "edit", params: { slug: app.slug } }
+                        }
                       },
                       [_vm._v("Edit")]
                     ),
@@ -45644,7 +45784,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("applica filtro")]
+        [_vm._v("\n            applica filtro\n        ")]
       )
     ]),
     _vm._v(" "),
@@ -45657,7 +45797,7 @@ var render = function() {
         return _c(
           "div",
           {
-            key: s_app.id,
+            key: s_app.apartment.id,
             staticClass: "col card border border-danger rounded",
             staticStyle: { width: "18rem" }
           },
@@ -45672,11 +45812,11 @@ var render = function() {
               { staticClass: "card-body" },
               [
                 _c("h5", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(s_app.title))
+                  _vm._v(_vm._s(s_app.apartment.title))
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
-                  _vm._v(_vm._s(s_app.description))
+                  _vm._v(_vm._s(s_app.apartment.description))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -45684,7 +45824,10 @@ var render = function() {
                   {
                     staticClass: "btn btn-primary",
                     attrs: {
-                      to: { name: "show", params: { slug: s_app.slug } }
+                      to: {
+                        name: "show",
+                        params: { slug: s_app.apartment.slug }
+                      }
                     }
                   },
                   [_vm._v("Dettagli")]
@@ -45707,14 +45850,14 @@ var render = function() {
         return _c(
           "div",
           {
-            key: app.id,
+            key: app.apartment.id,
             staticClass: "col-12 col-md-5 card bordo-card rounded  mx-4 my-4 ",
             staticStyle: { width: "18rem" }
           },
           [
             _c("img", {
               staticClass: "card-img-top ",
-              attrs: { src: "storage/" + app.imgs, alt: "" }
+              attrs: { src: "storage/" + app.apartment.imgs, alt: "" }
             }),
             _vm._v(" "),
             _c(
@@ -45727,18 +45870,33 @@ var render = function() {
                     staticClass:
                       "card-title text-truncate viola font-weight-bold text-uppercase"
                   },
-                  [_vm._v(_vm._s(app.title))]
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(app.apartment.title) +
+                        "\n                "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text text-truncate" }, [
-                  _vm._v(_vm._s(app.description))
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(app.apartment.description) +
+                      "\n                "
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
                   "router-link",
                   {
                     staticClass: "bottone rosso-background ombra cream",
-                    attrs: { to: { name: "show", params: { slug: app.slug } } }
+                    attrs: {
+                      to: {
+                        name: "show",
+                        params: { slug: app.apartment.slug }
+                      }
+                    }
                   },
                   [_vm._v("Dettagli")]
                 )
