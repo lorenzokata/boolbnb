@@ -5,7 +5,7 @@
 
         <h1 class="mb-3">Dashboard</h1>
 
-        <h3>i miei appartamenti</h3>
+        <h3 class="rosso">I miei appartamenti</h3>
         <div class="row justify-content-between">
 
             <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 

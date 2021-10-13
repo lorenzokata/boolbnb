@@ -6633,6 +6633,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -44346,7 +44347,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-primary",
+              staticClass: "bottone rosso-background ombra",
               attrs: { to: { name: "dashboard" } }
             },
             [_vm._v("Dashboard")]
@@ -44411,6 +44412,7 @@ var render = function() {
                   expression: "form.visible"
                 }
               ],
+              staticClass: "tick",
               attrs: { id: "visible", type: "checkbox", name: "visible" },
               domProps: {
                 checked: Array.isArray(_vm.form.visible)
@@ -44547,7 +44549,7 @@ var render = function() {
           _c("h4", [_vm._v("Dati casa")]),
           _vm._v(" "),
           _c("div", { staticClass: "form-row" }, [
-            _c("div", { staticClass: "form-group col-md-3" }, [
+            _c("div", { staticClass: "form-group col-sm-6 col-md-3" }, [
               _c(
                 "label",
                 { staticClass: "d-block", attrs: { for: "n_rooms" } },
@@ -44581,7 +44583,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-md-3" }, [
+            _c("div", { staticClass: "form-group col-sm-6 col-md-3" }, [
               _c(
                 "label",
                 { staticClass: "d-block", attrs: { for: "n_beds" } },
@@ -44615,7 +44617,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-md-3" }, [
+            _c("div", { staticClass: "form-group col-sm-6 col-md-3" }, [
               _c(
                 "label",
                 { staticClass: "d-block", attrs: { for: "n_baths" } },
@@ -44649,7 +44651,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-md-3" }, [
+            _c("div", { staticClass: "form-group col-sm-6 col-md-3" }, [
               _c(
                 "label",
                 { staticClass: "d-block", attrs: { for: "square_meters" } },
@@ -44787,7 +44789,7 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "btn btn-primary",
+                        staticClass: "bottone rosso-background ombra",
                         attrs: { to: { name: "dashboard" } }
                       },
                       [_vm._v("Dashboard")]
@@ -44828,7 +44830,10 @@ var staticRenderFns = [
     return _c("div", { staticClass: "mb-3 mr-3" }, [
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        {
+          staticClass: "bottone rosso-background ombra",
+          attrs: { type: "submit" }
+        },
         [
           _vm._v(
             "\n                            Submit\n                        "
@@ -44872,7 +44877,7 @@ var render = function() {
             _c(
               "router-link",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "bottone rosso-background ombra",
                 attrs: { to: { name: "dashboard" } }
               },
               [_vm._v("Dashboard")]
@@ -44884,7 +44889,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", [
-      _c("h1", { staticClass: "viola" }, [
+      _c("h1", { staticClass: "rosso" }, [
         _vm._v(" " + _vm._s(_vm.exApartmentTitle) + " ")
       ]),
       _vm._v(" "),
@@ -45366,7 +45371,7 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "btn btn-primary",
+                        staticClass: "bottone rosso-background ombra",
                         attrs: { to: { name: "dashboard" } }
                       },
                       [_vm._v("Dashboard")]
@@ -45505,7 +45510,10 @@ var staticRenderFns = [
     return _c("div", { staticClass: "mb-3 mr-3" }, [
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        {
+          staticClass: "bottone rosso-background ombra",
+          attrs: { type: "submit" }
+        },
         [_vm._v("Modifica")]
       )
     ])
@@ -45668,7 +45676,7 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12 col-lg-7 altezza" }, [
-        _c("h1", { staticClass: "viola text-center" }, [
+        _c("h1", { staticClass: "rosso text-center pt-3" }, [
           _vm._v(_vm._s(_vm.apartment.title))
         ]),
         _vm._v(" "),
@@ -45692,7 +45700,7 @@ var render = function() {
           "div",
           { staticClass: "d-flex justify-content-between align-items-center " },
           [
-            _c("h3", { staticClass: "d-block viola" }, [
+            _c("h3", { staticClass: "d-block rosso" }, [
               _vm._v("Dettagli casa")
             ]),
             _vm._v(" "),
@@ -45719,7 +45727,7 @@ var render = function() {
           _c("ul", { staticClass: "dettagli d-inline-block" }, [
             _c("li", { staticClass: "d-flex align-items-center" }, [
               _c("i", {
-                staticClass: "fas fa-door-open viola icone my-2 mr-md-2"
+                staticClass: "fas fa-door-open rosso icone my-2 mr-md-2"
               }),
               _vm._v(
                 "\n                            numero camere:" +
@@ -45729,7 +45737,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
-              _c("i", { staticClass: "fas fa-bed viola icone my-2 mr-md-2" }),
+              _c("i", { staticClass: "fas fa-bed rosso icone my-2 mr-md-2" }),
               _vm._v(
                 "\n                            numero letti:" +
                   _vm._s(_vm.apartment.n_beds) +
@@ -45739,7 +45747,7 @@ var render = function() {
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
               _c("i", {
-                staticClass: "fas fa-toilet viola icone my-2 mr-md-2"
+                staticClass: "fas fa-toilet rosso icone my-2 mr-md-2"
               }),
               _vm._v(
                 "\n                            numero bagni:" +
@@ -45749,7 +45757,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "d-flex align-items-center" }, [
-              _c("i", { staticClass: "fas fa-home viola icone my-2 mr-md-2" }),
+              _c("i", { staticClass: "fas fa-home rosso icone my-2 mr-md-2" }),
               _vm._v(
                 "\n                            numero metri quadri:" +
                   _vm._s(_vm.apartment.square_meters) +
@@ -45758,14 +45766,14 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("h3", { staticClass: "d-block viola mt-3" }, [
+          _c("h3", { staticClass: "d-block rosso mt-3" }, [
             _vm._v("Servizi della casa")
           ]),
           _vm._v(" "),
           _vm._m(0)
         ]),
         _vm._v(" "),
-        _c("h3", { staticClass: "d-block viola mt-3" }, [
+        _c("h3", { staticClass: "d-block rosso mt-3" }, [
           _vm._v("Descrizione")
         ]),
         _vm._v(" "),
@@ -45777,13 +45785,13 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("h3", { staticClass: "d-block viola mt-3" }, [
+        _c("h3", { staticClass: "d-block rosso mt-3" }, [
           _vm._v("Locazione della casa")
         ]),
         _vm._v(" "),
         _vm._m(1),
         _vm._v(" "),
-        _c("h3", { staticClass: "d-block viola mt-3" }, [
+        _c("h3", { staticClass: "d-block rosso mt-3" }, [
           _vm._v("Invia un mail al propietario")
         ]),
         _vm._v(" "),
@@ -46138,7 +46146,7 @@ var render = function() {
       _vm._v(" "),
       _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
       _vm._v(" "),
-      _c("h3", [_vm._v("i miei appartamenti")]),
+      _c("h3", { staticClass: "rosso" }, [_vm._v("I miei appartamenti")]),
       _vm._v(" "),
       _c(
         "div",

@@ -4,12 +4,12 @@
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Edit</h4>
             <div>
-                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
             </div>
         </div>
 
         <div>
-            <h1 class="viola" > {{exApartmentTitle}} </h1>
+            <h1 class="rosso" > {{exApartmentTitle}} </h1>
             <form id="form" class="form-group" @submit.prevent="submit" action="../api/apartment/update" method="post" enctype="multipart/form-data">
                 
                 <div class="form-row d-flex justify-content-between align-items-center">
@@ -158,11 +158,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="btn btn-primary">Modifica</button>
+                            <button type="submit" class="bottone rosso-background ombra">Modifica</button>
                         </div>
 
                         <div class="mb-3">
-                            <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
                         </div>
 
                     </div>
