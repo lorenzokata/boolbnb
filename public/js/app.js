@@ -6616,6 +6616,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -7092,6 +7109,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
   data: function data() {
@@ -7265,7 +7328,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/api/dashboard/" + JSON.parse(this.$userId).id).then(function (response) {
-      /* console.log(response.data.results); */
       // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
       _this.sponsored_apartments = response.data.results.sponsored_apartments;
       _this.apartments = response.data.results.apartments;
@@ -7351,6 +7413,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -7358,7 +7433,7 @@ __webpack_require__.r(__webpack_exports__);
       userInput: "",
       arrayAddress: [],
       addressActive: true,
-      sponsor_apartment: []
+      sponsored_apartments: []
     };
   },
   mounted: function mounted() {
@@ -7366,8 +7441,7 @@ __webpack_require__.r(__webpack_exports__);
 
     // sponsored_apartment contiene gli appartamenti sponsorizzati
     axios.get("/api/home").then(function (response) {
-      _this.sponsor_apartment = response.data.results.sponsored_apartments;
-      console.log(_this.sponsor_apartment);
+      _this.sponsored_apartments = response.data.results.sponsored_apartments;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -7578,13 +7652,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchResults",
   data: function data() {
     return {
       sponsored_apartments: [],
       apartments: [],
-      apartment: null,
       radius: 20000,
       drop: false
     };
@@ -7598,13 +7692,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // il raggio della ricerca è espresso in metri
-      console.log(radius);
       axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
-        console.log(response.data.results);
-        _this.apartment = response.data.results.apartments[0].apartment;
-        console.log(_this.apartment);
-        console.log(response.data.results.apartments);
+        _this.apartments = response.data.results.apartments;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -7615,11 +7705,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.drop = false;
       }
-    } // creare la funzione che fa chiamata axios verso homecontroller@home
-    // parametri saranno userInput e radius
-    // la funzione sará chiamata su mounted con parametro fisso a 20km convertiti
-    // la funzione verrá chiamata al click del tasto 'applica' della sezione filtri
-
+    }
   }
 });
 
@@ -12079,7 +12165,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".box-img[data-v-33ec3c66] {\n  height: 250px;\n  width: auto;\n}\n.mess[data-v-33ec3c66] {\n  max-height: 100px;\n  overflow-y: auto;\n}\n.box-mess[data-v-33ec3c66] {\n  background-color: white;\n}\n.big-box[data-v-33ec3c66] {\n  border: 3px solid #ced1cc;\n}\n.big-box[data-v-33ec3c66]:hover {\n  background-color: #ced1cc;\n  transition: 1.5s;\n}\n.big-box:hover .box-mess[data-v-33ec3c66] {\n  background-color: #dee0dc;\n  color: #cc4249;\n  transition: 1.5s;\n}", ""]);
+exports.push([module.i, ".mess[data-v-33ec3c66] {\n  max-height: 0px;\n  overflow-y: auto;\n  opacity: 0;\n  transition: opacity 1s ease-out;\n}\n.box-mess[data-v-33ec3c66] {\n  background-color: white;\n}\n.big-box[data-v-33ec3c66] {\n  border: 3px solid #ced1cc;\n  max-height: 105px;\n}\n.big-box[data-v-33ec3c66]:hover {\n  background-color: #ced1cc;\n  transition: 1s;\n  max-height: 206px;\n}\n.big-box:hover .mess[data-v-33ec3c66] {\n  transition: opacity 1s ease-out;\n  transition: 1s ease-out;\n  opacity: 1;\n  max-height: 100px;\n}", ""]);
 
 // exports
 
@@ -44683,7 +44769,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control-file form-control",
-          attrs: { type: "file", name: "image", id: "exampleFormControlFile1" }
+          attrs: { type: "file", name: "imgs", id: "exampleFormControlFile1" }
         })
       ])
     ])
@@ -45447,7 +45533,7 @@ var staticRenderFns = [
               _vm._v("Robertoanfuso@gmail.com")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
+            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
               _vm._v(
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
               )
@@ -45471,7 +45557,7 @@ var staticRenderFns = [
               _vm._v("Robertoanfuso@gmail.com")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
+            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
               _vm._v(
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
               )
@@ -45495,7 +45581,7 @@ var staticRenderFns = [
               _vm._v("Robertoanfuso@gmail.com")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
+            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
               _vm._v(
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
               )
@@ -46012,7 +46098,7 @@ var render = function() {
             "div",
             {
               key: app.id,
-              staticClass: " col-12 col-lg-5  my-2 card ombra",
+              staticClass: " col-12 col-lg-5 my-2 card ombra",
               staticStyle: { width: "18rem" }
             },
             [
@@ -46033,7 +46119,7 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "  bottone  rosso-background ombra mx-1",
+                        staticClass: "bottone rosso-background ombra mx-1",
                         attrs: {
                           to: { name: "show", params: { slug: app.slug } }
                         }
@@ -46044,8 +46130,10 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: " bottone rosso-background ombra  mx-1",
-                        attrs: { to: { name: "edit" } }
+                        staticClass: "bottone rosso-background ombra mx-1",
+                        attrs: {
+                          to: { name: "edit", params: { slug: app.slug } }
+                        }
                       },
                       [_vm._v("Edit")]
                     ),
@@ -46053,7 +46141,7 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "  bottone  rosso-background ombra  mx-1",
+                        staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "sponsor" } }
                       },
                       [_vm._v("Sponsor")]
@@ -46062,16 +46150,16 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "  bottone  rosso-background ombra  mx-1",
+                        staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "stats" } }
                       },
-                      [_vm._v("Stats")]
+                      [_vm._v("Statistiche")]
                     ),
                     _vm._v(" "),
                     _c(
                       "router-link",
                       {
-                        staticClass: " bottone  rosso-background ombra mx-1 ",
+                        staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "email" } }
                       },
                       [_vm._v("Email")]
@@ -46247,7 +46335,7 @@ var render = function() {
               _vm._v("In Primo Piano")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.sponsor_apartment, function(app) {
+            _vm._l(_vm.sponsored_apartments, function(app) {
               return _c(
                 "div",
                 { key: app.id, staticClass: "margin-t-4" },
@@ -46307,54 +46395,7 @@ var render = function() {
         "div",
         { staticClass: "d-flex justify-content-between align-items-center" },
         [
-          _c(
-            "div",
-            { staticClass: "cerca" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.userInput,
-                    expression: "userInput"
-                  }
-                ],
-                staticClass:
-                  "form-ricerca text-center cream-background input mb-1",
-                attrs: { name: "userInput", type: "text", placeholder: "" },
-                domProps: { value: _vm.userInput },
-                on: {
-                  input: [
-                    function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.userInput = $event.target.value
-                    },
-                    function($event) {
-                      return _vm.autoAddress()
-                    }
-                  ]
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "bottone rosso-background cream mb-1 ombra",
-                  attrs: {
-                    to: {
-                      name: "results",
-                      params: { userInput: _vm.userInput }
-                    }
-                  }
-                },
-                [_vm._v("Cerca\n                ")]
-              )
-            ],
-            1
-          ),
+          _c("div", { staticClass: "cerca" }),
           _vm._v(" "),
           _c(
             "div",
@@ -46446,74 +46487,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Applica filtro")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col pl-3" }, [
-            _c("h2", { staticClass: "rosso" }, [_vm._v("Servizi aggiuntivi")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row row-cols-4" },
-              _vm._l(_vm.services, function(service) {
-                return _c("div", { key: service.id, staticClass: "col" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.SelectedServices,
-                        expression: "form.SelectedServices"
-                      }
-                    ],
-                    attrs: {
-                      type: "checkbox",
-                      id: service.name,
-                      name: "SelectedServices[]"
-                    },
-                    domProps: {
-                      value: service.id,
-                      checked: Array.isArray(_vm.form.SelectedServices)
-                        ? _vm._i(_vm.form.SelectedServices, service.id) > -1
-                        : _vm.form.SelectedServices
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.form.SelectedServices,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = service.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.form,
-                                "SelectedServices",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "SelectedServices",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "SelectedServices", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: service.name } }, [
-                    _vm._v(_vm._s(service.name))
-                  ])
-                ])
-              }),
-              0
+              [_vm._v("\n                    Applica filtro\n                ")]
             )
           ])
         ]
@@ -46523,7 +46497,7 @@ var render = function() {
     _c("div", [
       Object.keys(_vm.sponsored_apartments).length != 0
         ? _c("h2", { staticClass: "rosso mt-3" }, [
-            _vm._v("Appartamenti sponsorizzati")
+            _vm._v("\n            Appartamenti sponsorizzati\n        ")
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -46534,7 +46508,7 @@ var render = function() {
           return _c(
             "div",
             {
-              key: s_app.id,
+              key: s_app.apartment.id,
               staticClass: "col card border border-danger rounded",
               staticStyle: { width: "18rem" }
             },
@@ -46549,11 +46523,15 @@ var render = function() {
                 { staticClass: "card-body" },
                 [
                   _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(s_app.title))
+                    _vm._v(_vm._s(s_app.apartment.title))
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(s_app.description))
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(s_app.apartment.description) +
+                        "\n                    "
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
@@ -46561,7 +46539,10 @@ var render = function() {
                     {
                       staticClass: "btn btn-primary",
                       attrs: {
-                        to: { name: "show", params: { slug: s_app.slug } }
+                        to: {
+                          name: "show",
+                          params: { slug: s_app.apartment.slug }
+                        }
                       }
                     },
                     [_vm._v("Dettagli")]
@@ -46576,38 +46557,56 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("h2", { staticClass: "rosso mt-3" }, [_vm._v("Risultati ricerca")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row ombra" }, [
-        _c("div", { staticClass: "col-12 col-md-6 col-lg-4 block" }, [
-          _c("img", { attrs: { src: _vm.apartment.imgs, alt: "" } })
-        ]),
+    _c(
+      "div",
+      [
+        _c("h2", { staticClass: "rosso mt-3" }, [_vm._v("Risultati ricerca")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-md-6 col-lg-4 block" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.apartment.title))]),
-          _vm._v(" "),
-          _c("div", [_vm._v(_vm._s(_vm.apartment.address))]),
-          _vm._v(" "),
-          _c("div", [
-            _c("i", { staticClass: "fas fa-door-open my-2 mr-md-2" }),
-            _vm._v("camere:" + _vm._s(_vm.apartment.n_rooms) + " "),
-            _c("i", { staticClass: "fas fa-bed my-2 mr-md-2" }),
-            _vm._v("letti:" + _vm._s(_vm.apartment.n_beds))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-inline-block d-lg-none" }, [
-            _vm._v("bottone")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4 block d-none d-lg-block" }, [
-          _c("div", [_vm._v(_vm._s(_vm.apartment.description))]),
-          _vm._v(" "),
-          _c("div", [_vm._v("bottone")])
-        ])
-      ])
-    ])
+        _vm._l(_vm.apartments, function(app) {
+          return _c(
+            "div",
+            { key: app.apartment.id, staticClass: "row ombra" },
+            [
+              _c("div", { staticClass: "col-12 col-md-6 col-lg-4 block" }, [
+                _c("img", { attrs: { src: app.apartment.imgs, alt: "" } })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12 col-md-6 col-lg-4 block" }, [
+                _c("h3", [_vm._v(_vm._s(app.apartment.title))]),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(app.apartment.address))]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("i", { staticClass: "fas fa-door-open my-2 mr-md-2" }),
+                  _vm._v(
+                    "camere:" +
+                      _vm._s(app.apartment.n_rooms) +
+                      "\n                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-bed my-2 mr-md-2" }),
+                  _vm._v(
+                    "letti:" +
+                      _vm._s(app.apartment.n_beds) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "d-inline-block d-lg-none" }, [
+                  _vm._v("bottone")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4 block d-none d-lg-block" }, [
+                _c("div", [_vm._v(_vm._s(app.apartment.description))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("bottone")])
+              ])
+            ]
+          )
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
@@ -62973,8 +62972,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Documenti\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
