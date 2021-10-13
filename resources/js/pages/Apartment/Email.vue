@@ -14,19 +14,19 @@
                    <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
                     <div class="fl-right opal">13/10/2021</div>
                 </div>
                    <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
                     <div class="fl-right opal">13/10/2021</div>
                 </div>
                    <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
                     <div class="fl-right opal">13/10/2021</div>
                 </div>
             </div>
@@ -43,13 +43,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .box-img{
-        height: 250px;
-        width: auto;
-    }
       .mess{
-            max-height: 100px;
+           
+            max-height: 0px;
             overflow-y: auto;
+            opacity: 0;
+            transition: opacity 1s ease-out;
         }
 
     .box-mess{
@@ -57,15 +56,17 @@
     }
     .big-box{
         border: 3px solid #ced1cc;
-        
+        max-height: 105px;
     }
     .big-box:hover{
             background-color: #ced1cc;
-            transition: 1.5s;
-            .box-mess{
-                background-color: #dee0dc;
-                color: rgb(204, 66, 73);
-                transition: 1.5s;
+            transition: 1s;
+            max-height: 206px;
+            .mess{
+                transition: opacity 1s ease-out;
+                transition: 1s ease-out;
+                opacity: 1;
+                max-height: 100px;
             }
         }
 </style>
