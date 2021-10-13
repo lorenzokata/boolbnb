@@ -23,12 +23,12 @@
                             @input="autoAddress()"/>
 
                         <!-- btn cerca -->
-                        <router-link class="bottone rosso-background cream mb-1"
+                        <router-link class="bottone rosso-background cream mb-1 ombra"
                                 :to="{
                                     name: 'results',
                                     params: { userInput: userInput }
                                 }"
-                                >cerca
+                                >Cerca
                         </router-link>
 
                         <!-- suggerimenti -->
@@ -134,6 +134,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .ricerca {
     background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);
     background-repeat: no-repeat;

@@ -7418,6 +7418,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchResults",
   data: function data() {
@@ -11976,7 +12027,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".block[data-v-7e5ab916] {\n  height: 200px;\n  background-color: red;\n  border: 2px solid black;\n}", ""]);
+exports.push([module.i, ".form-ricerca[data-v-7e5ab916] {\n  width: 300px;\n  height: 41px;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.sel-room[data-v-7e5ab916] {\n  width: 60px;\n}\n.bottom-right[data-v-7e5ab916] {\n  float: right;\n}\n.form-group[data-v-7e5ab916] {\n  margin-bottom: 0 !important;\n}", ""]);
 
 // exports
 
@@ -45519,7 +45570,7 @@ var render = function() {
                 _c(
                   "router-link",
                   {
-                    staticClass: "bottone rosso-background cream mb-1",
+                    staticClass: "bottone rosso-background cream mb-1 ombra",
                     attrs: {
                       to: {
                         name: "results",
@@ -45527,7 +45578,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("cerca\n                    ")]
+                  [_vm._v("Cerca\n                    ")]
                 ),
                 _vm._v(" "),
                 _vm.arrayAddress != []
@@ -45637,53 +45688,148 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Search results")]),
+    _c("h1", { staticClass: "pt-3 rosso" }, [_vm._v("Risultati ricerca")]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "formControlRange" } }, [_vm._v("raggio")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.radius,
-            expression: "radius"
-          }
-        ],
-        staticClass: "form-control-range",
-        attrs: {
-          type: "range",
-          min: "20000",
-          max: "100000",
-          step: "1000",
-          id: "formControlRange"
-        },
-        domProps: { value: _vm.radius },
-        on: {
-          __r: function($event) {
-            _vm.radius = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("span", [_vm._v(_vm._s(_vm.radius / 1000) + "Km")]),
-      _vm._v(" "),
+    _c("div", [
       _c(
         "div",
-        {
-          staticClass: "bottone rosso-background",
-          on: {
-            click: function($event) {
-              return _vm.loadApartments(_vm.radius)
+        { staticClass: "d-flex justify-content-between align-items-center" },
+        [
+          _c(
+            "div",
+            { staticClass: "cerca" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.userInput,
+                    expression: "userInput"
+                  }
+                ],
+                staticClass:
+                  "form-ricerca text-center cream-background input mb-1",
+                attrs: { name: "userInput", type: "text", placeholder: "" },
+                domProps: { value: _vm.userInput },
+                on: {
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.userInput = $event.target.value
+                    },
+                    function($event) {
+                      return _vm.autoAddress()
+                    }
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "bottone rosso-background cream mb-1 ombra",
+                  attrs: {
+                    to: {
+                      name: "results",
+                      params: { userInput: _vm.userInput }
+                    }
+                  }
+                },
+                [_vm._v("Cerca\n                ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "ombra row row-cols-2 mt-3 mb-3" }, [
+        _c("div", { staticClass: "col p-3" }, [
+          _c("h3", { staticClass: "rosso" }, [_vm._v("Stanze e letti")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-inline-block mt-3 mr-4" }, [
+            _c("h5", [_vm._v("Stanze")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              { staticClass: "form-control sel-room" },
+              _vm._l(10, function(n) {
+                return _c("option", { key: n }, [_vm._v(_vm._s(n))])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-inline-block mt-3 mr-4" }, [
+            _c("h5", [_vm._v("Letti")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              { staticClass: "form-control sel-room" },
+              _vm._l(10, function(n) {
+                return _c("option", { key: n }, [_vm._v(_vm._s(n))])
+              }),
+              0
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col p-3" }, [
+          _c("h3", { staticClass: "rosso" }, [_vm._v("Distanza")]),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "formControlRange" } }, [
+            _vm._v("Raggio " + _vm._s(_vm.radius / 1000) + " Km")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.radius,
+                expression: "radius"
+              }
+            ],
+            staticClass: "form-control-range",
+            attrs: {
+              type: "range",
+              min: "20000",
+              max: "100000",
+              step: "1000",
+              id: "formControlRange"
+            },
+            domProps: { value: _vm.radius },
+            on: {
+              __r: function($event) {
+                _vm.radius = $event.target.value
+              }
             }
-          }
-        },
-        [_vm._v("applica filtro")]
-      )
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "bottone rosso-background bottom-right",
+              on: {
+                click: function($event) {
+                  return _vm.loadApartments(_vm.radius)
+                }
+              }
+            },
+            [_vm._v("Applica filtro")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div")
+      ])
     ]),
     _vm._v(" "),
-    _c("h2", { staticClass: "viola" }, [_vm._v("Sponsored Apartments")]),
+    _c("h2", { staticClass: "rosso" }, [_vm._v("Sponsored Apartments")]),
     _vm._v(" "),
     _c(
       "div",
@@ -45733,7 +45879,7 @@ var render = function() {
       0
     ),
     _vm._v(" "),
-    _c("h2", { staticClass: "viola" }, [_vm._v("Results")]),
+    _c("h2", { staticClass: "rosso" }, [_vm._v("Results")]),
     _vm._v(" "),
     _c("div", { staticClass: "row my-4 ombra" }, [
       _c("div", { staticClass: "col-12 col-md-6 col-lg-4 block" }),
@@ -45792,7 +45938,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "dropdown bottone rosso-background cream mb-1 ombra" },
+      [_c("i", { staticClass: "fas fa-sort-amount-down fa-lg" })]
+    )
+  }
+]
 render._withStripped = true
 
 
