@@ -20,7 +20,7 @@
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.slug }}">Show</router-link> 
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: app.slug }}">Edit</router-link>
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsor</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Stats</router-link>
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">Email</router-link>
 
                     </div>
@@ -65,14 +65,6 @@
 </script>
 
 <style lang="scss" scoped>
-  /*   .mega-bot{
-        font-size: 5rem;
-        text-align: center;
-        padding: 5rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-        border-radius: 3rem;
-        } */
 
         .rou-link {
             font-size: 5rem;

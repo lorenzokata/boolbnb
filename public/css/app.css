@@ -17151,12 +17151,6 @@ readers do not read off random characters that represent icons */
   transition: 0.5s;
 }
 
-/* width */
-
-.my-w-100 {
-  width: 100%;
-}
-
 /* margin top */
 
 .margin-t-4 {
