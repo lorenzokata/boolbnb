@@ -215,7 +215,6 @@ export default {
             .then(respo => {
                 this.apartment = respo.data.results.apartment;
                 this.services = respo.data.results.services;
-                console.log(this.apartment.services);
             })
             .catch(error => {
                 console.log(error);
@@ -246,7 +245,6 @@ export default {
                         arr.push(element.address.freeformAddress);
                     });
                     this.arrayAddress = arr;
-                    console.log(this.arrayAddress);
                 })
                 .catch(error => {
                     console.log(error);
@@ -258,10 +256,8 @@ export default {
             var formData = new FormData(form);
             formData.append('user_id', JSON.parse(this.$userId).id);
             formData.append('slug', this.apartment.slug);
-            console.log(formData);
             axios.post('/api/apartment/update', formData)
             .then((response) => {
-                console.log(response.data.results);
                 this.$router.push('../dashboard') 
             })
             .catch((error) =>{

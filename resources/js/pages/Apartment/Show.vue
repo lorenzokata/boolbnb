@@ -119,7 +119,7 @@ export default {
         // i services del appartamento sono in apartment.services (array)
         
         axios
-            .get("/api/apartment/" + this.$route.params.slug)
+            .get("/api/apartment/show/" + this.$route.params.slug)
             .then(response => {
                 this.apartment = response.data.results;
             })

@@ -6931,7 +6931,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/api/apartment/" + this.$route.params.slug + "/edit").then(function (respo) {
       _this.apartment = respo.data.results.apartment;
       _this.services = respo.data.results.services;
-      console.log(_this.apartment.services);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -6960,7 +6959,6 @@ __webpack_require__.r(__webpack_exports__);
           arr.push(element.address.freeformAddress);
         });
         _this2.arrayAddress = arr;
-        console.log(_this2.arrayAddress);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6973,10 +6971,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData(form);
       formData.append('user_id', JSON.parse(this.$userId).id);
       formData.append('slug', this.apartment.slug);
-      console.log(formData);
       axios.post('/api/apartment/update', formData).then(function (response) {
-        console.log(response.data.results);
-
         _this3.$router.push('../dashboard');
       })["catch"](function (error) {
         console.log(error);
@@ -7167,7 +7162,7 @@ __webpack_require__.r(__webpack_exports__);
 
     // l'appartamento é in apartment
     // i services del appartamento sono in apartment.services (array)
-    axios.get("/api/apartment/" + this.$route.params.slug).then(function (response) {
+    axios.get("/api/apartment/show/" + this.$route.params.slug).then(function (response) {
       _this.apartment = response.data.results;
     })["catch"](function (error) {
       console.log(error);
@@ -7331,12 +7326,9 @@ __webpack_require__.r(__webpack_exports__);
       // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
       _this.sponsored_apartments = response.data.results.sponsored_apartments;
       _this.apartments = response.data.results.apartments;
-      console.log(_this.sponsored_apartments);
-      console.log(_this.apartments);
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log();
   }
 });
 
@@ -7351,6 +7343,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7680,7 +7684,9 @@ __webpack_require__.r(__webpack_exports__);
       sponsored_apartments: [],
       apartments: [],
       radius: 20000,
-      drop: false
+      drop: false,
+      n_rooms: 0,
+      n_beds: 0
     };
   },
   mounted: function mounted() {
@@ -7692,7 +7698,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // il raggio della ricerca è espresso in metri
-      axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString()).then(function (response) {
+      axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString() + "/" + this.n_beds.toString() + "/" + this.n_rooms.toString()).then(function (response) {
         _this.sponsored_apartments = response.data.results.sponsored_apartments;
         _this.apartments = response.data.results.apartments;
       })["catch"](function (error) {
@@ -46306,9 +46312,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                        " +
+                                  "\n                                " +
                                     _vm._s(address) +
-                                    "\n                                    "
+                                    "\n                            "
                                 )
                               ]
                             )
@@ -46423,7 +46429,32 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "select",
-                { staticClass: "form-control sel-room" },
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.n_rooms,
+                      expression: "n_rooms"
+                    }
+                  ],
+                  staticClass: "form-control sel-room",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.n_rooms = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
                 _vm._l(10, function(n) {
                   return _c("option", { key: n }, [_vm._v(_vm._s(n))])
                 }),
@@ -46436,7 +46467,32 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "select",
-                { staticClass: "form-control sel-room" },
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.n_beds,
+                      expression: "n_beds"
+                    }
+                  ],
+                  staticClass: "form-control sel-room",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.n_beds = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
                 _vm._l(10, function(n) {
                   return _c("option", { key: n }, [_vm._v(_vm._s(n))])
                 }),

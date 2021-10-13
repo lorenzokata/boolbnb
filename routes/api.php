@@ -26,10 +26,10 @@ Route::namespace('Api')->group(function () {
     Route::get('/home', 'HomeController@getTrending');
 
     // ricerca con filtri SearchResults.vue (mounted)
-    Route::get('/search-results/{userInput}/{radius}', 'HomeController@home');
+    Route::get('/search-results/{userInput}/{radius}/{nbeds}/{nrooms}', 'HomeController@home');
 
     // dettagli appartamento show.vue (mounted)
-    Route::get('/apartment/{slug}', 'ApartmentController@show');
+    Route::get('/apartment/show/{slug}', 'ApartmentController@show');
 
     // elenco appartamenti dell'host Dashboard.vue (mounted)
     Route::get('/dashboard/{userId}', 'HomeController@dashboard');

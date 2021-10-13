@@ -51,7 +51,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home($userInput, $radius)
+    public function home($userInput, $radius, $n_beds, $n_rooms)
     {
 
         // dati per chiamata Geocode
@@ -106,7 +106,16 @@ class HomeController extends Controller
 
         foreach ($response['results'] as $item) {
 
-            $apartment = Apartment::where('id', $item['poi']['name'])->first();
+            $apartment = Apartment::where([
+                ['id', $item['poi']['name']],
+                ['n_beds', '>=', intval($n_beds)],
+                ['n_rooms', '>=', intval($n_rooms)]
+            ])->first();
+
+            if(is_null($apartment)){
+                continue;
+            };
+            
             $distance = getDistanceBetweenPoints($lat_center, $lon_center, $apartment->lat, $apartment->lon);
             // dd($distance);
             $element = [

@@ -52,14 +52,10 @@
                     // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
                     this.sponsored_apartments = response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
-                    console.log(this.sponsored_apartments);
-                    console.log(this.apartments);
                 })
                 .catch(error => {
                     console.log(error);
                 });
-
-            console.log();
         }
     }
 </script>

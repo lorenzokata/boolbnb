@@ -47,14 +47,14 @@
 
                     <div class="d-inline-block mt-3 mr-4">
                         <h5>Stanze</h5>
-                        <select class="form-control sel-room">
+                        <select v-model="n_rooms" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
                         </select>
                     </div>
 
                     <div class="d-inline-block mt-3 mr-4">
                         <h5>Letti</h5>
-                        <select class="form-control sel-room">
+                        <select v-model="n_beds" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
                         </select>
                     </div>
@@ -191,7 +191,9 @@ export default {
             sponsored_apartments: [],
             apartments: [],
             radius: 20000,
-            drop: false
+            drop: false,
+            n_rooms: 0,
+            n_beds: 0
         };
     },
     mounted() {
@@ -205,9 +207,10 @@ export default {
             axios
                 .get(
                     "/api/search-results/" +
-                        this.$route.params.userInput +
-                        "/" +
-                        radius.toString()
+                        this.$route.params.userInput + "/" +
+                        radius.toString() + "/" +
+                        this.n_beds.toString() + "/" +
+                        this.n_rooms.toString() 
                 )
                 .then(response => {
                     this.sponsored_apartments =
