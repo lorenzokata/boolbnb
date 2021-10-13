@@ -1,5 +1,37 @@
 <template>
-    <h1>EMAIL</h1>
+    <div class="container pt-3">
+        <div class="row">
+            <h1>Messaggi Dell'Appartamento</h1>
+        </div>
+            <div class="row">
+                <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
+                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
+                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
+                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="fl-right opal">13/10/2021</div>
+                </div>
+
+                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
+                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
+                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
+                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="fl-right opal">13/10/2021</div>
+                </div>
+                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
+                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
+                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
+                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="fl-right opal">13/10/2021</div>
+                </div>
+                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
+                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
+                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
+                    <div class="box-mess my-2 px-3 rounded">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
+                    <div class="fl-right opal">13/10/2021</div>
+                </div>
+            </div>
+        
+    </div>
 </template>
 
 <script>
@@ -9,3 +41,27 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .box-img{
+        height: 250px;
+        width: auto;
+    }
+
+    .box-mess{
+        background-color: white;
+    }
+    .big-box{
+        border: 3px solid #ced1cc;
+        
+    }
+    .big-box:hover{
+            background-color: #ced1cc;
+            transition: 1.5s;
+            .box-mess{
+                background-color: #dee0dc;
+                color: rgb(204, 66, 73);
+                transition: 1.5s;
+            }
+        }
+</style>
