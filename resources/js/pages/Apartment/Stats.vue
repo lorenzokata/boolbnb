@@ -1,5 +1,11 @@
 <template>
-    <h1>STATS</h1>
+<div class="container pt-3">
+    <h1>Statistiche</h1>
+
+    <div>L'appartamento é stato visto XXX volte</div>
+
+</div>
+    
 </template>
 
 <script>

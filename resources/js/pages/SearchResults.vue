@@ -41,7 +41,7 @@
 
                 <!-- stanze e letti -->
                 <div class="col p-3">
-                    <h3 class="rosso">Stanze e letti</h3>
+                    <h2 class="rosso">Stanze e letti</h2>
 
                     <div class="d-inline-block mt-3 mr-4">
                         <h5>Stanze</h5>
@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- distanza -->
-                <div class="form-group col p-3">
+                <div class="col pl-3">
 
                     <h3 class="rosso">Distanza</h3>
                     <label for="formControlRange">Raggio {{radius/1000}} Km</label>
@@ -78,11 +78,11 @@
 
                 </div>
 
-                <!-- servizi aggiuntivi -->
-                <div>
-
+                <!-- servizi aggiuntivi - sistemare-->
+                <div class="col pl-3">
+                    <h2 class="rosso">Servizi aggiuntivi</h2>
                     <!-- bisogna passare services come in create.vue -->
-                    <div class="row row-cols-3">
+                    <div class="row row-cols-4">
                         <div
                             class="col"
                             v-for="service in services"
@@ -107,60 +107,56 @@
         </div>
 
         <!-- sponsored apartments -->
-        <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
-        <h2 v-if="Object.keys(sponsored_apartments).length != 0" class="rosso mt-3">Sponsored apartments</h2>
+        <div>
+            <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
+            <h2 v-if="Object.keys(sponsored_apartments).length != 0" class="rosso mt-3">Appartamenti sponsorizzati</h2>
 
-        <div class="row row-cols-4 gx-5">
-            <div
-                class="col card border border-danger rounded"
-                style="width: 18rem;"
-                v-for="s_app in sponsored_apartments"
-                :key="s_app.id"
-            >
-                <img src="" class="card-img-top" alt="" />
-                <div class="card-body">
-                    <h5 class="card-title">{{ s_app.title }}</h5>
-                    <p class="card-text">{{ s_app.description }}</p>
-                    <router-link
-                        class="btn btn-primary"
-                        :to="{ name: 'show', params: { slug: s_app.slug } }"
-                        >Dettagli</router-link
-                    >
+            <div class="row row-cols-4 gx-5">
+                <div
+                    class="col card border border-danger rounded"
+                    style="width: 18rem;"
+                    v-for="s_app in sponsored_apartments"
+                    :key="s_app.id"
+                >
+                    <img src="" class="card-img-top" alt="" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ s_app.title }}</h5>
+                        <p class="card-text">{{ s_app.description }}</p>
+                        <router-link
+                            class="btn btn-primary"
+                            :to="{ name: 'show', params: { slug: s_app.slug } }"
+                            >Dettagli</router-link
+                        >
+                    </div>
                 </div>
             </div>
         </div>
 
-        <h2 class="rosso mt-3">Results</h2>
+        <!-- apartments -->
+        <div>
 
-        <div class="row my-4 ombra">
-                <div class="col-12 col-md-6 col-lg-4 block"></div>
-                <div class="col-12 col-md-6 col-lg-4 block">
-                    <h3>{{ apartment.title }}</h3>
-                    <div>{{ apartment.address }}</div>
-                    <div><i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{apartment.n_rooms}} <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{apartment.n_beds}}</div>
-                    <div class="d-inline-block d-lg-none">bottone</div>
-                </div>
-                <div class="col-4 block d-none d-lg-block">
-                    <div>{{ apartment.description }}</div>
-                    <div>bottone</div>
-                </div>
-            </div>
+            <h2 class="rosso mt-3">Risultati ricerca</h2>
+
             <div class="row ombra">
 
-                    <div class="col-12 col-md-6 col-lg-4 block">
-                        <img :src="apartment.imgs" alt="">
-                    </div>
+                <div class="col-12 col-md-6 col-lg-4 block">
+                    <img :src="apartment.imgs" alt="">
+                </div>
+
                 <div class="col-12 col-md-6 col-lg-4 block">
                     <h3>{{ apartment.title }}</h3>
                     <div>{{ apartment.address }}</div>
                     <div><i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{apartment.n_rooms}} <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{apartment.n_beds}}</div>
                     <div class="d-inline-block d-lg-none">bottone</div>
                 </div>
+
                 <div class="col-4 block d-none d-lg-block">
                     <div>{{ apartment.description }}</div>
                     <div>bottone</div>
                 </div>
+
             </div>
+        </div>
 
     </div>
 </template>
