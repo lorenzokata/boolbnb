@@ -135,7 +135,9 @@ export default {
                     console.log(response.data.results);
                     this.apartment = response.data.results.apartments[0].apartment;
                     console.log(this.apartment);
+                    console.log(response.data.results.apartments);
                 })
+                
                 .catch(error => {
                     console.log(error);
                 });

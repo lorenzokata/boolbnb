@@ -7,48 +7,7 @@
 
         <h3>i miei appartamenti</h3>
         <div class="row justify-content-between">
-<!--             <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="Nome Appartamento">
-                <div class="card-body">
-                    <h5 class="card-title">Nome Appartamento</h5>
-                    <div class="d-flex justify-content-end">
 
-                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
-                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
-                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
-                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
-
-                    </div>
-                </div>
-            </div>
-            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="Nome Appartamento">
-                <div class="card-body">
-                    <h5 class="card-title">Nome Appartamento</h5>
-                    <div class="d-flex justify-content-end">
-
-                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
-                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
-                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
-                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
-
-                    </div>
-                </div>
-            </div>
-            <div class=" col-12 col-lg-5  mx-3 my-2 card ombra" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="Nome Appartamento">
-                <div class="card-body">
-                    <h5 class="card-title">Nome Appartamento</h5>
-                    <div class="d-flex justify-content-end">
-
-                        <router-link class="  bottone  rosso-background ombra " :to="{ name: 'show'}">Show</router-link> 
-                        <router-link class=" bottone rosso-background ombra  mx-2" :to="{ name: 'edit'}">Edit</router-link>
-                        <router-link class="  bottone  rosso-background ombra  mx-2" :to="{ name: 'stats'}">Statistiche</router-link>
-                        <router-link class=" bottone  rosso-background ombra  " :to="{ name: 'email'}">Email</router-link>
-
-                    </div>
-                </div>
-            </div> -->
             <div class=" col-12 col-lg-5   my-2 card ombra" style="width: 18rem;" 
                 v-for="app in apartments"
                 :key="app.id">
