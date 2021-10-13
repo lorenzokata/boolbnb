@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 
-class Apartment_ServiceSeeder extends Seeder
+class Apartment_Serviceer extends er
 {
     /**
-     * Run the database seeds.
+     * Run the database s.
      *
      * @return void
      */

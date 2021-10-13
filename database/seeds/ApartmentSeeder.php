@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use App\Apartment;
 
-class ApartmentSeeder extends Seeder
+class Apartmenter extends er
 {
     /**
-     * Run the database seeds.
+     * Run the database s.
      *
      * @return void
      */

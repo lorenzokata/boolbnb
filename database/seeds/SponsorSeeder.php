@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 
-class SponsorSeeder extends Seeder
+class Sponsorer extends er
 {
     /**
-     * Run the database seeds.
+     * Run the database s.
      *
      * @return void
      */

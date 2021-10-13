@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
 
-class Apartment_SponsorSeeder extends Seeder
+class Apartment_Sponsor extends 
 {
     /**
      * Run the database seeds.

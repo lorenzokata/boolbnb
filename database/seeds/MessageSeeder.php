@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
 
-class MessageSeeder extends Seeder
+class Messageer extends er
 {
     /**
-     * Run the database seeds.
+     * Run the database s.
      *
      * @return void
      */

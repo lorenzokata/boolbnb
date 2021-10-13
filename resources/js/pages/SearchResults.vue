@@ -29,14 +29,15 @@
 
                 </div>
 
-                <div class="dropdown bottone rosso-background cream mb-1 ombra">
+                <div @click=dropDown class="dropdown bottone rosso-background cream mb-1 ombra">
                     <i class="fas fa-sort-amount-down fa-lg"></i>
                 </div>
 
             </div>
 
             <!-- menu dropdown al click -->
-            <div class="ombra row row-cols-2 mt-3 mb-3">
+            <div :class="(drop == false) ? 'd-none' : ''" 
+                class="ombra row row-cols-2 mt-3 mb-3">
 
                 <!-- stanze e letti -->
                 <div class="col p-3">
@@ -78,15 +79,36 @@
                 </div>
 
                 <!-- servizi aggiuntivi -->
-                <div></div>
+                <div>
+
+                    <!-- bisogna passare services come in create.vue -->
+                    <div class="row row-cols-3">
+                        <div
+                            class="col"
+                            v-for="service in services"
+                            :key="service.id"
+                        >
+                            <input
+                                type="checkbox"
+                                :id="service.name"
+                                :value="service.id"
+                                v-model="form.SelectedServices"
+                                name="SelectedServices[]"
+                            />
+
+                        <label :for="service.name">{{ service.name }}</label>
+                    </div>
+                </div>
+
+                </div>
 
             </div>
 
         </div>
 
-
+        <!-- sponsored apartments -->
         <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
-        <h2 class="rosso">Sponsored Apartments</h2>
+        <h2 v-if="Object.keys(sponsored_apartments).length != 0" class="rosso mt-3">Sponsored apartments</h2>
 
         <div class="row row-cols-4 gx-5">
             <div
@@ -108,8 +130,7 @@
             </div>
         </div>
 
-        <h2 class="rosso">Results</h2>
-
+        <h2 class="rosso mt-3">Results</h2>
 
         <div class="row my-4 ombra">
                 <div class="col-12 col-md-6 col-lg-4 block"></div>
@@ -141,7 +162,6 @@
                 </div>
             </div>
 
-
     </div>
 </template>
 
@@ -154,7 +174,8 @@ export default {
             sponsored_apartments: [],
             apartments: [],
             apartment:null,
-            radius: 20000
+            radius: 20000,
+            drop: false
         };
     },
     beforeCreate() {
@@ -192,7 +213,16 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+
+        dropDown: function(){
+            if(this.drop == false){
+                this.drop = true
+            } else {
+                this.drop = false
+            }
         }
+
         // creare la funzione che fa chiamata axios verso homecontroller@home
         // parametri saranno userInput e radius
         // la funzione sará chiamata su mounted con parametro fisso a 20km convertiti

@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Faker\Generator as Faker;
 
-class UserSeeder extends Seeder
+class Userer extends er
 {
     /**
-     * Run the database seeds.
+     * Run the database s.
      *
      * @return void
      */

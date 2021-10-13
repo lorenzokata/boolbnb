@@ -1,26 +1,26 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\er;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class Databaseer extends er
 {
     /**
-     * Seed the application's database.
+     *  the application's database.
      *
      * @return void
      */
     public function run()
     {
         $this->call([
-            UserSeeder::class,
-            ApartmentSeeder::class,
-            SponsorSeeder::class,
-            ServiceSeeder::class,
-            MessageSeeder::class,
-            ViewSeeder::class,
-            Apartment_SponsorSeeder::class,
-            Apartment_ServiceSeeder::class
+            Userer::class,
+            Apartmenter::class,
+            Sponsorer::class,
+            Serviceer::class,
+            Messageer::class,
+            Viewer::class,
+            Apartment_Sponsorer::class,
+            Apartment_Serviceer::class
         ]);
     }
 
