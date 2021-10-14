@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-lg-7 altezza">
-                <h1 class="viola text-center">{{ apartment.title }}</h1>
+                <h1 class="rosso text-center pt-3">{{ apartment.title }}</h1>
                 <div class="margin-l-7 indirizzo opal">
                     {{ apartment.address }}
                 </div>
@@ -13,11 +13,11 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5 my-descrizione">
-                <!-- <h3 class="d-block viola">Dettagli casa</h3> -->
+                <!-- <h3 class="d-block rosso">Dettagli casa</h3> -->
                 
 <!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
                 <div class="d-flex justify-content-between align-items-center ">
-                    <h3 class="d-block viola">Dettagli casa</h3>
+                    <h3 class="d-block rosso">Dettagli casa</h3>
                     <div>
                         <router-link 
                             v-if="this.$userId != ''"
@@ -32,26 +32,26 @@
                     <ul class="dettagli d-inline-block">
                         <li class="d-flex align-items-center">
                             <i
-                                class="fas fa-door-open viola icone my-2 mr-md-2"
+                                class="fas fa-door-open rosso icone my-2 mr-md-2"
                             ></i>
                             numero camere:{{ apartment.n_rooms }}
                         </li>
                         <li class="d-flex align-items-center">
-                            <i class="fas fa-bed viola icone my-2 mr-md-2"></i>
+                            <i class="fas fa-bed rosso icone my-2 mr-md-2"></i>
                             numero letti:{{ apartment.n_beds }}
                         </li>
                         <li class="d-flex align-items-center">
                             <i
-                                class="fas fa-toilet viola icone my-2 mr-md-2"
+                                class="fas fa-toilet rosso icone my-2 mr-md-2"
                             ></i>
                             numero bagni:{{ apartment.n_baths }}
                         </li>
                         <li class="d-flex align-items-center">
-                            <i class="fas fa-home viola icone my-2 mr-md-2"></i>
+                            <i class="fas fa-home rosso icone my-2 mr-md-2"></i>
                             numero metri quadri:{{ apartment.square_meters }}
                         </li>
                     </ul>
-                    <h3 class="d-block viola mt-3">Servizi della casa</h3>
+                    <h3 class="d-block rosso mt-3">Servizi della casa</h3>
                     <div>
                         <div>
                             Lorem ipsum dolor sit amet consectetur, adipisicing
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="d-block viola mt-3">Descrizione</h3>
+                <h3 class="d-block rosso mt-3">Descrizione</h3>
                 <p>
                     {{ apartment.description }} Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit. Facilis quisquam commodi magni
@@ -75,7 +75,7 @@
                     voluptatum veritatis dolores?
                 </p>
 
-                <h3 class="d-block viola mt-3">Locazione della casa</h3>
+                <h3 class="d-block rosso mt-3">Locazione della casa</h3>
                 <div class="img-show">
                     <!-- <div id="map" style="width: 100px; height: 100px;"></div> -->
                     <img
@@ -84,7 +84,7 @@
                     />
                 </div>
 
-                <h3 class="d-block viola mt-3">Invia un mail al propietario</h3>
+                <h3 class="d-block rosso mt-3">Invia un mail al propietario</h3>
                 <form action="" class="d-flex flex-column">
                     <label for="" class="mt-2">Nome e Cognome</label>
                     <input type="text" />
