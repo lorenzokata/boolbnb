@@ -59,7 +59,7 @@
                 <div class=" col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2">
                     <h3 class="text-center pt-3 ">In Primo Piano</h3>
                         <div class="margin-t-4"
-                        v-for="app in sponsor_apartment"
+                        v-for="app in sponsored_apartments"
                         :key="app.id">
 
                         <router-link class="my-card margin-t-4 mx-auto ombra" :to="{ name: 'show', params: { slug: app.slug }}"><img :src="'storage/'+app.imgs" alt=""></router-link>

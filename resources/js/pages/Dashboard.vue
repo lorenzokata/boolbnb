@@ -4,6 +4,28 @@
         <router-link class="bottone rosso-background ombra fl-right" :to="{ name: 'create'}">Crea</router-link>
 
         <h1 class="mb-3">Dashboard</h1>
+        <h3>i miei appartamenti sponsorizzati</h3>
+        <div class="row justify-content-between">
+
+            <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
+                v-for="s_app in sponsored_apartments"
+                :key="s_app.id">
+
+                <img :src="'storage/'+s_app.imgs" class="card-img-top pt-3 max" :alt="s_app.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{s_app.title}}</h5>
+                    <div class="d-flex justify-content-end">
+
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Show</router-link> 
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Edit</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsor</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">Email</router-link>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <h3>i miei appartamenti</h3>
         <div class="row justify-content-between">
@@ -12,7 +34,7 @@
                 v-for="app in apartments"
                 :key="app.id">
 
-                <img :src="'storage/'+app.imgs" class="card-img-top pt-3" :alt="app.title">
+                <img :src="'storage/'+app.imgs" class="card-img-top pt-3 max" :alt="app.title">
                 <div class="card-body">
                     <h5 class="card-title">{{app.title}}</h5>
                     <div class="d-flex justify-content-end">
@@ -73,7 +95,9 @@
         margin-bottom: 3rem;
         border-radius: 3rem;
         } */
-
+        .max{
+            max-height: 266px;
+        }
         .rou-link {
             font-size: 5rem;
             text-align: center;
