@@ -4,12 +4,12 @@
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Edit</h4>
             <div>
-                <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
             </div>
         </div>
 
         <div>
-            <h1 class="viola"> {{apartment.title}} </h1>
+            <h1 class="rosso" > {{exApartmentTitle}} </h1>
             <form id="form" class="form-group" @submit.prevent="submit" action="../api/apartment/update" method="post" enctype="multipart/form-data">
                 
                 <div class="form-row d-flex justify-content-between align-items-center">
@@ -33,9 +33,9 @@
                     </div>  
                 </div>
 
-                <!-- qui stampo la foto -->
-                <div>
-                    <img class="my-w-100" :src="apartment.imgs" alt="apartment.title">
+                <!-- foto -->
+                <div class="d-flex justify-content-center">
+                    <img class="foto" :src="apartment.imgs" alt="apartment.title">
                 </div>
 
                 <h4 class="mt-3">Descrizione</h4>
@@ -49,10 +49,10 @@
 
                 <hr>
 
-                <h4>Servizi</h4>
+                <h4 class="mb-1">Servizi</h4>
 
                 <!-- select di vue -->
-                <div class="row row-cols-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                     <div
                         class="col"
                         v-for="service in services"
@@ -121,8 +121,12 @@
                         <span class="input-group-text" id="address">Modifica indirizzo</span>
                     </div>
                     <input @input="autoAddress()" id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="address" required>
-                    <div
-                        class="list-group"
+
+                    
+                </div>
+
+                    <!-- suggeriti -->
+                    <div class="list-group suggeriti"
                         :class="{ 'd-none': addressActive }"
                         v-if="arrayAddress != []"
                     >
@@ -138,8 +142,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-
+                    
                 <hr>
 
                 <!-- immagine -->
@@ -155,11 +158,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="btn btn-primary">Modifica</button>
+                            <button type="submit" class="bottone rosso-background ombra">Modifica</button>
                         </div>
 
                         <div class="mb-3">
-                            <router-link class="btn btn-primary" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
                         </div>
 
                     </div>
@@ -185,7 +188,7 @@ export default {
             form: {
                 title: null,
                 description: null,
- 
+    
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
@@ -198,7 +201,7 @@ export default {
                 SelectedServices: []
             },
 
-            
+            exApartmentTitle: '',
             apartment: [],
             arrayAddress: [],
             addressActive: true,
@@ -215,11 +218,17 @@ export default {
             .then(respo => {
                 this.apartment = respo.data.results.apartment;
                 this.services = respo.data.results.services;
-                console.log(this.apartment.services);
+                // console.log(this.apartment.services);
+                this.exApartmentTitle = this.apartment.title;
+                console.log(this.exApartmentTitle);
             })
             .catch(error => {
                 console.log(error);
             });
+
+        
+        
+        
 
     },
     methods: {
@@ -246,7 +255,6 @@ export default {
                         arr.push(element.address.freeformAddress);
                     });
                     this.arrayAddress = arr;
-                    console.log(this.arrayAddress);
                 })
                 .catch(error => {
                     console.log(error);
@@ -258,10 +266,8 @@ export default {
             var formData = new FormData(form);
             formData.append('user_id', JSON.parse(this.$userId).id);
             formData.append('slug', this.apartment.slug);
-            console.log(formData);
             axios.post('/api/apartment/update', formData)
             .then((response) => {
-                console.log(response.data.results);
                 this.$router.push('../dashboard') 
             })
             .catch((error) =>{
@@ -271,6 +277,28 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+
+.suggeriti{
+    margin: 0 132px;
+    min-width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .suggeriti{
+    margin: 0 0 0 132px;
+    }
+}
+
+.foto{
+    max-width: 700px;
+    width: 100%;
+}
+
+</style>
 
 
 

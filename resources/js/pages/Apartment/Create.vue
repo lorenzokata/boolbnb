@@ -4,7 +4,7 @@
         <div>
             <div class="d-flex justify-content-between align-items-center pt-3">
                 <h4>Create</h4>
-                <router-link class="btn btn-primary" :to="{ name: 'dashboard' }"
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard' }"
                     >Dashboard</router-link
                 >
             </div>
@@ -39,6 +39,7 @@
                 <div>
                     <label for="visible">Visibile</label>
                     <input
+                        class="tick"
                         id="visible"
                         v-model="form.visible"
                         type="checkbox"
@@ -88,7 +89,7 @@
 
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_rooms"
                             >Numero stanze</label
                         >
@@ -101,7 +102,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
@@ -111,7 +112,7 @@
                             required
                         />
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_baths"
                             >Numero bagni</label
                         >
@@ -124,7 +125,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="square_meters"
                             >Metri quadri</label
                         >
@@ -198,14 +199,14 @@
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="bottone rosso-background ombra">
                                 Submit
                             </button>
                         </div>
 
                         <div class="mb-3">
                             <router-link
-                                class="btn btn-primary"
+                                class="bottone rosso-background ombra"
                                 :to="{ name: 'dashboard' }"
                                 >Dashboard</router-link
                             >

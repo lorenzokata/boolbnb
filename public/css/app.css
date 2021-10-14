@@ -17118,6 +17118,10 @@ readers do not read off random characters that represent icons */
   text-decoration: none;
 }
 
+.tick {
+  background-color: #f2545b;
+}
+
 .viola-background {
   background-color: #a93f55;
 }
@@ -17149,12 +17153,6 @@ readers do not read off random characters that represent icons */
 .hover-black:hover {
   background-color: rgba(0, 0, 0, 0.1);
   transition: 0.5s;
-}
-
-/* width */
-
-.my-w-100 {
-  width: 100%;
 }
 
 /* margin top */

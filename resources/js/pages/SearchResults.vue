@@ -8,24 +8,24 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="cerca">
                     <!-- input -->
-                    <input
+                    <!-- <input
                         class="form-ricerca text-center cream-background input mb-1"
                         v-model="userInput"
                         name="userInput"
                         type="text"
                         placeholder=""
                         @input="autoAddress()"
-                    />
+                    /> -->
 
                     <!-- btn cerca -->
-                    <router-link
+                    <!-- <router-link
                         class="bottone rosso-background cream mb-1 ombra"
                         :to="{
                             name: 'results',
                             params: { userInput: userInput }
                         }"
                         >Cerca
-                    </router-link>
+                    </router-link> -->
                 </div>
 
                 <div
@@ -47,14 +47,14 @@
 
                     <div class="d-inline-block mt-3 mr-4">
                         <h5>Stanze</h5>
-                        <select class="form-control sel-room">
+                        <select v-model="n_rooms" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
                         </select>
                     </div>
 
                     <div class="d-inline-block mt-3 mr-4">
                         <h5>Letti</h5>
-                        <select class="form-control sel-room">
+                        <select v-model="n_beds" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
                         </select>
                     </div>
@@ -85,9 +85,8 @@
                 </div>
 
                 <!-- servizi aggiuntivi - sistemare-->
-                <div class="col pl-3">
+                <!-- <div class="col pl-3">
                     <h2 class="rosso">Servizi aggiuntivi</h2>
-                    <!-- bisogna passare services come in create.vue -->
                     <div class="row row-cols-4">
                         <div
                             class="col"
@@ -107,7 +106,7 @@
                             }}</label>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -126,15 +125,20 @@
                     class="col card border border-danger rounded"
                     style="width: 18rem;"
                     v-for="s_app in sponsored_apartments"
-                    :key="s_app.id"
+                    :key="s_app.apartment.id"
                 >
                     <img src="" class="card-img-top" alt="" />
                     <div class="card-body">
-                        <h5 class="card-title">{{ s_app.title }}</h5>
-                        <p class="card-text">{{ s_app.description }}</p>
+                        <h5 class="card-title">{{ s_app.apartment.title }}</h5>
+                        <p class="card-text">
+                            {{ s_app.apartment.description }}
+                        </p>
                         <router-link
                             class="btn btn-primary"
-                            :to="{ name: 'show', params: { slug: s_app.slug } }"
+                            :to="{
+                                name: 'show',
+                                params: { slug: s_app.apartment.slug }
+                            }"
                             >Dettagli</router-link
                         >
                     </div>
@@ -146,27 +150,31 @@
         <div>
             <h2 class="rosso mt-3">Risultati ricerca</h2>
 
-            <div class="row ombra">
+            <div
+                v-for="app in apartments"
+                :key="app.apartment.id"
+                class="row ombra"
+            >
                 <div class="col-12 col-md-6 col-lg-4 block">
-                    <img :src="apartment.imgs" alt="" />
+                    <img :src="app.apartment.imgs" alt="" />
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4 block">
-                    <h3>{{ apartment.title }}</h3>
-                    <div>{{ apartment.address }}</div>
+                    <h3>{{ app.apartment.title }}</h3>
+                    <div>{{ app.apartment.address }}</div>
                     <div>
                         <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
-                            apartment.n_rooms
+                            app.apartment.n_rooms
                         }}
                         <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
-                            apartment.n_beds
+                            app.apartment.n_beds
                         }}
                     </div>
                     <div class="d-inline-block d-lg-none">bottone</div>
                 </div>
 
                 <div class="col-4 block d-none d-lg-block">
-                    <div>{{ apartment.description }}</div>
+                    <div>{{ app.apartment.description }}</div>
                     <div>bottone</div>
                 </div>
             </div>
@@ -183,7 +191,9 @@ export default {
             sponsored_apartments: [],
             apartments: [],
             radius: 20000,
-            drop: false
+            drop: false,
+            n_rooms: 0,
+            n_beds: 0
         };
     },
     mounted() {
@@ -197,9 +207,10 @@ export default {
             axios
                 .get(
                     "/api/search-results/" +
-                        this.$route.params.userInput +
-                        "/" +
-                        radius.toString()
+                        this.$route.params.userInput + "/" +
+                        radius.toString() + "/" +
+                        this.n_beds.toString() + "/" +
+                        this.n_rooms.toString() 
                 )
                 .then(response => {
                     this.sponsored_apartments =
