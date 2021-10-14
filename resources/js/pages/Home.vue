@@ -21,15 +21,12 @@
                     <div class="box-cerca ">
                         <!-- input --><!-- btn cerca -->
     <!--boolflix seachbar -->
-                    <h2 class="search-text">Dove vuoi andare?</h2>
+                    <h2 class="search-text text-align-center" >Dove vuoi andare?</h2>
                     <div class=" search_box">
-                    
-                        
-                        
                         <input 
                             v-model="userInput"
                             
-                            id="search" class="search " type="text">
+                            id="search" class="search" type="text">
                         <router-link
                                 class="bottone rosso-background cream mb-1 ombra"
                                 :to="{
@@ -365,29 +362,39 @@ export default {
     font-weight: 700;
     color: #3a3a3a;
     font-size: 20px;
-    &:hover .search{
-        width: 300px;
-        transition: width 0.7s;
-        background-color: white;
-
-        border-radius: 20px;
-    }
+        &:hover .search{
+            width: 300px;
+            transition:  ease-in-out 0.5s ;
+            background-color: white;
+            padding: 4px 10px;
+            border-radius: 1000px;
+        }
 }
 
 .search{
     width: 0px;
-    transition: width 0.9s;
+    
     background-color: rgba(255, 255, 255, 0);
     box-sizing: content-box;
     border: 0px solid rgba(255, 255, 255, 0);
-    height: 60%;
-    border-radius: 50px;
-    transition: 0.5s ease-out;
-    color: black;
-    
-  
-    
+    height: 70%;
+    border-radius: 1000px;
+    padding: 4px 0px;
+    color: rgba(0, 0, 0, 0);
+    // transition: padding 0.4s;
+    transition: ease-out 0.4s;
+        &:focus{
+            width: 300px;
+            background-color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 0px;
+            outline: none;
+            color: black;
+        } 
 }
+
+
 
 .search-text{
     color: white;

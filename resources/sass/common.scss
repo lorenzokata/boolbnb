@@ -55,19 +55,22 @@
 .rosso-background{
   background-color:#f2545b;
   color: #f3f7f0;
+  border: 3px solid rgba(0, 0, 0, 0);
+  transition:0.5s ;
   
 }
 .rosso-background:hover{
   text-decoration: none;
+  background-color:#f2545c00;
+  border: 3px solid white;
+  transition: 0.5s;
+  color: white;
 }
 
 .cream-background{background-color: #f3f7f0;}
 
 /* hover */
-.rosso-background:hover{
-    transition: 0.5s;
-    background-color: rgb(190, 66, 72);
-  }
+
   
 .cream-background:hover{
   background-color: #ced1cc;

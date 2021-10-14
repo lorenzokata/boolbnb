@@ -7506,9 +7506,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -12349,7 +12346,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://images.wallpaperscraft.com/image/single/city_aerial_view_road_156925_3840x2400.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  position: relative;\n}\n.box-cerca[data-v-b3c5cf30] {\n  position: absolute;\n  top: 37%;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 350px;\n  height: 40px;\n  border-radius: 20px;\n}\n.box-cerca .suggeriti[data-v-b3c5cf30] {\n  max-height: 40vh;\n  overflow-y: auto;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  position: absolute;\n  top: calc(40% - 150px);\n  left: calc(50% - 50px);\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */\n  background-position: center;\n  background-repeat: no-repeat;\n  /* height: 80%; */\n  width: 90%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n}\n.home-dash[data-v-b3c5cf30] {\n  position: absolute;\n  top: 50px;\n  right: 50px;\n}\n.fa-user-circle[data-v-b3c5cf30] {\n  height: 3rem;\n  width: 3rem;\n}\n.avatar[data-v-b3c5cf30] {\n  width: 30px;\n  border-radius: 50%;\n}\n.avatar-bordered[data-v-b3c5cf30] {\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);\n  border: white 1px solid;\n}\n.avatar-large[data-v-b3c5cf30] {\n  width: 50px;\n}\n.card[data-v-b3c5cf30] {\n  height: 250px;\n  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);\n  background-size: cover !important;\n  color: white;\n  position: relative;\n  border-radius: 20px;\n  margin-bottom: 20px;\n}\n.card-user[data-v-b3c5cf30] {\n  position: absolute;\n  right: 10px;\n  top: 10px;\n}\n.card-category[data-v-b3c5cf30] {\n  position: absolute;\n  top: 10px;\n  left: 10px;\n  font-size: 20px;\n}\n.card-description[data-v-b3c5cf30] {\n  position: absolute;\n  bottom: 10px;\n  left: 10px;\n}\n.card-description h2[data-v-b3c5cf30] {\n  font-size: 22px;\n}\n.card-description p[data-v-b3c5cf30] {\n  font-size: 15px;\n}\n.card-link[data-v-b3c5cf30] {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  z-index: 2;\n  background: black;\n  opacity: 0;\n}\n.card-link[data-v-b3c5cf30]:hover {\n  opacity: 0.1;\n}\n.bg_img[data-v-b3c5cf30] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.bg_img img[data-v-b3c5cf30] {\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n}\n.darker_gradient[data-v-b3c5cf30] {\n  background: rgba(0, 0, 0, 0.2);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.scroll_container[data-v-b3c5cf30] {\n  height: 100%;\n}\n.search_box[data-v-b3c5cf30] {\n  height: 50px;\n  width: 400px;\n  font-weight: 700;\n  color: #3a3a3a;\n  font-size: 20px;\n}\n.search_box:hover .search[data-v-b3c5cf30] {\n  width: 300px;\n  transition: width 0.7s;\n  background-color: white;\n  border-radius: 20px;\n}\n.search[data-v-b3c5cf30] {\n  width: 0px;\n  transition: width 0.9s;\n  background-color: rgba(255, 255, 255, 0);\n  box-sizing: content-box;\n  border: 0px solid rgba(255, 255, 255, 0);\n  height: 60%;\n  border-radius: 50px;\n  transition: 0.5s ease-out;\n  color: black;\n}\n.search-text[data-v-b3c5cf30] {\n  color: white;\n}", ""]);
+exports.push([module.i, ".ricerca[data-v-b3c5cf30] {\n  background-image: url(https://images.wallpaperscraft.com/image/single/city_aerial_view_road_156925_3840x2400.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  position: relative;\n}\n.box-cerca[data-v-b3c5cf30] {\n  position: absolute;\n  top: 37%;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 350px;\n  height: 40px;\n  border-radius: 20px;\n}\n.box-cerca .suggeriti[data-v-b3c5cf30] {\n  max-height: 40vh;\n  overflow-y: auto;\n}\n.form-ricerca[data-v-b3c5cf30] {\n  width: 60%;\n  align-items: center;\n  border-radius: 200px;\n  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;\n}\n.logo[data-v-b3c5cf30] {\n  position: absolute;\n  top: calc(40% - 150px);\n  left: calc(50% - 50px);\n  height: 100px;\n  width: 100px;\n  transform: rotate(180deg);\n}\n.my-card[data-v-b3c5cf30] {\n  /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */\n  background-position: center;\n  background-repeat: no-repeat;\n  /* height: 80%; */\n  width: 90%;\n  border-radius: 1.25rem;\n}\n.my-card img[data-v-b3c5cf30] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n  border-radius: 1.25rem;\n}\n.my-primo-piano[data-v-b3c5cf30] {\n  height: calc(100vh - 60px);\n  width: 100%;\n}\n.home-dash[data-v-b3c5cf30] {\n  position: absolute;\n  top: 50px;\n  right: 50px;\n}\n.fa-user-circle[data-v-b3c5cf30] {\n  height: 3rem;\n  width: 3rem;\n}\n.avatar[data-v-b3c5cf30] {\n  width: 30px;\n  border-radius: 50%;\n}\n.avatar-bordered[data-v-b3c5cf30] {\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);\n  border: white 1px solid;\n}\n.avatar-large[data-v-b3c5cf30] {\n  width: 50px;\n}\n.card[data-v-b3c5cf30] {\n  height: 250px;\n  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);\n  background-size: cover !important;\n  color: white;\n  position: relative;\n  border-radius: 20px;\n  margin-bottom: 20px;\n}\n.card-user[data-v-b3c5cf30] {\n  position: absolute;\n  right: 10px;\n  top: 10px;\n}\n.card-category[data-v-b3c5cf30] {\n  position: absolute;\n  top: 10px;\n  left: 10px;\n  font-size: 20px;\n}\n.card-description[data-v-b3c5cf30] {\n  position: absolute;\n  bottom: 10px;\n  left: 10px;\n}\n.card-description h2[data-v-b3c5cf30] {\n  font-size: 22px;\n}\n.card-description p[data-v-b3c5cf30] {\n  font-size: 15px;\n}\n.card-link[data-v-b3c5cf30] {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  z-index: 2;\n  background: black;\n  opacity: 0;\n}\n.card-link[data-v-b3c5cf30]:hover {\n  opacity: 0.1;\n}\n.bg_img[data-v-b3c5cf30] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n}\n.bg_img img[data-v-b3c5cf30] {\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n}\n.darker_gradient[data-v-b3c5cf30] {\n  background: rgba(0, 0, 0, 0.2);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.scroll_container[data-v-b3c5cf30] {\n  height: 100%;\n}\n.search_box[data-v-b3c5cf30] {\n  height: 50px;\n  width: 400px;\n  font-weight: 700;\n  color: #3a3a3a;\n  font-size: 20px;\n}\n.search_box:hover .search[data-v-b3c5cf30] {\n  width: 300px;\n  transition: ease-in-out 0.5s;\n  background-color: white;\n  padding: 4px 10px;\n  border-radius: 1000px;\n}\n.search[data-v-b3c5cf30] {\n  width: 0px;\n  background-color: rgba(255, 255, 255, 0);\n  box-sizing: content-box;\n  border: 0px solid rgba(255, 255, 255, 0);\n  height: 70%;\n  border-radius: 1000px;\n  padding: 4px 0px;\n  color: rgba(0, 0, 0, 0);\n  transition: ease-out 0.4s;\n}\n.search[data-v-b3c5cf30]:focus {\n  width: 300px;\n  background-color: white;\n  padding: 4px 10px;\n  border-radius: 20px;\n  border: 0px;\n  outline: none;\n  color: black;\n}\n.search-text[data-v-b3c5cf30] {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -46450,7 +46447,7 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "box-cerca " }, [
-              _c("h2", { staticClass: "search-text" }, [
+              _c("h2", { staticClass: "search-text text-align-center" }, [
                 _vm._v("Dove vuoi andare?")
               ]),
               _vm._v(" "),
@@ -46467,7 +46464,7 @@ var render = function() {
                         expression: "userInput"
                       }
                     ],
-                    staticClass: "search ",
+                    staticClass: "search",
                     attrs: { id: "search", type: "text" },
                     domProps: { value: _vm.userInput },
                     on: {
@@ -63355,8 +63352,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
