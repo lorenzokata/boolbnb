@@ -5,12 +5,13 @@
                 <div
                     class=" col-12 col-lg-7 col-xl-8 ricerca position-relative"
                 >
+                    <div class="darker_gradient "></div>
                     <!-- btn dashboard -->
                     <div v-if="this.$userId">
                         <router-link
-                            class="mt-2 bottone rosso-background ombra cream home-dash"
+                            class="mt-2 bottone cream home-dash"
                             :to="{ name: 'dashboard' }"
-                            >Dashboard</router-link
+                            ><i class="far fa-user-circle"></i></router-link
                         >
                     </div>
 
@@ -21,8 +22,8 @@
                         alt="logo boolbnb"
                     />
 
-                    <div class="box-cerca">
-                        <!-- input -->
+                    <div class="box-cerca debug">
+                        <!-- input --><!-- btn cerca -->
                         <input
                             class="form-ricerca text-center cream-background input mb-1"
                             v-model="userInput"
@@ -32,14 +33,14 @@
                             @input="autoAddress()"
                         />
 
-                        <!-- btn cerca -->
                         <router-link
-                            class="bottone rosso-background cream mb-1 ombra"
-                            :to="{
-                                name: 'results',
-                                params: { userInput: userInput }
-                            }"
-                            >Cerca
+                                class="bottone rosso-background cream mb-1 ombra"
+                                :to="{
+                                    name: 'results',
+                                    params: { userInput: userInput }
+                                }"
+                                >
+                                <i class="fas fa-search"></i>
                         </router-link>
 
                         <!-- suggerimenti -->
@@ -64,11 +65,12 @@
                 </div>
 
                 <!-- in primo piano -->
+
                 <div
-                    class=" col-12 col-lg-5 col-xl-4 overflow-auto my-primo-piano align-items-center pb-2"
+                    class=" col-12 col-lg-5 col-xl-4 my-primo-piano align-items-center pb-2"
                 >
-                    <h3 class="text-center pt-3 ">In Primo Piano</h3>
-                    <div
+                    <h3 class="text-center pt-3">In Primo Piano</h3>
+                    <!-- <div
                         class="margin-t-4"
                         v-for="app in sponsored_apartments"
                         :key="app.id"
@@ -78,6 +80,34 @@
                             :to="{ name: 'show', params: { slug: app.slug } }"
                             ><img :src="'storage/' + app.imgs" alt=""
                         /></router-link>
+                    </div>` -->
+
+                    <!-- card importata -->
+                    <!--style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i1.wp.com/handluggageonly.co.uk/wp-content/uploads/2015/05/IMG_2813-s.jpg?w=1600&ssl=1');"-->
+                    <div class="overflow-auto scroll_container">
+                        <div
+                            class="card position-relative"
+                            v-for="app in sponsored_apartments"
+                            :key="app.id"
+                        >
+                            <div class="bg_img">
+                                <img :src="'storage/' + app.imgs" alt="" />
+                                <div class=""></div>
+                            </div>
+                            <div class="card-category">{{ app.address }}</div>
+                            <div class="card-description">
+                                <h2>{{ app.title }}</h2>
+                                <p class="">{{ app.description }}</p>
+                            </div>
+                            <router-link
+                                class="card-link"
+                                :to="{
+                                    name: 'show',
+                                    params: { slug: app.slug }
+                                }"
+                                ><img :src="'storage/' + app.imgs" alt="" />
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,11 +174,12 @@ export default {
 
 <style lang="scss" scoped>
 .ricerca {
-    background-image: url(https://siviaggia.it/wp-content/uploads/sites/2/2019/08/tempio-in-bali.jpg);
+    background-image: url(https://images.wallpaperscraft.com/image/single/city_aerial_view_road_156925_3840x2400.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: calc(100vh - 60px);
+    height: calc(100vh);
+    position: relative;
 }
 
 .box-cerca {
@@ -157,16 +188,9 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     width: 350px;
-
-    .input {
-        height: 41px;
-        width: calc(100% - 70px);
-    }
-
-    router-link {
-        height: 41px;
-        width: 61px;
-    }
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
 
     .suggeriti {
         max-height: 45vh;
@@ -204,18 +228,108 @@ export default {
         margin-right: auto;
         width: 100%;
         border-radius: 1.25rem;
+        
     }
 }
 
 .my-primo-piano {
     height: calc(100vh - 60px);
     width: 100%;
-    overflow-y: scroll;
 }
 
 .home-dash {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 50px;
+    right: 50px;
+}
+
+.fa-user-circle{
+    height: 3rem;
+    width: 3rem;
+}
+
+// STYLE IMPORTATO DA SITO WEB
+.avatar {
+    width: 30px;
+    border-radius: 50%;
+}
+.avatar-bordered {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border: white 1px solid;
+}
+.avatar-large {
+    width: 50px;
+}
+.card {
+    height: 250px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    background-size: cover !important;
+    color: white;
+    position: relative;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.card-user {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.card-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+}
+.card-description {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.card-description h2 {
+    font-size: 22px;
+}
+.card-description p {
+    font-size: 15px;
+}
+.card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    background: black;
+    opacity: 0;
+}
+.card-link:hover {
+    opacity: 0.1;
+}
+
+.bg_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+    }
+    
+    
+}
+.darker_gradient {
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: 0;
+        
+    }
+    
+.scroll_container {
+    height: 100%;
 }
 </style>

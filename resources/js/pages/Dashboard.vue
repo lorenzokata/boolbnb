@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-3 altezza">
        
-        <router-link class="bottone rosso-background ombra fl-right" :to="{ name: 'create'}">Crea</router-link>
+        <router-link class="bottone rosso-background ombra float-right" :to="{ name: 'create'}">Crea</router-link>
 
         <h1 class="mb-3">Dashboard</h1>
         <h3>i miei appartamenti sponsorizzati</h3>
@@ -16,7 +16,7 @@
                     <h5 class="card-title">{{s_app.title}}</h5>
                     <div class="d-flex justify-content-end">
 
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Show</router-link> 
+                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Show</router-link>  -->
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Edit</router-link>
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsor</router-link>
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link>

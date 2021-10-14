@@ -1,7 +1,7 @@
 <template>
 
     <div>
-      <router-view class="margin-nav"></router-view>
+      <router-view class=""></router-view>
    </div>
 
 </template>

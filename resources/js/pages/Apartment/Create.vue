@@ -39,7 +39,6 @@
                 <div>
                     <label for="visible">Visibile</label>
                     <input
-                        class="tick"
                         id="visible"
                         v-model="form.visible"
                         type="checkbox"

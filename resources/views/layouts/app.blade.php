@@ -23,8 +23,8 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light cream-background ombra fixed-top altezza-nav">
-        <div class="container-fluid cream">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top altezza-nav">
+        <div class="container-fluid ">
             <a class=" navbar-brand " href="{{ url('/') }}">
                 BoolBnB
             </a>
