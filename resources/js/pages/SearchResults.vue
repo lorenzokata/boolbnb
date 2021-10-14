@@ -120,31 +120,34 @@
                 Appartamenti sponsorizzati
             </h2>
 
-            <div class="row row-cols-4 gx-5">
-                <div
-                    class="col card border border-danger rounded"
-                    style="width: 18rem;"
-                    v-for="s_app in sponsored_apartments"
-                    :key="s_app.apartment.id"
-                >
-                    <img src="" class="card-img-top" alt="" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ s_app.apartment.title }}</h5>
-                        <p class="card-text">
-                            {{ s_app.apartment.description }}
-                        </p>
-                        <router-link
-                            class="btn btn-primary"
-                            :to="{
-                                name: 'show',
-                                params: { slug: s_app.apartment.slug }
-                            }"
-                            >Dettagli</router-link
-                        >
+               <div
+                v-for="s_app in sponsored_apartments"
+                :key="s_app.apartment.id"
+                class="row ombra py-3 my-5"
+            >
+                <div class="col-12 col-md-6 col-lg-4 block">
+                    <img :src="'../../storage/'+s_app.apartment.imgs" alt="" />
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 block">
+                    <h3>{{ s_app.apartment.title }}</h3>
+                    <div>{{ s_app.apartment.address }}</div>
+                    <div>
+                        <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
+                            s_app.apartment.n_rooms
+                        }}
+                        <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
+                            s_app.apartment.n_beds
+                        }}
                     </div>
+                    <div class="d-inline-block d-lg-none"><router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Show</router-link></div>
+                </div>
+
+                <div class="col-4 block d-none d-lg-block">
+                    <div class="text-truncate">{{ s_app.apartment.description }}</div>
+                    <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Show</router-link>
                 </div>
             </div>
-        </div>
 
         <!-- apartments -->
         <div>
@@ -153,10 +156,10 @@
             <div
                 v-for="app in apartments"
                 :key="app.apartment.id"
-                class="row ombra"
+                class="row ombra py-3 my-5"
             >
                 <div class="col-12 col-md-6 col-lg-4 block">
-                    <img :src="app.apartment.imgs" alt="" />
+                    <img :src="'../../storage/'+app.apartment.imgs" alt="" />
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4 block">
@@ -170,13 +173,14 @@
                             app.apartment.n_beds
                         }}
                     </div>
-                    <div class="d-inline-block d-lg-none">bottone</div>
+                    <div class="d-inline-block d-lg-none"><router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Show</router-link></div>
                 </div>
 
                 <div class="col-4 block d-none d-lg-block">
-                    <div>{{ app.apartment.description }}</div>
-                    <div>bottone</div>
+                    <div class="text-truncate">{{ app.apartment.description }}</div>
+                    <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Show</router-link>
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -235,6 +239,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .block{ 
+        max-height: 150px;
+        img{
+            height: 100%;
+        }
+    }
 .form-ricerca {
     width: 300px;
     height: 41px;

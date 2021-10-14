@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-md navbar-light cream-background ombra fixed-top altezza-nav">
         <div class="container-fluid cream">
             <a class=" navbar-brand " href="{{ url('/') }}">
-                BoolBnB<!-- {{ config('app.name', 'Laravel') }} -->
+                BoolBnB
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
