@@ -2,9 +2,9 @@
     <div class="container mb-3">
 
         <div class="d-flex justify-content-between align-items-center pt-3">
-            <h4 class="">Edit</h4>
+            <h4 class="">Modifica appartemento</h4>
             <div>
-                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
             </div>
         </div>
 
@@ -158,11 +158,13 @@
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
-                            <button type="submit" class="bottone rosso-background ombra">Modifica</button>
+                            <button type="submit" class="bottone rosso-background ombra">
+                                <i class="fas fa-save"></i>
+                            </button>
                         </div>
 
                         <div class="mb-3">
-                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Dashboard</router-link>
+                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
                         </div>
 
                     </div>

@@ -6631,8 +6631,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6721,6 +6719,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -44430,7 +44430,7 @@ var render = function() {
           staticClass: "d-flex justify-content-between align-items-center pt-3"
         },
         [
-          _c("h4", [_vm._v("Create")]),
+          _c("h2", [_vm._v("Crea un nuovo appartamento")]),
           _vm._v(" "),
           _c(
             "router-link",
@@ -44438,7 +44438,7 @@ var render = function() {
               staticClass: "bottone rosso-background ombra",
               attrs: { to: { name: "dashboard" } }
             },
-            [_vm._v("Dashboard")]
+            [_vm._v("Pannello di controllo")]
           )
         ],
         1
@@ -44879,7 +44879,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra",
                         attrs: { to: { name: "dashboard" } }
                       },
-                      [_vm._v("Dashboard")]
+                      [_vm._v("Pannello di controllo")]
                     )
                   ],
                   1
@@ -44899,10 +44899,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group mb-3 col-md-6 col-sm-12" }, [
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "exampleFormControlFile1" } }, [
-          _vm._v("Example file input")
-        ]),
-        _vm._v(" "),
         _c("input", {
           staticClass: "form-control-file form-control",
           attrs: { type: "file", name: "imgs", id: "exampleFormControlFile1" }
@@ -44921,11 +44917,7 @@ var staticRenderFns = [
           staticClass: "bottone rosso-background ombra",
           attrs: { type: "submit" }
         },
-        [
-          _vm._v(
-            "\n                            Submit\n                        "
-          )
-        ]
+        [_c("i", { staticClass: "fas fa-save" })]
       )
     ])
   }
@@ -44956,7 +44948,7 @@ var render = function() {
       "div",
       { staticClass: "d-flex justify-content-between align-items-center pt-3" },
       [
-        _c("h4", {}, [_vm._v("Edit")]),
+        _c("h4", {}, [_vm._v("Modifica appartemento")]),
         _vm._v(" "),
         _c(
           "div",
@@ -44967,7 +44959,7 @@ var render = function() {
                 staticClass: "bottone rosso-background ombra",
                 attrs: { to: { name: "dashboard" } }
               },
-              [_vm._v("Dashboard")]
+              [_vm._v("Pannello di controllo")]
             )
           ],
           1
@@ -45461,7 +45453,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra",
                         attrs: { to: { name: "dashboard" } }
                       },
-                      [_vm._v("Dashboard")]
+                      [_vm._v("Pannello di controllo")]
                     )
                   ],
                   1
@@ -45601,7 +45593,7 @@ var staticRenderFns = [
           staticClass: "bottone rosso-background ombra",
           attrs: { type: "submit" }
         },
-        [_vm._v("Modifica")]
+        [_c("i", { staticClass: "fas fa-save" })]
       )
     ])
   }
@@ -45801,7 +45793,7 @@ var render = function() {
                         staticClass: " bottone rosso-background ombra",
                         attrs: { to: { name: "dashboard" } }
                       },
-                      [_vm._v("Dashboard")]
+                      [_vm._v("Pannello di controllo")]
                     )
                   : _vm._e()
               ],
@@ -45879,7 +45871,7 @@ var render = function() {
         _vm._m(1),
         _vm._v(" "),
         _c("h3", { staticClass: "d-block rosso mt-3" }, [
-          _vm._v("Invia un mail al propietario")
+          _vm._v("Invia un' e-mail al proprietario")
         ]),
         _vm._v(" "),
         _vm._m(2)
@@ -45929,7 +45921,7 @@ var staticRenderFns = [
         _c("input", { attrs: { type: "text" } }),
         _vm._v(" "),
         _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
-          _vm._v("email")
+          _vm._v("E-mail")
         ]),
         _vm._v(" "),
         _c("input", { attrs: { type: "text" } }),
@@ -46231,9 +46223,9 @@ var render = function() {
         [_vm._v("Crea")]
       ),
       _vm._v(" "),
-      _c("h1", { staticClass: "mb-3" }, [_vm._v("Dashboard")]),
+      _c("h1", { staticClass: "mb-3" }, [_vm._v("Pannello di controllo")]),
       _vm._v(" "),
-      _c("h3", [_vm._v("i miei appartamenti sponsorizzati")]),
+      _c("h3", [_vm._v("Appartamenti sponsorizzati")]),
       _vm._v(" "),
       _c(
         "div",
@@ -46266,10 +46258,21 @@ var render = function() {
                       {
                         staticClass: "bottone rosso-background ombra mx-1",
                         attrs: {
+                          to: { name: "show", params: { slug: s_app.slug } }
+                        }
+                      },
+                      [_vm._v("Dettagli")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "bottone rosso-background ombra mx-1",
+                        attrs: {
                           to: { name: "edit", params: { slug: s_app.slug } }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_vm._v("Modifica")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46278,16 +46281,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "sponsor" } }
                       },
-                      [_vm._v("Sponsor")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "bottone rosso-background ombra mx-1",
-                        attrs: { to: { name: "stats" } }
-                      },
-                      [_vm._v("Statistiche")]
+                      [_vm._v("Sponsorizza")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46296,7 +46290,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "email" } }
                       },
-                      [_vm._v("Email")]
+                      [_vm._v("E-mail")]
                     )
                   ],
                   1
@@ -46308,7 +46302,7 @@ var render = function() {
         0
       ),
       _vm._v(" "),
-      _c("h3", { staticClass: "rosso" }, [_vm._v("I miei appartamenti")]),
+      _c("h3", { staticClass: "rosso" }, [_vm._v("Appartamenti")]),
       _vm._v(" "),
       _c(
         "div",
@@ -46344,7 +46338,7 @@ var render = function() {
                           to: { name: "show", params: { slug: app.slug } }
                         }
                       },
-                      [_vm._v("Show")]
+                      [_vm._v("Dettagli")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46355,7 +46349,7 @@ var render = function() {
                           to: { name: "edit", params: { slug: app.slug } }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_vm._v("Modifica")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46364,16 +46358,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "sponsor" } }
                       },
-                      [_vm._v("Sponsor")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "bottone rosso-background ombra mx-1",
-                        attrs: { to: { name: "stats" } }
-                      },
-                      [_vm._v("Stats")]
+                      [_vm._v("Sponsorizza")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46382,7 +46367,7 @@ var render = function() {
                         staticClass: "bottone rosso-background ombra mx-1",
                         attrs: { to: { name: "email" } }
                       },
-                      [_vm._v("Email")]
+                      [_vm._v("E-mail")]
                     )
                   ],
                   1
@@ -46781,6 +46766,73 @@ var render = function() {
               },
               [_vm._v("\n                    Applica filtro\n                ")]
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col pl-3" }, [
+            _c("h2", { staticClass: "rosso" }, [_vm._v("Servizi aggiuntivi")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row row-cols-4" },
+              _vm._l(_vm.services, function(service) {
+                return _c("div", { key: service.id, staticClass: "col" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.SelectedServices,
+                        expression: "form.SelectedServices"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: service.name,
+                      name: "SelectedServices[]"
+                    },
+                    domProps: {
+                      value: service.id,
+                      checked: Array.isArray(_vm.form.SelectedServices)
+                        ? _vm._i(_vm.form.SelectedServices, service.id) > -1
+                        : _vm.form.SelectedServices
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.SelectedServices,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = service.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "SelectedServices",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "SelectedServices",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "SelectedServices", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: service.name } }, [
+                    _vm._v(_vm._s(service.name))
+                  ])
+                ])
+              }),
+              0
+            )
           ])
         ]
       )
@@ -46844,7 +46896,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Show")]
+                      [_vm._v("Dettagli")]
                     )
                   ],
                   1
@@ -46870,7 +46922,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Show")]
+                    [_vm._v("Dettagli")]
                   )
                 ],
                 1
@@ -46935,7 +46987,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Show")]
+                          [_vm._v("Dettagli")]
                         )
                       ],
                       1
@@ -46961,7 +47013,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Show")]
+                        [_vm._v("Dettagli")]
                       )
                     ],
                     1
@@ -63358,8 +63410,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! A:\boolean\classe#36\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Luca\Boolean\mamp_public\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

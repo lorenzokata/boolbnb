@@ -23,7 +23,7 @@
                             v-if="this.$userId != ''"
                             class=" bottone rosso-background ombra"
                             :to="{ name: 'dashboard' }"
-                            >Dashboard</router-link
+                            >Pannello di controllo</router-link
                         >
                     </div>
                 </div>
@@ -84,11 +84,11 @@
                     />
                 </div>
 
-                <h3 class="d-block rosso mt-3">Invia un mail al propietario</h3>
+                <h3 class="d-block rosso mt-3">Invia un' e-mail al proprietario</h3>
                 <form action="" class="d-flex flex-column">
                     <label for="" class="mt-2">Nome e Cognome</label>
                     <input type="text" />
-                    <label for="" class="mt-2">email</label>
+                    <label for="" class="mt-2">E-mail</label>
                     <input type="text" />
                     <label for="" class="mt-2">Messaggio</label>
                     <textarea></textarea>

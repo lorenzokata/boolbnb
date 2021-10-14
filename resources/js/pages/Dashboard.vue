@@ -3,8 +3,8 @@
        
         <router-link class="bottone rosso-background ombra float-right" :to="{ name: 'create'}">Crea</router-link>
 
-        <h1 class="mb-3">Dashboard</h1>
-        <h3>i miei appartamenti sponsorizzati</h3>
+        <h1 class="mb-3">Pannello di controllo</h1>
+        <h3>Appartamenti sponsorizzati</h3>
         <div class="row justify-content-between">
 
             <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
@@ -16,18 +16,18 @@
                     <h5 class="card-title">{{s_app.title}}</h5>
                     <div class="d-flex justify-content-end">
 
-                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Show</router-link>  -->
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Edit</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsor</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">Email</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Dettagli</router-link> 
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Modifica</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link>
+                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link> -->
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">E-mail</router-link>
 
                     </div>
                 </div>
             </div>
         </div>
 
-        <h3 class="rosso">I miei appartamenti</h3>
+        <h3 class="rosso">Appartamenti</h3>
         <div class="row justify-content-between">
 
             <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
@@ -39,11 +39,11 @@
                     <h5 class="card-title">{{app.title}}</h5>
                     <div class="d-flex justify-content-end">
 
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.slug }}">Show</router-link> 
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: app.slug }}">Edit</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsor</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Stats</router-link>
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">Email</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.slug }}">Dettagli</router-link> 
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: app.slug }}">Modifica</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link>
+                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link> -->
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">E-mail</router-link>
 
                     </div>
                 </div>

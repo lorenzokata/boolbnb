@@ -3,9 +3,9 @@
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <h4>Create</h4>
+                <h2>Crea un nuovo appartamento</h2>
                 <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard' }"
-                    >Dashboard</router-link
+                    >Pannello di controllo</router-link
                 >
             </div>
 
@@ -183,9 +183,7 @@
                 >
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1"
-                                >Example file input</label
-                            >
+
                             <input
                                 type="file"
                                 class="form-control-file form-control"
@@ -199,7 +197,7 @@
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
                             <button type="submit" class="bottone rosso-background ombra">
-                                Submit
+                                <i class="fas fa-save"></i>
                             </button>
                         </div>
 
@@ -207,7 +205,7 @@
                             <router-link
                                 class="bottone rosso-background ombra"
                                 :to="{ name: 'dashboard' }"
-                                >Dashboard</router-link
+                                >Pannello di controllo</router-link
                             >
                         </div>
                     </div>
