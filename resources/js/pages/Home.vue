@@ -16,15 +16,35 @@
                     </div>
 
                     <!-- logo -->
-                    <img
-                        src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png"
-                        class="logo "
-                        alt="logo boolbnb"
-                    />
+                    
 
-                    <div class="box-cerca debug">
+                    <div class="box-cerca ">
                         <!-- input --><!-- btn cerca -->
-                        <input
+    <!--boolflix seachbar -->
+                    <h2 class="search-text">Dove vuoi andare?</h2>
+                    <div class=" search_box">
+                    
+                        
+                        
+                        <input 
+                            v-model="userInput"
+                            
+                            id="search" class="search " type="text">
+                        <router-link
+                                class="bottone rosso-background cream mb-1 ombra"
+                                :to="{
+                                    name: 'results',
+                                    params: { userInput: userInput }
+                                }"
+                                >
+                                <i class="fas fa-search"></i>
+                        </router-link>
+                    
+                    </div>
+    <!--fine boolflix seachbar -->
+
+
+                        <!--<input
                             class="form-ricerca text-center cream-background input mb-1"
                             v-model="userInput"
                             name="userInput"
@@ -41,7 +61,7 @@
                                 }"
                                 >
                                 <i class="fas fa-search"></i>
-                        </router-link>
+                        </router-link>-->
 
                         <!-- suggerimenti -->
                         <div
@@ -184,16 +204,16 @@ export default {
 
 .box-cerca {
     position: absolute;
-    top: 40%;
+    top: 37%;
     left: 50%;
     transform: translateX(-50%);
     width: 350px;
     height: 40px;
-    background-color: white;
+    // background-color: white;
     border-radius: 20px;
 
     .suggeriti {
-        max-height: 45vh;
+        max-height: 40vh;
         overflow-y: auto;
     }
 }
@@ -331,5 +351,45 @@ export default {
     
 .scroll_container {
     height: 100%;
+}
+
+
+
+// boolflix classes
+
+.search_box{
+    height: 50px;
+    width: 400px;
+    
+    
+    font-weight: 700;
+    color: #3a3a3a;
+    font-size: 20px;
+    &:hover .search{
+        width: 300px;
+        transition: width 0.7s;
+        background-color: white;
+
+        border-radius: 20px;
+    }
+}
+
+.search{
+    width: 0px;
+    transition: width 0.9s;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: content-box;
+    border: 0px solid rgba(255, 255, 255, 0);
+    height: 60%;
+    border-radius: 50px;
+    transition: 0.5s ease-out;
+    color: black;
+    
+  
+    
+}
+
+.search-text{
+    color: white;
 }
 </style>
