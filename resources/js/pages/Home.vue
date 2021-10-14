@@ -25,8 +25,9 @@
                     <div class=" search_box">
                         <input 
                             v-model="userInput"
-                            
-                            id="search" class="search" type="text">
+                            @input="autoAddress()"
+                            id="search" class="search" type="text"
+                            autocomplete="off">
                         <router-link
                                 class="bottone rosso-background cream mb-1 ombra"
                                 :to="{
@@ -36,7 +37,23 @@
                                 >
                                 <i class="fas fa-search"></i>
                         </router-link>
-                    
+                        <div
+                            class="list-group suggeriti"
+                            :class="{ 'd-none': addressActive }"
+                            v-if="arrayAddress != []"
+                        >
+                            <ul>
+                                <li
+                                    class="list-group-item"
+                                    v-for="(address, id) in arrayAddress"
+                                    :key="id"
+                                    :v-model="arrayAddress[id]"
+                                    @click="addressClick(id)"
+                                >
+                                    {{ address }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
     <!--fine boolflix seachbar -->
 
@@ -61,23 +78,7 @@
                         </router-link>-->
 
                         <!-- suggerimenti -->
-                        <div
-                            class="list-group suggeriti"
-                            :class="{ 'd-none': addressActive }"
-                            v-if="arrayAddress != []"
-                        >
-                            <ul>
-                                <li
-                                    class="list-group-item"
-                                    v-for="(address, id) in arrayAddress"
-                                    :key="id"
-                                    :v-model="arrayAddress[id]"
-                                    @click="addressClick(id)"
-                                >
-                                    {{ address }}
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -207,11 +208,21 @@ export default {
     width: 350px;
     height: 40px;
     // background-color: white;
-    border-radius: 20px;
+    border-radius: 30px;
 
     .suggeriti {
         max-height: 40vh;
+        width: 320px;
         overflow-y: auto;
+        scrollbar-width: none;
+        border-radius: 10px;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            .list-group-item:last-child{
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px; 
+            }
     }
 }
 
@@ -365,9 +376,11 @@ export default {
         &:hover .search{
             width: 300px;
             transition:  ease-in-out 0.5s ;
+            transition-delay: 0.1s;
             background-color: white;
             padding: 4px 10px;
             border-radius: 1000px;
+            color: black;
         }
 }
 
