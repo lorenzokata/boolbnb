@@ -276,7 +276,7 @@ export default {
     width: 3rem;
 }
 
-// STYLE IMPORTATO DA SITO WEB
+/* // STYLE IMPORTATO DA SITO WEB */
 .avatar {
     width: 30px;
     border-radius: 50%;
@@ -328,8 +328,10 @@ export default {
     background: black;
     opacity: 0;
 }
+
 .card-link:hover {
     opacity: 0.1;
+    border-radius: 20px;
 }
 
 .bg_img {
@@ -338,7 +340,7 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
-
+    border-radius: 20px;
     img {
         height: 100%;
         width: 100%;
@@ -363,7 +365,7 @@ export default {
 
 
 
-// boolflix classes
+/* // boolflix classes */
 
 .search_box{
     height: 50px;
