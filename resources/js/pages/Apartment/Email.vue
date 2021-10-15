@@ -3,7 +3,7 @@
         <div class="row">
             <h1>Messaggi Dell'Appartamento</h1>
         </div>
-            <div class="row">
+            <form class="row">
                 <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
@@ -11,7 +11,7 @@
                     <div class="fl-right opal">13/10/2021</div>
                 </div>
 
-                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
+                <!-- <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
                     <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
                     <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
@@ -28,14 +28,15 @@
                     <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
                     <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
                     <div class="fl-right opal">13/10/2021</div>
-                </div>
-            </div>
+                </div> -->
+            </form>
         
     </div>
 </template>
 
 <script>
     export default {
+
         mounted() {
             console.log('Component mounted.')
         }

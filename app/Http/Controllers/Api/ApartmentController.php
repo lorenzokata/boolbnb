@@ -282,8 +282,10 @@ class ApartmentController extends Controller
         //
     }
 
-    public function email($id)
-    {
-        //
+    public function email(Request $request){
+
+        $data = $request->all();
+        return $data;
+        
     }
 }

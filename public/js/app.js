@@ -7157,12 +7157,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
   data: function data() {
     return {
-      apartment: []
+      apartment: [],
+      senderfullname: '',
+      senderemail: '',
+      msg: '',
+      // apartment_id: '',
+      errors: {}
     };
+  },
+  methods: {
+    sendForm: function sendForm() {
+      axios.post('/api/apartment/email', {
+        'senderfullname': this.senderfullname,
+        'senderemail': this.senderemail,
+        'msg': this.msg // 'apartment_id': this.apartment_id
+
+      }).then(function (response) {
+        return console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -45631,7 +45656,7 @@ var staticRenderFns = [
         _c("h1", [_vm._v("Messaggi Dell'Appartamento")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("form", { staticClass: "row" }, [
         _c(
           "div",
           { staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded" },
@@ -45649,78 +45674,6 @@ var staticRenderFns = [
             _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
               _vm._v(
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, doloribus cupiditate. Provident rem fugiat optio. Accusamus, amet! Maiores illum ullam laudantium ut impedit maxime, magnam vero tenetur natus. Aliquam, nemo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, recusandae cumque! Quaerat quia ea dolorum? Reprehenderit eius cumque voluptatibus corporis! Temporibus, voluptatibus? Nam dolore esse atque, veritatis optio expedita veniam!"
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "fl-right opal" }, [_vm._v("13/10/2021")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded" },
-          [
-            _c(
-              "h3",
-              { staticClass: " box-mess my-2 px-3 rounded text-center" },
-              [_vm._v("Nome e Cognome")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
-              _vm._v("Robertoanfuso@gmail.com")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
-              _vm._v(
-                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "fl-right opal" }, [_vm._v("13/10/2021")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded" },
-          [
-            _c(
-              "h3",
-              { staticClass: " box-mess my-2 px-3 rounded text-center" },
-              [_vm._v("Nome e Cognome")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
-              _vm._v("Robertoanfuso@gmail.com")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
-              _vm._v(
-                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "fl-right opal" }, [_vm._v("13/10/2021")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded" },
-          [
-            _c(
-              "h3",
-              { staticClass: " box-mess my-2 px-3 rounded text-center" },
-              [_vm._v("Nome e Cognome")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
-              _vm._v("Robertoanfuso@gmail.com")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
-              _vm._v(
-                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut."
               )
             ]),
             _vm._v(" "),
@@ -45874,7 +45827,114 @@ var render = function() {
           _vm._v("Invia un' e-mail al proprietario")
         ]),
         _vm._v(" "),
-        _vm._m(2)
+        _c(
+          "form",
+          {
+            staticClass: "d-flex flex-column",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.sendForm.apply(null, arguments)
+              }
+            }
+          },
+          [
+            _c(
+              "label",
+              { staticClass: "mt-2", attrs: { for: "senderfullname" } },
+              [_vm._v("Nome e Cognome")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.senderfullname,
+                  expression: "senderfullname"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "senderfullname",
+                type: "text",
+                id: "senderfullname"
+              },
+              domProps: { value: _vm.senderfullname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.senderfullname = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "mt-2", attrs: { for: "senderemail" } },
+              [_vm._v("E-mail")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.senderemail,
+                  expression: "senderemail"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { name: "senderemail", type: "text", id: "senderemail" },
+              domProps: { value: _vm.senderemail },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.senderemail = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { staticClass: "mt-2", attrs: { for: "msg" } }, [
+              _vm._v("Messaggio")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.msg,
+                  expression: "msg"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { name: "msg", id: "msg" },
+              domProps: { value: _vm.msg },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.msg = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "bottone rosso-background cream mt-3",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("\n                        Invia\n                    ")]
+            )
+          ]
+        )
       ])
     ])
   ])
@@ -45905,43 +45965,6 @@ var staticRenderFns = [
         }
       })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      { staticClass: "d-flex flex-column", attrs: { action: "" } },
-      [
-        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
-          _vm._v("Nome e Cognome")
-        ]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
-          _vm._v("E-mail")
-        ]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c("label", { staticClass: "mt-2", attrs: { for: "" } }, [
-          _vm._v("Messaggio")
-        ]),
-        _vm._v(" "),
-        _c("textarea"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "bottone rosso-background cream mt-3",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("\n                        Invia\n                    ")]
-        )
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -62404,6 +62427,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_sass_app_scss__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Main */ "./resources/js/Main.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -62418,12 +62443,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Bootst
 
  // Axios
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Vue
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'HMLHttpRequest'; // axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+// Vue
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 delete window.axios.defaults.headers.common['X-Requested-With']; // info user autenticato
 
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+
 
 
 var app = new Vue({

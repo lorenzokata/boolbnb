@@ -50,6 +50,8 @@ Route::namespace('Api')->group(function () {
     Route::post('/apartment/{slug}/delete', 'ApartmentController@destroy');
     Route::get('/apartment/{slug}/sponsor', 'ApartmentController@sponsor');
     Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
-    Route::get('/apartment/{slug}/email', 'ApartmentController@email');
+
+    // caricamento dei dati delle e-mail dalla Show.vue
+    Route::post('/apartment/email', 'ApartmentController@email');
 
 });
