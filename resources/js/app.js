@@ -17,6 +17,8 @@ import '../sass/app.scss'
 
 // Axios
 window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'HMLHttpRequest';
+// axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
 
 // Vue
 window.Vue = require('vue');
@@ -28,6 +30,7 @@ Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttrib
 
 import Main from './Main';
 import router from './router';
+import Axios from 'axios';
 
 const app = new Vue({
     el: '#root',

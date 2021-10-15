@@ -85,13 +85,19 @@
                 </div>
 
                 <h3 class="d-block rosso mt-3">Invia un' e-mail al proprietario</h3>
-                <form action="" class="d-flex flex-column">
-                    <label for="" class="mt-2">Nome e Cognome</label>
-                    <input type="text" />
-                    <label for="" class="mt-2">E-mail</label>
-                    <input type="text" />
-                    <label for="" class="mt-2">Messaggio</label>
-                    <textarea></textarea>
+                <form @submit.prevent="sendForm" class="d-flex flex-column">
+                    
+                    <label for="senderfullname" class="mt-2">Nome e Cognome</label>
+                    <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="senderfullname" />
+
+                    <label for="senderemail" class="mt-2">E-mail</label>
+                    <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="senderemail"  />
+
+                    <label for="msg" class="mt-2">Messaggio</label>
+                    <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
+
+                    <!-- name=apartment_id -> da passare in maniera dinamica per associare ad ogni appartamento i suoi messaggi -->
+
                     <button
                         type="submit"
                         class="bottone rosso-background cream mt-3"
@@ -111,8 +117,31 @@ export default {
     data() {
         return {
             apartment: [],
+            sender_fullname: '',
+            sender_email: '',
+            msg: '',
+            // apartment_id: '',
+            errors: {}
         };
     },
+
+    methods: {
+        sendForm(){
+            axios.post('/api/apartment/email', {
+                'senderfullname': this.sender_fullname,
+                'senderemail': this.sender_email,
+                'msg': this.msg,
+                // 'apartment_id': this.apartment_id
+            })
+                .then(response =>
+                    console.log(response)
+                )
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    },
+
     mounted() {
 
         // l'appartamento é in apartment
