@@ -88,10 +88,10 @@
                 <form @submit.prevent="sendForm" class="d-flex flex-column">
                     
                     <label for="senderfullname" class="mt-2">Nome e Cognome</label>
-                    <input v-model="senderfullname" name="senderfullname" type="text" class="form-control" id="senderfullname" />
+                    <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="senderfullname" />
 
                     <label for="senderemail" class="mt-2">E-mail</label>
-                    <input v-model="senderemail" name="senderemail" type="text" class="form-control" id="senderemail"  />
+                    <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="senderemail"  />
 
                     <label for="msg" class="mt-2">Messaggio</label>
                     <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
@@ -117,8 +117,8 @@ export default {
     data() {
         return {
             apartment: [],
-            senderfullname: '',
-            senderemail: '',
+            sender_fullname: '',
+            sender_email: '',
             msg: '',
             // apartment_id: '',
             errors: {}
@@ -128,8 +128,8 @@ export default {
     methods: {
         sendForm(){
             axios.post('/api/apartment/email', {
-                'senderfullname': this.senderfullname,
-                'senderemail': this.senderemail,
+                'senderfullname': this.sender_fullname,
+                'senderemail': this.sender_email,
                 'msg': this.msg,
                 // 'apartment_id': this.apartment_id
             })
