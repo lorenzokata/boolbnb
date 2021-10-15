@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row ">
                 <div
-                    class=" col-12 col-lg-7 col-xl-8 ricerca position-relative"
+                    class=" col-12 col-lg-8 col-xl-9 ricerca position-relative"
                 >
                     <div class="darker_gradient "></div>
                     <!-- btn dashboard -->
@@ -22,70 +22,58 @@
                         <!-- input --><!-- btn cerca -->
     <!--boolflix seachbar -->
                     <h2 class="search-text text-align-center" >Dove vuoi andare?</h2>
-                    <div class=" search_box">
-                        <input 
-                            v-model="userInput"
-                            @input="autoAddress()"
-                            id="search" class="search" type="text"
-                            autocomplete="off">
-                        <router-link
-                                class="bottone rosso-background cream mb-1 ombra"
-                                :to="{
-                                    name: 'results',
-                                    params: { userInput: userInput }
-                                }"
+                        <form class=" search_box"  
                                 >
-                                <i class="fas fa-search"></i>
-                        </router-link>
-                        <div
-                            class="list-group suggeriti"
-                            :class="{ 'd-none': addressActive }"
-                            v-if="arrayAddress != []"
-                        >
-                            <ul>
-                                <li
-                                    class="list-group-item"
-                                    v-for="(address, id) in arrayAddress"
-                                    :key="id"
-                                    :v-model="arrayAddress[id]"
-                                    @click="addressClick(id)"
-                                >
-                                    {{ address }}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-    <!--fine boolflix seachbar -->
+                            <input 
+                                v-model="userInput"
+                                @input="autoAddress()"
+                                id="search" class="search" type="text"
+                                autocomplete="off"
+                                @focus="focus = true"
+                                @enter="enterRoute()"
+                                @blur="focusActions()"
+                            >
 
-
-                        <!--<input
-                            class="form-ricerca text-center cream-background input mb-1"
-                            v-model="userInput"
-                            name="userInput"
-                            type="text"
-                            placeholder=""
-                            @input="autoAddress()"
-                        />
-
-                        <router-link
-                                class="bottone rosso-background cream mb-1 ombra"
-                                :to="{
-                                    name: 'results',
-                                    params: { userInput: userInput }
-                                }"
-                                >
-                                <i class="fas fa-search"></i>
-                        </router-link>-->
-
-                        <!-- suggerimenti -->
-                        
+                            <router-link
+                                    class="bottone rosso-background cream mb-1 ombra"
+                                    :to="{
+                                        name: 'results',
+                                        params: { userInput: userInput }
+                                    }"
+                                    >
+                                    <i class="fas fa-search"></i>
+                            </router-link>
+                            <div
+                                class="list-group suggeriti"
+                                :class="{ focus : 'd-block' } "
+                                v-if="arrayAddress != [] && userInput.length > 1 && addressActive"
+                                
+                                
+                            >
+                                <ul>
+                                    <label
+                                        class="list-group-item"
+                                        v-for="(address, id) in arrayAddress"
+                                        :key="id"
+                                        :v-model="arrayAddress[id]"
+                                        @click="addressClick(id)"
+                                        
+                                    >
+                                       <label for="search">{{ address }}</label> 
+                                    </label>
+                                </ul>
+                            </div>
+                        </form>                        
                     </div>
                 </div>
-
+<!-- :to="{
+                                            name: 'results',
+                                            params: { userInput: userInput }
+                                        }" -->
                 <!-- in primo piano -->
 
                 <div
-                    class=" col-12 col-lg-5 col-xl-4 my-primo-piano align-items-center pb-2"
+                    class=" col-12 col-lg-4 col-xl-3 my-primo-piano align-items-center pb-2"
                 >
                     <h3 class="text-center pt-3">In Primo Piano</h3>
                     <!-- <div
@@ -102,20 +90,20 @@
 
                     <!-- card importata -->
                     <!--style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i1.wp.com/handluggageonly.co.uk/wp-content/uploads/2015/05/IMG_2813-s.jpg?w=1600&ssl=1');"-->
-                    <div class="overflow-auto scroll_container">
+                    <div class="overflow-auto scroll_container  " >
                         <div
-                            class="card position-relative"
+                            class="card position-relative slide-in-top"
                             v-for="app in sponsored_apartments"
                             :key="app.id"
                         >
                             <div class="bg_img">
                                 <img :src="'storage/' + app.imgs" alt="" />
-                                <div class=""></div>
+                                <div class="lay_over"></div>
                             </div>
                             <div class="card-category">{{ app.address }}</div>
                             <div class="card-description">
                                 <h2>{{ app.title }}</h2>
-                                <p class="">{{ app.description }}</p>
+                                <!-- <p class="">{{ app.description }}</p> -->
                             </div>
                             <router-link
                                 class="card-link"
@@ -123,7 +111,7 @@
                                     name: 'show',
                                     params: { slug: app.slug }
                                 }"
-                                ><img :src="'storage/' + app.imgs" alt="" />
+                                >
                             </router-link>
                         </div>
                     </div>
@@ -141,7 +129,9 @@ export default {
             userInput: "",
             arrayAddress: [],
             addressActive: true,
-            sponsored_apartments: []
+            sponsored_apartments: [],
+            focus : false,
+            inp:''
         };
     },
     mounted() {
@@ -159,7 +149,12 @@ export default {
     methods: {
         addressClick: function(id) {
             this.userInput = this.arrayAddress[id];
-            this.addressActive = true;
+            this.addressActive = false;
+            this.focus = false;
+            this.inp = document.getElementById('search');
+            this.inp.focus();
+            
+            
         },
         autoAddress: function() {
             // caso attivo quando form.city !== '' (caso base, PASSO 1)
@@ -184,8 +179,17 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-            this.addressActive = false;
+            this.addressActive = true;
+            this.focus = true;
+        },
+        focusActions: function(){
+            this.focus = false;           
+        },
+        enterRoute: function(){
+            
+            this.router.push({ name: 'results', params: { userInput: this.userInput } });
         }
+
     }
 };
 </script>
@@ -258,6 +262,7 @@ export default {
         border-radius: 1.25rem;
         
     }
+    
 }
 
 .my-primo-piano {
@@ -296,6 +301,8 @@ export default {
     position: relative;
     border-radius: 20px;
     margin-bottom: 20px;
+    max-width: 500px;
+    margin: 3rem auto;
 }
 .card-user {
     position: absolute;
@@ -327,6 +334,7 @@ export default {
     z-index: 2;
     background: black;
     opacity: 0;
+    border-radius: 20px;
 }
 .card-link:hover {
     opacity: 0.1;
@@ -338,17 +346,38 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
-
+    overflow: hidden;
+    &:hover img{
+            transform:  scale(2, 2);    
+            transition: 1s;
+        }
     img {
         height: 100%;
         width: 100%;
         border-radius: 20px;
+        transition: 1s;
+        
     }
+    .lay_over{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 20px;
+        &:hover{
+            background-color:rgba(0, 0, 0, 0.1);
+            
+        }
+    }
+
+
     
     
 }
 .darker_gradient {
-        background: rgba(0, 0, 0, 0.2);
+        background: #ebffff13;
         width: 100%;
         height: 100%;
         position: absolute;
@@ -359,6 +388,10 @@ export default {
     
 .scroll_container {
     height: 100%;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+                display: none;
+            }
 }
 
 
@@ -411,5 +444,10 @@ export default {
 
 .search-text{
     color: white;
+}
+
+.slide-in-top {
+	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 </style>
