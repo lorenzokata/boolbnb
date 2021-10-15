@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Apartment;
 use App\Sponsor;
+use App\Service;
 
 class HomeController extends Controller
 {
@@ -70,6 +71,7 @@ class HomeController extends Controller
         // creazione JSON (con lat e lon del db)
 
         $apartments = Apartment::all();
+
         $poi_list = [];
 
         foreach ($apartments as $apartment) {
@@ -155,12 +157,14 @@ class HomeController extends Controller
             $distance[$key] = $row['distance'];
         }
         array_multisort($distance, SORT_ASC, $sponsored_apartments);
+        $services = Service::all();
 
         return response()->json([
             'success' => true,
             'results' => [
                 'sponsored_apartments' => $sponsored_apartments,
-                'apartments' => $apartments
+                'apartments' => $apartments,
+                'services' => $services,
             ]
         ]);
     }

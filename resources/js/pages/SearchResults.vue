@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 class="pt-3 rosso">Risultati ricerca</h1>
+        <h1 class="pt-5 rosso">Risultati ricerca</h1>
 
         <!-- ricerca avanzata -->
         <div>
@@ -45,14 +45,14 @@
                 <div class="col p-3">
                     <h2 class="rosso">Stanze e letti</h2>
 
-                    <div class="d-inline-block mt-3 mr-4">
+                    <div class="d-inline-block mt-1 mr-4">
                         <h5>Stanze</h5>
                         <select v-model="n_rooms" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
                         </select>
                     </div>
 
-                    <div class="d-inline-block mt-3 mr-4">
+                    <div class="d-inline-block mt-1 mr-4">
                         <h5>Letti</h5>
                         <select v-model="n_beds" class="form-control sel-room">
                             <option v-for="n in 10" :key="n">{{ n }}</option>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- distanza -->
-                <div class="col pl-3">
+                <div class="col p-3">
                     <h3 class="rosso">Distanza</h3>
                     <label for="formControlRange"
                         >Raggio {{ radius / 1000 }} Km</label
@@ -85,25 +85,16 @@
                 </div>
 
                 <!-- servizi aggiuntivi - sistemare-->
-                <div class="col pl-3">
+                <div class="col-12 pl-3">
                     <h2 class="rosso">Servizi aggiuntivi</h2>
-                    <div class="row row-cols-4">
+                    <div class="row row-cols-5">
                         <div
                             class="col"
                             v-for="service in services"
                             :key="service.id"
                         >
-                            <input
-                                type="checkbox"
-                                :id="service.name"
-                                :value="service.id"
-                                v-model="form.SelectedServices"
-                                name="SelectedServices[]"
-                            />
-
-                            <label :for="service.name">{{
-                                service.name
-                            }}</label>
+                            <div v-if="filter_serve.includes(service.id)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service.id))">{{service.name}}</div>
+                            <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service.id)" >{{service.name}}</div>
                         </div>
                     </div>
                 </div>
@@ -120,32 +111,32 @@
                 Appartamenti sponsorizzati
             </h2>
 
-               <div
+               <div 
                 v-for="s_app in sponsored_apartments"
                 :key="s_app.apartment.id"
-                class="row ombra py-3 my-5"
+                class="row ombra py-3 my-5 border-rad my-bottone-hv"
             >
-                <div class="col-12 col-md-6 col-lg-4 block">
+                <div class="col-12 col-md-6 col-lg-4 block mt-4">
                     <img :src="'../../storage/'+s_app.apartment.imgs" alt="" />
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 block">
+                <div class="col-12 col-md-6 col-lg-4 block ">
                     <h3>{{ s_app.apartment.title }}</h3>
                     <div>{{ s_app.apartment.address }}</div>
-                    <div>
+                    <div class="d-flex align-items-center">
                         <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
                             s_app.apartment.n_rooms
-                        }}
+                        }}  
                         <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
                             s_app.apartment.n_beds
                         }}
                     </div>
-                    <div class="d-inline-block d-lg-none"><router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link></div>
+                    <div class="d-inline-block d-lg-none float-right"><router-link class="bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link></div>
                 </div>
 
-                <div class="col-4 block d-none d-lg-block">
-                    <div class="text-truncate">{{ s_app.apartment.description }}</div>
-                    <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link>
+                <div class="col-4 block d-none d-lg-block my-bottone-hv">
+                    <div class="">{{ s_app.apartment.description.substring(0,300) }}</div>
+                    <router-link class="float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link>
                 </div>
             </div>
 
@@ -156,29 +147,29 @@
             <div
                 v-for="app in apartments"
                 :key="app.apartment.id"
-                class="row ombra py-3 my-5"
+                class="row ombra py-3 my-5 border-rad my-bottone-hv"
             >
-                <div class="col-12 col-md-6 col-lg-4 block">
+                <div class="col-12 col-md-6 col-lg-4 block mt-4">
                     <img :src="'../../storage/'+app.apartment.imgs" alt="" />
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4 block">
                     <h3>{{ app.apartment.title }}</h3>
                     <div>{{ app.apartment.address }}</div>
-                    <div>
+                    <div class="d-flex align-items-center">
                         <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
                             app.apartment.n_rooms
-                        }}
+                        }}   
                         <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
                             app.apartment.n_beds
                         }}
                     </div>
-                    <div class="d-inline-block d-lg-none"><router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link></div>
+                    <div class="d-inline-block d-lg-none float-right"><router-link class=" bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link></div>
                 </div>
 
                 <div class="col-4 block d-none d-lg-block">
-                    <div class="text-truncate">{{ app.apartment.description }}</div>
-                    <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link>
+                    <div class="">{{ app.apartment.description.substring(0,300) }}...</div>
+                    <router-link class="float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link>
                 </div>
             </div>
             </div>
@@ -194,6 +185,8 @@ export default {
         return {
             sponsored_apartments: [],
             apartments: [],
+            services:[],
+            filter_serve:[],
             radius: 20000,
             drop: false,
             n_rooms: 0,
@@ -217,9 +210,11 @@ export default {
                         this.n_rooms.toString() 
                 )
                 .then(response => {
+                    console.log(response.data.results);
                     this.sponsored_apartments =
                         response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
+                    this.services = response.data.results.services;
                 })
 
                 .catch(error => {
@@ -233,6 +228,14 @@ export default {
             } else {
                 this.drop = false;
             }
+        },
+
+        ServiceActive: function(serve_id){
+            this.filter_serve.push(serve_id);
+        },
+        ServiceDisable: function(serve_id){
+            this.filter_serve.splice(serve_id,1);
+           
         }
     }
 };
@@ -240,9 +243,12 @@ export default {
 
 <style lang="scss" scoped>
     .block{ 
-        max-height: 150px;
+        height: 250px;
+            margin: auto 0;
         img{
-            height: 100%;
+            height: 90%;
+            width: 90%;
+            margin: auto 0;
         }
     }
 .form-ricerca {
@@ -265,4 +271,116 @@ export default {
 .form-group {
     margin-bottom: 0 !important;
 }
+
+.bott-serv:hover{
+    color: white;
+    background-color:#42424286 ;
+}
+.bott-active-serv{
+    
+    color: white;
+    background-color:#424242 ;
+}
+.rosso-background:hover{
+     text-decoration: none;
+    background-color:#f11e28;
+    border: 3px solid rgba(0, 0, 0, 0);
+    transition: 0.5s;
+    color: white;
+}
+
+.my-disp{display: none;}
+
+.my-bottone-hv{
+
+    .slide-out-elliptic-top-bck {
+        -webkit-animation: slide-out-elliptic-top-bck 0.7s ease-in both;
+                animation: slide-out-elliptic-top-bck 0.7s ease-in both;
+    }
+}
+
+.my-bottone-hv:hover{
+    .my-disp{display: inline-block;}
+    .slide-in-elliptic-top-fwd {
+	-webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes slide-in-elliptic-top-fwd {
+  0% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+}
+@keyframes slide-in-elliptic-top-fwd {
+  0% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out-elliptic-top-bck {
+  0% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 1;
+  }
+}
+@keyframes slide-out-elliptic-top-bck {
+  0% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 1;
+  }
+}
+
 </style>

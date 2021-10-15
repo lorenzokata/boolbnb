@@ -115,7 +115,7 @@
                             <div class="card-category">{{ app.address }}</div>
                             <div class="card-description">
                                 <h2>{{ app.title }}</h2>
-                                <p class="">{{ app.description }}</p>
+                                <!-- <p class="">{{ app.description }}</p> -->
                             </div>
                             <router-link
                                 class="card-link"
