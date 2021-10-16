@@ -39,7 +39,7 @@
             <!-- menu dropdown al click -->
             <div
                 :class="drop == false ? 'd-none' : ''"
-                class="ombra row row-cols-2 mt-3 mb-3"
+                class="border-rad ombra row row-cols-2 mt-3 mb-3"
             >
                 <!-- stanze e letti -->
                 <div class="col p-3">
@@ -122,21 +122,21 @@
 
                 <div class="col-12 col-md-6 col-lg-4 block ">
                     <h3>{{ s_app.apartment.title }}</h3>
-                    <div>{{ s_app.apartment.address }}</div>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
+                    <div class="my-3">{{ s_app.apartment.address }}</div>
+                    <div class="my-3 d-flex align-items-center">
+                        <i class="fas fa-door-open my-2 mr-2"></i>camere:{{
                             s_app.apartment.n_rooms
                         }}  
-                        <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
+                        <i class="fas fa-bed my-2 ml-2 mr-2"></i>letti:{{
                             s_app.apartment.n_beds
                         }}
                     </div>
-                    <div class="d-inline-block d-lg-none float-right"><router-link class="bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link></div>
+                    <div class="mt-5 d-inline-block d-lg-none float-right"><router-link class="bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link></div>
                 </div>
 
                 <div class="col-4 block d-none d-lg-block my-bottone-hv">
-                    <div class="">{{ s_app.apartment.description.substring(0,300) }}</div>
-                    <router-link class="float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link>
+                    <div class="mb-4">{{ s_app.apartment.description.substring(0,300) }}</div>
+                    <router-link class="mt-5 float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link>
                 </div>
             </div>
 
@@ -155,21 +155,21 @@
 
                 <div class="col-12 col-md-6 col-lg-4 block">
                     <h3>{{ app.apartment.title }}</h3>
-                    <div>{{ app.apartment.address }}</div>
-                    <div class="d-flex align-items-center">
+                    <div class="my-3">{{ app.apartment.address }}</div>
+                    <div class="my-3  d-flex align-items-center">
                         <i class="fas fa-door-open my-2 mr-md-2"></i>camere:{{
                             app.apartment.n_rooms
                         }}   
-                        <i class="fas fa-bed my-2 mr-md-2"></i>letti:{{
+                        <i class="fas fa-bed my-2 ml-2 mr-md-2"></i>letti:{{
                             app.apartment.n_beds
                         }}
                     </div>
-                    <div class="d-inline-block d-lg-none float-right"><router-link class=" bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link></div>
+                    <div class="mt-5 d-inline-block d-lg-none float-right"><router-link class=" bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link></div>
                 </div>
 
                 <div class="col-4 block d-none d-lg-block">
-                    <div class="">{{ app.apartment.description.substring(0,300) }}...</div>
-                    <router-link class="float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link>
+                    <div class="mb-4">{{ app.apartment.description.substring(0,300) }}...</div>
+                    <router-link class="mt-5 float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link>
                 </div>
             </div>
             </div>

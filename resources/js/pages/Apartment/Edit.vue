@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-3">
+    <div class="container pt-5 mb-3">
 
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Modifica appartemento</h4>

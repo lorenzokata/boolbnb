@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-3 altezza">
+    <div class="container pt-5 altezza">
        
         <router-link class="bottone rosso-background ombra float-right" :to="{ name: 'create'}">Crea</router-link>
 
