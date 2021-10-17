@@ -88,15 +88,16 @@
                 <form @submit.prevent="sendForm" class="d-flex flex-column">
                     
                     <label for="senderfullname" class="mt-2">Nome e Cognome</label>
-                    <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="senderfullname" />
+                    <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
 
                     <label for="senderemail" class="mt-2">E-mail</label>
-                    <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="senderemail"  />
+                    <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="sender_email"  />
 
                     <label for="msg" class="mt-2">Messaggio</label>
                     <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
 
-                    <!-- name=apartment_id -> da passare in maniera dinamica per associare ad ogni appartamento i suoi messaggi -->
+                    <!-- maniera poco carina per passare apartment_id -->
+                    <textarea v-model="apartment_id" name="" id="apartment_id" class="d-none"></textarea>
 
                     <button
                         type="submit"
@@ -120,7 +121,7 @@ export default {
             sender_fullname: '',
             sender_email: '',
             msg: '',
-            // apartment_id: '',
+            apartment_id: '1', //da passare in maniera dinamica
             errors: {}
         };
     },
@@ -128,10 +129,10 @@ export default {
     methods: {
         sendForm(){
             axios.post('/api/apartment/email', {
-                'senderfullname': this.sender_fullname,
-                'senderemail': this.sender_email,
+                'sender_fullname': this.sender_fullname,
+                'sender_email': this.sender_email,
                 'msg': this.msg,
-                // 'apartment_id': this.apartment_id
+                'apartment_id': this.apartment_id
             })
                 .then(response =>
                     console.log(response)

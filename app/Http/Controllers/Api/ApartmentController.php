@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use App\Message;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 // import model
 use App\Service;
@@ -285,7 +289,30 @@ class ApartmentController extends Controller
     public function email(Request $request){
 
         $data = $request->all();
-        return $data;
+        // return $data;
+
+        $validator = Validator::make($request->all(), [
+            'sender_fullname' => 'required',
+            'sender_email' => 'required|email',
+            'msg' => 'required',
+            'apartment_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
         
+        $new_message = new Message();
+        $new_message->fill($data);
+
+        $new_message->save();
+
+        Mail::to('info@boolbnb.com')->send(new SendNewMail($new_message));
+
+        return response()->json( ['success' => true] );
+
     }
 }

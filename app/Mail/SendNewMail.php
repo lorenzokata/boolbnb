@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class SendNewMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($_message)
     {
-        //
+        $this->message = $_message;
     }
 
     /**
@@ -28,6 +29,6 @@ class SendNewMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.new-contact');
+        return $this->view('email.new-contact');
     }
 }

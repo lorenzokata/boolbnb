@@ -17041,6 +17041,10 @@ readers do not read off random characters that represent icons */
   overflow-y: auto;
 }
 
+.border-rad {
+  border-radius: 20px;
+}
+
 .bottone {
   padding: 0.6em 0.9em;
   align-items: center;
@@ -17055,7 +17059,7 @@ readers do not read off random characters that represent icons */
 }
 
 .ombra {
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.158) 0px 6px 6px;
 }
 
 .altezza-nav {
