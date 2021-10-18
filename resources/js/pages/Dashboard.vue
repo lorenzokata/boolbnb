@@ -43,7 +43,7 @@
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: app.slug }}">Modifica</router-link>
                         <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link> -->
                         <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link> -->
-                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">E-mail</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email', params: { id: app.id }}">E-mail</router-link>
 
                     </div>
                 </div>

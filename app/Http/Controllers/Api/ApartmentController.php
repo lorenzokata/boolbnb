@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use App\Message;
 use App\Mail\SendNewMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 // import model
 use App\Service;
 use App\Apartment;
+use App\Message;
 
 class ApartmentController extends Controller
 {
@@ -310,9 +310,17 @@ class ApartmentController extends Controller
 
         $new_message->save();
 
-        // Mail::to('info@boolbnb.com')->send(new SendNewMail($new_message));
-
         return response()->json( ['success' => true] );
 
+    }
+
+    public function getEmails($id)
+    {
+        $messages = Message::where('apartment_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'results' => $messages
+        ]);
     }
 }

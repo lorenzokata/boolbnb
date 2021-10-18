@@ -52,7 +52,7 @@ const router = new VueRouter({
             component: Sponsor
         },
         {
-            path: '/apartment/:slug-app/email',
+            path: '/apartment/email/:id',
             name: "email",
             component: Email
         },

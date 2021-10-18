@@ -103,7 +103,7 @@
                         type="submit"
                         class="bottone rosso-background cream mt-3"
                     >
-                        Invia
+                        {{ sending ? 'Invio in corso' : 'Invia'}}
                     </button>
                 </form>
             </div>
@@ -121,23 +121,30 @@ export default {
             sender_fullname: '',
             sender_email: '',
             msg: '',
-            apartment_id: 'apartment.id',
+            apartment_id: 'apartment.id', //se tolgo apartment.id non vá...
             errors: {},
+            sending: false,
             success: false
         };
     },
 
     methods: {
         sendForm(){
+            this.sending = true,
             this.success = false,
             axios.post('/api/apartment/email', {
                 'sender_fullname': this.sender_fullname,
                 'sender_email': this.sender_email,
                 'msg': this.msg,
-                'apartment_id': this.apartment.id
+                'apartment_id': this.apartment.id,
             })
                 .then(response => {
-                    this.success = true,  
+                    this.success = true, 
+                    this.sending = false, 
+                    this.sender_fullname = '',
+                    this.sender_email = '',
+                    this.msg = '',
+                    this.apartment.id = '',
                     console.log(response);
                 })
                 .catch(error => {
