@@ -1,11 +1,11 @@
 <template>
-    <div class="container pt-5">
+    <div class="container">
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <h2>Crea un nuovo appartamento</h2>
+                <h4>Create</h4>
                 <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard' }"
-                    ><i class="fas fa-arrow-right"></i></router-link
+                    >Dashboard</router-link
                 >
             </div>
 
@@ -23,29 +23,28 @@
                         <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
                     </ul>
                 </p> -->
-                <div class="form-row d-flex justify-content-between align-items-center">
-                    <div class="form-group mb-3 col-md-8 col-sm-12">
-                        <label for="title ">Titolo</label>
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="title"
-                            v-model="form.title"
-                            name="title"
-                            required
-                        />
-                    </div>
 
-                    <div class="ml-3 mr-3">>
-                        <label for="visible">Visibile</label>
-                        <input
-                            id="visible"
-                            v-model="form.visible"
-                            type="checkbox"
-                            name="visible"
-                        />
-                    </div>
-            </div>
+                <div class="form-group">
+                    <label for="title">Titolo</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="title"
+                        v-model="form.title"
+                        name="title"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="visible">Visibile</label>
+                    <input
+                        id="visible"
+                        v-model="form.visible"
+                        type="checkbox"
+                        name="visible"
+                    />
+                </div>
 
                 <div class="form-group">
                     <label for="desc">Descrizione</label>
@@ -65,13 +64,13 @@
                 <h4>Servizi</h4>
 
                 <!-- select di vue -->
-                <div class="row row-cols-2  row-cols-sm-3 row-cols-lg-5">
+                <div class="row row-cols-3">
                     <div
                         class="col"
                         v-for="service in services"
                         :key="service.id"
                     >
-                        <input class="d-none"
+                        <input
                             type="checkbox"
                             :id="service.name"
                             :value="service.id"
@@ -79,13 +78,7 @@
                             name="SelectedServices[]"
                         />
 
-                       <!--  <label :for="service.name">{{ service.name }}</label> -->
-                        <label  v-if="form.SelectedServices.includes(service)" :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(form.SelectedServices.indexOf(service))">{{service.name}}</div></label>
-                        <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
-
-
-                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
-                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
+                        <label :for="service.name">{{ service.name }}</label>
                     </div>
                 </div>
 
@@ -95,7 +88,7 @@
 
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
-                    <div class="form-group col-6 col-lg-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_rooms"
                             >Numero stanze</label
                         >
@@ -108,7 +101,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-6 col-lg-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
@@ -118,7 +111,7 @@
                             required
                         />
                     </div>
-                    <div class="form-group col-6 col-lg-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="n_baths"
                             >Numero bagni</label
                         >
@@ -131,7 +124,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-6 col-lg-3">
+                    <div class="form-group col-sm-6 col-md-3">
                         <label class="d-block" for="square_meters"
                             >Metri quadri</label
                         >
@@ -147,20 +140,17 @@
 
                 <hr />
 
-                <h4>Indirizzo e Foto</h4>
-                <div class="form-row d-flex justify-content-between ">
-
+                <h4>Indirizzo</h4>
 
                 <!-- indirizzo -->
-                <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
-                <div class="form-group" v-if="cityActive">
+                <div class="form-group">
                     <label class="d-block" for="address">citta</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="city"
+                        v-model="form.city"
                         type="text"
-                        
+                        name="address"
                         required
                         @input="autoAddress(0)"
                     />
@@ -176,21 +166,21 @@
                                 v-for="(address, id) in arrayAddress"
                                 :key="id"
                                 :v-model="arrayAddress[id]"
-                                @click="addressClick(id , 0)"
+                                @click="addressClick(id, 0)"
                             >
-                                {{ address.city }}
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group" v-if="viaActive">
-                    <label class="d-block" for="address">via</label>
+                <div class="form-group">
+                    <label class="d-block" for="address">Via</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="via"
+                        v-model="form.via"
                         type="text"
-                        
+                        name="address"
                         required
                         @input="autoAddress(1)"
                     />
@@ -208,18 +198,19 @@
                                 :v-model="arrayAddress[id]"
                                 @click="addressClick(id, 1)"
                             >
-                                {{ address.city }} {{ address.via }} 
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group" v-if="civicoActive">
+                <div class="form-group">
                     <label class="d-block" for="address">civico</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="civico"
+                        v-model="form.civico"
                         type="text"
+                        name="address"
                         required
                         @input="autoAddress(2)"
                     />
@@ -237,24 +228,24 @@
                                 :v-model="arrayAddress[id]"
                                 @click="addressClick(id, 2)"
                             >
-                                {{ address.city }} {{ address.via }} {{ address.civico }}
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
+
                 <hr />
 
                 <!-- immagine -->
-
+                <h4>Carica foto</h4>
                 <div
                     class="form-row d-flex justify-content-between align-items-center"
                 >
-
-                    <!-- foto -->
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="form-group">
-
+                            <label for="exampleFormControlFile1"
+                                >Example file input</label
+                            >
                             <input
                                 type="file"
                                 class="form-control-file form-control"
@@ -268,17 +259,17 @@
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
                             <button type="submit" class="bottone rosso-background ombra">
-                                <i class="fas fa-save"></i>
+                                Submit
                             </button>
                         </div>
 
-                       <!--  <div class="mb-3">
+                        <div class="mb-3">
                             <router-link
                                 class="bottone rosso-background ombra"
                                 :to="{ name: 'dashboard' }"
-                                >Pannello di controllo</router-link
+                                >Dashboard</router-link
                             >
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
@@ -304,26 +295,21 @@ export default {
                 n_beds: 1,
                 n_baths: 1,
                 square_meters: 1,
-                address:'',
+                query: "",
+                city: '',
+                via : '',
+                civico:'',
                 visible: 1,
                 SelectedServices: [],
                 image: null
             },
-            query: "",
-            city: '',
-            via : '',
-            civico:'',
+
             services: [],
-            arrayAddress: [],
-            addressActive: true,
-            cityActive: true,
-            viaActive: false,
-            civicoActive: false,
-            selected:{
-                city:'',
-                via:'',
-                civico:''
-            }
+            arrayAddress0: [],
+            arrayAddress1: [],
+            arrayAddress2: [],
+
+            addressActive: true
         };
     },
 
@@ -342,63 +328,28 @@ export default {
     },
 
     methods: {
-        clean: function(){
-            this.cityActive = true;
-            this.viaActive = false;
-            this.civicoActive = false;
-            this.form.address = '';
-            this.query = '';
-            this.city= '';
-            this.arrayAddress =[];
-        },
-
-        addressClick: function(id , type) {
-            if(type == 0){
-                // this.city = this.arrayAddress[id];
-                this.query = this.arrayAddress[id];
-                this.city = this.query.city;
-                this.cityActive = false;
-                this.viaActive = true;
-                this.arrayAddress = [];
-                this.form.address = this.query;
-            }else if(type == 1){
-                this.query = this.arrayAddress[id];
-                this.viaActive = false;
-                this.via = this.query.via;
-                this.civicoActive = true;
-                this.arrayAddress = [];
-                this.form.address = this.query;
-            }else if(type == 2){
-                this.query = this.arrayAddress[id];
-                this.civicoActive = false;
-                this.civico = this.query.civico;
-                this.arrayAddress = [];
-                console.log(this.query);
-                this.form.address = this.query;
-                console.log(this.form.address);
-            }
-            
+        addressClick: function(id, type) {
+            this.form.query = this.arrayAddress0[id];
             this.addressActive = true;
-
         },
 
         autoAddress: function(type) {
             // caso attivo quando form.city !== '' (caso base, PASSO 1)
+
             if(type == 0){
-                this.query = this.city;
+                this.form.query = this.form.city;
             }
-            if(type == 1 ){
-                this.query = this.city + ' ' + this.via;
+            else if(type == 1){
+                this.form.query == this.form.city + '' + this.form.via;
             }
-            if(type == 2){
-                this.query = this.city + ' ' + this.via + ' ' + this.civico;
+            else if(type = 2){
+                this.form.query == this.form.city + ' ' + this.form.via + ' ' + this.form.civico;
             }
-            console.log(this.query);
             axios
                 .get("https://api.tomtom.com/search/2/search/.json?", {
                     params: {
                         key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-                        query: this.query,
+                        query: this.form.query,
                         // entityTypeSet: "Municipality",
                         language: "it-IT",
                         typeahead: 1,
@@ -409,33 +360,18 @@ export default {
                     let arr = [];
                     response.data.results.forEach(element => {
                         if(type == 0){
-                            let output =  { 'city' : element.address.municipality, 'via' : '' , 'civico' : '' };
-                            arr.push(output);
+                            arr.push(element.address.municipality);
                         }
-                        if(type == 1 ){
-                            if(element.address.streetName && element.address.municipality == this.city){
-                                let output = { city: element.address.municipality, via: element.address.streetName , civico:''};
-                                arr.push(output);
-                            }
+                        else if(type == 1){
+                            arr.push(element.address.municipality + ' ' + element.address.streetName  );
                         }
-                        if(type == 2){
-                            console.log('cita' + this.city);
-                            if(element.address.streetNumber && element.address.municipality == this.city ){
-                                // if(element.address.municipality == this.selected.city){
-                                    let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
-                                    arr.push(output);
-                                // }
-                                
-                            }
-                            
+                        else if(type == 2){
+                            arr.push(element.address.municipality + ' ' + element.address.streetName + ' ' + element.address.streetNumber);
                         }
                         
-                        
-                        
-                        this.arrayAddress = arr;
-                        console.log(this.arrayAddress);
                     });
-                        
+                    this.arrayAddress = arr;
+                    console.log(this.arrayAddress);
                 })
                 .catch(error => {
                     console.log(error);
@@ -446,7 +382,6 @@ export default {
             var form = document.getElementById("form");
             var formData = new FormData(form);
             formData.append("user_id", JSON.parse(this.$userId).id);
-            formData.append("address", this.form.address);
             axios
                 .post("/api/apartment/store", formData)
                 .then(response => {
@@ -455,28 +390,9 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        },
-        ServiceActive: function(serve_id){
-            this.form.SelectedServices.push(serve_id);
-            console.log(this.form.SelectedServices);
-        },
-        ServiceDisable: function(serve_id){
-            this.form.SelectedServices.splice(serve_id,1);
-            console.log(this.form.SelectedServices);
-           
         }
     }
 };
 </script>
 
-<style lang="scss" scoped>
-    .bott-serv:hover{
-    color: white;
-    background-color:#42424286 ;
-}
-.bott-active-serv{
-    
-    color: white;
-    background-color:#424242 ;
-}
-</style>
+<style lang="scss" scoped></style>
