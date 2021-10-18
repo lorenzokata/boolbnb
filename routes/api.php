@@ -52,7 +52,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/apartment/{slug}/stats', 'ApartmentController@stats');
 
     // caricamento dei dati delle e-mail dalla Show.vue
-    Route::post('/apartment/email/{slug}', 'ApartmentController@email');
+    Route::post('/apartment/email', 'ApartmentController@email');
     Route::get('/apartment/myEmails/{id}', 'ApartmentController@getEmails');
 
 });
