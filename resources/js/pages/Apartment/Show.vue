@@ -78,15 +78,15 @@
                 <div v-if="success" class="alert alert-success">
                     Massaggio inviato
                 </div>
-                <form @submit.prevent="sendForm" class="d-flex flex-column">
+                <form @submit.prevent="sendForm" class="d-flex flex-column form-group">
                     
-                    <label for="senderfullname" class="mt-2">Nome e Cognome</label>
+                    <label for="senderfullname" class="mt-2 form-group">Nome e Cognome</label>
                     <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
 
-                    <label for="senderemail" class="mt-2">E-mail</label>
+                    <label for="senderemail" class="mt-2 form-group">E-mail</label>
                     <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="sender_email"  />
 
-                    <label for="msg" class="mt-2">Messaggio</label>
+                    <label for="msg" class="mt-2 form-group">Messaggio</label>
                     <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
 
                     <button
