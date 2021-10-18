@@ -145,10 +145,10 @@
                     </div>
                 </div>
 
-                <hr />
+                <hr/>
 
                 <h4>Indirizzo e Foto</h4>
-                <div class="form-row d-flex justify-content-between ">
+                <!-- <div class="form-row d-flex justify-content-between "> -->
 
 
                 <!-- indirizzo -->
