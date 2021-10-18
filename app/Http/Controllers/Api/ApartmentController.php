@@ -310,7 +310,7 @@ class ApartmentController extends Controller
 
         $new_message->save();
 
-        Mail::to('info@boolbnb.com')->send(new SendNewMail($new_message));
+        // Mail::to('info@boolbnb.com')->send(new SendNewMail($new_message));
 
         return response()->json( ['success' => true] );
 

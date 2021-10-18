@@ -85,6 +85,9 @@
                 </div>
 
                 <h3 class="d-block rosso mt-3">Invia un' e-mail al proprietario</h3>
+                <div v-if="success" class="alert alert-success">
+                    Massaggio inviato
+                </div>
                 <form @submit.prevent="sendForm" class="d-flex flex-column">
                     
                     <label for="senderfullname" class="mt-2">Nome e Cognome</label>
@@ -95,9 +98,6 @@
 
                     <label for="msg" class="mt-2">Messaggio</label>
                     <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
-
-                    <!-- maniera poco carina per passare apartment_id -->
-                    <textarea v-model="apartment_id" name="" id="apartment_id" class="d-none"></textarea>
 
                     <button
                         type="submit"
@@ -121,22 +121,25 @@ export default {
             sender_fullname: '',
             sender_email: '',
             msg: '',
-            apartment_id: '1', //da passare in maniera dinamica
-            errors: {}
+            apartment_id: 'apartment.id',
+            errors: {},
+            success: false
         };
     },
 
     methods: {
         sendForm(){
+            this.success = false,
             axios.post('/api/apartment/email', {
                 'sender_fullname': this.sender_fullname,
                 'sender_email': this.sender_email,
                 'msg': this.msg,
-                'apartment_id': this.apartment_id
+                'apartment_id': this.apartment.id
             })
-                .then(response =>
-                    console.log(response)
-                )
+                .then(response => {
+                    this.success = true,  
+                    console.log(response);
+                })
                 .catch(error => {
                     console.log(error);
                 })

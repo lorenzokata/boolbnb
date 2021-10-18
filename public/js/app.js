@@ -7172,32 +7172,34 @@ __webpack_require__.r(__webpack_exports__);
       sender_fullname: '',
       sender_email: '',
       msg: '',
-      apartment_id: '1',
-      //da passare in maniera dinamica
-      errors: {}
+      apartment_id: 'apartment.id',
+      errors: {},
+      success: false
     };
   },
   methods: {
     sendForm: function sendForm() {
-      axios.post('/api/apartment/email', {
+      var _this = this;
+
+      this.success = false, axios.post('/api/apartment/email', {
         'sender_fullname': this.sender_fullname,
         'sender_email': this.sender_email,
         'msg': this.msg,
-        'apartment_id': this.apartment_id
+        'apartment_id': this.apartment.id
       }).then(function (response) {
-        return console.log(response);
+        _this.success = true, console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     // l'appartamento é in apartment
     // i services del appartamento sono in apartment.services (array)
     axios.get("/api/apartment/show/" + this.$route.params.slug).then(function (response) {
-      _this.apartment = response.data.results;
+      _this2.apartment = response.data.results;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -45830,6 +45832,14 @@ var render = function() {
           _vm._v("Invia un' e-mail al proprietario")
         ]),
         _vm._v(" "),
+        _vm.success
+          ? _c("div", { staticClass: "alert alert-success" }, [
+              _vm._v(
+                "\n                    Massaggio inviato\n                "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "form",
           {
@@ -45924,28 +45934,6 @@ var render = function() {
                     return
                   }
                   _vm.msg = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.apartment_id,
-                  expression: "apartment_id"
-                }
-              ],
-              staticClass: "d-none",
-              attrs: { name: "", id: "apartment_id" },
-              domProps: { value: _vm.apartment_id },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.apartment_id = $event.target.value
                 }
               }
             }),
