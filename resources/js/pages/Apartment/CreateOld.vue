@@ -143,15 +143,14 @@
                 <h4>Indirizzo</h4>
 
                 <!-- indirizzo -->
-                <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
-                <div class="form-group" v-if="cityActive">
+                <div class="form-group">
                     <label class="d-block" for="address">citta</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="city"
+                        v-model="form.city"
                         type="text"
-                        
+                        name="address"
                         required
                         @input="autoAddress(0)"
                     />
@@ -167,21 +166,21 @@
                                 v-for="(address, id) in arrayAddress"
                                 :key="id"
                                 :v-model="arrayAddress[id]"
-                                @click="addressClick(id , 0)"
+                                @click="addressClick(id, 0)"
                             >
-                                {{ address.city }}
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group" v-if="viaActive">
-                    <label class="d-block" for="address">via</label>
+                <div class="form-group">
+                    <label class="d-block" for="address">Via</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="via"
+                        v-model="form.via"
                         type="text"
-                        
+                        name="address"
                         required
                         @input="autoAddress(1)"
                     />
@@ -199,19 +198,19 @@
                                 :v-model="arrayAddress[id]"
                                 @click="addressClick(id, 1)"
                             >
-                                {{ address.city }} {{ address.via }} 
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="form-group" v-if="civicoActive">
+                <div class="form-group">
                     <label class="d-block" for="address">civico</label>
                     <input
-                        id="city"
+                        id="address"
                         class="form-control"
-                        v-model="civico"
+                        v-model="form.civico"
                         type="text"
-
+                        name="address"
                         required
                         @input="autoAddress(2)"
                     />
@@ -229,12 +228,12 @@
                                 :v-model="arrayAddress[id]"
                                 @click="addressClick(id, 2)"
                             >
-                                {{ address.city }} {{ address.via }} {{ address.civico }}
+                                {{ address }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
+
                 <hr />
 
                 <!-- immagine -->
@@ -296,26 +295,21 @@ export default {
                 n_beds: 1,
                 n_baths: 1,
                 square_meters: 1,
-                address:'',
+                query: "",
+                city: '',
+                via : '',
+                civico:'',
                 visible: 1,
                 SelectedServices: [],
                 image: null
             },
-            query: "",
-            city: '',
-            via : '',
-            civico:'',
+
             services: [],
-            arrayAddress: [],
-            addressActive: true,
-            cityActive: true,
-            viaActive: false,
-            civicoActive: false,
-            selected:{
-                city:'',
-                via:'',
-                civico:''
-            }
+            arrayAddress0: [],
+            arrayAddress1: [],
+            arrayAddress2: [],
+
+            addressActive: true
         };
     },
 
@@ -334,63 +328,28 @@ export default {
     },
 
     methods: {
-        clean: function(){
-            this.cityActive = true;
-            this.viaActive = false;
-            this.civicoActive = false;
-            this.form.address = '';
-            this.query = '';
-            this.city= '';
-            this.arrayAddress =[];
-        },
-
-        addressClick: function(id , type) {
-            if(type == 0){
-                // this.city = this.arrayAddress[id];
-                this.query = this.arrayAddress[id];
-                this.city = this.query.city;
-                this.cityActive = false;
-                this.viaActive = true;
-                this.arrayAddress = [];
-                this.form.address = this.query;
-            }else if(type == 1){
-                this.query = this.arrayAddress[id];
-                this.viaActive = false;
-                this.via = this.query.via;
-                this.civicoActive = true;
-                this.arrayAddress = [];
-                this.form.address = this.query;
-            }else if(type == 2){
-                this.query = this.arrayAddress[id];
-                this.civicoActive = false;
-                this.civico = this.query.civico;
-                this.arrayAddress = [];
-                console.log(this.query);
-                this.form.address = this.query;
-                console.log(this.form.address);
-            }
-            
+        addressClick: function(id, type) {
+            this.form.query = this.arrayAddress0[id];
             this.addressActive = true;
-
         },
 
         autoAddress: function(type) {
             // caso attivo quando form.city !== '' (caso base, PASSO 1)
+
             if(type == 0){
-                this.query = this.city;
+                this.form.query = this.form.city;
             }
-            if(type == 1 ){
-                this.query = this.city + ' ' + this.via;
+            else if(type == 1){
+                this.form.query == this.form.city + '' + this.form.via;
             }
-            if(type == 2){
-                this.query = this.city + ' ' + this.via + ' ' + this.civico;
+            else if(type = 2){
+                this.form.query == this.form.city + ' ' + this.form.via + ' ' + this.form.civico;
             }
-            console.log(this.query);
             axios
                 .get("https://api.tomtom.com/search/2/search/.json?", {
                     params: {
                         key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-                        query: this.query,
+                        query: this.form.query,
                         // entityTypeSet: "Municipality",
                         language: "it-IT",
                         typeahead: 1,
@@ -401,33 +360,18 @@ export default {
                     let arr = [];
                     response.data.results.forEach(element => {
                         if(type == 0){
-                            let output =  { 'city' : element.address.municipality, 'via' : '' , 'civico' : '' };
-                            arr.push(output);
+                            arr.push(element.address.municipality);
                         }
-                        if(type == 1 ){
-                            if(element.address.streetName && element.address.municipality == this.city){
-                                let output = { city: element.address.municipality, via: element.address.streetName , civico:''};
-                                arr.push(output);
-                            }
+                        else if(type == 1){
+                            arr.push(element.address.municipality + ' ' + element.address.streetName  );
                         }
-                        if(type == 2){
-                            console.log('cita' + this.city);
-                            if(element.address.streetNumber && element.address.municipality == this.city ){
-                                // if(element.address.municipality == this.selected.city){
-                                    let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
-                                    arr.push(output);
-                                // }
-                                
-                            }
-                            
+                        else if(type == 2){
+                            arr.push(element.address.municipality + ' ' + element.address.streetName + ' ' + element.address.streetNumber);
                         }
                         
-                        
-                        
-                        this.arrayAddress = arr;
-                        console.log(this.arrayAddress);
                     });
-                        
+                    this.arrayAddress = arr;
+                    console.log(this.arrayAddress);
                 })
                 .catch(error => {
                     console.log(error);
@@ -438,7 +382,6 @@ export default {
             var form = document.getElementById("form");
             var formData = new FormData(form);
             formData.append("user_id", JSON.parse(this.$userId).id);
-            formData.append("address", this.form.address);
             axios
                 .post("/api/apartment/store", formData)
                 .then(response => {

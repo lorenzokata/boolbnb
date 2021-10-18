@@ -45,7 +45,7 @@
                             </router-link>
                             <div
                                 class="list-group suggeriti"
-                                :class="{ focus : 'd-block' } "
+                                
                                 v-if="arrayAddress != [] && userInput.length > 1 && addressActive"
                                 
                                 
@@ -151,8 +151,9 @@ export default {
             this.userInput = this.arrayAddress[id];
             this.addressActive = false;
             this.focus = false;
-            this.inp = document.getElementById('search');
-            this.inp.focus();
+            // this.inp = document.getElementById('search');
+            
+            // this.inp.focus();
             
             
         },
@@ -183,7 +184,8 @@ export default {
             this.focus = true;
         },
         focusActions: function(){
-            this.focus = false;           
+            this.focus = false;
+            // this.arrayAddress = [];           
         },
         enterRoute: function(){
             

@@ -6633,6 +6633,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6644,14 +6705,26 @@ __webpack_require__.r(__webpack_exports__);
         n_beds: 1,
         n_baths: 1,
         square_meters: 1,
-        address: "",
+        address: '',
         visible: 1,
         SelectedServices: [],
         image: null
       },
+      query: "",
+      city: '',
+      via: '',
+      civico: '',
       services: [],
       arrayAddress: [],
-      addressActive: true
+      addressActive: true,
+      cityActive: true,
+      viaActive: false,
+      civicoActive: false,
+      selected: {
+        city: '',
+        via: '',
+        civico: ''
+      }
     };
   },
   mounted: function mounted() {
@@ -6666,18 +6739,64 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    addressClick: function addressClick(id) {
-      this.form.address = this.arrayAddress[id];
+    clean: function clean() {
+      this.cityActive = true;
+      this.viaActive = false;
+      this.civicoActive = false;
+      this.form.address = '';
+      this.query = '';
+      this.city = '';
+      this.arrayAddress = [];
+    },
+    addressClick: function addressClick(id, type) {
+      if (type == 0) {
+        // this.city = this.arrayAddress[id];
+        this.query = this.arrayAddress[id];
+        this.city = this.query.city;
+        this.cityActive = false;
+        this.viaActive = true;
+        this.arrayAddress = [];
+        this.form.address = this.query;
+      } else if (type == 1) {
+        this.query = this.arrayAddress[id];
+        this.viaActive = false;
+        this.via = this.query.via;
+        this.civicoActive = true;
+        this.arrayAddress = [];
+        this.form.address = this.query;
+      } else if (type == 2) {
+        this.query = this.arrayAddress[id];
+        this.civicoActive = false;
+        this.civico = this.query.civico;
+        this.arrayAddress = [];
+        console.log(this.query);
+        this.form.address = this.query;
+        console.log(this.form.address);
+      }
+
       this.addressActive = true;
     },
-    autoAddress: function autoAddress() {
+    autoAddress: function autoAddress(type) {
       var _this2 = this;
 
       // caso attivo quando form.city !== '' (caso base, PASSO 1)
+      if (type == 0) {
+        this.query = this.city;
+      }
+
+      if (type == 1) {
+        this.query = this.city + ' ' + this.via;
+      }
+
+      if (type == 2) {
+        this.query = this.city + ' ' + this.via + ' ' + this.civico;
+      }
+
+      console.log(this.query);
       axios.get("https://api.tomtom.com/search/2/search/.json?", {
         params: {
           key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-          query: this.form.address,
+          query: this.query,
           // entityTypeSet: "Municipality",
           language: "it-IT",
           typeahead: 1,
@@ -6686,10 +6805,43 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         var arr = [];
         response.data.results.forEach(function (element) {
-          arr.push(element.address.freeformAddress);
+          if (type == 0) {
+            var output = {
+              'city': element.address.municipality,
+              'via': '',
+              'civico': ''
+            };
+            arr.push(output);
+          }
+
+          if (type == 1) {
+            if (element.address.streetName && element.address.municipality == _this2.city) {
+              var _output = {
+                city: element.address.municipality,
+                via: element.address.streetName,
+                civico: ''
+              };
+              arr.push(_output);
+            }
+          }
+
+          if (type == 2) {
+            console.log('cita' + _this2.city);
+
+            if (element.address.streetNumber && element.address.municipality == _this2.city) {
+              // if(element.address.municipality == this.selected.city){
+              var _output2 = {
+                city: element.address.municipality,
+                via: element.address.streetName,
+                civico: element.address.streetNumber
+              };
+              arr.push(_output2); // }
+            }
+          }
+
+          _this2.arrayAddress = arr;
+          console.log(_this2.arrayAddress);
         });
-        _this2.arrayAddress = arr;
-        console.log(_this2.arrayAddress);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6701,6 +6853,7 @@ __webpack_require__.r(__webpack_exports__);
       var form = document.getElementById("form");
       var formData = new FormData(form);
       formData.append("user_id", JSON.parse(this.$userId).id);
+      formData.append("address", this.form.address);
       axios.post("/api/apartment/store", formData).then(function (response) {
         _this3.$router.push("../dashboard");
       })["catch"](function (error) {
@@ -7521,9 +7674,8 @@ __webpack_require__.r(__webpack_exports__);
     addressClick: function addressClick(id) {
       this.userInput = this.arrayAddress[id];
       this.addressActive = false;
-      this.focus = false;
-      this.inp = document.getElementById('search');
-      this.inp.focus();
+      this.focus = false; // this.inp = document.getElementById('search');
+      // this.inp.focus();
     },
     autoAddress: function autoAddress() {
       var _this2 = this;
@@ -7551,7 +7703,7 @@ __webpack_require__.r(__webpack_exports__);
       this.focus = true;
     },
     focusActions: function focusActions() {
-      this.focus = false;
+      this.focus = false; // this.arrayAddress = [];           
     },
     enterRoute: function enterRoute() {
       this.router.push({
@@ -44782,80 +44934,256 @@ var render = function() {
           _vm._v(" "),
           _c("h4", [_vm._v("Indirizzo")]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "d-block", attrs: { for: "address" } }, [
-              _vm._v("Indirizzo")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
+          !_vm.cityActive
+            ? _c(
+                "div",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.address,
-                  expression: "form.address"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                id: "address",
-                type: "text",
-                name: "address",
-                required: ""
-              },
-              domProps: { value: _vm.form.address },
-              on: {
-                input: [
-                  function($event) {
-                    if ($event.target.composing) {
-                      return
+                  staticClass: "bottone rosso-background",
+                  on: { click: _vm.clean }
+                },
+                [_vm._v(" back ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.cityActive
+            ? _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "d-block", attrs: { for: "address" } },
+                  [_vm._v("citta")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.city,
+                      expression: "city"
                     }
-                    _vm.$set(_vm.form, "address", $event.target.value)
-                  },
-                  function($event) {
-                    return _vm.autoAddress()
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "city", type: "text", required: "" },
+                  domProps: { value: _vm.city },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.city = $event.target.value
+                      },
+                      function($event) {
+                        return _vm.autoAddress(0)
+                      }
+                    ]
                   }
-                ]
-              }
-            }),
-            _vm._v(" "),
-            _vm.arrayAddress != []
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "list-group",
-                    class: { "d-none": _vm.addressActive }
-                  },
-                  [
-                    _c(
-                      "ul",
-                      _vm._l(_vm.arrayAddress, function(address, id) {
-                        return _c(
-                          "li",
-                          {
-                            key: id,
-                            staticClass: "list-group-item input-group",
-                            attrs: { "v-model": _vm.arrayAddress[id] },
-                            on: {
-                              click: function($event) {
-                                return _vm.addressClick(id)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(address) +
-                                "\n                        "
+                }),
+                _vm._v(" "),
+                _vm.arrayAddress != []
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-group",
+                        class: { "d-none": _vm.addressActive }
+                      },
+                      [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayAddress, function(address, id) {
+                            return _c(
+                              "li",
+                              {
+                                key: id,
+                                staticClass: "list-group-item input-group",
+                                attrs: { "v-model": _vm.arrayAddress[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addressClick(id, 0)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(address.city) +
+                                    "\n                        "
+                                )
+                              ]
                             )
-                          ]
+                          }),
+                          0
                         )
-                      }),
-                      0
+                      ]
                     )
-                  ]
-                )
-              : _vm._e()
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.viaActive
+            ? _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "d-block", attrs: { for: "address" } },
+                  [_vm._v("via")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.via,
+                      expression: "via"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "city", type: "text", required: "" },
+                  domProps: { value: _vm.via },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.via = $event.target.value
+                      },
+                      function($event) {
+                        return _vm.autoAddress(1)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _vm.arrayAddress != []
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-group",
+                        class: { "d-none": _vm.addressActive }
+                      },
+                      [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayAddress, function(address, id) {
+                            return _c(
+                              "li",
+                              {
+                                key: id,
+                                staticClass: "list-group-item input-group",
+                                attrs: { "v-model": _vm.arrayAddress[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addressClick(id, 1)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(address.city) +
+                                    " " +
+                                    _vm._s(address.via) +
+                                    " \n                        "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.civicoActive
+            ? _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "d-block", attrs: { for: "address" } },
+                  [_vm._v("civico")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.civico,
+                      expression: "civico"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "city", type: "text", required: "" },
+                  domProps: { value: _vm.civico },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.civico = $event.target.value
+                      },
+                      function($event) {
+                        return _vm.autoAddress(2)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _vm.arrayAddress != []
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-group",
+                        class: { "d-none": _vm.addressActive }
+                      },
+                      [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayAddress, function(address, id) {
+                            return _c(
+                              "li",
+                              {
+                                key: id,
+                                staticClass: "list-group-item input-group",
+                                attrs: { "v-model": _vm.arrayAddress[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addressClick(id, 2)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(address.city) +
+                                    " " +
+                                    _vm._s(address.via) +
+                                    " " +
+                                    _vm._s(address.civico) +
+                                    "\n                        "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(
+              _vm._s(_vm.query.city) +
+                " " +
+                _vm._s(_vm.query.via) +
+                " " +
+                _vm._s(_vm.query.civico)
+            )
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -46514,39 +46842,32 @@ var render = function() {
                   _vm.arrayAddress != [] &&
                   _vm.userInput.length > 1 &&
                   _vm.addressActive
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "list-group suggeriti",
-                          class: { focus: "d-block" }
-                        },
-                        [
-                          _c(
-                            "ul",
-                            _vm._l(_vm.arrayAddress, function(address, id) {
-                              return _c(
-                                "label",
-                                {
-                                  key: id,
-                                  staticClass: "list-group-item",
-                                  attrs: { "v-model": _vm.arrayAddress[id] },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.addressClick(id)
-                                    }
+                    ? _c("div", { staticClass: "list-group suggeriti" }, [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.arrayAddress, function(address, id) {
+                            return _c(
+                              "label",
+                              {
+                                key: id,
+                                staticClass: "list-group-item",
+                                attrs: { "v-model": _vm.arrayAddress[id] },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addressClick(id)
                                   }
-                                },
-                                [
-                                  _c("label", { attrs: { for: "search" } }, [
-                                    _vm._v(_vm._s(address))
-                                  ])
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ]
-                      )
+                                }
+                              },
+                              [
+                                _c("label", { attrs: { for: "search" } }, [
+                                  _vm._v(_vm._s(address))
+                                ])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
                     : _vm._e()
                 ],
                 1
