@@ -53,5 +53,6 @@ Route::namespace('Api')->group(function () {
 
     // caricamento dei dati delle e-mail dalla Show.vue
     Route::post('/apartment/email', 'ApartmentController@email');
+    Route::get('/apartment/myEmails/{id}', 'ApartmentController@getEmails');
 
 });

@@ -7034,9 +7034,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      email: ''
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    console.log(this.$route.params.id);
+    axios.get("/api/apartment/myEmails/" + this.$route.params.id).then(function (response) {
+      // console.log(response);  
+      _this.email = response.data.results;
+      console.log(_this.email);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -7172,32 +7188,36 @@ __webpack_require__.r(__webpack_exports__);
       sender_fullname: '',
       sender_email: '',
       msg: '',
-      apartment_id: '1',
-      //da passare in maniera dinamica
-      errors: {}
+      apartment_id: 'apartment.id',
+      //se tolgo apartment.id non vá...
+      errors: {},
+      sending: false,
+      success: false
     };
   },
   methods: {
     sendForm: function sendForm() {
-      axios.post('/api/apartment/email', {
+      var _this = this;
+
+      this.sending = true, this.success = false, axios.post('/api/apartment/email', {
         'sender_fullname': this.sender_fullname,
         'sender_email': this.sender_email,
         'msg': this.msg,
-        'apartment_id': this.apartment_id
+        'apartment_id': this.apartment.id
       }).then(function (response) {
-        return console.log(response);
+        _this.success = true, _this.sending = false, _this.sender_fullname = '', _this.sender_email = '', _this.msg = '', _this.apartment.id = '', console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     // l'appartamento é in apartment
     // i services del appartamento sono in apartment.services (array)
     axios.get("/api/apartment/show/" + this.$route.params.slug).then(function (response) {
-      _this.apartment = response.data.results;
+      _this2.apartment = response.data.results;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -45647,43 +45667,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container pt-3" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "form",
+      { staticClass: "row" },
+      _vm._l(_vm.email, function(mail) {
+        return _c(
+          "div",
+          {
+            key: mail.id,
+            staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded"
+          },
+          [
+            _c(
+              "h3",
+              { staticClass: " box-mess my-2 px-3 rounded text-center" },
+              [_vm._v(_vm._s(mail.sender_fullname))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
+              _vm._v(_vm._s(mail.sender_email))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
+              _vm._v(_vm._s(mail.msg))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "fl-right opal" }, [
+              _vm._v(_vm._s(mail.created_at))
+            ])
+          ]
+        )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container pt-3" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("h1", [_vm._v("Messaggi Dell'Appartamento")])
-      ]),
-      _vm._v(" "),
-      _c("form", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-12 col-md-5 mx-3 my-4 ombra  big-box rounded" },
-          [
-            _c(
-              "h3",
-              { staticClass: " box-mess my-2 px-3 rounded text-center" },
-              [_vm._v("Nome e Cognome")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded" }, [
-              _vm._v("Robertoanfuso@gmail.com")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-mess my-2 px-3 rounded mess" }, [
-              _vm._v(
-                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, doloribus cupiditate. Provident rem fugiat optio. Accusamus, amet! Maiores illum ullam laudantium ut impedit maxime, magnam vero tenetur natus. Aliquam, nemo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, recusandae cumque! Quaerat quia ea dolorum? Reprehenderit eius cumque voluptatibus corporis! Temporibus, voluptatibus? Nam dolore esse atque, veritatis optio expedita veniam!"
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "fl-right opal" }, [_vm._v("13/10/2021")])
-          ]
-        )
-      ])
+    return _c("div", { staticClass: "row" }, [
+      _c("h1", [_vm._v("Messaggi Dell'Appartamento")])
     ])
   }
 ]
@@ -45830,6 +45858,14 @@ var render = function() {
           _vm._v("Invia un' e-mail al proprietario")
         ]),
         _vm._v(" "),
+        _vm.success
+          ? _c("div", { staticClass: "alert alert-success" }, [
+              _vm._v(
+                "\n                    Massaggio inviato\n                "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "form",
           {
@@ -45928,35 +45964,19 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.apartment_id,
-                  expression: "apartment_id"
-                }
-              ],
-              staticClass: "d-none",
-              attrs: { name: "", id: "apartment_id" },
-              domProps: { value: _vm.apartment_id },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.apartment_id = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
             _c(
               "button",
               {
                 staticClass: "bottone rosso-background cream mt-3",
                 attrs: { type: "submit" }
               },
-              [_vm._v("\n                        Invia\n                    ")]
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.sending ? "Invio in corso" : "Invia") +
+                    "\n                    "
+                )
+              ]
             )
           ]
         )
@@ -46327,7 +46347,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "bottone rosso-background ombra mx-1",
-                        attrs: { to: { name: "email" } }
+                        attrs: { to: { name: "email", params: { id: app.id } } }
                       },
                       [_vm._v("E-mail")]
                     )
@@ -63354,7 +63374,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "sponsor",
     component: _pages_Apartment_Sponsor__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
-    path: '/apartment/:slug-app/email',
+    path: '/apartment/email/:id',
     name: "email",
     component: _pages_Apartment_Email__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {

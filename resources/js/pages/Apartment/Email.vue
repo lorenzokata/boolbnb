@@ -4,11 +4,13 @@
             <h1>Messaggi Dell'Appartamento</h1>
         </div>
             <form class="row">
-                <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
-                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
-                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, doloribus cupiditate. Provident rem fugiat optio. Accusamus, amet! Maiores illum ullam laudantium ut impedit maxime, magnam vero tenetur natus. Aliquam, nemo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, recusandae cumque! Quaerat quia ea dolorum? Reprehenderit eius cumque voluptatibus corporis! Temporibus, voluptatibus? Nam dolore esse atque, veritatis optio expedita veniam!</div>
-                    <div class="fl-right opal">13/10/2021</div>
+                <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded"
+                v-for="mail in email"
+                :key="mail.id">
+                    <h3 class=" box-mess my-2 px-3 rounded text-center">{{mail.sender_fullname}}</h3>
+                    <div class="box-mess my-2 px-3 rounded">{{mail.sender_email}}</div>
+                    <div class="box-mess my-2 px-3 rounded mess">{{mail.msg}}</div>
+                    <div class="fl-right opal">{{mail.created_at}}</div>
                 </div>
 
                 <!-- <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
@@ -37,8 +39,24 @@
 <script>
     export default {
 
+        data(){
+            return{
+                email: ''
+            }
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            console.log(this.$route.params.id);
+            axios
+            .get("/api/apartment/myEmails/" + this.$route.params.id)
+            .then(response => {
+                // console.log(response);  
+                this.email = response.data.results;
+                console.log(this.email);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
     }
 </script>
