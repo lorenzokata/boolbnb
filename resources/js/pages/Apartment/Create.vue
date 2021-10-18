@@ -143,7 +143,11 @@
                 <h4>Indirizzo</h4>
 
                 <!-- indirizzo -->
+                <div>
+                   <span>{{city}}</span><span> {{via}}</span><span> {{civico}}</span> 
+                </div>
                 <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
+                
                 <div class="form-group" v-if="cityActive">
                     <label class="d-block" for="address">citta</label>
                     <input
@@ -151,7 +155,7 @@
                         class="form-control"
                         v-model="city"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(0)"
                     />
@@ -181,7 +185,7 @@
                         class="form-control"
                         v-model="via"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(1)"
                     />
@@ -203,6 +207,7 @@
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
                 <div class="form-group" v-if="civicoActive">
                     <label class="d-block" for="address">civico</label>
@@ -211,7 +216,7 @@
                         class="form-control"
                         v-model="civico"
                         type="text"
-
+                        autocomplete="off"
                         required
                         @input="autoAddress(2)"
                     />
@@ -233,6 +238,7 @@
                             </li>
                         </ul>
                     </div>
+
                 </div>
                 <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
                 <hr />
@@ -296,7 +302,7 @@ export default {
                 n_beds: 1,
                 n_baths: 1,
                 square_meters: 1,
-                address:'',
+                // address:'',
                 visible: 1,
                 SelectedServices: [],
                 image: null
@@ -412,7 +418,7 @@ export default {
                         }
                         if(type == 2){
                             console.log('cita' + this.city);
-                            if(element.address.streetNumber && element.address.municipality == this.city ){
+                            if(element.address.streetNumber && element.address.municipality == this.city && element.address.streetName == this.via){
                                 // if(element.address.municipality == this.selected.city){
                                     let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
                                     arr.push(output);
@@ -435,18 +441,24 @@ export default {
             this.addressActive = false;
         },
         submit: function(e) {
-            var form = document.getElementById("form");
-            var formData = new FormData(form);
-            formData.append("user_id", JSON.parse(this.$userId).id);
-            formData.append("address", this.form.address);
-            axios
-                .post("/api/apartment/store", formData)
-                .then(response => {
-                    this.$router.push("../dashboard");
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            // if(this.selected.city != '' && this.selected.via != '' && this.selected.civico != ''){
+                var form = document.getElementById("form");
+                var formData = new FormData(form);
+                formData.append("user_id", JSON.parse(this.$userId).id);
+                formData.append("address", this.query.city + ' ' + this.query.via + ' ' + this.query.civico);
+                axios
+                    .post("/api/apartment/store", formData)
+                    .then(response => {
+                        this.$router.push("../dashboard");
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            // }else{
+            //     console.log('indirizzo no ok')
+            // }
+                
+            
         }
     }
 };
