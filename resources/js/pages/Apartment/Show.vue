@@ -14,12 +14,12 @@
             </div>
             <div class="col-12 col-lg-5 my-descrizione">
                 <!-- <h3 class="d-block rosso">Dettagli casa</h3> -->
-                
-<!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
+
+                <!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
                 <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block rosso">Dettagli casa</h3>
                     <div>
-                        <router-link 
+                        <router-link
                             v-if="this.$userId != ''"
                             class=" bottone rosso-background ombra"
                             :to="{ name: 'dashboard' }"
@@ -76,13 +76,7 @@
                 </p>
 
                 <h3 class="d-block rosso mt-3">Locazione della casa</h3>
-                <div class="img-show">
-                    <!-- <div id="map" style="width: 100px; height: 100px;"></div> -->
-                    <img
-                        src="https://developers.google.com/codelabs/maps-platform/webgl/img/webgl_pin_final.png"
-                        alt=""
-                    />
-                </div>
+                <div id="map" class="map"></div>
 
                 <h3 class="d-block rosso mt-3">Invia un mail al propietario</h3>
                 <form action="" class="d-flex flex-column">
@@ -105,23 +99,36 @@
 </template>
 
 <script>
+import tt from "@tomtom-international/web-sdk-maps";
+
 export default {
     name: "Show",
 
     data() {
         return {
-            apartment: [],
+            apartment: []
         };
     },
     mounted() {
-
         // l'appartamento é in apartment
         // i services del appartamento sono in apartment.services (array)
-        
+
         axios
             .get("/api/apartment/show/" + this.$route.params.slug)
             .then(response => {
                 this.apartment = response.data.results;
+
+                const map = tt.map({
+                    key: "OAL2BjJEi54pYkhRoSNH7o8ZTRp5E21p",
+                    container: "map",
+                    center: [
+                        parseFloat(this.apartment.lon),
+                        parseFloat(this.apartment.lat)
+                    ],
+                    zoom: 13
+                });
+
+                var marker = new tt.Marker().setLngLat([parseFloat(this.apartment.lon), parseFloat(this.apartment.lat)]).addTo(map);
             })
             .catch(error => {
                 console.log(error);

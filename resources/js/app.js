@@ -9,6 +9,9 @@ require('./bootstrap');
 // Bootstrap
 import 'bootstrap';
 
+// TomTom Maps
+// import tt from '@tomtom-international/web-sdk-maps';
+
 // Fontawesome
 import '@fortawesome/fontawesome-free/js/all';
 
