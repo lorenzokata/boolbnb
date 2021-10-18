@@ -52,27 +52,17 @@
                         </li>
                     </ul>
                     <h3 class="d-block rosso mt-3">Servizi della casa</h3>
-                    <div>
-                        <div>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Eaque, illum accusamus rem ad expedita
-                            architecto saepe magnam? Dolores quia iste cumque
-                            culpa unde ducimus sint vel dolorum dolorem, quam
-                            est.
-                        </div>
+                    <div class="w-100">
+                        <span class="mr-3 my-2 badge badge-pill badge-dark myfont" 
+                            v-for="serve in activeservice" :key="serve"
+                        >
+                            {{serve.name}}
+                        </span>
                     </div>
                 </div>
                 <h3 class="d-block rosso mt-3">Descrizione</h3>
                 <p>
-                    {{ apartment.description }} Lorem, ipsum dolor sit amet
-                    consectetur adipisicing elit. Facilis quisquam commodi magni
-                    exercitationem corporis odio, asperiores totam illo rem
-                    doloribus! Debitis inventore asperiores eum, unde distinctio
-                    accusantium quisquam ducimus cupiditate? Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Ut eaque beatae
-                    minima nemo eligendi quos facere molestias vitae laudantium
-                    quaerat iste quasi voluptas incidunt totam nam iure,
-                    voluptatum veritatis dolores?
+                    {{ apartment.description }} 
                 </p>
 
                 <h3 class="d-block rosso mt-3">Locazione della casa</h3>
@@ -124,7 +114,8 @@ export default {
             apartment_id: 'apartment.id', //se tolgo apartment.id non vá...
             errors: {},
             sending: false,
-            success: false
+            success: false,
+            activeservice:[],
         };
     },
 
@@ -162,6 +153,9 @@ export default {
             .get("/api/apartment/show/" + this.$route.params.slug)
             .then(response => {
                 this.apartment = response.data.results;
+                this.activeservice=response.data.results.services;
+                console.log(this.apartment);
+                console.log(this.activeservice);
             })
             .catch(error => {
                 console.log(error);
@@ -171,6 +165,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.myfont{
+    
+   font-size: 15px;
+}
+
 .indirizzo {
     text-decoration: underline;
     font-size: 18px;
