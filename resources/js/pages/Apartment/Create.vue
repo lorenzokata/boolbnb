@@ -5,7 +5,7 @@
             <div class="d-flex justify-content-between align-items-center pt-3">
                 <h2>Crea un nuovo appartamento</h2>
                 <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard' }"
-                    >Pannello di controllo</router-link
+                    ><i class="fas fa-arrow-right"></i></router-link
                 >
             </div>
 
@@ -23,28 +23,29 @@
                         <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
                     </ul>
                 </p> -->
+                <div class="form-row d-flex justify-content-between align-items-center">
+                    <div class="form-group mb-3 col-md-8 col-sm-12">
+                        <label for="title ">Titolo</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="title"
+                            v-model="form.title"
+                            name="title"
+                            required
+                        />
+                    </div>
 
-                <div class="form-group">
-                    <label for="title">Titolo</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="title"
-                        v-model="form.title"
-                        name="title"
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label for="visible">Visibile</label>
-                    <input
-                        id="visible"
-                        v-model="form.visible"
-                        type="checkbox"
-                        name="visible"
-                    />
-                </div>
+                    <div class="ml-3 mr-3">>
+                        <label for="visible">Visibile</label>
+                        <input
+                            id="visible"
+                            v-model="form.visible"
+                            type="checkbox"
+                            name="visible"
+                        />
+                    </div>
+            </div>
 
                 <div class="form-group">
                     <label for="desc">Descrizione</label>
@@ -64,13 +65,13 @@
                 <h4>Servizi</h4>
 
                 <!-- select di vue -->
-                <div class="row row-cols-3">
+                <div class="row row-cols-2  row-cols-sm-3 row-cols-lg-5">
                     <div
                         class="col"
                         v-for="service in services"
                         :key="service.id"
                     >
-                        <input
+                        <input class="d-none"
                             type="checkbox"
                             :id="service.name"
                             :value="service.id"
@@ -78,7 +79,13 @@
                             name="SelectedServices[]"
                         />
 
-                        <label :for="service.name">{{ service.name }}</label>
+                       <!--  <label :for="service.name">{{ service.name }}</label> -->
+                        <label  v-if="form.SelectedServices.includes(service)" :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(form.SelectedServices.indexOf(service))">{{service.name}}</div></label>
+                        <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
+
+
+                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
+                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
                     </div>
                 </div>
 
@@ -88,7 +95,7 @@
 
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
-                    <div class="form-group col-sm-6 col-md-3">
+                    <div class="form-group col-6 col-lg-3">
                         <label class="d-block" for="n_rooms"
                             >Numero stanze</label
                         >
@@ -101,7 +108,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-sm-6 col-md-3">
+                    <div class="form-group col-6 col-lg-3">
                         <label class="d-block" for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
@@ -111,7 +118,7 @@
                             required
                         />
                     </div>
-                    <div class="form-group col-sm-6 col-md-3">
+                    <div class="form-group col-6 col-lg-3">
                         <label class="d-block" for="n_baths"
                             >Numero bagni</label
                         >
@@ -124,7 +131,7 @@
                         />
                     </div>
 
-                    <div class="form-group col-sm-6 col-md-3">
+                    <div class="form-group col-6 col-lg-3">
                         <label class="d-block" for="square_meters"
                             >Metri quadri</label
                         >
@@ -140,10 +147,12 @@
 
                 <hr />
 
-                <h4>Indirizzo</h4>
+                <h4>Indirizzo e Foto</h4>
+                <div class="form-row d-flex justify-content-between ">
+
 
                 <!-- indirizzo -->
-                <div class="form-group">
+                <div class="form-group col-md-8 col-sm-12">
                     <label class="d-block" for="address">Indirizzo</label>
                     <input
                         id="address"
@@ -174,14 +183,62 @@
                     </div>
                 </div>
 
+                   <div class="input-group col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label class="d-block" for="exampleFormControlFile1">Foto</label>
+                            <input
+                                type="file"
+                                class="form-control-file form-control"
+                                name="imgs"
+                                id="exampleFormControlFile1"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+        <!--         <h4>Indirizzo</h4>
+
+
+                <div class="form-group">
+                    <label class="d-block" for="address">Indirizzo</label>
+                    <input
+                        id="address"
+                        class="form-control"
+                        v-model="form.address"
+                        type="text"
+                        name="address"
+                        required
+                        @input="autoAddress()"
+                    />
+                     Autocomp
+                    <div
+                        class="list-group"
+                        :class="{ 'd-none': addressActive }"
+                        v-if="arrayAddress != []"
+                    >
+                        <ul>
+                            <li
+                                class="list-group-item input-group"
+                                v-for="(address, id) in arrayAddress"
+                                :key="id"
+                                :v-model="arrayAddress[id]"
+                                @click="addressClick(id)"
+                            >
+                                {{ address }}
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+
                 <hr />
 
                 <!-- immagine -->
-                <h4>Carica foto</h4>
+
                 <div
                     class="form-row d-flex justify-content-between align-items-center"
                 >
-                    <div class="input-group mb-3 col-md-6 col-sm-12">
+                  <!--  form vecchio img
+                       <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="form-group">
 
                             <input
@@ -191,7 +248,7 @@
                                 id="exampleFormControlFile1"
                             />
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
@@ -201,13 +258,13 @@
                             </button>
                         </div>
 
-                        <div class="mb-3">
+                       <!--  <div class="mb-3">
                             <router-link
                                 class="bottone rosso-background ombra"
                                 :to="{ name: 'dashboard' }"
                                 >Pannello di controllo</router-link
                             >
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -303,9 +360,28 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        ServiceActive: function(serve_id){
+            this.form.SelectedServices.push(serve_id);
+            console.log(this.form.SelectedServices);
+        },
+        ServiceDisable: function(serve_id){
+            this.form.SelectedServices.splice(serve_id,1);
+            console.log(this.form.SelectedServices);
+           
         }
     }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .bott-serv:hover{
+    color: white;
+    background-color:#42424286 ;
+}
+.bott-active-serv{
+    
+    color: white;
+    background-color:#424242 ;
+}
+</style>
