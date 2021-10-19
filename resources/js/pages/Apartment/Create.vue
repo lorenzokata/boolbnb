@@ -148,7 +148,7 @@
                 <hr />
 
                 <h4>Indirizzo e Foto</h4>
-                <div class="form-row d-flex justify-content-between ">
+                <!-- <div class="form-row d-flex justify-content-between "> -->
 
 
                 <!-- indirizzo -->
@@ -373,9 +373,9 @@ export default {
                 this.civicoActive = false;
                 this.civico = this.query.civico;
                 this.arrayAddress = [];
-                console.log(this.query);
+
                 this.form.address = this.query;
-                console.log(this.form.address);
+
             }
             
             this.addressActive = true;
@@ -393,7 +393,6 @@ export default {
             if(type == 2){
                 this.query = this.city + ' ' + this.via + ' ' + this.civico;
             }
-            console.log(this.query);
             axios
                 .get("https://api.tomtom.com/search/2/search/.json?", {
                     params: {
@@ -433,7 +432,7 @@ export default {
                         
                         
                         this.arrayAddress = arr;
-                        console.log(this.arrayAddress);
+
                     });
                         
                 })
@@ -446,7 +445,8 @@ export default {
             var form = document.getElementById("form");
             var formData = new FormData(form);
             formData.append("user_id", JSON.parse(this.$userId).id);
-            formData.append("address", this.form.address);
+            var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+            formData.append("address", address);
             axios
                 .post("/api/apartment/store", formData)
                 .then(response => {
@@ -458,11 +458,11 @@ export default {
         },
         ServiceActive: function(serve_id){
             this.form.SelectedServices.push(serve_id);
-            console.log(this.form.SelectedServices);
+  
         },
         ServiceDisable: function(serve_id){
             this.form.SelectedServices.splice(serve_id,1);
-            console.log(this.form.SelectedServices);
+
            
         }
     }

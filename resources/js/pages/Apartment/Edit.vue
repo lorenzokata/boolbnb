@@ -158,50 +158,18 @@
 
                 <hr>
 
-                <h4>Indirizzo</h4>
-
-                <!-- indirizzo -->
- <!--                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="address">Modifica indirizzo</span>
-                    </div>
-                    <input @input="autoAddress()" id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="address" required>
-
-                    
-                </div>
-
-                     suggeriti -->
-                   <!--  <div class="list-group suggeriti"
-                        :class="{ 'd-none': addressActive }"
-                        v-if="arrayAddress != []"
-                    >
-                        <ul>
-                            <li
-                                class="list-group-item input-group"
-                                v-for="(address, id) in arrayAddress"
-                                :key="id"
-                                :v-model="arrayAddress[id]"
-                                @click="addressClick(id)"
-                            >
-                                {{ address }}
-                            </li>
-                        </ul>
-                    </div> --> 
-                    
-                    <div class="form-row d-flex justify-content-between ">
-
-
-                <!-- indirizzo -->
-                <div class="form-group col-md-8 col-sm-12">
-                    <label class="d-block" for="address">Indirizzo</label>
+                 <!-- indirizzo -->
+                <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
+                <div class="form-group" v-if="cityActive">
+                    <label class="d-block" for="address">citta</label>
                     <input
-                        id="address"
+                        id="city"
                         class="form-control"
-                        v-model="apartment.address"
+                        v-model="city"
                         type="text"
-                        name="address"
+                        
                         required
-                        @input="autoAddress()"
+                        @input="autoAddress(0)"
                     />
                     <!-- Autocomp -->
                     <div
@@ -215,25 +183,85 @@
                                 v-for="(address, id) in arrayAddress"
                                 :key="id"
                                 :v-model="arrayAddress[id]"
-                                @click="addressClick(id)"
+                                @click="addressClick(id , 0)"
                             >
-                                {{ address }}
+                                {{ address.city }}
                             </li>
                         </ul>
                     </div>
                 </div>
-
-                   <div class="input-group col-md-4 col-sm-12">
-                        <div class="form-group">
-                            <label class="d-block" for="exampleFormControlFile1">Foto</label>
-                            <input
-                                type="file"
-                                class="form-control-file form-control"
-                                name="imgs"
-                                id="exampleFormControlFile1"
-                            />
-                        </div>
+                <div class="form-group" v-if="viaActive">
+                    <label class="d-block" for="address">via</label>
+                    <input
+                        id="city"
+                        class="form-control"
+                        v-model="via"
+                        type="text"
+                        
+                        required
+                        @input="autoAddress(1)"
+                    />
+                    <!-- Autocomp -->
+                    <div
+                        class="list-group"
+                        :class="{ 'd-none': addressActive }"
+                        v-if="arrayAddress != []"
+                    >
+                        <ul>
+                            <li
+                                class="list-group-item input-group"
+                                v-for="(address, id) in arrayAddress"
+                                :key="id"
+                                :v-model="arrayAddress[id]"
+                                @click="addressClick(id, 1)"
+                            >
+                                {{ address.city }} {{ address.via }} 
+                            </li>
+                        </ul>
                     </div>
+                </div>
+                <div class="form-group" v-if="civicoActive">
+                    <label class="d-block" for="address">civico</label>
+                    <input
+                        id="city"
+                        class="form-control"
+                        v-model="civico"
+                        type="text"
+                        required
+                        @input="autoAddress(2)"
+                    />
+                    <!-- Autocomp -->
+                    <div
+                        class="list-group"
+                        :class="{ 'd-none': addressActive }"
+                        v-if="arrayAddress != []"
+                    >
+                        <ul>
+                            <li
+                                class="list-group-item input-group"
+                                v-for="(address, id) in arrayAddress"
+                                :key="id"
+                                :v-model="arrayAddress[id]"
+                                @click="addressClick(id, 2)"
+                            >
+                                {{ address.city }} {{ address.via }} {{ address.civico }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
+
+                <div class="input-group col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="d-block" for="exampleFormControlFile1">Foto</label>
+                        <input
+                            type="file"
+                            class="form-control-file form-control"
+                            name="imgs"
+                            id="exampleFormControlFile1"
+                        />
+                    </div>
+                    
                 </div>
                 <hr>
 
@@ -290,17 +318,28 @@ export default {
                 city: null,
                 zip_code: null,
                 street: null,
-                address: null,
+                
                 visible: 1,
                 SelectedServices: []
             },
-
+            query: "",
+            city: '',
+            via : '',
+            civico:'',
             exApartmentTitle: '',
             apartment: [],
             arrayAddress: [],
             activeservice:[],
             addressActive: true,
-            services: []
+            services: [],
+            cityActive: true,
+            viaActive: false,
+            civicoActive: false,
+            selected:{
+                city:'',
+                via:'',
+                civico:''
+            }
             // errors: [],
         };
     },
@@ -321,11 +360,10 @@ export default {
                 });
                 
                 /*  this.form.SelectedServices = respo.data.results.apartment.services.id; */
-                 console.log(this.form.SelectedServices);
-                console.log(respo.data.results.apartment.services);
+
                 // console.log(this.apartment.services);
                 this.exApartmentTitle = this.apartment.title;
-                console.log(this.exApartmentTitle);
+
             })
             .catch(error => {
                 console.log(error);
@@ -337,17 +375,58 @@ export default {
 
     },
     methods: {
-        addressClick: function(id) {
-            this.apartment.address = this.arrayAddress[id];
+        clean: function(){
+            this.cityActive = true;
+            this.viaActive = false;
+            this.civicoActive = false;
+            this.form.address = '';
+            this.query = '';
+            this.city= '';
+            this.arrayAddress =[];
+        },
+        addressClick: function(id, type) {
+            if(type == 0){
+                // this.city = this.arrayAddress[id];
+                this.query = this.arrayAddress[id];
+                this.city = this.query.city;
+                this.cityActive = false;
+                this.viaActive = true;
+                this.arrayAddress = [];
+                this.form.address = this.query;
+            }else if(type == 1){
+                this.query = this.arrayAddress[id];
+                this.viaActive = false;
+                this.via = this.query.via;
+                this.civicoActive = true;
+                this.arrayAddress = [];
+                this.form.address = this.query;
+            }else if(type == 2){
+                this.query = this.arrayAddress[id];
+                this.civicoActive = false;
+                this.civico = this.query.civico;
+                this.arrayAddress = [];
+                this.form.address = this.query;
+              
+            }
+            
             this.addressActive = true;
         },
-        autoAddress: function() {
+        autoAddress: function(type) {
             // caso attivo quando form.city !== '' (caso base, PASSO 1)
+            if(type == 0){
+                this.query = this.city;
+            }
+            if(type == 1 ){
+                this.query = this.city + ' ' + this.via;
+            }
+            if(type == 2){
+                this.query = this.city + ' ' + this.via + ' ' + this.civico;
+            }
             axios
                 .get("https://api.tomtom.com/search/2/search/.json?", {
                     params: {
                         key: "iYutMJyrnVArnI296DDnCsP4ZX15GiW2",
-                        query: this.apartment.address,
+                        query: this.query,
                         // entityTypeSet: "Municipality",
                         language: "it-IT",
                         typeahead: 1,
@@ -357,7 +436,28 @@ export default {
                 .then(response => {
                     let arr = [];
                     response.data.results.forEach(element => {
-                        arr.push(element.address.freeformAddress);
+                        if(type == 0){
+                            let output =  { 'city' : element.address.municipality, 'via' : '' , 'civico' : '' };
+                            arr.push(output);
+                        }
+                        if(type == 1 ){
+                            if(element.address.streetName && element.address.municipality == this.city){
+                                let output = { city: element.address.municipality, via: element.address.streetName , civico:''};
+                                arr.push(output);
+                            }
+                        }
+                        if(type == 2){
+
+                            if(element.address.streetNumber && element.address.municipality == this.city ){
+                                // if(element.address.municipality == this.selected.city){
+                                    let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
+                                    arr.push(output);
+                                // }
+                                
+                            }
+                            
+                        }
+                        this.arrayAddress = arr;
                     });
                     this.arrayAddress = arr;
                 })
@@ -369,8 +469,10 @@ export default {
         submit: function(e){
             var form = document.getElementById('form');
             var formData = new FormData(form);
+            var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
             formData.append('user_id', JSON.parse(this.$userId).id);
             formData.append('slug', this.apartment.slug);
+            formData.append("address", address);
             axios.post('/api/apartment/update', formData)
             .then((response) => {
                 this.$router.push('../dashboard') 
@@ -380,14 +482,13 @@ export default {
             })
         },
 
-            ServiceActive: function(serve_id){
-                if(!this.form.SelectedServices.includes(serve_id)){
-                    this.form.SelectedServices.push(serve_id);
-                    this.activeservice.push(serve_id.id);
-                }
-            console.log(this.form.SelectedServices);
-            console.log(this.activeservice);
-            /* console.log(this.form.SelectedServices); */
+        ServiceActive: function(serve_id){
+            if(!this.form.SelectedServices.includes(serve_id)){
+                this.form.SelectedServices.push(serve_id);
+                this.activeservice.push(serve_id.id);
+            }
+
+        /* console.log(this.form.SelectedServices); */
         },
         ServiceDisable: function(posselect,posid ){
             /* console.log(serve_id); */
@@ -395,20 +496,18 @@ export default {
             this.activeservice.splice(posid,1)
 
 
-            console.log(this.form.SelectedServices);
-            console.log(this.activeservice);
            
         },
 
         myInclude: function(serve){
             for(var i=0;i<this.form.SelectedServices.length;i++){
                 if(this.form.SelectedServices[i].id==serve.id){
-                    console.log('ciao');
+
                    return true
                 }
             }
             if(this.form.SelectedServices.includes(serve)){
-                console.log('ciao');
+
                    return true
 
             }
@@ -418,7 +517,7 @@ export default {
         myPosition: function(serve,array){
             for(var i=0;i<array.length;i++){
                 if(array[i].id==serve.id){
-                    console.log('ciao');
+
                    return i
                 }
             }

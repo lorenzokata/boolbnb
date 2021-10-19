@@ -52,9 +52,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home($userInput, $radius, $n_beds, $n_rooms)
+    public function home($userInput, $radius, $n_beds, $n_rooms, $filterS)
     {
-
+        
         // dati per chiamata Geocode
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
         $base_url = 'https://api.tomtom.com/search/2/geocode/';

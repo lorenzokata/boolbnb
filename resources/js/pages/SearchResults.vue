@@ -190,7 +190,8 @@ export default {
             radius: 20000,
             drop: false,
             n_rooms: 0,
-            n_beds: 0
+            n_beds: 0,
+            filterS:''
         };
     },
     mounted() {
@@ -201,13 +202,31 @@ export default {
     methods: {
         loadApartments: function(radius) {
             // il raggio della ricerca è espresso in metri
+            this.filterS = '';
+            
+            if(this.filter_serve!=[]){
+                for(let i=0 ; i < this.filter_serve.length; i++){
+                    if(i != this.filter_serve.length - 1){
+                        this.filterS += this.filter_serve[i] + ','; 
+                    }else{
+                        this.filterS += this.filter_serve[i]; 
+                    }
+                    
+                }
+                console.log(this.filterS);
+            }else{
+                this.filterS == 'ciao';
+            }
+            
+
             axios
                 .get(
                     "/api/search-results/" +
                         this.$route.params.userInput + "/" +
                         radius.toString() + "/" +
                         this.n_beds.toString() + "/" +
-                        this.n_rooms.toString() 
+                        this.n_rooms.toString() + "/" +
+                        this.filterS 
                 )
                 .then(response => {
                     console.log(response.data.results);
