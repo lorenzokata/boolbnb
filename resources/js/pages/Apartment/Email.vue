@@ -1,36 +1,30 @@
 <template>
     <div class="container pt-3">
         <div class="row">
-            <h1>Messaggi Dell'Appartamento</h1>
+            <h1 v-if="email != ''">Messaggi appartamento {{$route.params.id}}</h1>
+            <h1 class="text-center mt-5 rosso" v-if="email == ''">Non ci sono messaggi per l'appartamento {{$route.params.id}}</h1>
         </div>
             <form class="row">
-                <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded"
+                <div class="col-12 col-md-5 mx-3 my-4 p-2 ombra big-box r20"
                 v-for="mail in email"
-                :key="mail.id">
-                    <h3 class=" box-mess my-2 px-3 rounded text-center">{{mail.sender_fullname}}</h3>
-                    <div class="box-mess my-2 px-3 rounded">{{mail.sender_email}}</div>
-                    <div class="box-mess my-2 px-3 rounded mess">{{mail.msg}}</div>
-                    <div class="fl-right opal">{{mail.created_at}}</div>
+                :key="mail.id"
+                >
+
+                    <h4 class="p-2 gunmetal cream">Dati mittente</h4>
+
+                    <h5 class="box-mess my-2 py-2 px-3 no_w">Nome e cognome: <br> {{mail.sender_fullname}} </h5>
+                    <!-- <h5 class="box-mess my-2 py-2 px-3 no_w">{{mail.sender_fullname}}</h5> -->
+
+                    <div class="box-mess my-2 py-2 px-3 no_w">E-mail: <br> {{mail.sender_email}}</div>
+                    <!-- <div class="box-mess my-2 py-2 px-3 no_w"></div> -->
+
+                    <div class="box-mess my-2 py-2 px-3 no_w mess">Messaggio: <br> {{mail.msg}}</div>
+                    <!-- <div class="box-mess my-2 py-2 px-3 no_w mess"></div> -->
+
+                    <div class="p-2 fl-right gunmetal cream">{{mail.created_at}}</div>
                 </div>
 
-                <!-- <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
-                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
-                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
-                    <div class="fl-right opal">13/10/2021</div>
-                </div>
-                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
-                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
-                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
-                    <div class="fl-right opal">13/10/2021</div>
-                </div>
-                   <div class="col-12 col-md-5 mx-3 my-4 ombra  big-box rounded">
-                    <h3 class=" box-mess my-2 px-3 rounded text-center">Nome e Cognome</h3>
-                    <div class="box-mess my-2 px-3 rounded">Robertoanfuso@gmail.com</div>
-                    <div class="box-mess my-2 px-3 rounded mess">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda, totam quisquam. Dolorum consequatur reiciendis, ipsam ullam quibusdam nisi repellat fugit, ad deserunt nam ab earum, at nulla consectetur laudantium aut.</div>
-                    <div class="fl-right opal">13/10/2021</div>
-                </div> -->
+
             </form>
         
     </div>
@@ -62,30 +56,30 @@
 </script>
 
 <style lang="scss" scoped>
-      .mess{
-           
-            max-height: 0px;
-            overflow-y: auto;
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
+
 
     .box-mess{
         background-color: white;
     }
+
     .big-box{
-        border: 3px solid #ced1cc;
-        max-height: 105px;
-    }
-    .big-box:hover{
-            background-color: #ced1cc;
-            transition: 1s;
-            max-height: 206px;
+            background-color: #f2545b ;
+
+
             .mess{
-                transition: opacity 1s ease-out;
-                transition: 1s ease-out;
-                opacity: 1;
+
                 max-height: 100px;
+                overflow-y: auto;
             }
         }
+
+    .r20{
+        border-radius: 20px;
+    }
+
+    .no_w{
+        width: auto;
+        border-radius: 20px;
+
+    }
 </style>
