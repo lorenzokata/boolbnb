@@ -21,7 +21,7 @@
                     <div class="box-mess my-2 py-2 px-3 no_w mess">Messaggio: <br> {{mail.msg}}</div>
                     <!-- <div class="box-mess my-2 py-2 px-3 no_w mess"></div> -->
 
-                    <div class="p-2 fl-right gunmetal cream">{{mail.created_at}}</div>
+                    <div class="p-2 fl-right gunmetal cream">{{mail.created_at.substring(0,10)}}  -  {{mail.created_at.substring(11,16)}}  </div>  
                 </div>
 
 

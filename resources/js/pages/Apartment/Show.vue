@@ -85,7 +85,7 @@
                     <input required v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
 
                     <label for="senderemail" class="mt-2 form-group">E-mail</label>
-                    <input required v-model="sender_email" name="senderemail" type="text" class="form-control" id="sender_email"  />
+                    <input required v-model="sender_email" name="senderemail" type="email" class="form-control" id="sender_email"  />
 
                     <label for="msg" class="mt-2 form-group">Messaggio</label>
                     <textarea required v-model="msg" name="msg" id="msg" class="form-control"></textarea>

@@ -6688,6 +6688,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6698,7 +6707,7 @@ __webpack_require__.r(__webpack_exports__);
         n_rooms: 1,
         n_beds: 1,
         n_baths: 1,
-        square_meters: 1,
+        square_meters: 10,
         address: "",
         visible: 1,
         SelectedServices: [],
@@ -6784,6 +6793,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7373,6 +7390,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
   data: function data() {
@@ -7814,6 +7832,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -12554,7 +12573,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".myfont[data-v-3beb0ca3] {\n  font-size: 15px;\n}\n.indirizzo[data-v-3beb0ca3] {\n  text-decoration: underline;\n  font-size: 18px;\n}\n.icone[data-v-3beb0ca3] {\n  font-size: 25px;\n}\n.img-show[data-v-3beb0ca3] {\n  width: 100%;\n  height: 83%;\n}\n.img-show img[data-v-3beb0ca3] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}\n.my-descrizione[data-v-3beb0ca3] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n  padding-top: 60px;\n}", ""]);
+exports.push([module.i, ".myfont[data-v-3beb0ca3] {\n  font-size: 15px;\n}\n.indirizzo[data-v-3beb0ca3] {\n  text-decoration: underline;\n  font-size: 18px;\n}\n.icone[data-v-3beb0ca3] {\n  font-size: 25px;\n}\n.img-show[data-v-3beb0ca3] {\n  width: 100%;\n  height: 80%;\n}\n.img-show img[data-v-3beb0ca3] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.dettagli[data-v-3beb0ca3] {\n  list-style-type: none;\n}\n.my-descrizione[data-v-3beb0ca3] {\n  height: calc(100vh - 60px);\n  width: 100%;\n  overflow-y: scroll;\n  padding-top: 60px;\n}", ""]);
 
 // exports
 
@@ -44716,7 +44735,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container pt-5" }, [
+  return _c("div", { staticClass: "container altezza margin-nav" }, [
+    _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
+    _vm._v(" "),
     _c("div", [
       _c(
         "div",
@@ -44996,6 +45017,8 @@ var render = function() {
                   id: "n_rooms",
                   type: "number",
                   name: "n_rooms",
+                  min: "1",
+                  max: "16",
                   required: ""
                 },
                 domProps: { value: _vm.form.n_rooms },
@@ -45030,7 +45053,9 @@ var render = function() {
                   id: "n_beds",
                   type: "number",
                   name: "n_beds",
-                  required: ""
+                  required: "",
+                  min: "1",
+                  max: "20"
                 },
                 domProps: { value: _vm.form.n_beds },
                 on: {
@@ -45064,7 +45089,9 @@ var render = function() {
                   id: "n_baths",
                   type: "number",
                   name: "n_baths",
-                  required: ""
+                  required: "",
+                  min: "1",
+                  max: "16"
                 },
                 domProps: { value: _vm.form.n_baths },
                 on: {
@@ -45098,7 +45125,9 @@ var render = function() {
                   id: "square_meters",
                   type: "number",
                   name: "square_meters",
-                  required: ""
+                  required: "",
+                  min: "10",
+                  max: "1500"
                 },
                 domProps: { value: _vm.form.square_meters },
                 on: {
@@ -45239,11 +45268,11 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "form-row d-flex justify-content-between align-items-center"
+          "form-row float-right d-flex justify-content-between align-items-center"
       },
       [
-        _c("div", { staticClass: "d-flex justify-content-between" }, [
-          _c("div", { staticClass: "mb-3 mr-3" }, [
+        _c("div", { staticClass: "float-right " }, [
+          _c("div", { staticClass: " float-right mb-3 mr-3" }, [
             _c(
               "button",
               {
@@ -45279,7 +45308,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container pt-5 mb-3" }, [
+  return _c("div", { staticClass: "container altezza margin-nav" }, [
+    _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "d-flex justify-content-between align-items-center pt-3" },
@@ -45295,7 +45326,7 @@ var render = function() {
                 staticClass: "bottone rosso-background ombra",
                 attrs: { to: { name: "dashboard" } }
               },
-              [_vm._v("Pannello di controllo")]
+              [_c("i", { staticClass: "fas fa-arrow-right" })]
             )
           ],
           1
@@ -45463,6 +45494,7 @@ var render = function() {
                       expression: "activeservice"
                     }
                   ],
+                  staticClass: "d-none",
                   attrs: {
                     type: "checkbox",
                     id: service.name,
@@ -45559,7 +45591,9 @@ var render = function() {
                   id: "n_rooms",
                   type: "number",
                   name: "n_rooms",
-                  required: ""
+                  required: "",
+                  min: "1",
+                  max: "16"
                 },
                 domProps: { value: _vm.apartment.n_rooms },
                 on: {
@@ -45593,7 +45627,9 @@ var render = function() {
                   id: "n_beds",
                   type: "number",
                   name: "n_beds",
-                  required: ""
+                  required: "",
+                  min: "1",
+                  max: "20"
                 },
                 domProps: { value: _vm.apartment.n_beds },
                 on: {
@@ -45627,7 +45663,9 @@ var render = function() {
                   id: "n_baths",
                   type: "number",
                   name: "n_baths",
-                  required: ""
+                  required: "",
+                  min: "1",
+                  max: "16"
                 },
                 domProps: { value: _vm.apartment.n_baths },
                 on: {
@@ -45661,7 +45699,9 @@ var render = function() {
                   id: "square_meters",
                   type: "number",
                   name: "square_meters",
-                  required: ""
+                  required: "",
+                  min: "10",
+                  max: "1500"
                 },
                 domProps: { value: _vm.apartment.square_meters },
                 on: {
@@ -45772,34 +45812,7 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "form-row d-flex justify-content-between align-items-center"
-            },
-            [
-              _c("div", { staticClass: "d-flex justify-content-between" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mb-3" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "bottone rosso-background ombra",
-                        attrs: { to: { name: "dashboard" } }
-                      },
-                      [_vm._v("Pannello di controllo")]
-                    )
-                  ],
-                  1
-                )
-              ])
-            ]
-          ),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "d-none" }, [
             _c("input", {
@@ -45836,16 +45849,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3 mr-3" }, [
-      _c(
-        "button",
-        {
-          staticClass: "bottone rosso-background ombra",
-          attrs: { type: "submit" }
-        },
-        [_c("i", { staticClass: "fas fa-save" })]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "float-right form-row d-flex justify-content-between align-items-center"
+      },
+      [
+        _c("div", { staticClass: "d-flex justify-content-between" }, [
+          _c("div", { staticClass: "mb-3 mr-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "bottone rosso-background ombra",
+                attrs: { type: "submit" }
+              },
+              [_c("i", { staticClass: "fas fa-save" })]
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -45922,7 +45946,12 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "p-2 fl-right gunmetal cream" }, [
-              _vm._v(_vm._s(mail.created_at))
+              _vm._v(
+                _vm._s(mail.created_at.substring(0, 10)) +
+                  "  -  " +
+                  _vm._s(mail.created_at.substring(11, 16)) +
+                  "  "
+              )
             ])
           ]
         )
@@ -45953,7 +45982,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "container-fluid altezza margin-nav " }, [
+    _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12 col-lg-7 altezza" }, [
         _c("h1", { staticClass: "rosso text-center pt-3" }, [
@@ -46170,7 +46201,7 @@ var render = function() {
               attrs: {
                 required: "",
                 name: "senderemail",
-                type: "text",
+                type: "email",
                 id: "sender_email"
               },
               domProps: { value: _vm.sender_email },
@@ -46516,8 +46547,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container pt-5 altezza" },
+    { staticClass: "container altezza margin-nav " },
     [
+      _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
+      _vm._v(" "),
       _c(
         "router-link",
         {
@@ -46830,7 +46863,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container altezza margin-nav" }, [
+    _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
+    _vm._v(" "),
     _c("h1", { staticClass: "pt-5 rosso" }, [_vm._v("Risultati ricerca")]),
     _vm._v(" "),
     _c("div", [

@@ -17033,6 +17033,11 @@ readers do not read off random characters that represent icons */
   box-sizing: border-box;
 }
 
+.my-nav {
+  background-color: white;
+  z-index: 2;
+}
+
 .debug {
   border: 1px solid greenyellow;
 }
