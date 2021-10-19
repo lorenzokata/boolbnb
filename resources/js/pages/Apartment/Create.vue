@@ -1,5 +1,6 @@
 <template>
-    <div class="container pt-5">
+    <div class="container altezza margin-nav">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
             <div class="d-flex justify-content-between align-items-center pt-3">
@@ -104,6 +105,8 @@
                             v-model="form.n_rooms"
                             type="number"
                             name="n_rooms"
+                            min="1"
+                            max="16"
                             required
                         />
                     </div>
@@ -116,6 +119,8 @@
                             type="number"
                             name="n_beds"
                             required
+                            min="1"
+                            max="20"
                         />
                     </div>
                     <div class="form-group col-6 col-lg-3">
@@ -128,6 +133,8 @@
                             type="number"
                             name="n_baths"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div>
 
@@ -141,6 +148,8 @@
                             type="number"
                             name="square_meters"
                             required
+                            min="10"
+                            max="1500"
                         />
                     </div>
                 </div>
@@ -235,7 +244,7 @@
                 <!-- immagine -->
 
                 <div
-                    class="form-row d-flex justify-content-between align-items-center"
+                    class="form-row float-right d-flex justify-content-between align-items-center"
                 >
                   <!--  form vecchio img
                        <div class="input-group mb-3 col-md-6 col-sm-12">
@@ -250,8 +259,8 @@
                         </div>
                     </div> -->
 
-                    <div class="d-flex justify-content-between">
-                        <div class="mb-3 mr-3">
+                    <div class="float-right ">
+                        <div class=" float-right mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
                             <button type="submit" class="bottone rosso-background ombra">
                                 <i class="fas fa-save"></i>
@@ -289,7 +298,7 @@ export default {
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
-                square_meters: 1,
+                square_meters: 10,
                 address: "",
                 visible: 1,
                 SelectedServices: [],

@@ -1,10 +1,10 @@
 <template>
-    <div class="container pt-5 mb-3">
-
+    <div class="container altezza margin-nav">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Modifica appartemento</h4>
             <div>
-                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}"><i class="fas fa-arrow-right"></i></router-link>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
                         v-for="(service) in services"
                         :key="service.id"
                     >
-                        <input 
+                        <input class="d-none"
                             type="checkbox"
                             :id="service.name"
                             :value="service.id"
@@ -114,6 +114,8 @@
                             type="number"
                             name="n_rooms"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div> 
 
@@ -125,6 +127,8 @@
                             type="number"
                             name="n_beds"
                             required
+                            min="1"
+                            max="20"
                         />
                     </div>
 
@@ -138,6 +142,8 @@
                             type="number"
                             name="n_baths"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div>                   
 
@@ -151,6 +157,8 @@
                             type="number"
                             name="square_meters"
                             required
+                            min="10"
+                            max="1500"
                         />
                     </div>                   
 
@@ -239,7 +247,7 @@
 
                 <!-- immagine -->
                 <!-- <h4>Cambia foto</h4> -->
-                <div class="form-row d-flex justify-content-between align-items-center">
+                <div class="float-right form-row d-flex justify-content-between align-items-center">
                     <!-- <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="custom-file">
                             <input name="imgs" type="file" class="custom-file-input" id="inputGroupFile01">
@@ -255,9 +263,9 @@
                             </button>
                         </div>
 
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>

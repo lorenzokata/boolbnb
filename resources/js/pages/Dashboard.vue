@@ -1,6 +1,6 @@
 <template>
-    <div class="container pt-5 altezza">
-       
+    <div class="container altezza margin-nav ">
+       <div class="my-nav fixed-top altezza-nav"></div>
         <router-link class="bottone rosso-background ombra float-right" :to="{ name: 'create'}">Crea</router-link>
 
         <h1 class="mb-3">Pannello di controllo</h1>
