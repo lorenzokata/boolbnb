@@ -216,6 +216,7 @@
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
                 <div class="form-group" v-if="civicoActive">
                     <label class="d-block address_l" for="address">civico:</label>
@@ -224,6 +225,7 @@
                         class="form-control"
                         v-model="civico"
                         type="text"
+                        autocomplete="off"
                         required
                         @input="autoAddress(2)"
                     />
@@ -245,6 +247,7 @@
                             </li>
                         </ul>
                     </div>
+
                 </div>
                 
                 <hr />
@@ -415,7 +418,7 @@ export default {
                         }
                         if(type == 2){
                             console.log('cita' + this.city);
-                            if(element.address.streetNumber && element.address.municipality == this.city ){
+                            if(element.address.streetNumber && element.address.municipality == this.city && element.address.streetName == this.via){
                                 // if(element.address.municipality == this.selected.city){
                                     let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
                                     arr.push(output);
@@ -462,7 +465,6 @@ export default {
         },
         ServiceDisable: function(serve_id){
             this.form.SelectedServices.splice(serve_id,1);
-
            
         }
     }
