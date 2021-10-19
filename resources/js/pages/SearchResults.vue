@@ -196,7 +196,9 @@ export default {
     },
     mounted() {
         // api per elenco servizi
+
         this.loadApartments(this.radius);
+
     },
 
     methods: {
@@ -204,20 +206,19 @@ export default {
             // il raggio della ricerca è espresso in metri
             this.filterS = '';
             
-            if(this.filter_serve!=[]){
+            if(this.filter_serve.length > 0){
                 for(let i=0 ; i < this.filter_serve.length; i++){
                     if(i != this.filter_serve.length - 1){
-                        this.filterS += this.filter_serve[i] + ','; 
+                        this.filterS += this.filter_serve[i] + '%'; 
                     }else{
                         this.filterS += this.filter_serve[i]; 
                     }
                     
                 }
-                console.log(this.filterS);
             }else{
-                this.filterS == 'ciao';
+                this.filterS = 'null';
             }
-            
+
 
             axios
                 .get(

@@ -147,20 +147,24 @@
 
                 <hr/>
 
-                <h4>Indirizzo e Foto</h4>
+                <h4>Indirizzo</h4>
                 <!-- <div class="form-row d-flex justify-content-between "> -->
 
 
                 <!-- indirizzo -->
-                <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
+                <div v-if="!cityActive" @click="clean" class="address_nav">
+                    <!-- <i class="fas fa-arrow-left"></i> -->
+                     Indietro 
+                </div>
+                <h3>{{city}} {{via}} {{civico}}</h3>
                 <div class="form-group" v-if="cityActive">
-                    <label class="d-block" for="address">citta</label>
+                    <label class="d-block address_l" for="address">città:</label>
                     <input
                         id="city"
                         class="form-control"
                         v-model="city"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(0)"
                     />
@@ -184,13 +188,13 @@
                     </div>
                 </div>
                 <div class="form-group" v-if="viaActive">
-                    <label class="d-block" for="address">via</label>
+                    <label class="d-block address_l" for="address">via:</label>
                     <input
                         id="city"
                         class="form-control"
                         v-model="via"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(1)"
                     />
@@ -214,7 +218,7 @@
                     </div>
                 </div>
                 <div class="form-group" v-if="civicoActive">
-                    <label class="d-block" for="address">civico</label>
+                    <label class="d-block address_l" for="address">civico:</label>
                     <input
                         id="city"
                         class="form-control"
@@ -242,15 +246,15 @@
                         </ul>
                     </div>
                 </div>
-                <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
+                
                 <hr />
 
                 <!-- immagine -->
-
+                <h4>Foto</h4>
                 <div
                     class="form-row d-flex justify-content-between align-items-center"
                 >
-
+                
                     <!-- foto -->
                     <div class="input-group mb-3 col-md-6 col-sm-12">
                         <div class="form-group">
@@ -323,7 +327,8 @@ export default {
                 city:'',
                 via:'',
                 civico:''
-            }
+            },
+            complete: false
         };
     },
 
@@ -349,7 +354,10 @@ export default {
             this.form.address = '';
             this.query = '';
             this.city= '';
+            this.civico='',
+            this.via='',
             this.arrayAddress =[];
+            this.complete = false;
         },
 
         addressClick: function(id , type) {
@@ -375,7 +383,7 @@ export default {
                 this.arrayAddress = [];
 
                 this.form.address = this.query;
-
+                this.complete = true;
             }
             
             this.addressActive = true;
@@ -442,19 +450,21 @@ export default {
             this.addressActive = false;
         },
         submit: function(e) {
-            var form = document.getElementById("form");
-            var formData = new FormData(form);
-            formData.append("user_id", JSON.parse(this.$userId).id);
-            var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
-            formData.append("address", address);
-            axios
-                .post("/api/apartment/store", formData)
-                .then(response => {
-                    this.$router.push("../dashboard");
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            if(this.complete){
+                var form = document.getElementById("form");
+                var formData = new FormData(form);
+                formData.append("user_id", JSON.parse(this.$userId).id);
+                var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+                formData.append("address", address);
+                axios
+                    .post("/api/apartment/store", formData)
+                    .then(response => {
+                        this.$router.push("../dashboard");
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
         },
         ServiceActive: function(serve_id){
             this.form.SelectedServices.push(serve_id);
@@ -478,5 +488,24 @@ export default {
     
     color: white;
     background-color:#424242 ;
+}
+.address_nav{
+    
+    display: inline-block;
+    cursor: pointer;
+    padding:4px 10px ;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: 10px 0;
+    &:hover{
+        border: 2px solid rgba(255, 255, 255, 0.055);
+        background-color:#f2545b ;
+        color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+}
+.address_l{
+    font-size: 20px;
+    text-transform: capitalize;
 }
 </style>

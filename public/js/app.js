@@ -6702,6 +6702,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6732,7 +6736,8 @@ __webpack_require__.r(__webpack_exports__);
         city: '',
         via: '',
         civico: ''
-      }
+      },
+      complete: false
     };
   },
   mounted: function mounted() {
@@ -6754,7 +6759,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.address = '';
       this.query = '';
       this.city = '';
-      this.arrayAddress = [];
+      this.civico = '', this.via = '', this.arrayAddress = [];
+      this.complete = false;
     },
     addressClick: function addressClick(id, type) {
       if (type == 0) {
@@ -6778,6 +6784,7 @@ __webpack_require__.r(__webpack_exports__);
         this.civico = this.query.civico;
         this.arrayAddress = [];
         this.form.address = this.query;
+        this.complete = true;
       }
 
       this.addressActive = true;
@@ -6854,16 +6861,18 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit(e) {
       var _this3 = this;
 
-      var form = document.getElementById("form");
-      var formData = new FormData(form);
-      formData.append("user_id", JSON.parse(this.$userId).id);
-      var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
-      formData.append("address", address);
-      axios.post("/api/apartment/store", formData).then(function (response) {
-        _this3.$router.push("../dashboard");
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      if (this.complete) {
+        var form = document.getElementById("form");
+        var formData = new FormData(form);
+        formData.append("user_id", JSON.parse(this.$userId).id);
+        var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+        formData.append("address", address);
+        axios.post("/api/apartment/store", formData).then(function (response) {
+          _this3.$router.push("../dashboard");
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
     ServiceActive: function ServiceActive(serve_id) {
       this.form.SelectedServices.push(serve_id);
@@ -6885,6 +6894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -7222,7 +7232,8 @@ __webpack_require__.r(__webpack_exports__);
         city: '',
         via: '',
         civico: ''
-      } // errors: [],
+      },
+      complete: false // errors: [],
 
     };
   },
@@ -7238,12 +7249,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.activeservice.push(serve.id);
       });
       /*  this.form.SelectedServices = respo.data.results.apartment.services.id; */
-
-      console.log(_this.form.SelectedServices);
-      console.log(respo.data.results.apartment.services); // console.log(this.apartment.services);
+      // console.log(this.apartment.services);
 
       _this.exApartmentTitle = _this.apartment.title;
-      console.log(_this.exApartmentTitle);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -7256,7 +7264,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.address = '';
       this.query = '';
       this.city = '';
-      this.arrayAddress = [];
+      this.civico = '', this.via = '', this.arrayAddress = [];
+      this.complete = false;
     },
     addressClick: function addressClick(id, type) {
       if (type == 0) {
@@ -7280,6 +7289,7 @@ __webpack_require__.r(__webpack_exports__);
         this.civico = this.query.civico;
         this.arrayAddress = [];
         this.form.address = this.query;
+        this.complete = true;
       }
 
       this.addressActive = true;
@@ -7333,8 +7343,6 @@ __webpack_require__.r(__webpack_exports__);
           }
 
           if (type == 2) {
-            console.log('cita' + _this2.city);
-
             if (element.address.streetNumber && element.address.municipality == _this2.city) {
               // if(element.address.municipality == this.selected.city){
               var _output2 = {
@@ -7357,45 +7365,41 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit(e) {
       var _this3 = this;
 
-      var form = document.getElementById('form');
-      var formData = new FormData(form);
-      var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
-      formData.append('user_id', JSON.parse(this.$userId).id);
-      formData.append('slug', this.apartment.slug);
-      formData.append("address", address);
-      axios.post('/api/apartment/update', formData).then(function (response) {
-        _this3.$router.push('../dashboard');
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      if (this.complete) {
+        var form = document.getElementById('form');
+        var formData = new FormData(form);
+        var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+        formData.append('user_id', JSON.parse(this.$userId).id);
+        formData.append('slug', this.apartment.slug);
+        formData.append("address", address);
+        axios.post('/api/apartment/update', formData).then(function (response) {
+          _this3.$router.push('../dashboard');
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
     ServiceActive: function ServiceActive(serve_id) {
       if (!this.form.SelectedServices.includes(serve_id)) {
         this.form.SelectedServices.push(serve_id);
         this.activeservice.push(serve_id.id);
       }
-
-      console.log(this.form.SelectedServices);
-      console.log(this.activeservice);
       /* console.log(this.form.SelectedServices); */
+
     },
     ServiceDisable: function ServiceDisable(posselect, posid) {
       /* console.log(serve_id); */
       this.form.SelectedServices.splice(posselect, 1);
       this.activeservice.splice(posid, 1);
-      console.log(this.form.SelectedServices);
-      console.log(this.activeservice);
     },
     myInclude: function myInclude(serve) {
       for (var i = 0; i < this.form.SelectedServices.length; i++) {
         if (this.form.SelectedServices[i].id == serve.id) {
-          console.log('ciao');
           return true;
         }
       }
 
       if (this.form.SelectedServices.includes(serve)) {
-        console.log('ciao');
         return true;
       }
 
@@ -7405,7 +7409,6 @@ __webpack_require__.r(__webpack_exports__);
     myPosition: function myPosition(serve, array) {
       for (var i = 0; i < array.length; i++) {
         if (array[i].id == serve.id) {
-          console.log('ciao');
           return i;
         }
       }
@@ -7493,12 +7496,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8252,18 +8249,16 @@ __webpack_require__.r(__webpack_exports__);
       // il raggio della ricerca è espresso in metri
       this.filterS = '';
 
-      if (this.filter_serve != []) {
+      if (this.filter_serve.length > 0) {
         for (var i = 0; i < this.filter_serve.length; i++) {
           if (i != this.filter_serve.length - 1) {
-            this.filterS += this.filter_serve[i] + ',';
+            this.filterS += this.filter_serve[i] + '%';
           } else {
             this.filterS += this.filter_serve[i];
           }
         }
-
-        console.log(this.filterS);
       } else {
-        this.filterS == 'ciao';
+        this.filterS = 'null';
       }
 
       axios.get("/api/search-results/" + this.$route.params.userInput + "/" + radius.toString() + "/" + this.n_beds.toString() + "/" + this.n_rooms.toString() + "/" + this.filterS).then(function (response) {
@@ -12747,7 +12742,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".bott-serv[data-v-4f3e8fa2]:hover {\n  color: white;\n  background-color: #42424286;\n}\n.bott-active-serv[data-v-4f3e8fa2] {\n  color: white;\n  background-color: #424242;\n}", ""]);
+exports.push([module.i, ".bott-serv[data-v-4f3e8fa2]:hover {\n  color: white;\n  background-color: #42424286;\n}\n.bott-active-serv[data-v-4f3e8fa2] {\n  color: white;\n  background-color: #424242;\n}\n.address_nav[data-v-4f3e8fa2] {\n  display: inline-block;\n  cursor: pointer;\n  padding: 4px 10px;\n  border-radius: 20px;\n  border: 2px solid black;\n  margin: 10px 0;\n}\n.address_nav[data-v-4f3e8fa2]:hover {\n  border: 2px solid rgba(255, 255, 255, 0.055);\n  background-color: #f2545b;\n  color: white;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.address_l[data-v-4f3e8fa2] {\n  font-size: 20px;\n  text-transform: capitalize;\n}", ""]);
 
 // exports
 
@@ -12766,7 +12761,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".bott-serv[data-v-a0cb5da0]:hover {\n  color: white;\n  background-color: #42424286;\n}\n.bott-active-serv[data-v-a0cb5da0] {\n  color: white;\n  background-color: #424242;\n}\n.suggeriti[data-v-a0cb5da0] {\n  margin: 0 132px;\n  min-width: 200px;\n  max-height: 200px;\n  overflow-y: auto;\n}\n@media screen and (max-width: 768px) {\n.suggeriti[data-v-a0cb5da0] {\n    margin: 0 0 0 132px;\n}\n}\n.foto[data-v-a0cb5da0] {\n  max-width: 700px;\n  width: 100%;\n}", ""]);
+exports.push([module.i, ".bott-serv[data-v-a0cb5da0]:hover {\n  color: white;\n  background-color: #42424286;\n}\n.bott-active-serv[data-v-a0cb5da0] {\n  color: white;\n  background-color: #424242;\n}\n.suggeriti[data-v-a0cb5da0] {\n  margin: 0 132px;\n  min-width: 200px;\n  max-height: 200px;\n  overflow-y: auto;\n}\n@media screen and (max-width: 768px) {\n.suggeriti[data-v-a0cb5da0] {\n    margin: 0 0 0 132px;\n}\n}\n.foto[data-v-a0cb5da0] {\n  max-width: 700px;\n  width: 100%;\n}\n.address_nav[data-v-a0cb5da0] {\n  display: inline-block;\n  cursor: pointer;\n  padding: 4px 10px;\n  border-radius: 20px;\n  border: 2px solid black;\n  margin: 10px 0;\n}\n.address_nav[data-v-a0cb5da0]:hover {\n  border: 2px solid rgba(255, 255, 255, 0.055);\n  background-color: #f2545b;\n  color: white;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.address_l[data-v-a0cb5da0] {\n  font-size: 20px;\n  text-transform: capitalize;\n}", ""]);
 
 // exports
 
@@ -45365,25 +45360,35 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c("h4", [_vm._v("Indirizzo e Foto")]),
+          _c("h4", [_vm._v("Indirizzo")]),
           _vm._v(" "),
           !_vm.cityActive
             ? _c(
                 "div",
-                {
-                  staticClass: "bottone rosso-background",
-                  on: { click: _vm.clean }
-                },
-                [_vm._v(" back ")]
+                { staticClass: "address_nav", on: { click: _vm.clean } },
+                [_vm._v("\n                 Indietro \n            ")]
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(
+              _vm._s(_vm.city) +
+                " " +
+                _vm._s(_vm.via) +
+                " " +
+                _vm._s(_vm.civico)
+            )
+          ]),
           _vm._v(" "),
           _vm.cityActive
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("citta")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("città:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -45396,7 +45401,12 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "city", type: "text", required: "" },
+                  attrs: {
+                    id: "city",
+                    type: "text",
+                    autocomplete: "off",
+                    required: ""
+                  },
                   domProps: { value: _vm.city },
                   on: {
                     input: [
@@ -45457,8 +45467,11 @@ var render = function() {
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("via")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("via:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -45471,7 +45484,12 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "city", type: "text", required: "" },
+                  attrs: {
+                    id: "city",
+                    type: "text",
+                    autocomplete: "off",
+                    required: ""
+                  },
                   domProps: { value: _vm.via },
                   on: {
                     input: [
@@ -45534,8 +45552,11 @@ var render = function() {
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("civico")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("civico:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -45609,17 +45630,9 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("h3", [
-            _vm._v(
-              _vm._s(_vm.query.city) +
-                " " +
-                _vm._s(_vm.query.via) +
-                " " +
-                _vm._s(_vm.query.civico)
-            )
-          ]),
-          _vm._v(" "),
           _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Foto")]),
           _vm._v(" "),
           _vm._m(0)
         ]
@@ -46095,20 +46108,30 @@ var render = function() {
           !_vm.cityActive
             ? _c(
                 "div",
-                {
-                  staticClass: "bottone rosso-background",
-                  on: { click: _vm.clean }
-                },
-                [_vm._v(" back ")]
+                { staticClass: "address_nav", on: { click: _vm.clean } },
+                [_vm._v(" Indietro ")]
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(
+              _vm._s(_vm.city) +
+                " " +
+                _vm._s(_vm.via) +
+                " " +
+                _vm._s(_vm.civico)
+            )
+          ]),
           _vm._v(" "),
           _vm.cityActive
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("citta")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("città:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -46121,7 +46144,12 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "city", type: "text", required: "" },
+                  attrs: {
+                    id: "city",
+                    type: "text",
+                    autocomplete: "off",
+                    required: ""
+                  },
                   domProps: { value: _vm.city },
                   on: {
                     input: [
@@ -46182,8 +46210,11 @@ var render = function() {
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("via")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("via:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -46196,7 +46227,12 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "city", type: "text", required: "" },
+                  attrs: {
+                    id: "city",
+                    type: "text",
+                    autocomplete: "off",
+                    required: ""
+                  },
                   domProps: { value: _vm.via },
                   on: {
                     input: [
@@ -46259,8 +46295,11 @@ var render = function() {
             ? _c("div", { staticClass: "form-group" }, [
                 _c(
                   "label",
-                  { staticClass: "d-block", attrs: { for: "address" } },
-                  [_vm._v("civico")]
+                  {
+                    staticClass: "d-block address_l",
+                    attrs: { for: "address" }
+                  },
+                  [_vm._v("civico:")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -46273,7 +46312,12 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { id: "city", type: "text", required: "" },
+                  attrs: {
+                    id: "city",
+                    type: "text",
+                    autocomplete: "off",
+                    required: ""
+                  },
                   domProps: { value: _vm.civico },
                   on: {
                     input: [
@@ -46334,16 +46378,6 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("h3", [
-            _vm._v(
-              _vm._s(_vm.query.city) +
-                " " +
-                _vm._s(_vm.query.via) +
-                " " +
-                _vm._s(_vm.query.civico)
-            )
-          ]),
-          _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
           _c("hr"),
@@ -46398,7 +46432,7 @@ var staticRenderFns = [
         _c(
           "label",
           { staticClass: "d-block", attrs: { for: "exampleFormControlFile1" } },
-          [_vm._v("Foto")]
+          [_vm._v("Foto:")]
         ),
         _vm._v(" "),
         _c("input", {
@@ -46611,7 +46645,7 @@ var render = function() {
             _vm._v("Servizi della casa")
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div")
         ]),
         _vm._v(" "),
         _c("h3", { staticClass: "d-block rosso mt-3" }, [
@@ -46630,7 +46664,7 @@ var render = function() {
           _vm._v("Locazione della casa")
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("h3", { staticClass: "d-block rosso mt-3" }, [
           _vm._v("Invia un' e-mail al proprietario")
@@ -46763,18 +46797,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", [
-        _vm._v(
-          "\n                            Lorem ipsum dolor sit amet consectetur, adipisicing\n                            elit. Eaque, illum accusamus rem ad expedita\n                            architecto saepe magnam? Dolores quia iste cumque\n                            culpa unde ducimus sint vel dolorum dolorem, quam\n                            est.\n                        "
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -54,6 +54,12 @@ class HomeController extends Controller
 
     public function home($userInput, $radius, $n_beds, $n_rooms, $filterS)
     {
+        if($filterS != 'null'){
+            $filter_list = explode('%', $filterS);
+        }else{
+            $filter_list = 'null';
+        }
+        ;
         
         // dati per chiamata Geocode
         $key = 'iYutMJyrnVArnI296DDnCsP4ZX15GiW2';
@@ -117,16 +123,34 @@ class HomeController extends Controller
             if(is_null($apartment)){
                 continue;
             };
-            
+
+
+            if($filter_list != 'null'){
+                $app_services = [];
+
+                foreach ($apartment->services as $service) {
+
+                    array_push($app_services, $service->id);
+                };
+                $diff = array_diff($filter_list, $app_services);
+
+
+                if ($diff) {
+
+                    continue;
+                }
+
+            }
+
             $distance = getDistanceBetweenPoints($lat_center, $lon_center, $apartment->lat, $apartment->lon);
-            // dd($distance);
+
             $element = [
                 'apartment' => $apartment,
                 'distance' => $distance
             ];
             $semaforo = false;
 
-            // dd($element['distance']);
+
 
             foreach ($apartment->sponsors as $sponsor) {
 

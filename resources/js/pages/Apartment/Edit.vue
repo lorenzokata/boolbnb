@@ -159,15 +159,16 @@
                 <hr>
 
                  <!-- indirizzo -->
-                <div v-if="!cityActive" @click="clean" class="bottone rosso-background"> back </div>
+                <div v-if="!cityActive" @click="clean" class="address_nav"> Indietro </div>
+                <h3>{{city}} {{via}} {{civico}}</h3>
                 <div class="form-group" v-if="cityActive">
-                    <label class="d-block" for="address">citta</label>
+                    <label class="d-block address_l" for="address">città:</label>
                     <input
                         id="city"
                         class="form-control"
                         v-model="city"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(0)"
                     />
@@ -191,13 +192,13 @@
                     </div>
                 </div>
                 <div class="form-group" v-if="viaActive">
-                    <label class="d-block" for="address">via</label>
+                    <label class="d-block address_l" for="address">via:</label>
                     <input
                         id="city"
                         class="form-control"
                         v-model="via"
                         type="text"
-                        
+                        autocomplete="off"
                         required
                         @input="autoAddress(1)"
                     />
@@ -221,12 +222,13 @@
                     </div>
                 </div>
                 <div class="form-group" v-if="civicoActive">
-                    <label class="d-block" for="address">civico</label>
+                    <label class="d-block address_l" for="address">civico:</label>
                     <input
                         id="city"
                         class="form-control"
                         v-model="civico"
                         type="text"
+                        autocomplete="off"
                         required
                         @input="autoAddress(2)"
                     />
@@ -249,11 +251,10 @@
                         </ul>
                     </div>
                 </div>
-                <h3>{{query.city}} {{query.via}} {{query.civico}}</h3>
 
                 <div class="input-group col-md-4 col-sm-12">
                     <div class="form-group">
-                        <label class="d-block" for="exampleFormControlFile1">Foto</label>
+                        <label class="d-block" for="exampleFormControlFile1">Foto:</label>
                         <input
                             type="file"
                             class="form-control-file form-control"
@@ -339,7 +340,8 @@ export default {
                 city:'',
                 via:'',
                 civico:''
-            }
+            },
+            complete: false
             // errors: [],
         };
     },
@@ -382,7 +384,10 @@ export default {
             this.form.address = '';
             this.query = '';
             this.city= '';
+            this.civico='',
+            this.via='',
             this.arrayAddress =[];
+            this.complete = false;
         },
         addressClick: function(id, type) {
             if(type == 0){
@@ -406,7 +411,7 @@ export default {
                 this.civico = this.query.civico;
                 this.arrayAddress = [];
                 this.form.address = this.query;
-              
+                this.complete = true;
             }
             
             this.addressActive = true;
@@ -467,19 +472,22 @@ export default {
             this.addressActive = false;
         },
         submit: function(e){
-            var form = document.getElementById('form');
-            var formData = new FormData(form);
-            var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
-            formData.append('user_id', JSON.parse(this.$userId).id);
-            formData.append('slug', this.apartment.slug);
-            formData.append("address", address);
-            axios.post('/api/apartment/update', formData)
-            .then((response) => {
-                this.$router.push('../dashboard') 
-            })
-            .catch((error) =>{
-                console.log(error);
-            })
+            if(this.complete){
+                var form = document.getElementById('form');
+                var formData = new FormData(form);
+                var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+                formData.append('user_id', JSON.parse(this.$userId).id);
+                formData.append('slug', this.apartment.slug);
+                formData.append("address", address);
+                axios.post('/api/apartment/update', formData)
+                .then((response) => {
+                    this.$router.push('../dashboard') 
+                })
+                .catch((error) =>{
+                    console.log(error);
+                })
+            }
+            
         },
 
         ServiceActive: function(serve_id){
@@ -555,7 +563,26 @@ export default {
     max-width: 700px;
     width: 100%;
 }
+.address_nav{
+    
+    display: inline-block;
+    cursor: pointer;
+    padding:4px 10px ;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: 10px 0;
+    &:hover{
+        border: 2px solid rgba(255, 255, 255, 0.055);
+        background-color:#f2545b ;
+        color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+}
 
+.address_l{
+    font-size: 20px;
+    text-transform: capitalize;
+}
 </style>
 
 

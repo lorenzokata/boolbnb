@@ -53,13 +53,7 @@
                     </ul>
                     <h3 class="d-block rosso mt-3">Servizi della casa</h3>
                     <div>
-                        <div>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Eaque, illum accusamus rem ad expedita
-                            architecto saepe magnam? Dolores quia iste cumque
-                            culpa unde ducimus sint vel dolorum dolorem, quam
-                            est.
-                        </div>
+                        
                     </div>
                 </div>
                 <h3 class="d-block rosso mt-3">Descrizione</h3>
