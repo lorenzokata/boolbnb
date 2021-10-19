@@ -1,8 +1,8 @@
 <template>
     <div class="container pt-3">
         <div class="row">
-            <h1 v-if="email != ''">Messaggi appartamento {{$route.params.id}}</h1>
-            <h1 class="text-center mt-5 rosso" v-if="email == ''">Non ci sono messaggi per l'appartamento {{$route.params.id}}</h1>
+            <h1 v-if="email != ''">Messaggi appartamento - <strong>{{apartment.title}}</strong> </h1>
+            <h1 class="mt-5 rosso" v-if="email == ''">Non ci sono messaggi per l'appartamento <br> <strong>{{apartment.title}}</strong></h1>
         </div>
             <form class="row">
                 <div class="col-12 col-md-5 mx-3 my-4 p-2 ombra big-box r20"
@@ -35,7 +35,8 @@
 
         data(){
             return{
-                email: ''
+                email: '',
+                apartment:[],
             }
         },
 
@@ -44,9 +45,11 @@
             axios
             .get("/api/apartment/myEmails/" + this.$route.params.id)
             .then(response => {
-                // console.log(response);  
-                this.email = response.data.results;
-                console.log(this.email);
+                 console.log(response.data.results);  
+                this.email = response.data.results.messages;
+                this.apartment = response.data.results.apartment;
+                console.log(this.apartment);
+                // console.log(this.email);
             })
             .catch(error => {
                 console.log(error);

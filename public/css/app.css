@@ -17108,9 +17108,8 @@ readers do not read off random characters that represent icons */
 .rosso-background:hover {
   text-decoration: none;
   background-color: #f2545c00;
-  border: 3px solid white;
+  border: 3px solid #f2545b;
   transition: 0.5s;
-  color: white;
 }
 
 .cream-background {
