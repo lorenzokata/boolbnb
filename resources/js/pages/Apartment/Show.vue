@@ -162,7 +162,6 @@ export default {
                     zoom: 13
                 });
 
-                var marker = new tt.Marker().setLngLat([parseFloat(this.apartment.lon), parseFloat(this.apartment.lat)]).addTo(map);
             })
             .catch(error => {
                 console.log(error);

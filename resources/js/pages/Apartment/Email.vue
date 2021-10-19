@@ -40,14 +40,14 @@
         },
 
         mounted() {
-            console.log(this.$route.params.id);
+    
             axios
             .get("/api/apartment/myEmails/" + this.$route.params.id)
             .then(response => {
-                 console.log(response.data.results);  
+                
                 this.email = response.data.results.messages;
                 this.apartment = response.data.results.apartment;
-                console.log(this.apartment);
+                // console.log(this.apartment);
                 // console.log(this.email);
             })
             .catch(error => {

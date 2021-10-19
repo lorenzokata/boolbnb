@@ -17037,6 +17037,20 @@ body {
   background-color: white;
 }
 
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.my-form:focus {
+  border: 3px solid #f2545b;
+}
+
+.my-nav {
+  background-color: white;
+  z-index: 2;
+}
+
 .debug {
   border: 1px solid greenyellow;
 }
@@ -17116,9 +17130,8 @@ body {
 .rosso-background:hover {
   text-decoration: none;
   background-color: #f2545c00;
-  border: 3px solid white;
+  border: 3px solid #f2545b;
   transition: 0.5s;
-  color: white;
 }
 
 .cream-background {

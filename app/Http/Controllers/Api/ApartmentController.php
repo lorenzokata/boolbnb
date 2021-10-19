@@ -318,7 +318,7 @@ class ApartmentController extends Controller
     {
         $messages = Message::where('apartment_id', $id)->get();
         $apartment = Apartment::where('id', $id)->first();
-
+        
         return response()->json([
             'success' => true,
             'results' =>[

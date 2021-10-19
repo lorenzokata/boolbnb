@@ -43,7 +43,7 @@
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Modifica</router-link> 
                         <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link> -->
                         <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link> -->
-                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email'}">E-mail</router-link>
+                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email', params: { id: s_app.id }}">E-mail</router-link>
 
                     </div>
                 </div>
@@ -52,7 +52,9 @@
 
             <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
                 v-for="app in apartments"
-                :key="app.id">
+                :key="app.id"
+                :class="app.visible ? '' :'d-none'"
+                >
 
                 <img :src="'storage/'+app.imgs" class="card-img-top pt-3 max" :alt="app.title">
                 <div class="card-body">

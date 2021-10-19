@@ -248,7 +248,10 @@
                             id="exampleFormControlFile1"
                         />
                     </div>
-                    
+
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <img style="height:200px; width:200px" :src="apartment.imgs" alt="">
                 </div>
                 <hr>
 
