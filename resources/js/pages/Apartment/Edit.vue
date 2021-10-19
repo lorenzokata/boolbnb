@@ -1,10 +1,10 @@
 <template>
-    <div class="container pt-5 mb-3">
-
+    <div class="container altezza margin-nav">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <div class="d-flex justify-content-between align-items-center pt-3">
             <h4 class="">Modifica appartemento</h4>
             <div>
-                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
+                <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}"><i class="fas fa-arrow-right"></i></router-link>
             </div>
         </div>
 
@@ -14,14 +14,6 @@
                 
                 <div class="form-row d-flex justify-content-between align-items-center">
 
-                    <!-- indirizzo -->
-                   <!--  <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Modifica titolo</span>
-                        </div>
-                        <input name="title" id="title" v-model="apartment.title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
-                    </div>   
-         -->
                     <div class="form-group mb-3 col-md-8 col-sm-12">
                         <label for="title ">Titolo</label>
                         <input
@@ -44,11 +36,6 @@
                         />
                     </div>
                 </div>
-
-                <!-- foto -->
-               <!--  <div class="d-flex justify-content-center">
-                    <img class="foto" :src="apartment.imgs" alt="apartment.title">
-                </div> -->
 
                 <h4 class="mt-3">Modifica Descrizione</h4>
 
@@ -75,33 +62,24 @@
                         v-for="(service) in services"
                         :key="service.id"
                     >
-                        <input 
+                        <input class="d-none"
                             type="checkbox"
                             :id="service.name"
                             :value="service.id"
                             v-model="activeservice"
                             name="SelectedServices[]"
-                           
                         />
 
                        <!--  <label :for="service.name">{{ service.name }}</label> -->
                         <label v-if=" activeservice.includes(service.id) " :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(myPosition(service,SelectedServices),myPosition(service.id,activeservice))">{{service.name}}</div></label>
                         <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
 
-
-                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
-                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
                     </div>
                 </div>
                 <hr>
 
                 <h4>Dati casa</h4>
 
-                <!-- <div v-for="(service, index) in apartment.services" :key="index">
-                     {{ service.name }}
-                </div> -->
-
-                <!-- stanze letti bagni metri -->
                 <div class="form-row">
 
                     <div class="form-group col-6 col-lg-3">
@@ -114,6 +92,8 @@
                             type="number"
                             name="n_rooms"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div> 
 
@@ -125,6 +105,8 @@
                             type="number"
                             name="n_beds"
                             required
+                            min="1"
+                            max="20"
                         />
                     </div>
 
@@ -138,6 +120,8 @@
                             type="number"
                             name="n_baths"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div>                   
 
@@ -151,6 +135,8 @@
                             type="number"
                             name="square_meters"
                             required
+                            min="10"
+                            max="1500"
                         />
                     </div>                   
 
@@ -267,25 +253,14 @@
                 <hr>
 
                 <!-- immagine -->
-                <!-- <h4>Cambia foto</h4> -->
-                <div class="form-row d-flex justify-content-between align-items-center">
-                    <!-- <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="custom-file">
-                            <input name="imgs" type="file" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
-                        </div>
-                    </div>
- -->
+                <div class="float-right form-row d-flex justify-content-between align-items-center">
+
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
                             <button type="submit" class="bottone rosso-background ombra">
                                 <i class="fas fa-save"></i>
                             </button>
-                        </div>
-
-                        <div class="mb-3">
-                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
                         </div>
 
                     </div>
@@ -370,10 +345,6 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-
-        
-        
-        
 
     },
     methods: {
@@ -584,6 +555,3 @@ export default {
     text-transform: capitalize;
 }
 </style>
-
-
-

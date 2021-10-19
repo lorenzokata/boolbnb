@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid altezza margin-nav ">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <div class="row">
             <div class="col-12 col-lg-7 altezza">
                 <h1 class="rosso text-center pt-3">{{ apartment.title }}</h1>
@@ -13,9 +14,8 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5 my-descrizione">
-                <!-- <h3 class="d-block rosso">Dettagli casa</h3> -->
                 
-<!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
+                <!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
                 <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block rosso">Dettagli casa</h3>
                     <div>
@@ -23,7 +23,7 @@
                             v-if="this.$userId != ''"
                             class=" bottone rosso-background ombra"
                             :to="{ name: 'dashboard' }"
-                            >Pannello di controllo</router-link
+                            ><i class="fas fa-arrow-right"></i></router-link
                         >
                     </div>
                 </div>
@@ -52,21 +52,17 @@
                         </li>
                     </ul>
                     <h3 class="d-block rosso mt-3">Servizi della casa</h3>
-                    <div>
-                        
+                    <div class="w-100">
+                        <span class="mr-3 my-2 badge badge-pill badge-dark myfont" 
+                            v-for="serve in activeservice" :key="serve"
+                        >
+                            {{serve.name}}
+                        </span>
                     </div>
                 </div>
                 <h3 class="d-block rosso mt-3">Descrizione</h3>
                 <p>
-                    {{ apartment.description }} Lorem, ipsum dolor sit amet
-                    consectetur adipisicing elit. Facilis quisquam commodi magni
-                    exercitationem corporis odio, asperiores totam illo rem
-                    doloribus! Debitis inventore asperiores eum, unde distinctio
-                    accusantium quisquam ducimus cupiditate? Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Ut eaque beatae
-                    minima nemo eligendi quos facere molestias vitae laudantium
-                    quaerat iste quasi voluptas incidunt totam nam iure,
-                    voluptatum veritatis dolores?
+                    {{ apartment.description }} 
                 </p>
 
                 <h3 class="d-block rosso mt-3">Locazione della casa</h3>
@@ -82,16 +78,16 @@
                 <div v-if="success" class="alert alert-success">
                     Massaggio inviato
                 </div>
-                <form @submit.prevent="sendForm" class="d-flex flex-column">
+                <form @submit.prevent="sendForm" class="d-flex flex-column form-group">
                     
-                    <label for="senderfullname" class="mt-2">Nome e Cognome</label>
-                    <input v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
+                    <label for="senderfullname" class="mt-2 form-group">Nome e Cognome</label>
+                    <input required v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
 
-                    <label for="senderemail" class="mt-2">E-mail</label>
-                    <input v-model="sender_email" name="senderemail" type="text" class="form-control" id="sender_email"  />
+                    <label for="senderemail" class="mt-2 form-group">E-mail</label>
+                    <input required v-model="sender_email" name="senderemail" type="email" class="form-control" id="sender_email"  />
 
-                    <label for="msg" class="mt-2">Messaggio</label>
-                    <textarea v-model="msg" name="msg" id="msg" class="form-control"></textarea>
+                    <label for="msg" class="mt-2 form-group">Messaggio</label>
+                    <textarea required v-model="msg" name="msg" id="msg" class="form-control"></textarea>
 
                     <button
                         type="submit"
@@ -118,7 +114,8 @@ export default {
             apartment_id: 'apartment.id', //se tolgo apartment.id non vá...
             errors: {},
             sending: false,
-            success: false
+            success: false,
+            activeservice:[],
         };
     },
 
@@ -156,6 +153,9 @@ export default {
             .get("/api/apartment/show/" + this.$route.params.slug)
             .then(response => {
                 this.apartment = response.data.results;
+                this.activeservice=response.data.results.services;
+                console.log(this.apartment);
+                console.log(this.activeservice);
             })
             .catch(error => {
                 console.log(error);
@@ -165,6 +165,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.myfont{
+    
+   font-size: 15px;
+}
+
 .indirizzo {
     text-decoration: underline;
     font-size: 18px;
@@ -175,7 +180,7 @@ export default {
 
 .img-show {
     width: 100%;
-    height: 83%;
+    height: 80%;
     img {
         height: 100%;
         width: 100%;

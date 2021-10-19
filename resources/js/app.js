@@ -18,7 +18,6 @@ import '../sass/app.scss'
 // Axios
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'HMLHttpRequest';
-// axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
 
 // Vue
 window.Vue = require('vue');

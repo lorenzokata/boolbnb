@@ -1,5 +1,6 @@
 <template>
-    <div class="container pt-5">
+    <div class="container altezza margin-nav">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <!-- <h1 class="pt-3 mb-3">Create</h1> -->
         <div>
             <div class="d-flex justify-content-between align-items-center pt-3">
@@ -17,17 +18,12 @@
                 method="post"
                 enctype="multipart/form-data"
             >
-                <!-- <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
-                    </ul>
-                </p> -->
+
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="form-group mb-3 col-md-8 col-sm-12">
                         <label for="title ">Titolo</label>
                         <input
-                            class="form-control"
+                            class="form-control my-form"
                             type="text"
                             id="title"
                             v-model="form.title"
@@ -50,7 +46,7 @@
                 <div class="form-group">
                     <label for="desc">Descrizione</label>
                     <textarea
-                        class="form-control"
+                        class="form-control my-form"
                         id="desc"
                         v-model="form.description"
                         type="text"
@@ -83,9 +79,6 @@
                         <label  v-if="form.SelectedServices.includes(service)" :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(form.SelectedServices.indexOf(service))">{{service.name}}</div></label>
                         <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
 
-
-                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
-                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
                     </div>
                 </div>
 
@@ -96,7 +89,7 @@
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_rooms"
+                        <label class="d-block " for="n_rooms"
                             >Numero stanze</label
                         >
                         <input
@@ -104,22 +97,26 @@
                             v-model="form.n_rooms"
                             type="number"
                             name="n_rooms"
+                            min="1"
+                            max="16"
                             required
                         />
                     </div>
 
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_beds">Numero letti</label>
+                        <label class="d-block " for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
                             v-model="form.n_beds"
                             type="number"
                             name="n_beds"
                             required
+                            min="1"
+                            max="20"
                         />
                     </div>
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_baths"
+                        <label class="d-block " for="n_baths"
                             >Numero bagni</label
                         >
                         <input
@@ -128,11 +125,13 @@
                             type="number"
                             name="n_baths"
                             required
+                            min="1"
+                            max="16"
                         />
                     </div>
 
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="square_meters"
+                        <label class="d-block " for="square_meters"
                             >Metri quadri</label
                         >
                         <input
@@ -141,6 +140,8 @@
                             type="number"
                             name="square_meters"
                             required
+                            min="10"
+                            max="1500"
                         />
                     </div>
                 </div>
@@ -149,7 +150,6 @@
 
                 <h4>Indirizzo</h4>
                 <!-- <div class="form-row d-flex justify-content-between "> -->
-
 
                 <!-- indirizzo -->
                 <div v-if="!cityActive" @click="clean" class="address_nav">
@@ -252,7 +252,7 @@
                 <!-- immagine -->
                 <h4>Foto</h4>
                 <div
-                    class="form-row d-flex justify-content-between align-items-center"
+                    class="form-row float-right d-flex justify-content-between align-items-center"
                 >
                 
                     <!-- foto -->
@@ -268,28 +268,16 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <div class="mb-3 mr-3">
-                            <!-- <input type="submit" value="Submit"/> -->
+                    <div class="float-right ">
+                        <div class=" float-right mb-3 mr-3">
                             <button type="submit" class="bottone rosso-background ombra">
                                 <i class="fas fa-save"></i>
                             </button>
                         </div>
 
-                       <!--  <div class="mb-3">
-                            <router-link
-                                class="bottone rosso-background ombra"
-                                :to="{ name: 'dashboard' }"
-                                >Pannello di controllo</router-link
-                            >
-                        </div> -->
                     </div>
                 </div>
 
-                <!-- user id display:none - non toccare -->
-                <!-- <div class="d-none">
-                    <input type="text" name="user_id" :value="form.user_id" />
-                </div> -->
             </form>
         </div>
     </div>
@@ -307,8 +295,8 @@ export default {
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
-                square_meters: 1,
-                address:'',
+                square_meters: 10,
+                address: "",
                 visible: 1,
                 SelectedServices: [],
                 image: null
@@ -449,6 +437,7 @@ export default {
                 });
             this.addressActive = false;
         },
+        
         submit: function(e) {
             if(this.complete){
                 var form = document.getElementById("form");
@@ -466,6 +455,7 @@ export default {
                     });
             }
         },
+        
         ServiceActive: function(serve_id){
             this.form.SelectedServices.push(serve_id);
   

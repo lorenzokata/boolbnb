@@ -75,7 +75,7 @@
                 <div
                     class=" col-12 col-lg-4 col-xl-3 my-primo-piano align-items-center pb-2"
                 >
-                    <h3 class="text-center pt-3">In Primo Piano</h3>
+                    <h3 class="pl-3 pt-3">In Primo Piano</h3>
                     <!-- <div
                         class="margin-t-4"
                         v-for="app in sponsored_apartments"
@@ -283,7 +283,7 @@ export default {
     width: 3rem;
 }
 
-/* // STYLE IMPORTATO DA SITO WEB */
+// STYLE IMPORTATO DA SITO WEB
 .avatar {
     width: 30px;
     border-radius: 50%;
@@ -338,10 +338,8 @@ export default {
     opacity: 0;
     border-radius: 20px;
 }
-
 .card-link:hover {
     opacity: 0.1;
-    border-radius: 20px;
 }
 
 .bg_img {
@@ -401,7 +399,7 @@ export default {
 
 
 
-/* // boolflix classes */
+// boolflix classes
 
 .search_box{
     height: 50px;
