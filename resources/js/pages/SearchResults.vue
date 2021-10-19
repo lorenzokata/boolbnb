@@ -20,7 +20,7 @@
             <!-- menu dropdown al click -->
             <div
                 :class="drop == false ? 'd-none' : ''"
-                class="border-rad ombra row row-cols-2 mt-3 mb-3"
+                class="border-rad ombra row row-cols-2 mt-3 mb-5"
             >
                 <!-- stanze e letti -->
                 <div class="col p-3">
