@@ -5,7 +5,15 @@
     box-sizing: border-box;
 }
 
+.logo{
+  height: 40px;
+  width: auto;
+}
 
+.my-form:focus{
+  border: 3px solid  #f2545b;
+  
+}
 
 .my-nav{
     background-color: white;

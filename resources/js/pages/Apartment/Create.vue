@@ -28,7 +28,7 @@
                     <div class="form-group mb-3 col-md-8 col-sm-12">
                         <label for="title ">Titolo</label>
                         <input
-                            class="form-control"
+                            class="form-control my-form"
                             type="text"
                             id="title"
                             v-model="form.title"
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label for="desc">Descrizione</label>
                     <textarea
-                        class="form-control"
+                        class="form-control my-form"
                         id="desc"
                         v-model="form.description"
                         type="text"
@@ -97,7 +97,7 @@
                 <!-- stanze letti bagni metri -->
                 <div class="form-row">
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_rooms"
+                        <label class="d-block " for="n_rooms"
                             >Numero stanze</label
                         >
                         <input
@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_beds">Numero letti</label>
+                        <label class="d-block " for="n_beds">Numero letti</label>
                         <input
                             id="n_beds"
                             v-model="form.n_beds"
@@ -124,7 +124,7 @@
                         />
                     </div>
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="n_baths"
+                        <label class="d-block " for="n_baths"
                             >Numero bagni</label
                         >
                         <input
@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block" for="square_meters"
+                        <label class="d-block " for="square_meters"
                             >Metri quadri</label
                         >
                         <input
@@ -165,7 +165,7 @@
                     <label class="d-block" for="address">Indirizzo</label>
                     <input
                         id="address"
-                        class="form-control"
+                        class="form-control "
                         v-model="form.address"
                         type="text"
                         name="address"
@@ -197,7 +197,7 @@
                             <label class="d-block" for="exampleFormControlFile1">Foto</label>
                             <input
                                 type="file"
-                                class="form-control-file form-control"
+                                class="form-control-file form-control "
                                 name="imgs"
                                 id="exampleFormControlFile1"
                             />
@@ -393,4 +393,5 @@ export default {
     color: white;
     background-color:#424242 ;
 }
+
 </style>
