@@ -23,7 +23,7 @@
                             v-if="this.$userId != ''"
                             class=" bottone rosso-background ombra"
                             :to="{ name: 'dashboard' }"
-                            >Pannello di controllo</router-link
+                            ><i class="fas fa-arrow-right"></i></router-link
                         >
                     </div>
                 </div>
