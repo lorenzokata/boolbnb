@@ -18,12 +18,7 @@
                 method="post"
                 enctype="multipart/form-data"
             >
-                <!-- <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
-                    </ul>
-                </p> -->
+
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="form-group mb-3 col-md-8 col-sm-12">
                         <label for="title ">Titolo</label>
@@ -84,9 +79,6 @@
                         <label  v-if="form.SelectedServices.includes(service)" :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(form.SelectedServices.indexOf(service))">{{service.name}}</div></label>
                         <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
 
-
-                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
-                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
                     </div>
                 </div>
 
@@ -158,7 +150,6 @@
 
                 <h4>Indirizzo e Foto</h4>
                 <div class="form-row d-flex justify-content-between ">
-
 
                 <!-- indirizzo -->
                 <div class="form-group col-md-8 col-sm-12">

@@ -3,25 +3,30 @@
         <h1>Sponsorizza il tuo appartamento</h1>
 
         <div class="row justify-content-around my-3">
+
             <div class="col-12 col-md mx-2 ombra base-box p-3 rounded">
                 <h3 class="nome-spons  mb-3"><strong>Base</strong></h3>
                 <div class="costo my-3"><strong>2.99</strong> <i class="fas fa-euro-sign"></i></div>
                 <div class="opal durata my-3">24h ore di sponsorizzazione</div>
                 <div class="bottone rosso-background fl-right " @click="pagamentoBase('Base','2.99')">Vai al pagamento</div>
             </div>
+
             <div class="col-12 col-md mx-2 ombra sponsor-box p-3 rounded">
                 <h3 class="nome-spons viola mb-3"><strong>Advance</strong></h3>
                 <div class="costo my-3"><strong>5.99</strong> <i class="fas fa-euro-sign"></i></div>
                 <div class="opal durata my-3">72h ore di sponsorizzazione</div>
                 <div class="bottone rosso-background fl-right " @click="pagamentoBase('Advance','5.99')">Vai al pagamento</div>
             </div>
+
             <div class="col-12 col-md mx-2 ombra sponsor-box p-3 rounded gold-box">
                 <h3 class="nome-spons "><strong>Gold</strong></h3>
                 <div class="costo my-3"><strong>9.99</strong> <i class="fas fa-euro-sign"></i></div>
                 <div class="opal durata my-3">144h ore di sponsorizzazione</div>
                 <div class="bottone rosso-background fl-right " @click="pagamentoBase('Gold','9.99')">Vai al pagamento</div>
             </div>
+
         </div>
+
             <h2>pagamento</h2>
         <div id="paga" v-if="attivo" class="row align-items-center flex-column " >
             <h2>{{pagamento[0].nome}} {{pagamento[0].costo}} <i class="fas fa-euro-sign"></i></h2>
@@ -45,7 +50,6 @@
                     {
                     nome:null,
                     costo:null
-
                     }
                 ],
                 attivo:false

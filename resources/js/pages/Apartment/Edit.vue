@@ -68,7 +68,6 @@
                             :value="service.id"
                             v-model="activeservice"
                             name="SelectedServices[]"
-                           
                         />
 
                        <!--  <label :for="service.name">{{ service.name }}</label> -->
@@ -279,10 +278,6 @@ export default {
                 console.log(error);
             });
 
-        
-        
-        
-
     },
     methods: {
         addressClick: function(id) {
@@ -408,6 +403,3 @@ export default {
 }
 
 </style>
-
-
-

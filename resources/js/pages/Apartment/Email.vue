@@ -24,7 +24,6 @@
                     <div class="p-2 fl-right gunmetal cream">{{mail.created_at.substring(0,10)}}  -  {{mail.created_at.substring(11,16)}}  </div>  
                 </div>
 
-
             </form>
         
     </div>
@@ -60,21 +59,18 @@
 
 <style lang="scss" scoped>
 
-
     .box-mess{
         background-color: white;
     }
 
     .big-box{
-            background-color: #f2545b ;
+        background-color: #f2545b ;
 
-
-            .mess{
-
-                max-height: 100px;
-                overflow-y: auto;
-            }
+        .mess{
+            max-height: 100px;
+            overflow-y: auto;
         }
+    }
 
     .r20{
         border-radius: 20px;

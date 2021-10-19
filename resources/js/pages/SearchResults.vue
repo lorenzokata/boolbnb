@@ -288,15 +288,7 @@ export default {
 }
 }
 
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////
 
 @-webkit-keyframes slide-in-elliptic-top-fwd {
   0% {

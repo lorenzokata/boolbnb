@@ -14,9 +14,8 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5 my-descrizione">
-                <!-- <h3 class="d-block rosso">Dettagli casa</h3> -->
                 
-<!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
+                <!-- v-if="JSON.parse(this.$userId).id !== 'undefined'" -->
                 <div class="d-flex justify-content-between align-items-center ">
                     <h3 class="d-block rosso">Dettagli casa</h3>
                     <div>
