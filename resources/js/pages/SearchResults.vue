@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    <div class="container altezza margin-nav">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <h1 class="pt-5 rosso">Risultati ricerca</h1>
 
         <!-- ricerca avanzata -->

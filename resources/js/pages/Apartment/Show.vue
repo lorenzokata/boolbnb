@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid altezza margin-nav ">
+        <div class="my-nav fixed-top altezza-nav"></div>
         <div class="row">
             <div class="col-12 col-lg-7 altezza">
                 <h1 class="rosso text-center pt-3">{{ apartment.title }}</h1>
@@ -180,7 +181,7 @@ export default {
 
 .img-show {
     width: 100%;
-    height: 83%;
+    height: 80%;
     img {
         height: 100%;
         width: 100%;
