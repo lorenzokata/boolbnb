@@ -1,37 +1,17 @@
 <template>
     <div class="container altezza margin-nav">
         <div class="my-nav fixed-top altezza-nav"></div>
-        <h1 class="pt-5 rosso">Risultati ricerca</h1>
 
         <!-- ricerca avanzata -->
         <div>
             <!-- cerca e dropdown icon -->
             <div class="d-flex justify-content-between align-items-center">
-                <div class="cerca">
-                    <!-- input -->
-                    <!-- <input
-                        class="form-ricerca text-center cream-background input mb-1"
-                        v-model="userInput"
-                        name="userInput"
-                        type="text"
-                        placeholder=""
-                        @input="autoAddress()"
-                    /> -->
 
-                    <!-- btn cerca -->
-                    <!-- <router-link
-                        class="bottone rosso-background cream mb-1 ombra"
-                        :to="{
-                            name: 'results',
-                            params: { userInput: userInput }
-                        }"
-                        >Cerca
-                    </router-link> -->
-                </div>
+                <h1 class="rosso">Risultati ricerca</h1>
 
                 <div
                     @click="dropDown"
-                    class="dropdown bottone rosso-background cream mb-1 ombra"
+                    class="dropdown bottone rosso-background cream ombra"
                 >
                     <i class="fas fa-sort-amount-down fa-lg"></i>
                 </div>

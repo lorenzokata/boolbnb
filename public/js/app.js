@@ -6639,64 +6639,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
   data: function data() {
@@ -6767,8 +6709,11 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("user_id", JSON.parse(this.$userId).id);
       axios.post("/api/apartment/store", formData).then(function (response) {
         _this3.$router.push("../dashboard");
+
+        alert('Appartamento creato correttamente');
       })["catch"](function (error) {
         console.log(error);
+        alert('Errore nella creazione dell\'appartamento');
       });
     },
     ServiceActive: function ServiceActive(serve_id) {
@@ -6793,66 +6738,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7163,8 +7048,11 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('slug', this.apartment.slug);
       axios.post('/api/apartment/update', formData).then(function (response) {
         _this3.$router.push('../dashboard');
+
+        alert('Appartamento modificato correttamente');
       })["catch"](function (error) {
         console.log(error);
+        alert('Errore durante la modifica dell\' appartamento');
       });
     },
     ServiceActive: function ServiceActive(serve_id) {
@@ -7832,26 +7720,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -45396,7 +45264,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "ml-3 mr-3" }, [
-                _vm._v(">\n                       "),
+                _vm._v(">\n                    "),
                 _c("label", { attrs: { for: "visible" } }, [
                   _vm._v("Visibile")
                 ]),
@@ -45792,9 +45660,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                               " +
+                                  "\n                            " +
                                     _vm._s(address) +
-                                    "\n                           "
+                                    "\n                        "
                                 )
                               ]
                             )
@@ -46866,19 +46734,17 @@ var render = function() {
   return _c("div", { staticClass: "container altezza margin-nav" }, [
     _c("div", { staticClass: "my-nav fixed-top altezza-nav" }),
     _vm._v(" "),
-    _c("h1", { staticClass: "pt-5 rosso" }, [_vm._v("Risultati ricerca")]),
-    _vm._v(" "),
     _c("div", [
       _c(
         "div",
         { staticClass: "d-flex justify-content-between align-items-center" },
         [
-          _c("div", { staticClass: "cerca" }),
+          _c("h1", { staticClass: "rosso" }, [_vm._v("Risultati ricerca")]),
           _vm._v(" "),
           _c(
             "div",
             {
-              staticClass: "dropdown bottone rosso-background cream mb-1 ombra",
+              staticClass: "dropdown bottone rosso-background cream ombra",
               on: { click: _vm.dropDown }
             },
             [_c("i", { staticClass: "fas fa-sort-amount-down fa-lg" })]
