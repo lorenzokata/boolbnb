@@ -205,40 +205,6 @@
                     </div>
                 </div>
 
-        <!--         <h4>Indirizzo</h4>
-
-
-                <div class="form-group">
-                    <label class="d-block" for="address">Indirizzo</label>
-                    <input
-                        id="address"
-                        class="form-control"
-                        v-model="form.address"
-                        type="text"
-                        name="address"
-                        required
-                        @input="autoAddress()"
-                    />
-                     Autocomp
-                    <div
-                        class="list-group"
-                        :class="{ 'd-none': addressActive }"
-                        v-if="arrayAddress != []"
-                    >
-                        <ul>
-                            <li
-                                class="list-group-item input-group"
-                                v-for="(address, id) in arrayAddress"
-                                :key="id"
-                                :v-model="arrayAddress[id]"
-                                @click="addressClick(id)"
-                            >
-                                {{ address }}
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
-
                 <hr />
 
                 <!-- immagine -->
@@ -246,41 +212,17 @@
                 <div
                     class="form-row float-right d-flex justify-content-between align-items-center"
                 >
-                  <!--  form vecchio img
-                       <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="form-group">
-
-                            <input
-                                type="file"
-                                class="form-control-file form-control"
-                                name="imgs"
-                                id="exampleFormControlFile1"
-                            />
-                        </div>
-                    </div> -->
 
                     <div class="float-right ">
                         <div class=" float-right mb-3 mr-3">
-                            <!-- <input type="submit" value="Submit"/> -->
                             <button type="submit" class="bottone rosso-background ombra">
                                 <i class="fas fa-save"></i>
                             </button>
                         </div>
 
-                       <!--  <div class="mb-3">
-                            <router-link
-                                class="bottone rosso-background ombra"
-                                :to="{ name: 'dashboard' }"
-                                >Pannello di controllo</router-link
-                            >
-                        </div> -->
                     </div>
                 </div>
 
-                <!-- user id display:none - non toccare -->
-                <!-- <div class="d-none">
-                    <input type="text" name="user_id" :value="form.user_id" />
-                </div> -->
             </form>
         </div>
     </div>
@@ -357,7 +299,9 @@ export default {
                 });
             this.addressActive = false;
         },
+        
         submit: function(e) {
+            
             var form = document.getElementById("form");
             var formData = new FormData(form);
             formData.append("user_id", JSON.parse(this.$userId).id);
@@ -365,9 +309,11 @@ export default {
                 .post("/api/apartment/store", formData)
                 .then(response => {
                     this.$router.push("../dashboard");
+                    alert('Appartamento creato correttamente');
                 })
                 .catch(error => {
                     console.log(error);
+                    alert('Errore nella creazione dell\'appartamento');
                 });
         },
         ServiceActive: function(serve_id){
