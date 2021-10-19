@@ -14,14 +14,6 @@
                 
                 <div class="form-row d-flex justify-content-between align-items-center">
 
-                    <!-- indirizzo -->
-                   <!--  <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Modifica titolo</span>
-                        </div>
-                        <input name="title" id="title" v-model="apartment.title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
-                    </div>   
-         -->
                     <div class="form-group mb-3 col-md-8 col-sm-12">
                         <label for="title ">Titolo</label>
                         <input
@@ -44,11 +36,6 @@
                         />
                     </div>
                 </div>
-
-                <!-- foto -->
-               <!--  <div class="d-flex justify-content-center">
-                    <img class="foto" :src="apartment.imgs" alt="apartment.title">
-                </div> -->
 
                 <h4 class="mt-3">Modifica Descrizione</h4>
 
@@ -88,20 +75,12 @@
                         <label v-if=" activeservice.includes(service.id) " :for="service.name"><div   class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(myPosition(service,SelectedServices),myPosition(service.id,activeservice))">{{service.name}}</div></label>
                         <label v-else  :for="service.name"><div   class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div></label>
 
-
-                       <!--  <div v-if="SelectedServices.includes(service)"  class="bottone  my-1 py-2 bott-active-serv" @click="ServiceDisable(filter_serve.indexOf(service))">{{service.name}}</div>
-                        <div v-else  class="bottone my-1 py-2 bott-serv opal" @click="ServiceActive(service)" >{{service.name}}</div> -->
                     </div>
                 </div>
                 <hr>
 
                 <h4>Dati casa</h4>
 
-                <!-- <div v-for="(service, index) in apartment.services" :key="index">
-                     {{ service.name }}
-                </div> -->
-
-                <!-- stanze letti bagni metri -->
                 <div class="form-row">
 
                     <div class="form-group col-6 col-lg-3">
@@ -167,34 +146,6 @@
                 <hr>
 
                 <h4>Indirizzo</h4>
-
-                <!-- indirizzo -->
- <!--                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="address">Modifica indirizzo</span>
-                    </div>
-                    <input @input="autoAddress()" id="address" v-model="apartment.address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="address" required>
-
-                    
-                </div>
-
-                     suggeriti -->
-                   <!--  <div class="list-group suggeriti"
-                        :class="{ 'd-none': addressActive }"
-                        v-if="arrayAddress != []"
-                    >
-                        <ul>
-                            <li
-                                class="list-group-item input-group"
-                                v-for="(address, id) in arrayAddress"
-                                :key="id"
-                                :v-model="arrayAddress[id]"
-                                @click="addressClick(id)"
-                            >
-                                {{ address }}
-                            </li>
-                        </ul>
-                    </div> --> 
                     
                     <div class="form-row d-flex justify-content-between ">
 
@@ -246,15 +197,8 @@
                 <hr>
 
                 <!-- immagine -->
-                <!-- <h4>Cambia foto</h4> -->
                 <div class="float-right form-row d-flex justify-content-between align-items-center">
-                    <!-- <div class="input-group mb-3 col-md-6 col-sm-12">
-                        <div class="custom-file">
-                            <input name="imgs" type="file" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Scegli file...</label>
-                        </div>
-                    </div>
- -->
+
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 mr-3">
                             <!-- <input type="submit" value="Submit"/> -->
@@ -262,10 +206,6 @@
                                 <i class="fas fa-save"></i>
                             </button>
                         </div>
-
-                        <!-- <div class="mb-3">
-                            <router-link class="bottone rosso-background ombra" :to="{ name: 'dashboard'}">Pannello di controllo</router-link>
-                        </div> -->
 
                     </div>
                 </div>
@@ -381,10 +321,12 @@ export default {
             formData.append('slug', this.apartment.slug);
             axios.post('/api/apartment/update', formData)
             .then((response) => {
-                this.$router.push('../dashboard') 
+                this.$router.push('../dashboard');
+                alert('Appartamento modificato correttamente'); 
             })
             .catch((error) =>{
                 console.log(error);
+                alert('Errore durante la modifica dell\' appartamento');
             })
         },
 
