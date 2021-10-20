@@ -112,6 +112,7 @@ export default {
             sending: false,
             success: false,
             activeservice:[],
+            user:''
         };
     },
 
@@ -143,6 +144,13 @@ export default {
     mounted() {
         // l'appartamento é in apartment
         // i services del appartamento sono in apartment.services (array)
+        if(this.$userId){
+            this.user = JSON.parse(this.$userId);
+            this.sender_email = this.user.email;
+            this.sender_fullname = this.user.name + ' ' + this.user.surname;
+        };
+        
+        
 
         axios
             .get("/api/apartment/show/" + this.$route.params.slug)
