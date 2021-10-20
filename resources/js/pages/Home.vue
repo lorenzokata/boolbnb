@@ -90,7 +90,7 @@
 
                     <!-- card importata -->
                     <!--style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i1.wp.com/handluggageonly.co.uk/wp-content/uploads/2015/05/IMG_2813-s.jpg?w=1600&ssl=1');"-->
-                    <div class="overflow-auto scroll_container  " >
+                    <div class="overflow-auto scroll_container" >
                         <div
                             class="card position-relative slide-in-top"
                             v-for="app in sponsored_apartments"
@@ -268,7 +268,7 @@ export default {
 }
 
 .my-primo-piano {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 46px);
     width: 100%;
 }
 

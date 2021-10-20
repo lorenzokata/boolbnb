@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-3">
+    <div class="container pt-3 margin-nav">
         <div class="row">
             <h1 v-if="email != ''">Messaggi appartamento - <strong>{{apartment.title}}</strong> </h1>
             <h1 class="mt-5 rosso" v-if="email == ''">Non ci sono messaggi per l'appartamento <br> <strong>{{apartment.title}}</strong></h1>

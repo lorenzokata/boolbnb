@@ -3,8 +3,8 @@
         <div class="my-nav fixed-top altezza-nav"></div>
         <div class="row">
             <div class="col-12 col-lg-7 altezza">
-                <h1 class="rosso text-center pt-3">{{ apartment.title }}</h1>
-                <div class="margin-l-7 indirizzo opal">
+                <h1 class="rosso pt-3">{{ apartment.title }}</h1>
+                <div class="indirizzo opal">
                     {{ apartment.address }}
                 </div>
                 <!-- qui stampo la foto -->
@@ -54,7 +54,7 @@
                     <h3 class="d-block rosso mt-3">Servizi della casa</h3>
                     <div class="w-100">
                         <span class="mr-3 my-2 badge badge-pill badge-dark myfont" 
-                            v-for="serve in activeservice" :key="serve"
+                            v-for="serve in activeservice" :key="serve.service_id"
                         >
                             {{serve.name}}
                         </span>
@@ -66,22 +66,22 @@
                 </p>
 
                 <h3 class="d-block rosso mt-3">Locazione della casa</h3>
-                <div id="map" class="map"></div>
+                <div id="map" style="height: 400px;" class="map"></div>
 
-                <h3 class="d-block rosso mt-3">Invia un' e-mail al proprietario</h3>
+                <h3 class="d-block rosso mt-5">Invia un' e-mail al proprietario</h3>
                 <div v-if="success" class="alert alert-success">
                     Massaggio inviato
                 </div>
                 <form @submit.prevent="sendForm" class="d-flex flex-column form-group">
                     
                     <label for="senderfullname" class="mt-2 form-group">Nome e Cognome</label>
-                    <input required v-model="sender_fullname" name="senderfullname" type="text" class="form-control" id="sender_fullname" />
+                    <input required v-model="sender_fullname" name="senderfullname" type="text" class="form-control my-form" id="sender_fullname" />
 
                     <label for="senderemail" class="mt-2 form-group">E-mail</label>
-                    <input required v-model="sender_email" name="senderemail" type="email" class="form-control" id="sender_email"  />
+                    <input required v-model="sender_email" name="senderemail" type="email" class="form-control my-form" id="sender_email"  />
 
                     <label for="msg" class="mt-2 form-group">Messaggio</label>
-                    <textarea required v-model="msg" name="msg" id="msg" class="form-control"></textarea>
+                    <textarea required v-model="msg" name="msg" id="msg" class="form-control my-form"></textarea>
 
                     <button
                         type="submit"
@@ -159,9 +159,18 @@ export default {
                         parseFloat(this.apartment.lon),
                         parseFloat(this.apartment.lat)
                     ],
-                    zoom: 13
+                    zoom: 12
                 });
 
+                map.doubleClickZoom.disable();
+                map.dragPan.disable();
+                map.dragRotate.disable();
+                map.scrollZoom.disable();
+
+               /*  var marker = new tt.Marker()
+                .setLngLat([parseFloat(this.apartment.lon), parseFloat(this.apartment.lat)])
+                .addTo(map); */
+                
             })
             .catch(error => {
                 console.log(error);

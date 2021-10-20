@@ -123,8 +123,8 @@
 
         <!-- apartments -->
         <div>
-            <h2 class="rosso mt-3">Risultati ricerca</h2>
-
+            <h2 class="rosso mt-3" v-if="Object.keys(apartments).length != 0">Risultati ricerca</h2>
+            <h2 class="rosso mt-3" v-else>Al momento non ci sono appartamenti in questa città</h2>
             <div
                 v-for="app in apartments"
                 :key="app.apartment.id"
@@ -170,8 +170,8 @@ export default {
             filter_serve:[],
             radius: 20000,
             drop: false,
-            n_rooms: 0,
-            n_beds: 0,
+            n_rooms: 1,
+            n_beds: 1,
             filterS:''
         };
     },

@@ -56,7 +56,7 @@ class ApartmentController extends Controller
             'user_id' => 'required',
             'square_meters' => 'required',
             'address' => 'required',
-            'visible' => 'nullable',
+            
             'imgs' => 'nullable|image'
         ]);
         

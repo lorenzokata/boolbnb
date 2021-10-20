@@ -20,8 +20,8 @@
             >
 
                 <div class="form-row d-flex justify-content-between align-items-center">
-                    <div class="form-group mb-3 col-md-8 col-sm-12">
-                        <label for="title ">Titolo</label>
+                    <div class="form-group mb-3 col-md-12 col-sm-12">
+                        <label for="title "><h4>Titolo</h4></label>
                         <input
                             class="form-control my-form"
                             type="text"
@@ -31,20 +31,13 @@
                             required
                         />
                     </div>
-
-                    <div class="ml-3 mr-3">>
-                        <label for="visible">Visibile</label>
-                        <input
-                            id="visible"
-                            v-model="form.visible"
-                            type="checkbox"
-                            name="visible"
-                        />
-                    </div>
-            </div>
-
+                </div>
+                <div class="ml-3 mr-3 d-none">>
+                    <label for="visible">Visibile</label>
+                    <input id="visible" v-model="form.visible" type="checkbox" name="visible"/>
+                </div>
                 <div class="form-group">
-                    <label for="desc">Descrizione</label>
+                    <label for="desc"><h4>Descrizione</h4></label>
                     <textarea
                         class="form-control my-form"
                         id="desc"

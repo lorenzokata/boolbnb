@@ -15,9 +15,9 @@
                 <div class="form-row d-flex justify-content-between align-items-center">
 
                     <div class="form-group mb-3 col-md-8 col-sm-12">
-                        <label for="title ">Titolo</label>
+                        <label for="title "><h4>Titolo</h4></label>
                         <input
-                            class="form-control"
+                            class="form-control my-form"
                             type="text"
                             id="title"
                             v-model="apartment.title"
@@ -26,22 +26,18 @@
                         />
                     </div>
 
-                    <div class="ml-3 mr-3">>
+                    <div class="ml-3 mr-3 d-none">
                         <label for="visible">Visibile</label>
-                        <input
-                            id="visible"
-                            v-model="form.visible"
-                            type="checkbox"
-                            name="visible"
-                        />
+                        <input id="visible" v-model="form.visible" type="checkbox" name="visible"/>
                     </div>
+                    
                 </div>
 
                 <h4 class="mt-3">Modifica Descrizione</h4>
 
                 <div class="input-group">
                     <textarea
-                        class="form-control"
+                        class="form-control my-form"
                         id="desc"
                         v-model="apartment.description"
                         type="text"
@@ -146,7 +142,8 @@
 
                  <!-- indirizzo -->
                 <div v-if="!cityActive" @click="clean" class="address_nav"> Indietro </div>
-                <h3>{{city}} {{via}} {{civico}}</h3>
+                <h3 v-if="focus">{{city}} {{via}} {{civico}}</h3>
+                <h3 v-else>{{apartment.address}}</h3>
                 <div class="form-group" v-if="cityActive">
                     <label class="d-block address_l" for="address">città:</label>
                     <input
@@ -155,7 +152,7 @@
                         v-model="city"
                         type="text"
                         autocomplete="off"
-                        required
+                        @focus="focus = true"
                         @input="autoAddress(0)"
                     />
                     <!-- Autocomp -->
@@ -185,7 +182,7 @@
                         v-model="via"
                         type="text"
                         autocomplete="off"
-                        required
+                        
                         @input="autoAddress(1)"
                     />
                     <!-- Autocomp -->
@@ -215,7 +212,7 @@
                         v-model="civico"
                         type="text"
                         autocomplete="off"
-                        required
+                      
                         @input="autoAddress(2)"
                     />
                     <!-- Autocomp -->
@@ -238,10 +235,12 @@
                     </div>
                 </div>
 
-                <div class="input-group col-md-4 col-sm-12">
+                <div class="input-group col-md-4 col-sm-12" style="padding-left: 0">
                     <div class="form-group">
-                        <label class="d-block" for="exampleFormControlFile1">Foto:</label>
+                        <h4>Foto:</h4>
+                        <!-- <label class="d-block" for="exampleFormControlFile1">Foto:</label> -->
                         <input
+                            style="padding: 3px;"
                             type="file"
                             class="form-control-file form-control"
                             name="imgs"
@@ -250,8 +249,8 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 col-sm-12">
-                    <img style="height:200px; width:200px" :src="apartment.imgs" alt="">
+                <div class="col-md-4 col-sm-12" style="padding-left: 0">
+                    <img style="height:200px" :src="apartment.imgs" alt="">
                 </div>
                 <hr>
 
@@ -289,7 +288,6 @@ export default {
             form: {
                 title: null,
                 description: null,
-    
                 n_rooms: 1,
                 n_beds: 1,
                 n_baths: 1,
@@ -301,6 +299,7 @@ export default {
                 visible: 1,
                 SelectedServices: []
             },
+            focus: false,
             query: "",
             city: '',
             via : '',
@@ -319,7 +318,7 @@ export default {
                 via:'',
                 civico:''
             },
-            complete: false
+            complete: true
             // errors: [],
         };
     },
@@ -348,6 +347,7 @@ export default {
             .catch(error => {
                 console.log(error);
             });
+            this.query = this.apartment.address;
 
     },
     methods: {
@@ -371,6 +371,7 @@ export default {
                 this.cityActive = false;
                 this.viaActive = true;
                 this.arrayAddress = [];
+                this.complete = false;
                 this.form.address = this.query;
             }else if(type == 1){
                 this.query = this.arrayAddress[id];
@@ -421,7 +422,7 @@ export default {
                         }
                         if(type == 1 ){
                             if(element.address.streetName && element.address.municipality == this.city){
-                                let output = { city: element.address.municipality, via: element.address.streetName , civico:''};
+                                let output = { 'city': element.address.municipality, 'via': element.address.streetName , 'civico':''};
                                 arr.push(output);
                             }
                         }
@@ -429,7 +430,7 @@ export default {
 
                             if(element.address.streetNumber && element.address.municipality == this.city ){
                                 // if(element.address.municipality == this.selected.city){
-                                    let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
+                                    let output = { 'city': element.address.municipality, 'via': element.address.streetName , 'civico':element.address.streetNumber};
                                     arr.push(output);
                                 // }
                                 
@@ -449,7 +450,12 @@ export default {
             if(this.complete){
                 var form = document.getElementById('form');
                 var formData = new FormData(form);
-                var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico;
+                if(this.cityActive && !this.focus){
+                    var address = this.apartment.address;
+                }else{
+                   var address = this.query.city + ' ' + this.query.via + ' ' + this.query.civico; 
+                }
+                
                 formData.append('user_id', JSON.parse(this.$userId).id);
                 formData.append('slug', this.apartment.slug);
                 formData.append("address", address);
@@ -493,7 +499,6 @@ export default {
                    return true
 
             }
-            console.log('no ciao');
             return false
         },
         myPosition: function(serve,array){
