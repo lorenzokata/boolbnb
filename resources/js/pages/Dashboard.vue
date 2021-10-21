@@ -27,7 +27,9 @@
             </div>
         </div> -->
 
-        <h3 class="rosso">Appartamenti</h3>
+        <h3 v-if="sponsored_apartments.lenght && apartments.lenght != 0" class="rosso">Appartamenti</h3>
+        <h3 v-else class="rosso">Non ci sono appartamenti</h3>
+
         <div class="row justify-content-between">
 
               <div class=" col-12 col-lg-5 my-2 card ombra" 
