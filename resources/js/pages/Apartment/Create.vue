@@ -405,15 +405,14 @@ export default {
                         }
                         if(type == 1 ){
                             if(element.address.streetName && element.address.municipality == this.city){
-                                let output = { city: element.address.municipality, via: element.address.streetName , civico:''};
+                                let output = { 'city': element.address.municipality, 'via': element.address.streetName , 'civico':''};
                                 arr.push(output);
                             }
                         }
                         if(type == 2){
-                            console.log('cita' + this.city);
                             if(element.address.streetNumber && element.address.municipality == this.city && element.address.streetName == this.via){
                                 // if(element.address.municipality == this.selected.city){
-                                    let output = { city: element.address.municipality, via: element.address.streetName , civico:element.address.streetNumber};
+                                    let output = { 'city': element.address.municipality, 'via': element.address.streetName , 'civico' :element.address.streetNumber};
                                     arr.push(output);
                                 // }
                                 

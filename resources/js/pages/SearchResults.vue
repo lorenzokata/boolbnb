@@ -22,6 +22,7 @@
                 :class="drop == false ? 'd-none' : ''"
                 class="border-rad ombra row row-cols-2 mt-3 mb-5"
             >
+                <div v-if="success_F" class="alert alert-success _alert">filtrato</div>
                 <!-- stanze e letti -->
                 <div class="col p-3">
                     <h2 class="rosso">Stanze e letti</h2>
@@ -59,7 +60,7 @@
 
                     <div
                         class="bottone rosso-background bottom-right"
-                        @click="loadApartments(radius)"
+                        @click="loadApartments(radius , true)"
                     >
                         Applica filtro
                     </div>
@@ -89,7 +90,7 @@
                 v-if="Object.keys(sponsored_apartments).length != 0"
                 class="rosso mt-3"
             >
-                Appartamenti sponsorizzati
+                Appartamenti sponsorizzati: {{sponsored_apartments.length}} risultati
             </h2>
 
                <div 
@@ -123,7 +124,7 @@
 
         <!-- apartments -->
         <div>
-            <h2 class="rosso mt-3" v-if="Object.keys(apartments).length != 0">Risultati ricerca</h2>
+            <h2 class="rosso mt-3" v-if="Object.keys(apartments).length != 0">Ci sono {{apartments.length}} risultati</h2>
             <h2 class="rosso mt-3" v-else>Al momento non ci sono appartamenti in questa città</h2>
             <div
                 v-for="app in apartments"
@@ -172,19 +173,26 @@ export default {
             drop: false,
             n_rooms: 1,
             n_beds: 1,
-            filterS:''
+            filterS:'',
+            success_F: false,
         };
     },
     mounted() {
         // api per elenco servizi
 
-        this.loadApartments(this.radius);
+        this.loadApartments(this.radius, false);
 
     },
 
     methods: {
-        loadApartments: function(radius) {
+        switchAlertOff: function(){
+            this.success_F = false;
+            console.log('calback');
+        },
+
+        loadApartments: function(radius, filtro) {
             // il raggio della ricerca è espresso in metri
+            
             this.filterS = '';
             
             if(this.filter_serve.length > 0){
@@ -199,7 +207,7 @@ export default {
             }else{
                 this.filterS = 'null';
             }
-
+                    
 
             axios
                 .get(
@@ -216,6 +224,10 @@ export default {
                         response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
                     this.services = response.data.results.services;
+                    if(filtro == true){
+                        this.success_F = true;
+                        setTimeout(() => this.success_F = false, 2000);
+                    }
                 })
 
                 .catch(error => {
@@ -375,5 +387,11 @@ export default {
     opacity: 1;
   }
 }
-
+._alert{
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+}
 </style>

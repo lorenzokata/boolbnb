@@ -30,7 +30,7 @@
         <h3 class="rosso">Appartamenti</h3>
         <div class="row justify-content-between">
 
-              <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
+              <div class=" col-12 col-lg-5 my-2 card ombra" 
                 v-for="s_app in sponsored_apartments"
                 :key="s_app.id">
 
@@ -50,7 +50,7 @@
             </div>
 
 
-            <div class=" col-12 col-lg-5 my-2 card ombra" style="width: 18rem;" 
+            <div class=" col-12 col-lg-5 my-2 card ombra" 
                 v-for="app in apartments"
                 :key="app.id"
                 :class="app.visible ? '' :'d-none'"

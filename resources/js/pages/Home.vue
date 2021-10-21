@@ -46,7 +46,7 @@
                             <div
                                 class="list-group suggeriti"
                                 
-                                v-if="arrayAddress != [] && userInput.length > 1 && addressActive"
+                                v-if="arrayAddress != [] && userInput.length > 1 "
                                 
                                 
                             >
@@ -151,6 +151,10 @@ export default {
             this.userInput = this.arrayAddress[id];
             this.addressActive = false;
             this.focus = false;
+            this.$router.push({
+                name: 'results', 
+                params: { userInput: this.userInput }
+            });
             // this.inp = document.getElementById('search');
             
             // this.inp.focus();
