@@ -21,7 +21,7 @@
 
                 <div class="form-row d-flex justify-content-between align-items-center">
                     <div class="form-group mb-3 col-md-12 col-sm-12">
-                        <label for="title "><h4>Titolo</h4></label>
+                        <label for="title "><h4>Titolo*</h4></label>
                         <input
                             class="form-control my-form"
                             type="text"
@@ -37,7 +37,7 @@
                     <input id="visible" v-model="form.visible" type="checkbox" name="visible"/>
                 </div>
                 <div class="form-group">
-                    <label for="desc"><h4>Descrizione</h4></label>
+                    <label for="desc"><h4>Descrizione*</h4></label>
                     <textarea
                         class="form-control my-form"
                         id="desc"
@@ -83,7 +83,7 @@
                 <div class="form-row">
                     <div class="form-group col-6 col-lg-3">
                         <label class="d-block " for="n_rooms"
-                            >Numero stanze</label
+                            >Numero stanze*</label
                         >
                         <input
                             id="n_rooms"
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="form-group col-6 col-lg-3">
-                        <label class="d-block " for="n_beds">Numero letti</label>
+                        <label class="d-block " for="n_beds">Numero letti*</label>
                         <input
                             id="n_beds"
                             v-model="form.n_beds"
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group col-6 col-lg-3">
                         <label class="d-block " for="n_baths"
-                            >Numero bagni</label
+                            >Numero bagni*</label
                         >
                         <input
                             id="n_baths"
@@ -125,7 +125,7 @@
 
                     <div class="form-group col-6 col-lg-3">
                         <label class="d-block " for="square_meters"
-                            >Metri quadri</label
+                            >Metri quadri*</label
                         >
                         <input
                             id="square_meters"
@@ -141,7 +141,7 @@
 
                 <hr/>
 
-                <h4>Indirizzo</h4>
+                <h4>Indirizzo*</h4>
                 <!-- <div class="form-row d-flex justify-content-between "> -->
 
                 <!-- indirizzo -->
