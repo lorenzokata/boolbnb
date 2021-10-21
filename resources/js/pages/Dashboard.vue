@@ -27,12 +27,12 @@
             </div>
         </div> -->
 
-        <h3 v-if="sponsored_apartments.lenght && apartments.lenght != 0" class="rosso">Appartamenti</h3>
+        <h3 v-if="apartments.length != 0" class="rosso">Appartamenti</h3>
         <h3 v-else class="rosso">Non ci sono appartamenti</h3>
 
         <div class="row justify-content-between">
 
-              <div class=" col-12 col-lg-5 my-2 card ombra" 
+              <!-- <div class=" col-12 col-lg-5 my-2 card ombra" 
                 v-for="s_app in sponsored_apartments"
                 :key="s_app.id">
 
@@ -43,13 +43,13 @@
 
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'show', params: { slug: s_app.slug }}">Dettagli</router-link> 
                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'edit', params: { slug: s_app.slug }}">Modifica</router-link> 
-                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link> -->
-                        <!-- <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link> -->
-                         <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email', params: { id: s_app.id }}">E-mail</router-link>
-
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'sponsor'}">Sponsorizza</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'stats'}">Statistiche</router-link>
+                        <router-link class="bottone rosso-background ombra mx-1" :to="{ name: 'email', params: { id: s_app.id }}">E-mail</router-link> -->
+<!-- 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class=" col-12 col-lg-5 my-2 card ombra" 
@@ -83,7 +83,7 @@
         name: 'Dashboard',
         data() {
             return{
-                sponsored_apartments:[],
+                // sponsored_apartments:[],
                 apartments:[]
             }
         },
@@ -96,8 +96,9 @@
                 .then(response => {
                     
                     // questi sono gli apartments dell'utente loggato, divisi tra sponsored e non
-                    this.sponsored_apartments = response.data.results.sponsored_apartments;
+                    // this.sponsored_apartments = response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
+                    console.log(this.apartments)
                 })
                 .catch(error => {
                     console.log(error);

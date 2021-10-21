@@ -218,5 +218,9 @@ export default {
     width: 100%;
     overflow-y: scroll;
     padding-top: 60px;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 </style>

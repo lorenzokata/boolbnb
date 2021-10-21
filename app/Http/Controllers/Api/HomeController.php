@@ -20,34 +20,34 @@ class HomeController extends Controller
         // controllare gli appartamenti che hanno come user_id = $userId
         $apartments = Apartment::where('user_id', $userId)->get();
 
-        $sponsored_apartments = [];
-        $not_sponsored_apartments = [];
+        // $sponsored_apartments = [];
+        // $not_sponsored_apartments = [];
 
-        $now = Carbon::now()->toDateTimeString();
+        // $now = Carbon::now()->toDateTimeString();
         
         // possibile funzione helper
         // da convertire in query di laravel
-        foreach($apartments as $apartment){
-            $semaforo=false;
-            foreach ($apartment->sponsors as $sponsor) {
+        // foreach($apartments as $apartment){
+        //     $semaforo=false;
+        //     foreach ($apartment->sponsors as $sponsor) {
 
-                if ($sponsor->pivot->date_end > $now) {
-                    array_push($sponsored_apartments, $apartment);
-                    $semaforo = true;
-                    break;
-                }
-            };
-            if($semaforo == false){
+        //         if ($sponsor->pivot->date_end > $now) {
+        //             array_push($sponsored_apartments, $apartment);
+        //             $semaforo = true;
+        //             break;
+        //         }
+        //     };
+        //     if($semaforo == false){
 
-                array_push($not_sponsored_apartments, $apartment);
-            }
-        }
+                // array_push($not_sponsored_apartments, $apartment);
+            // }
+        // }
 
         return response()->json([
             'success' => true,
             'results' => [
-                'sponsored_apartments' => $sponsored_apartments,
-                'apartments' => $not_sponsored_apartments
+                // 'sponsored_apartments' => $sponsored_apartments,
+                'apartments' => $apartments
             ]
         ]);
     }
@@ -108,7 +108,7 @@ class HomeController extends Controller
 
         // cercare nella tabella ponte l'ID dell'appartamento
         $apartments = [];
-        $sponsored_apartments = [];
+        // $sponsored_apartments = [];
 
         $now = Carbon::now()->toDateTimeString();
 
@@ -148,22 +148,22 @@ class HomeController extends Controller
                 'apartment' => $apartment,
                 'distance' => $distance
             ];
-            $semaforo = false;
+            // $semaforo = false;
 
 
 
-            foreach ($apartment->sponsors as $sponsor) {
+            // foreach ($apartment->sponsors as $sponsor) {
 
-                if ($sponsor->pivot->date_end > $now) {
-                    $semaforo = true;
-                    array_push($sponsored_apartments, $element);
-                    break;
-                }
-            };
-            if($semaforo == false){
+            //     if ($sponsor->pivot->date_end > $now) {
+            //         $semaforo = true;
+            //         array_push($sponsored_apartments, $element);
+            //         break;
+            //     }
+            // };
+            // if($semaforo == false){
 
                 array_push($apartments, $element);
-            }
+            // }
             
         };
 
@@ -176,17 +176,18 @@ class HomeController extends Controller
         array_multisort($distance, SORT_ASC, $apartments);
 
         $distance = [];
-        foreach ($sponsored_apartments as $key => $row) {
+        // foreach ($sponsored_apartments as $key => $row) {
 
-            $distance[$key] = $row['distance'];
-        }
-        array_multisort($distance, SORT_ASC, $sponsored_apartments);
+        //     $distance[$key] = $row['distance'];
+        // }
+        // array_multisort($distance, SORT_ASC, $sponsored_apartments);
+
         $services = Service::all();
 
         return response()->json([
             'success' => true,
             'results' => [
-                'sponsored_apartments' => $sponsored_apartments,
+                // 'sponsored_apartments' => $sponsored_apartments,
                 'apartments' => $apartments,
                 'services' => $services,
             ]

@@ -248,7 +248,7 @@
                 <!-- immagine -->
                 <h4>Foto</h4>
                 <div
-                    class="form-row float-right d-flex justify-content-between align-items-center"
+                    class="form-row d-flex justify-content-between align-items-center"
                 >
                 
                     <!-- foto -->
@@ -256,6 +256,7 @@
                         <div class="form-group">
 
                             <input
+                                style="padding: 3px;"
                                 type="file"
                                 class="form-control-file form-control"
                                 name="imgs"

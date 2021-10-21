@@ -84,9 +84,9 @@
         </div>
 
         <!-- sponsored apartments -->
-        <div>
+        <!-- <div> -->
             <!-- <input type="num" v-model="radius" @input="loadApartments(radius)"> -->
-            <h2
+            <!-- <h2
                 v-if="Object.keys(sponsored_apartments).length != 0"
                 class="rosso mt-3"
             >
@@ -120,7 +120,7 @@
                     <div class="mb-4">{{ s_app.apartment.description.substring(0,300) }}</div>
                     <router-link class="mt-5 float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: s_app.apartment.slug }}">Dettagli</router-link>
                 </div>
-            </div>
+            </div> -->
 
         <!-- apartments -->
         <div>
@@ -154,7 +154,6 @@
                     <router-link class="mt-5 float-right bottone rosso-background ombra mx-1 slide-in-elliptic-top-fwd  my-disp" :to="{ name: 'show', params: { slug: app.apartment.slug }}">Dettagli</router-link>
                 </div>
             </div>
-            </div>
         </div>
     </div>
 </template>
@@ -165,7 +164,7 @@ export default {
 
     data() {
         return {
-            sponsored_apartments: [],
+            // sponsored_apartments: [],
             apartments: [],
             services:[],
             filter_serve:[],
@@ -219,9 +218,9 @@ export default {
                         this.filterS 
                 )
                 .then(response => {
-                    console.log(response.data.results);
-                    this.sponsored_apartments =
-                        response.data.results.sponsored_apartments;
+                    // console.log(response.data.results);
+                    // this.sponsored_apartments =
+                    //     response.data.results.sponsored_apartments;
                     this.apartments = response.data.results.apartments;
                     this.services = response.data.results.services;
                     if(filtro == true){
@@ -393,5 +392,6 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
+    z-index: 999999999;
 }
 </style>
