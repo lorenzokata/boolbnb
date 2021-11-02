@@ -11,44 +11,45 @@
                         <router-link
                             class="mt-2 bottone cream home-dash"
                             :to="{ name: 'dashboard' }"
-                            ><i class="far fa-user-circle"></i></router-link
-                        >
+                            ><i class="far fa-user-circle"></i
+                        ></router-link>
                     </div>
 
                     <!-- logo -->
-                    
 
                     <div class="box-cerca ">
                         <!-- input --><!-- btn cerca -->
-    <!--boolflix seachbar -->
-                    <h2 class="search-text text-align-center" >Dove vuoi andare?</h2>
-                        <form class=" search_box"  
-                                >
-                            <input 
+                        <!--boolflix seachbar -->
+                        <h2 class="search-text text-align-center">
+                            Dove vuoi andare?
+                        </h2>
+                        <form class=" search_box">
+                            <input
                                 v-model="userInput"
                                 @input="autoAddress()"
-                                id="search" class="search" type="text"
+                                id="search"
+                                class="search"
+                                type="text"
                                 autocomplete="off"
                                 @focus="focus = true"
                                 @enter="enterRoute()"
                                 @blur="focusActions()"
-                            >
+                            />
 
                             <router-link
-                                    class="bottone rosso-background cream mb-1 ombra"
-                                    :to="{
-                                        name: 'results',
-                                        params: { userInput: userInput }
-                                    }"
-                                    >
-                                    <i class="fas fa-search"></i>
+                                class="bottone rosso-background cream mb-1 ombra"
+                                :to="{
+                                    name: 'results',
+                                    params: { userInput: userInput }
+                                }"
+                            >
+                                <i class="fas fa-search"></i>
                             </router-link>
                             <div
                                 class="list-group suggeriti"
-                                
-                                v-if="arrayAddress != [] && userInput.length > 1 "
-                                
-                                
+                                v-if="
+                                    arrayAddress != [] && userInput.length > 1
+                                "
                             >
                                 <ul>
                                     <label
@@ -57,16 +58,17 @@
                                         :key="id"
                                         :v-model="arrayAddress[id]"
                                         @click="addressClick(id)"
-                                        
                                     >
-                                       <label for="search">{{ address }}</label> 
+                                        <label for="search">{{
+                                            address
+                                        }}</label>
                                     </label>
                                 </ul>
                             </div>
-                        </form>                        
+                        </form>
                     </div>
                 </div>
-<!-- :to="{
+                <!-- :to="{
                                             name: 'results',
                                             params: { userInput: userInput }
                                         }" -->
@@ -75,7 +77,7 @@
                 <div
                     class=" col-12 col-lg-4 col-xl-3 my-primo-piano align-items-center pb-2"
                 >
-                    <h3 class="pl-3 pt-3">In Primo Piano</h3>
+                    <h3 class="pl-3 my_title">In Primo Piano</h3>
                     <!-- <div
                         class="margin-t-4"
                         v-for="app in sponsored_apartments"
@@ -90,7 +92,7 @@
 
                     <!-- card importata -->
                     <!--style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i1.wp.com/handluggageonly.co.uk/wp-content/uploads/2015/05/IMG_2813-s.jpg?w=1600&ssl=1');"-->
-                    <div class="overflow-auto scroll_container" >
+                    <div class="overflow-auto scroll_container">
                         <div
                             class="card position-relative slide-in-top"
                             v-for="app in sponsored_apartments"
@@ -111,7 +113,7 @@
                                     name: 'show',
                                     params: { slug: app.slug }
                                 }"
-                                >
+                            >
                             </router-link>
                         </div>
                     </div>
@@ -130,8 +132,8 @@ export default {
             arrayAddress: [],
             addressActive: true,
             sponsored_apartments: [],
-            focus : false,
-            inp:''
+            focus: false,
+            inp: ""
         };
     },
     mounted() {
@@ -152,14 +154,12 @@ export default {
             this.addressActive = false;
             this.focus = false;
             this.$router.push({
-                name: 'results', 
+                name: "results",
                 params: { userInput: this.userInput }
             });
             // this.inp = document.getElementById('search');
-            
+
             // this.inp.focus();
-            
-            
         },
         autoAddress: function() {
             // caso attivo quando form.city !== '' (caso base, PASSO 1)
@@ -187,15 +187,16 @@ export default {
             this.addressActive = true;
             this.focus = true;
         },
-        focusActions: function(){
+        focusActions: function() {
             this.focus = false;
-            // this.arrayAddress = [];           
+            // this.arrayAddress = [];
         },
-        enterRoute: function(){
-            
-            this.router.push({ name: 'results', params: { userInput: this.userInput } });
+        enterRoute: function() {
+            this.router.push({
+                name: "results",
+                params: { userInput: this.userInput }
+            });
         }
-
     }
 };
 </script>
@@ -226,13 +227,13 @@ export default {
         overflow-y: auto;
         scrollbar-width: none;
         border-radius: 10px;
-            &::-webkit-scrollbar {
-                display: none;
-            }
-            .list-group-item:last-child{
-                border-bottom-right-radius: 10px;
-                border-bottom-left-radius: 10px; 
-            }
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .list-group-item:last-child {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
     }
 }
 
@@ -253,6 +254,10 @@ export default {
     transform: rotate(180deg);
 }
 
+.my_title{
+    padding-top: 60px;
+}    
+
 .my-card {
     /* background-image: url(https://pix10.agoda.net/hotelImages/4869553/0/35b103e869655a2959fac36f614fa08e.jpg?s=1024x768); */
     background-position: center;
@@ -266,13 +271,11 @@ export default {
         margin-right: auto;
         width: 100%;
         border-radius: 1.25rem;
-        
     }
-    
 }
 
 .my-primo-piano {
-    height: calc(100vh - 46px);
+    height: calc(100vh);
     width: 100%;
 }
 
@@ -282,7 +285,7 @@ export default {
     right: 50px;
 }
 
-.fa-user-circle{
+.fa-user-circle {
     height: 3rem;
     width: 3rem;
 }
@@ -354,18 +357,17 @@ export default {
     width: 100%;
     border-radius: 20px;
     overflow: hidden;
-    &:hover img{
-            transform:  scale(2, 2);    
-            transition: 1s;
-        }
+    &:hover img {
+        transform: scale(2, 2);
+        transition: 1s;
+    }
     img {
         height: 100%;
         width: 100%;
         border-radius: 20px;
         transition: 1s;
-        
     }
-    .lay_over{
+    .lay_over {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.3);
@@ -373,60 +375,51 @@ export default {
         top: 0;
         left: 0;
         border-radius: 20px;
-        &:hover{
-            background-color:rgba(0, 0, 0, 0.1);
-            
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     }
-
-
-    
-    
 }
 .darker_gradient {
-        background: #ebffff13;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top:0;
-        left: 0;
-        
-    }
-    
-.scroll_container {
+    background: #ebffff13;
+    width: 100%;
     height: 100%;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-                display: none;
-            }
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-
+.scroll_container {
+    height: calc(100vh - 98px);
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
 
 // boolflix classes
 
-.search_box{
+.search_box {
     height: 50px;
     width: 400px;
-    
-    
+
     font-weight: 700;
     color: #3a3a3a;
     font-size: 20px;
-        &:hover .search{
-            width: 300px;
-            transition:  ease-in-out 0.5s ;
-            transition-delay: 0.1s;
-            background-color: white;
-            padding: 4px 10px;
-            border-radius: 1000px;
-            color: black;
-        }
+    &:hover .search {
+        width: 300px;
+        transition: ease-in-out 0.5s;
+        transition-delay: 0.1s;
+        background-color: white;
+        padding: 4px 10px;
+        border-radius: 1000px;
+        color: black;
+    }
 }
 
-.search{
+.search {
     width: 0px;
-    
+
     background-color: rgba(255, 255, 255, 0);
     box-sizing: content-box;
     border: 0px solid rgba(255, 255, 255, 0);
@@ -436,25 +429,24 @@ export default {
     color: rgba(0, 0, 0, 0);
     // transition: padding 0.4s;
     transition: ease-out 0.4s;
-        &:focus{
-            width: 300px;
-            background-color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 0px;
-            outline: none;
-            color: black;
-        } 
+    &:focus {
+        width: 300px;
+        background-color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 0px;
+        outline: none;
+        color: black;
+    }
 }
 
-
-
-.search-text{
+.search-text {
     color: white;
 }
 
 .slide-in-top {
-	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+    animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 </style>
